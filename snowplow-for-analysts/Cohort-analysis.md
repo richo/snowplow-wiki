@@ -1,1 +1,1 @@
-Cohort-analysis
+This section is still to be written. However, a whole series of blog posts on performing cohort analysis with SnowPlow has been published on the [Keplar blog](http://www.keplarllp.com/blog/2012/05/performing-cohort-analysis-on-web-analytics-data-using-snowplow)

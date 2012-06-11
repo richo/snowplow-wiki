@@ -1,6 +1,6 @@
 **Performing analysis on SnowPlow data**
 
-[[Overview]]
+[Overview](SnowPlow-for-analysts)
 
 [[Understanding-the-SnowPlow-events-table-structure]]
 
@@ -12,9 +12,9 @@
 
 **More powerful metrics with SnowPlow**
 
-[[User-engagement]]
+[[Measuring-user-engagement]]
 
-[[Customer-lifetime-value]]
+[[Measuring-customer-lifetime-value]]
 
 **More sophisticated analytics with SnowPlow**
 
