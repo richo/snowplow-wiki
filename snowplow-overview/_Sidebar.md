@@ -4,6 +4,7 @@
 
 [Technical FAQ](technical-faq)
 
+
 **More detailed documentation...**
 
 [For business folks](SnowPlow-for-business-folks)
