@@ -1,1 +1,1 @@
-[[Home]] *|* [[About SnowPlow]] *|* [[SnowPlow Setup Guide]] *|* [[SnowPlow Analysis Cookbook]] *|* Copyright &copy; 2012 SnowPlow Analytics Ltd
+[[Home]] *|* [[About]] *|* [[Setup Guide]] *|* [[Analysis Cookbook]] *|* Copyright &copy; 2012 SnowPlow Analytics Ltd
