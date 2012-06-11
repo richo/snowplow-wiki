@@ -9,7 +9,7 @@ Welcome to SnowPlow - the open-source, web-scale analytics platform powered by [
 
 ## Questions or need help?
 
-Contact us on support@snowplowanalytics.com
+Contact us at support@snowplowanalytics.com
 
 [hadoop]: http://hadoop.apache.org/
 [hive]: http://hive.apache.org/
