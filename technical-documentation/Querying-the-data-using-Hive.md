@@ -94,7 +94,7 @@ We need to add the JAR to the Hive session, so Hive can access the deserializer.
 
 	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.4.jar
 
-![Add the SnowPlow deserializer JAR to Hive](technical-documentation/images/hive-add-deserializer.png)
+![Add the SnowPlow deserializer JAR to Hive](technical-documentation/images/04_hive-add-deserializer.png)
 
 Now in Hive we need to define create a table with the data stored in the SnowPlow logs, using the deserializer. Do this by entering the following query:
 
@@ -102,7 +102,7 @@ Now in Hive we need to define create a table with the data stored in the SnowPlo
 	ROW FORMAT SERDE 'com.snowplowanalytics.snowplow.hadoop.hive.SnowPlowEventDeserializer'
 	LOCATION 's3://{{LOGS-BUCKET-NAME}}/'
 
-![Create SnowPlow events table](technical-documentation/images/create-table-with-serde.png)
+![Create SnowPlow events table](technical-documentation/images/04_create-table-with-serde.png)
 
 Don't forget to include the trailing slash in the location address. The above query creates a new table. The table is `EXTERNAL` because the data in it is not managed by Hive: it is stored in S3 (and only accessed by Hive). As a result, if you drop the table in Hive (`DROP TABLE snowplow_events_log`), the data will remain safely in S3, even if the table disappears from Hive. (You can re-enter the above query to _bring it back_):
 
