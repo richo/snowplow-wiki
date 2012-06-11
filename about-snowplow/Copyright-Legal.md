@@ -1,6 +1,6 @@
 ## Copyright
 
-SnowPlow is copyright 2012 Orderly Ltd. Significant portions of `snowplow.js`
+SnowPlow is copyright 2012 SnowPlow Analytics Ltd. Significant portions of `snowplow.js`
 are copyright 2010 Anthon Pang.
 
 ## License
