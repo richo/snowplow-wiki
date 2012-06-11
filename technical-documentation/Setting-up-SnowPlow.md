@@ -4,7 +4,7 @@ There are several steps to take in order to setup SnowPlow:
 
 Like most web analytics solutions, SnowPlow works through Javascript tracking tags, that need to be embedded on web pages to collect data. Setting up Javascript tracking is a three step process:
 
-1. [Integrating SnowPlow tracking tags on your website](Integrating-SnowPlow-tracking-tags-on-your-website.md)
+1. [Integrating SnowPlow tracking tags on your website](Integrating-SnowPlow-tracking-tags-on-your-website)
 2. [Hosting the tracking pixel](Hosting-the-tracking-pixel)
 3. [Hosting SnowPlow.js](Hosting-SnowPlow-js)
 
