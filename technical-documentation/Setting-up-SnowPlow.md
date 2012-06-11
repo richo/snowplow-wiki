@@ -16,8 +16,8 @@ Setting up the Javascript tracking (above) ensures that you are collecting web a
 
 To query the data, however, you need to setup Amazon's Elastic Mapreduce and install the Command Line tools on analysts computers, so that they can query the data using Apache Hive and Pig, for example. 
 
-4. Setting up Amazon Elastic Mapreduce
-5. Querying the SnowPlow data using Hive 
+4. [Setting up Amazon Elastic Mapreduce](Setting-up-EMR)
+5. [Querying the SnowPlow data using Hive](Querying-the-data-using-Hive) 
 
 ### Optimizing the storage of SnowPlow events data for analysis in Hive
 

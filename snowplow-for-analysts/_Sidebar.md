@@ -1,6 +1,6 @@
 **Performing analysis on SnowPlow data**
 
-This section provides a guide to analysts who wish to use Hive to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
+[[Overview]]
 
 [[Understanding-the-SnowPlow-events-table-structure]]
 
@@ -12,9 +12,9 @@ This section provides a guide to analysts who wish to use Hive to analyse the Sn
 
 **More powerful metrics with SnowPlow**
 
-[[Measuring-user-engagement]]
+[[User-engagement]]
 
-[[Measuring-customer-lifetime-value]]
+[[Customer-lifetime-value]]
 
 **More sophisticated analytics with SnowPlow**
 
