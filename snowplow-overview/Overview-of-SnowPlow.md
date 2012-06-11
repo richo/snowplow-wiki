@@ -35,11 +35,13 @@ Because data can be accessed at an atomic level, it is straightforward to link w
 
 Lastly, SnowPlow is open source. All _your_ web analytics data is stored on your own Amazon S3 account, so you have complete control and ownership of it.
 
+For more detailed information on the benefits of running SnowPlow for your business, see [[SnowPlow-for-business-folks]].
+
 <a name="resources" />
 ## Resources
 
 * [Keplar LLP](http://www.keplarllp.com) provides consultancy services around SnowPlow, including setup and business consultancy to use SnowPlow data to drive customer understanding and growth in customer value and volume. Some SnowPlow documentation is availabe on the [website](http://www.keplarllp.com/resources/snowplow) and in a large number of [blog posts](http://www.keplarllp.com/blog/category/snowplow) on SnowPlow.
-* This wiki is being built out to house all SnowPlow documentation, including documentation for [business folks](SnowPlow-for-business-folks) and [data scientsts / analysts](SnowPlow-for-analysts).
+* This wiki is being built out to house all SnowPlow documentation, including documentation for [business folks](SnowPlow-for-business-folks) outlining the value of using SnowPlow and [data scientsts / analysts](SnowPlow-for-analysts) including documentation of queries for performing specific analyses with SnowPlow.
 
 <a name="roadmap" />
 ## Roadmap
@@ -57,6 +59,7 @@ Lastly, SnowPlow is open source. All _your_ web analytics data is stored on your
 
 Original concept for SnowPlow inspired by [Radek Maciaszek](https://github.com/rathko).
 
+<a name="license" />
 ## Copyright and license
 
 SnowPlow is copyright 2012 Orderly Ltd. Significant portions of `snowplow.js`
