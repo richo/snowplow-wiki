@@ -11,7 +11,7 @@
 
 This guide takes you through the process for integrating SnowPlow's JavaScript tracker `snowplow.js` into your website or web app.
 
-This guide assumes that you are working with the hosted version of `snowplow.js` - you will need to make some adjustments if you are bundling `snowplow.js` into your own site's JavaScript; these adjustments are discussed separately in the [Self-Hosting Guide] [selfhosting]
+This guide assumes that you are working with the hosted version of `snowplow.js` or that you have hosted `snowplow.js` yourself. (See [[Hosting-SnowPlow-js]] for details.) You will need to make some adjustments if you are bundling `snowplow.js` into your own site's JavaScript differently from the way described in [this guides](Hosting-SnowPlow-js).
 
 The exact integration steps required vary depending on whether you choose to use `snowplow.js` in a synchronous or an asynchronous manner; each option is covered separately below.
 
@@ -218,5 +218,5 @@ If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] 
 [gaeventguide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
 [chromedevtools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/
-[networkpane]: /snowplow/snowplow/raw/master/docs/images/03_network_pane.png
+[networkpane]: images/01_network_pane.png
 [contact]: mailto:snowplow@keplarllp.com
