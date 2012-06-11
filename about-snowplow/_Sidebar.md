@@ -12,4 +12,4 @@
 **More documentation...**  
 [For business folks](SnowPlow-for-business-folks)  
 [For analysts](SnowPlow-for-analysts)  
-[For engineers)](Setting-up-SnowPlow)  
+[For engineers](Setting-up-SnowPlow)  
