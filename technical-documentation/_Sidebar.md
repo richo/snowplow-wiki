@@ -10,4 +10,4 @@ Overview of how to set up SnowPlow on your website
 
 [[Hosting-the-tracking-pixel]]
 
-[[Hosting-SnowPlow.js]]
+[[Hosting-SnowPlow-js]]

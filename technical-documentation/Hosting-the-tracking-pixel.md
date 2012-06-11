@@ -1,17 +1,19 @@
-### Overview
+## Overview
 
-This guide assumes that you will be hosting your the tracking pixel used by your SnowPlow implementation. If you prefer the tracking pixel to be hosted by a 3rd party, then get in touch with the team at [Keplar LLP](#http://www.keplarllp.com) for this and other services related to SnowPlow implementation.
+This guide assumes that you will be hosting your the tracking pixel used by your SnowPlow implementation. (Self hosting the tracking pixel on your own Amazon S3 / Cloudfront account means that all your SnowPlow data will be stored on your own Amazon account.)
+
+If you prefer the tracking pixel and data to be hosted by a 3rd party, then get in touch with the team at [Keplar LLP](#http://www.keplarllp.com) for this and other services related to SnowPlow implementation.
 
 Self hosting the tracking pixel is straightforward. Implementation steps are described below.
 
-### Contents
+## Contents
 
 1. [Pre-requisites](#prerequisites)
 2. [Self-hosting instructions](#self-hosting-instructions)
 3. [Privacy considerations](#privacy): issues that impact your choice of where to host your tracking pixel
 
 <a name="prerequisites" />
-### Pre-requisites
+## Pre-requisites
 
 If you want to self-host the tracking pixel, you will need the following:
 
@@ -22,9 +24,9 @@ If you want to self-host the tracking pixel, you will need the following:
 Once you have those ready, please read on...
 
 <a name="self-hosting-instructions" />
-### Self-hosting instructions
+## Self-hosting instructions
 
-#### 1. Create a bucket for the pixel
+### 1. Create a bucket for the pixel
 
 First create a new bucket within your Amazon S3 account to store the pixel. Call this bucket something like `snowplow-static`:
 
@@ -36,7 +38,7 @@ A couple of notes on this:
 * You won't be able to call this bucket exactly `snowplow-static`. This is because Amazon S3 bucket names have to be globally unique, and `snowplow-static` is unfortunately taken!
 * Because we will be using CloudFront, it doesn't particularly matter which data center you choose (although see [A note on privacy](#privacy) below)
 
-#### 2. Create a bucket for the CloudFront logging
+### 2. Create a bucket for the CloudFront logging
 
 Now let's create a second bucket to store our CloudFront logs - i.e. our actual SnowPlow data. Call this bucket something like `snowplow-logs`:
 
@@ -44,7 +46,7 @@ Now let's create a second bucket to store our CloudFront logs - i.e. our actual 
 
 The notes above also hold true for this bucket: don't enable logging, and expect to have to change the bucket's name slightly.
 
-#### 3. Upload a tracking pixel
+### 3. Upload a tracking pixel
 
 You can obtain a 1x1 transparent tracking pixel by right-clicking [this image file] [pixel] and selecting **Save Link As...**, or if you prefer run:
 
@@ -68,7 +70,7 @@ Now hit **Start Upload** to upload the pixel into your bucket. When done, you sh
 
 The Properties pane at the bottom is viewable by pressing the **Properties** button and selecting `ice.png`.
 
-#### 4. Create your CloudFront distribution
+### 4. Create your CloudFront distribution
 
 Now you are ready to create the CloudFront distribution which will serve your tracking pixel. In the CloudFront tab, hit the **Create Distribution** button:
 
@@ -90,7 +92,7 @@ Write down your CloudFront distribution's **Domain Name** (highlighted above) - 
 
 That's it - you now have a CloudFront distribution which will serve your tracking pixel fast to anybody anywhere in the world and log the request to Amazon S3 in your `snowplow-logs` bucket. 
 
-#### 5. Testing your tracking pixel on CloudFront
+### 5. Testing your tracking pixel on CloudFront
 
 Before testing, take a 10 minute coffee or brandy break (that's how long CloudFront takes to synchronize).
 
@@ -101,7 +103,7 @@ Done? Now just check that you can access your pixel over both HTTP and HTTPS usi
 
 If you have any problems, then double-check your CloudFront distribution's URL, and check the permissions on your pixel: it must be Openable by Everyone.
 
-#### 6. Update your header script
+### 6. Update your header script
 
 Now you need to update the JavaScript code for SnowPlow in your website's `<head>` section to work with your custom tracking pixel. We're assuming here that you have already followed the steps in [Integrating `snowplow.js` into your site] [integrating].
 
@@ -119,16 +121,16 @@ Whereas if you are using **synchronous tracking**, then update your header scrip
 var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
 ```
 
-#### 7. Test snowplow.js with your tracking pixel
+### 7. Test snowplow.js with your tracking pixel
 
 **To write**
 
-#### 8. Inspect the CloudFront access logs
+### 8. Inspect the CloudFront access logs
 
 **To write**
 
 <a name="privacy"/>
-## A note on privacy
+# A note on privacy
 
 Above we mentioned that, from a performance perspective, it is not important which Amazon data center you choose to self-host your pixel, or indeed your JavaScript:
 
@@ -154,4 +156,3 @@ It is your responsibility to ensure that you comply with the privacy laws govern
 [dataprivacy]: http://aws.amazon.com/s3/faqs/#Can_I_comply_with_EU_data_privacy_regulations_using_Amazon_S3
 [git]: http://git-scm.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
-[crockford]: https://github.com/douglascrockford
