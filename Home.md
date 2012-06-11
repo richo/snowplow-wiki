@@ -4,15 +4,13 @@ If this is your first time learning about SnowPlow, we recommend starting with t
 
 ## Quick navigation
 
-_Click on one of the links below:_
-
-| About SnowPlow             | Product & Benefits              | SnowPlow Setup Guide          | (Analysis Cookbook)                  |
+| About SnowPlow             | Product & Benefits              | Setup Guide          | Analysis Cookbook                  |
 |----------------------------|---------------------------------|-------------------------------|---------------------------|
-| [[/images/icons/help.png]] | [[/images/icons/checkmark.png]] | [[/images/icons/tools.png]] | [[/images/icons/chart.png]] |
+| [[/images/help.png]] | [[/images/checkmark.png]] | [[/images/tools.png]] | [[/images/chart.png]] |
 | [About SnowPlow](wiki/SnowPlow-Overview) | [Product & Benefits](wiki/Product-Overview)       | [SnowPlow Setup Guide]                   | [[Analysis Cookbook Contents]]                |
 | What SnowPlow is, what it's for, where it is today and how we plan to develop it | What business questions SnowPlow enables companies to use web analytics data to answer, and how to employ SnowPlow to answer them* | Technical documentation for setting up and running SnowPlow | Recipes (queries) for performing analyses on SnowPlow data using Apache Hive |
 
-* Many of these questions *cannot* be addressed using traditional web analytics programmes
+\* Many of these questions *cannot* be addressed using traditional web analytics programmes
 
 ## Questions or need help?
 
