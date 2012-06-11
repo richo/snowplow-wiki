@@ -213,10 +213,8 @@ If you have any problems getting this to run, please [contact] [contact] the Sno
 
 If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] [contact] the SnowPlow team to confirm that your event data is being successfully logged. If you are self-hosting SnowPlow, then consult the [Troubleshooting section] [shtt] within the Self-Hosting Guide.
 
-[selfhosting]: /snowplow/snowplow/blob/master/docs/04_selfhosting_snowplow.md
-[shtt]: /snowplow/snowplow/blob/master/docs/04_selfhosting_snowplow.md#tt
 [gaeventguide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
 [chromedevtools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/
-[networkpane]: images/01_network_pane.png
+[networkpane]: technical-documentation/images/01_network_pane.png
 [contact]: mailto:snowplow@keplarllp.com
