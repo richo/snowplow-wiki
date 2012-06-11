@@ -32,11 +32,12 @@ Also on the roadmap is releasing the first of the "recipes" for Hive analyses on
 
 On the ad serving analytics front, we are working on a micro-webserver to support redirection-based click-tracking, called [SnowHusky] [snowhusky].
 
+<a name="nocloudfront"/>
 ## I want to use SnowPlow but not Amazon CloudFront - how?
 
-<a name="nocloudfront"/>
 SnowPlowing without CloudFront is on the roadmap: we are currently building an ultra-fast, micro-webserver called [SnowHusky] [snowhusky] which you can use for impression as well as redirection-based click tracking. SnowHusky is being actively developed and is not yet ready for production deployment; [contact the SnowPlow team] [contact] if you want to find out more about SnowHusky.
 
+<a name="contribute" />
 ## How can I contribute to SnowPlow?
 
 The SnowPlow team welcome contributions! The core team (funded by [Keplar] [keplar]) is small so we would love more people to join in and help realise our objectives of building the world's most powerful analytics platform. Stay tuned for a more detailed update on how best you can contribute to SnowPlow. 
