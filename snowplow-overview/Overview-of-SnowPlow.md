@@ -6,6 +6,16 @@ SnowPlow is a powerful web analytics platform. It does three things:
 2. It stores the granular, customer-level, event-level data in a scalable "clickstream" datawarehouse. (Using Amazon S3.)
 3. It enables data scientists and business analysts to query that data using powerful, scalable big data tools including Apache Hive, Pig and Hadoop (via Amazon EMR).
 
+## Contents
+
+1. [What makes SnowPlow different to other web analytics tools?](#what-makes-snowplow-different)
+2. [Resources](#resources)
+3. [Roadmap](#roadmap)
+4. [Contributors](#contributors)
+5. [Open source license](#license)
+
+
+<a name="what-makes-snowplow-different" />
 ## What makes SnowPlow different to other web analytics tools?
 
 Traditional web analytics programmes have been built with specific analyses in mind, and too often, these analyses are focused narrowly on the needs of web marketers for online retailers and publishers.
@@ -25,17 +35,20 @@ Because data can be accessed at an atomic level, it is straightforward to link w
 
 Lastly, SnowPlow is open source. All _your_ web analytics data is stored on your own Amazon S3 account, so you have complete control and ownership of it.
 
+<a name="resources" />
 ## Resources
 
 * [Keplar LLP](http://www.keplarllp.com) provides consultancy services around SnowPlow, including setup and business consultancy to use SnowPlow data to drive customer understanding and growth in customer value and volume. Some SnowPlow documentation is availabe on the [website](http://www.keplarllp.com/resources/snowplow) and in a large number of [blog posts](http://www.keplarllp.com/blog/category/snowplow) on SnowPlow.
 * This wiki is being built out to house all SnowPlow documentation, including documentation for [business folks](SnowPlow-for-business-folks) and [data scientsts / analysts](SnowPlow-for-analysts).
 
+<a name="roadmap" />
 ## Roadmap
 
 * Build out the list of recipe analyses using Apache Hive
 * Build a set of connectors to manage ongoing data migration (ETL) from S3 into analytics databases for improved train-of-thought and repeatable analyses
 * Make `snowplow.js` available over SSL (currently not working)
 
+<a name="contributors" />
 ## Contributors
 
 * [Alex Dean](https://github.com/alexanderdean)
