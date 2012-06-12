@@ -24,7 +24,7 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 
 [[Attribution modelling]]
 
-### Industry-specific queries**
+### Industry-specific queries
 
 [[Retailers]]
 
