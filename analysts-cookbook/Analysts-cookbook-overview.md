@@ -6,9 +6,9 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 
 ### Performing standard queries (same as those performed in other web analytics tools)
 
-[Basic recipes part 1](Basic recipes (part 1))
+[[Basic recipes part 1]]
 
-[Basic recipes part 2](Basic recipes (part 2))
+[[Basic recipes part 2]]
 
 ### More powerful metrics with SnowPlow
 

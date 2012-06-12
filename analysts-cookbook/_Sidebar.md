@@ -2,20 +2,20 @@
 
 **Getting started**  
 [Overview](Analysts-cookbook-overview)  
-[[Data-structure-orientation]]  
+[[Data structure orientation]]  
 
 **Standard web analyses**  
-[[Basic-recipes-part-1]]  
-[[Basic-recipes-part-2]]  
+[[Basic recipes part 1]]  
+[[Basic recipes part 2]]  
 
 **More powerful metrics**  
-[[Measuring-user-engagement]]  
-[[Measuring-customer-lifetime-value]]  
+[[Measuring user engagement]]  
+[[Measuring customer lifetime value]]  
 
 **More sophisticated analytics**  
-[[Cohort-analysis]]  
-[[Flexible-funnels]]  
-[[Attribution-modelling]]  
+[[Cohort analysis]]  
+[[Flexible funnels]]  
+[[Attribution modelling]]  
 
-**Industry-specific queries**  
+**Industry specific queries**  
 [[Retailers]]  
