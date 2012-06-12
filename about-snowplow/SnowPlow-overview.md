@@ -25,7 +25,7 @@ Because data can be accessed at an atomic level, it is straightforward to link w
 
 Lastly, SnowPlow is open source. All _your_ web analytics data is stored on your own Amazon S3 account, so you have complete control and ownership of it.
 
-For more detailed information on the benefits of running SnowPlow for your business, see [[SnowPlow-for-business-folks]].
+For more detailed information on the benefits of running SnowPlow for your business, see [[Product overview]].
 
 ## Resources
 
