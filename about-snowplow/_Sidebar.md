@@ -1,7 +1,7 @@
 **ABOUT SNOWPLOW** 
 
 **Introduction**  
-[SnowPlow Overview](SnowPlow-overview)  
+[SnowPlow overview](SnowPlow-overview)  
 [Technical FAQ](Technical-FAQ)  
 [Roadmap](Product-roadmap)  
 
