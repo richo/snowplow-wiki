@@ -1,29 +1,22 @@
-**Performing analysis on SnowPlow data**
+**ANALYST'S COOKBOOK**
 
-[Overview](SnowPlow-for-analysts)
+[Overview](Analysts-Cookbook-Overview)
 
+**Orientation**
 [[Understanding-the-SnowPlow-events-table-structure]]
 
-**Performing standard queries (same as those performed in other web analytics tools)**
-
+**Standard web analyses**
 [[Basic-recipes-pt1]]
-
 [[Basic-recipes-pt2]]
 
-**More powerful metrics with SnowPlow**
-
+**More powerful metrics**
 [[Measuring-user-engagement]]
-
 [[Measuring-customer-lifetime-value]]
 
-**More sophisticated analytics with SnowPlow**
-
+**More sophisticated analytics**
 [[Cohort-analysis]]
-
 [[Flexible-funnels]]
-
 [[Attribution-modelling]]
 
 **Industry-specific queries**
-
 [[Retailers]]
