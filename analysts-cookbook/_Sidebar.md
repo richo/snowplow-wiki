@@ -1,7 +1,7 @@
 **ANALYST'S COOKBOOK**
 
 **Getting started**  
-[Overview](Analysts-cookbook-overview)  
+[Overview](Analysts-cookbook)  
 [[Data structure orientation]]  
 
 **Standard web analyses**  
