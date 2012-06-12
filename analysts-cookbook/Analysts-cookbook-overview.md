@@ -1,26 +1,28 @@
 This section provides a guide to analysts who wish to use [Hive][hive] to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
 
-[[Data-structure-orientation]]
+### Getting started
+
+[[Data structure orientation]]
 
 ### Performing standard queries (same as those performed in other web analytics tools)
 
-[[Basic-recipes-part-1]]
+[Basic recipes part 1](Basic recipes (part 1))
 
-[[Basic-recipes-part-2]]
+[Basic recipes part 2](Basic recipes (part 2))
 
 ### More powerful metrics with SnowPlow
 
-[[Measuring-user-engagement]]
+[[Measuring user engagement]]
 
-[[Measuring-customer-lifetime-value]]
+[[Measuring customer lifetime-value]]
 
 ### More sophisticated analytics with SnowPlow
 
-[[Cohort-analysis]]
+[[Cohort analysis]]
 
-[[Flexible-funnels]]
+[[Flexible funnels]]
 
-[[Attribution-modelling]]
+[[Attribution modelling]]
 
 ### Industry-specific queries**
 
