@@ -1,22 +1,21 @@
 **ANALYST'S COOKBOOK**
 
-[Overview](Analysts-Cookbook-Overview)
+**Getting started**  
+[Overview](Analysts-cookbook-overview) 
+[[Data-structure-orientation]]  
 
-**Orientation**
-[[Understanding-the-SnowPlow-events-table-structure]]
+**Standard web analyses**  
+[[Basic-recipes-pt1]]  
+[[Basic-recipes-pt2]]  
 
-**Standard web analyses**
-[[Basic-recipes-pt1]]
-[[Basic-recipes-pt2]]
+**More powerful metrics**  
+[[Measuring-user-engagement]]  
+[[Measuring-customer-lifetime-value]]  
 
-**More powerful metrics**
-[[Measuring-user-engagement]]
-[[Measuring-customer-lifetime-value]]
+**More sophisticated analytics**  
+[[Cohort-analysis]]  
+[[Flexible-funnels]]  
+[[Attribution-modelling]]  
 
-**More sophisticated analytics**
-[[Cohort-analysis]]
-[[Flexible-funnels]]
-[[Attribution-modelling]]
-
-**Industry-specific queries**
-[[Retailers]]
+**Industry-specific queries**  
+[[Retailers]]  

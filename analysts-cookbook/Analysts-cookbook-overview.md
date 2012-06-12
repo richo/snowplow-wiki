@@ -1,6 +1,6 @@
-This section provides a guide to analysts who wish to use Hive to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
+This section provides a guide to analysts who wish to use [Hive][hive] to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
 
-[[Understanding-the-SnowPlow-events-table-structure]]
+[[Data-structure-orientation]]
 
 ### Performing standard queries (same as those performed in other web analytics tools)
 
@@ -25,3 +25,5 @@ This section provides a guide to analysts who wish to use Hive to analyse the Sn
 ### Industry-specific queries**
 
 [[Retailers]]
+
+[hive]: http://hive.apache.org/
