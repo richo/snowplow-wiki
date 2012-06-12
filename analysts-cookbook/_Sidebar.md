@@ -1,12 +1,12 @@
 **ANALYST'S COOKBOOK**
 
 **Getting started**  
-[Overview](Analysts-cookbook-overview) 
+[Overview](Analysts-cookbook-overview)  
 [[Data-structure-orientation]]  
 
 **Standard web analyses**  
-[[Basic-recipes-pt1]]  
-[[Basic-recipes-pt2]]  
+[[Basic-recipes-part-1]]  
+[[Basic-recipes-part-2]]  
 
 **More powerful metrics**  
 [[Measuring-user-engagement]]  
