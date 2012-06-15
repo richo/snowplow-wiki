@@ -3,12 +3,32 @@
 SnowPlow is a powerful web analytics platform. It does three things:
 
 1. Identifies users on your website(s), and tracks the way they engage. (Page views and events)
-2. It stores the granular, customer-level, event-level data in a scalable "clickstream" datawarehouse. (Using Amazon S3.)
+2. It stores the granular customer-level, event-level data in a scalable "clickstream" datawarehouse. (Using Amazon S3.)
 3. It enables data scientists and business analysts to query that data using powerful, scalable big data tools including Apache Hive, Pig and Hadoop (via Amazon EMR).
 
-<div style="width:425px" id="__ss_13136914"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/yalisassoon/introducing-snowplow" title="(Re-)introducing SnowPlow" target="_blank">(Re-)introducing SnowPlow</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/13136914" width="425" height="355" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC;border-width:1px 1px 0" allowfullscreen></iframe> <div style="padding:5px 0 12px"> View more <a href="http://www.slideshare.net/thecroaker/death-by-powerpoint" target="_blank">PowerPoint</a> from <a href="http://www.slideshare.net/yalisassoon" target="_blank">yalisassoon</a> </div> </div>
+## What problem does SnowPlow solve?
 
-Find out [[what makes SnowPlow different|Feautures-and-benefits]].
+SnowPlow was developed out of frustration with traditional web analytics tools. Traditional tools were found to have a number of limitations:
+
+1. Too narrowly focussed on marketing related metrics (sources of traffic, clicks, conversions)
+2. Too narrowly focussed on content sites (page views by page) and retail sites (conversion funnels)
+3. Provide a very limited analytic toolset. (Hard to integrate with powerful tools e.g. R and Mahout)
+4. Too high level. Cannot drill into granular customer data
+5. Drown users in a sea of metrics, few of which are useful for making business decisions
+6. Siloed: hard to integrate with other customer data systems e.g. CRM and social
+
+## Overcoming those limitations: new possibilities
+
+SnowPlow enables users to do much more with their web analytics data:
+
+1. Detailed customer analytics, including customer lifetime value, cohort analysis, customer segmentation
+2. Detailed product analytics, including diagnosing where websites are and are not working effectively, identifying how customers actually use the product and measuring the impact of product developments on user engagement
+3. Integrate web analytics data with powerful analytics tools including R and Mahout to perform cluster analysis, principle component analysis etc.
+4. Drill into individual customer data to support customer services, deliver personalised service (e.g. email marketing / product recommendations)
+5. Develop highly specific analyses to help answer specific business questions, definitively
+6. Integrate with other customer data sources including CRM and social so that data on how customers engage online can be incorporated in the _single customer view_.
+
+For more details se the [[Features and benefits]].
 
 ## Resources
 
