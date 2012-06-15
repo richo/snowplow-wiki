@@ -3,6 +3,7 @@
 **Getting started**  
 [Overview](Analysts-cookbook)  
 [[Data structure orientation]]  
+[[Why Hive]]
 
 **Standard web analyses**  
 [[Basic recipes part 1]]  

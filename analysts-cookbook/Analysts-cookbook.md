@@ -4,6 +4,8 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 
 [[Data structure orientation]]
 
+[[Why Hive]]
+
 ### Performing standard queries (same as those performed in other web analytics tools)
 
 [[Basic recipes part 1]]
