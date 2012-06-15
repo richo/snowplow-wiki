@@ -1,5 +1,3 @@
-## The SnowPlow platform
-
 SnowPlow is a powerful web analytics platform that takes a fundamentally different approach to other web analytics packages. Those key differences are:
 
 1. Users capture and have access to atomic, event-level and customer-level data
