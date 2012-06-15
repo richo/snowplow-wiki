@@ -29,3 +29,4 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 [[Retailers]]
 
 [hive]: http://hive.apache.org/
+
