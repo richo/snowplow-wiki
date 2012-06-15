@@ -1,6 +1,11 @@
 There are several steps to take in order to setup SnowPlow:
 
-### Installing the Javascript tracking.
+1. [Installing the Javascript tracker](#installing-javascript-tracker)
+2. [Setting up Amazon EMR and the Hive client](#emr)
+3. [Optimizing the storage of SnowPlow events data for analysis in Hive](#optimize)
+
+<a name="installing-javascript-tracker" />
+### 1. Installing the Javascript tracking.
 
 Like most web analytics solutions, SnowPlow works through Javascript tracking tags, that need to be embedded on web pages to collect data. Setting up Javascript tracking is a three step process:
 
@@ -10,7 +15,8 @@ Like most web analytics solutions, SnowPlow works through Javascript tracking ta
 
 Note: in some cases, [Keplar LLP](http://www.keplarllp.com) hosts the tracking pixel and `SnowPlow.js` on behalf of their clients, so that these two steps are not always necessary.
 
-### Setting up Amazon Elastic Mapreduce and the Hive client
+<a name="emr" />
+### 2. Setting up Amazon Elastic Mapreduce and the Hive client
 
 Setting up the Javascript tracking (above) ensures that you are collecting web analytics data and storing it to the SnowPlow data warehouse on Amazon S3.
 
@@ -19,7 +25,8 @@ To query the data, however, you need to setup Amazon's Elastic Mapreduce and ins
 4. [Setting up Amazon Elastic Mapreduce](Setting-up-EMR)
 5. [Querying the SnowPlow data using Hive](Querying-the-data-using-Hive) 
 
-### Optimizing the storage of SnowPlow events data for analysis in Hive
+<a name="optimise" />
+### 3. Optimizing the storage of SnowPlow events data for analysis in Hive
 
 Although the raw SnowPlow data can be queried directly in the format it is collected in, it is generally more efficient if a lot of analytic work will be performed using Hive, to migrate the data into a new format optimised for analysis in Hive. Instructions on performing the migration are described below:
 
