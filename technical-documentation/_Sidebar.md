@@ -14,3 +14,7 @@
 
 **Optimizing the data structure for query performance**  
 [[Migrating data to optimized format for Hive]]  
+
+**Custom Trackers**  
+[[For ad tracking]]
+[[For mobile app tracking]]
