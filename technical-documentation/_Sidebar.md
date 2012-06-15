@@ -16,5 +16,5 @@
 [[Migrating data to optimized format for Hive]]  
 
 **Custom Trackers**  
-[[For ad tracking]]
-[[For mobile app tracking]]
+[[For ad tracking]]  
+[[For mobile app tracking]]  
