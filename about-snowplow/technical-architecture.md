@@ -2,7 +2,7 @@ SnowPlow has a very different architecture from conventional open-source web ana
 
 * A JavaScript event tracker
 * A CDN (Amazon CloudFront)
-* An immutable flatfile-based data store (Amazon S3 and Apache HDFS)
+* An immutable flatfile-based data store (Amazon S3)
 * JVM-based "big data" storage and querying tools (Apache Hadoop and Hive).
 
 In the rest of this page we explain our rationale for this architecture, map out the technical components and finally flag up the benefits and limitations of this architecture.
