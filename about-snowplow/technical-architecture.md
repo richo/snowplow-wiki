@@ -23,11 +23,11 @@ The current technical architecture for SnowPlow looks like this:
 
 [tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 
-# Benefits
+# Technical benefits
 
 This section to come.
 
-# Limitations
+# Technical limitations
 
 This section to come.
 
