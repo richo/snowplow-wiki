@@ -6,7 +6,7 @@ Significant portions of the JavaScript tracker `snowplow.js` are copyright 2010 
 
 ## License
 
-The JavaScript tracker `snowplow.js` is largely based on Anthon Pang's [`piwik.js`] [piwikjs], the JavaScript tracker for the open-source [Piwik] [piwik] project, and is distributed under the same license ([Simplified BSD] [bsd]).
+The JavaScript tracker `snowplow.js` is largely based on Anthon Pang's [`piwik.js`] [piwikjs], the JavaScript tracker for the open-source [Piwik] [piwik] project, and is distributed under the same license as `piwik.js`, [Simplified BSD] [bsd].
 
 The rest of the SnowPlow project is licensed under the [Apache License, Version 2.0] [license] (the "License");
 you may not use this software except in compliance with the License.
