@@ -1,8 +1,6 @@
-![SnowPlow Technical Architecture] [tech-architecture]
-
 # Overview
 
-SnowPlow has a very different architecture from conventional open-source web analytics packages such as Piwik [] or Open Web Analytics []. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a polyglot, loosely-coupled architecture, involving a CDN (Amazon CloudFront), an immutable data store (Amazon S3/Apache HDFS) and JVM-based "big data" storage and querying tools (Apache Hadoop and Hive).
+SnowPlow has a very different architecture from conventional open-source web analytics packages such as Piwik [piwik] or Open Web Analytics [owa]. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a polyglot, loosely-coupled architecture, involving a CDN (Amazon CloudFront), an immutable data store (Amazon S3/Apache HDFS) and JVM-based "big data" storage and querying tools (Apache Hadoop and Hive).
 
 SnowPlow's distinctive architecture has been informed by a set of key design principles:
 
@@ -14,8 +12,13 @@ SnowPlow's distinctive architecture has been informed by a set of key design pri
 
 The current technical architecture for SnowPlow looks like this:
 
+![SnowPlow Technical Architecture] [tech-architecture]
+
 [tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 
 # Architectural limitations
 
 This section to come
+
+[piwik]: http://piwik.org/
+[owa]: http://www.openwebanalytics.com/
