@@ -1,6 +1,11 @@
 # Overview
 
-SnowPlow has a very different architecture from conventional open-source web analytics packages such as [Piwik] [piwik] or [Open Web Analytics] [owa]. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a polyglot, loosely-coupled architecture, involving a JavaScript event tracker, a CDN (Amazon CloudFront), an immutable data store (Amazon S3 and Apache HDFS) and JVM-based "big data" storage and querying tools (Apache Hadoop and Hive).
+SnowPlow has a very different architecture from conventional open-source web analytics packages such as [Piwik] [piwik] or [Open Web Analytics] [owa]. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a polyglot, loosely-coupled architecture, involving:
+
+* A JavaScript event tracker
+* A CDN (Amazon CloudFront)
+* An immutable flatfile-based data store (Amazon S3 and Apache HDFS)
+* JVM-based "big data" storage and querying tools (Apache Hadoop and Hive).
 
 SnowPlow's distinctive architecture has been informed by a set of key design principles:
 
