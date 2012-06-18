@@ -10,7 +10,7 @@ If this is your first time learning about SnowPlow, we recommend starting with t
 | [[About SnowPlow|SnowPlow-overview]] | [[Features & Benefits|Features-and-benefits]]       | [[Setup Guide|SnowPlow-setup-guide]] | [[Analyst's Cookbook|Analysts-cookbook]]|
 | Introducing SnowPlow, why we built it and how it's architected | What are the benefits of using SnowPlow versus conventional web analytics packages | Technical documentation for setting up and running SnowPlow | Recipes (queries) for performing analyses on SnowPlow data using Apache Hive |
 
-_\* Many of these questions *cannot* be addressed using traditional web analytics programs_
+
 
 ## Questions or need help?
 
