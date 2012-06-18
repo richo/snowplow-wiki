@@ -30,4 +30,4 @@ To query the data, however, you need to setup Amazon's Elastic Mapreduce and ins
 
 Although the raw SnowPlow data can be queried directly in the format it is collected in, it is generally more efficient if a lot of analytic work will be performed using Hive, to migrate the data into a new format optimised for analysis in Hive. Instructions on performing the migration are described below:
 
-7. [[Migrating data into a format optimized for querying with Hive|Migrating-data-to-optimized-format-for-Hive]]
+7. [[Migrating data into a format optimized for querying with Hive|Migrating-data-to-optimized-format-for-Hive|Migrating-data-to-optimized-format-for-Hive]]
