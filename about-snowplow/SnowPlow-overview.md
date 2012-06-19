@@ -6,10 +6,10 @@ SnowPlow is a powerful web analytics platform. It does three things:
 
 ## What problem does SnowPlow solve?
 
-SnowPlow was developed out of frustration with traditional web analytics tools. Traditional tools were found to have a number of limitations:
+SnowPlow was developed out of frustration with traditional web analytics tools. Traditional tools have a number of limitations:
 
-1. Too narrowly focussed on marketing related metrics (sources of traffic, clicks, conversions)
-2. Too narrowly focussed on content sites (page views by page) and retail sites (conversion funnels)
+1. Too narrowly focused on marketing related metrics (sources of traffic, clicks, conversions)
+2. Too narrowly focused on content sites (page views by page) and retail sites (conversion funnels)
 3. Provide a very limited analytic toolset. (Hard to integrate with powerful tools e.g. R and Mahout)
 4. Too high level. Cannot drill into granular customer data
 5. Drown users in a sea of metrics, few of which are useful for making business decisions
