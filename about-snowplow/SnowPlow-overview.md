@@ -2,9 +2,9 @@
 
 SnowPlow is a powerful web analytics platform. It does three things:
 
-1. Identifies users on your website(s), and tracks the way they engage. (Page views and events)
-2. It stores the granular customer-level, event-level data in a scalable "clickstream" datawarehouse. (Using Amazon S3.)
-3. It enables data scientists and business analysts to query that data using powerful, scalable big data tools including Apache Hive, Pig and Hadoop (via Amazon EMR).
+1. Identifies users on your website(s), and tracks the way they engage (page views and events)
+2. It stores the granular customer-level, event-level data in a scalable "clickstream" datawarehouse (using Amazon S3)
+3. It enables data scientists and business analysts to query that data using powerful, scalable big data tools including Apache Hive, Pig and Hadoop (via Amazon EMR)
 
 ## What problem does SnowPlow solve?
 
