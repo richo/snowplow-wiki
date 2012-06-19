@@ -5,7 +5,7 @@ There are several steps to take in order to setup SnowPlow:
 3. [Optimizing the storage of SnowPlow events data for analysis in Hive](#optimize)
 
 <a name="installing-javascript-tracker" />
-### 1. Installing the Javascript tracking.
+### 1. Installing the Javascript tracking
 
 Like most web analytics solutions, SnowPlow works through Javascript tracking tags, that need to be embedded on web pages to collect data. Setting up Javascript tracking is a three step process:
 
