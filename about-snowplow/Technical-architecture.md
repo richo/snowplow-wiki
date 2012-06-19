@@ -5,7 +5,7 @@ SnowPlow has a very different architecture from conventional open-source web ana
 * An immutable flatfile-based data store ([Amazon S3] [s3])
 * JVM-based "big data" storage and querying tools ([Apache Hadoop] [hadoop] and [Hive] [hive]).
 
-In the rest of this page we explain our rationale for this architecture, map out the technical components and finally flag up the benefits and limitations of this architecture.
+In the rest of this page we explain our rationale for this architecture, map out the technical components and finally flag up the strengths and limitations of this architecture.
 
 # Rationale for architecture
 
@@ -23,7 +23,7 @@ The current technical architecture for SnowPlow looks like this:
 
 [tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 
-# Technical benefits
+# Technical strengths
 
 This section to come.
 
