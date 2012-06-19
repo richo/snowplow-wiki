@@ -27,7 +27,7 @@ SnowPlow enables users to do much more with their web analytics data:
 6. Integrate with other customer data sources including CRM and social so that data on how customers engage online can be incorporated in the _single customer view_.
 
 For more details se the [[Features and benefits]].
-To see how SnowPlow looks technicall, view the [technical architecture|Technical architecture].
+To see how SnowPlow looks technicall, view the [technical architecture|technical-architecture].
 
 ## Resources
 
