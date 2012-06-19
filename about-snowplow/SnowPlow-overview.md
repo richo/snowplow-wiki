@@ -1,5 +1,3 @@
-## Introduction
-
 SnowPlow is a powerful web analytics platform. It does three things:
 
 1. Identifies users on your website(s), and tracks the way they engage (page views and events)
