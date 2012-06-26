@@ -183,7 +183,7 @@ In the above case, we've used the `AVG()` function to aggregate the metric over 
 For more about cohort analyses and performing them on SnowPlow, view the [blog post series] [cohortanalysisblogpostseries] on [Keplar LLP] [keplarllp].
 
 
-[cohortanalysisblogpostseries]: [http://www.keplarllp.com/blog/2012/05/performing-cohort-analysis-on-web-analytics-data-using-snowplow]
-[getintouch]: [mailto:contact@snowplowanalytics.com]
-[keplarllp]: [http://www.keplarllp.com]
-[varietiesofcohortanalyses]: [http://www.keplarllp.com/blog/2012/05/on-the-wide-variety-of-different-cohort-analyses-possible-with-snowplow]
+[cohortanalysisblogpostseries]: http://www.keplarllp.com/blog/2012/05/performing-cohort-analysis-on-web-analytics-data-using-snowplow
+[getintouch]: mailto:contact@snowplowanalytics.com
+[keplarllp]: http://www.keplarllp.com
+[varietiesofcohortanalyses]: http://www.keplarllp.com/blog/2012/05/on-the-wide-variety-of-different-cohort-analyses-possible-with-snowplow
