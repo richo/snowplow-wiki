@@ -136,7 +136,7 @@ Alternatively, we might want to just look at the average number of visits per mo
 
 ### 2b. Measuring customer value
 
-There are a [[wide variety of ways to measure customer value and lifetime value]|Measuring-customer-lifetime-value]. Here we give just one example - for a retailer that wants to compare purchase value per month:
+There are a [[wide variety of ways to measure customer value and lifetime value|Measuring-customer-lifetime-value]]. Here we give just one example - for a retailer that wants to compare purchase value per month:
 
 	INSERT OVERWRITE TABLE metric_by_user
 	SELECT
