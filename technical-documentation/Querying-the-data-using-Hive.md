@@ -28,13 +28,17 @@ There are 2 ways to start a job / fire up instances to run Hive:
 
 To initiative a new session on Mac / Linux, navigate to the `elastic-mapreduce-cli` folder (where you saved the command-line tools) and enter
 
-	$ ./elastic-mapreduce --create --alive --name "Hive Job Flow" --hive-interactive --hive-version 0.7
+	$ ./elastic-mapreduce --create --alive --name "Hive Job Flow" --hive-interactive
 
 You should see something like:
 
 ![Launch a Hive session from the command-line](technical-documentation/images/emr-guide/run-hive-interactive-session-1.jpg)
 
 Note: The Ruby command line interface tools uses the security information you provided in the `credentials.json` file and takes a set of default values for e.g. the number of instances that are fired up. For more details, consult the [EMR command line tools documentation](http://aws.amazon.com/developertools/2264).
+
+If rather than run an interactive version, you wanted to execute a script (i.e. file containing multiple Hive commands), you would upload the script to s3 and then run the following command:
+
+	$ ./elastic-mapreduce --create --name "script example" --hive-script s3://{{bucket-name}}/{{path of script file}}
 
 #### Starting a job using the Ruby Client on PC
 
