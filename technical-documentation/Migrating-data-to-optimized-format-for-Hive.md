@@ -26,7 +26,6 @@ To run the script, you need to upload it to S3 e.g. via the [Amazon S3 web UI](h
 
 	./elastic-mapreduce --create --name "daily ETL" \
 		--hive-script s3://{{LOCATION WHERE daily-etl.q IS STORED IN S3}} \
-		--hive-versions 0.7 \
 		--args -d,CLOUDFRONTLOGS=s3://{{BUCKET-WHERE-CLOUDFRONT-LOGS-ARE-STORED}}/ \
 		--args -d,EVENTSTABLE=s3://{{NEW-BUCKET-WHERE-THE-OPTIMIZED-TABLE-WILL-BE-STORED}}/ \
 		--args -d,DATE={{THE-DATE-FOR-WHICH-YOU-WISH-TO-TRANSFER-DATA e.g. 2012-05-28}}
