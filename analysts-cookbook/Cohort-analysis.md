@@ -33,7 +33,7 @@ To do this, we need to lookup the date that a user first visited the site (i.e. 
 	
 	INSERT OVERWRITE TABLE user_cohort_map
 	SELECT
-	MIN(SUBSTRING(dt, 1, 7)) AS cohort,
+	SUBSTRING(MIN(dt), 1, 7) AS cohort,
 	user_id
 	FROM events
 	WHERE visit_id=1

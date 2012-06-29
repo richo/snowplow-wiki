@@ -48,7 +48,7 @@ Because each user might visit a site more than once, summing the number of `user
 
 	SELECT
 	dt,
-	COUNT( DISTINCT( CONCAT( user_id, visit_id )))
+	COUNT( DISTINCT( CONCAT( user_id,"-",visit_id )))
 	FROM events 
 	GROUP BY dt ;
 
@@ -166,8 +166,8 @@ The number of pages per visit can be calculated by visit very straightforwardly:
 
 To calculate the average page views per day we average over the results in the above query. This can be performed in Hive in two steps: 
 
-	1. Performing the above query, but storing the results in a new table
-	2. Averaging over that table values
+1. Performing the above query, but storing the results in a new table
+2. Averaging over that table values
 
 The queries are given below:
 
@@ -184,7 +184,7 @@ The queries are given below:
 	visit_id,
 	COUNT(txn_id)
 	FROM events
-	WHERE page_title IS NULL
+	WHERE page_title IS NOT NULL
 	GROUP BY dt, user_id, visit_id ;
 
 	SELECT 
