@@ -11,9 +11,12 @@ In the rest of this page we explain our rationale for this architecture, map out
 
 SnowPlow's distinctive architecture has been informed by a set of key design principles:
 
-1. SnowPlow should be able to scale to tracking billions of customer events without crippling either a) the in-client tracking or b) the subsequent analysis of those events
-2. Events should be stored in a simple, immutable data store - there should be no costly "updates in place" and it should be easy to join the SnowPlow event data to other data sources (e.g. demographic, CRM, e-commerce transactional or geographic)
-3. SnowPlow should make it easy for business analysts, data scientists and engineers to query and analyse its event data in as wide a range of analytical tools (e.g. Hive, R, Cascalog, Sky EQL) as possible
+1. **Extreme scalability** - SnowPlow should be able to scale to tracking billions of customer events without affecting the performance of your client (e.g. website) or making it difficult to subsequently analyse those events
+2. **Track everything** - conventional analytics packages encourage you to only track the "important" events - but how can you know what's important until you come to the analysis stage (maybe months later)? With SnowPlow, we recommend you track as many events as you can, and figure out what they mean later
+3. **Separation of concerns** - event tracking and event analysis should be two separate systems, only loosely-coupled. In particular, business logic in your analysis system should not bleed into the client-side tracking setup
+4. **Permanent event store** - events should be stored in a simple, non-relational, immutable data store: there should be no costly "updates in place", and no subsequent analysis should corrupt the raw event data
+5. **Direct access to that event store** - you should have direct access to your raw event data at the atomic level, not intermediated by a third-party vendor, or a slow HTTP API.  and it should be easy to join the SnowPlow event data to other data sources (e.g. demographic, CRM, e-commerce transactional or geographic)
+5. Extremely flexible. SnowPlow should make it easy for business analysts, data scientists and engineers to query and analyse its event data in as wide a range of analytical tools (e.g. Hive, R, Cascalog, Sky EQL) as possible
 
 ## Architectural diagram
 
