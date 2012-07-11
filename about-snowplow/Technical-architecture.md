@@ -55,6 +55,9 @@ CloudFront and S3, has some specific limitations to consider:
 * **Cannot track users across multiple domains** - the user tracking
     cookie is a first-party cookie set by SnowPlow.js, so the user
     will be assigned a different ID on each domain
+* **Data payload limited by querystring length** - SnowPlow data is
+    logged via a GET querystring - which of course could potentially
+    hit the de facto [2000 character] [2000char] URL length limit
 
 [tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 [piwik]: http://piwik.org/
