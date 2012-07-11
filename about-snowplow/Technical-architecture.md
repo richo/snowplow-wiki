@@ -23,16 +23,40 @@ The current technical architecture for SnowPlow looks like this:
 
 ![SnowPlow Technical Architecture] [tech-architecture]
 
-[tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
+This architecture diagram will be updated shortly with the new daily
+ETL job, written in Hive.
 
 # Technical strengths
 
-This section to come.
+The SnowPlow approach has several technical advantages over more
+conventional web analytics approaches. In no particular order, these
+advantages are:
+
+* **Scalable, fast tracking** - using CloudFront for event tracking
+    reduces complexity and minimizes client slowdown worldwide
+* **Never lose your raw data** - your raw event data is never
+    compacted, corrupted or otherwise thrown away by SnowPlow
+* **Direct access to events** - not intermediated by a third-party
+    vendor, or a slow API, or an interface offering aggregates only
+* **Analysis tool agnostic** - SnowPlow can be used to feed whatever
+    analytics process you want (e.g. Hive, R, Pig, Sky EQL)  
+* **Integrable with other data sources** - join SnowPlow data into
+    your other data sources (e.g. ecommerce, CRM) at the event level
+* **Clean separation of tracking and analysis** - new analyses will not
+    require re-tagging of your site or app
 
 # Technical limitations
 
-This section to come.
+The current SnowPlow architecture, tightly coupled as it is to Amazon
+CloudFront and S3, has some specific limitations to consider:
 
+* **Not real-time** - CloudFront takes 20-60 minutes to collate logs
+    from its edge nodes, so real-time analytics are not feasible
+* **Cannot track users across multiple domains** - the user tracking
+    cookie is a first-party cookie set by SnowPlow.js, so the user
+    will be assigned a different ID on each domain
+
+[tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 [piwik]: http://piwik.org/
 [owa]: http://www.openwebanalytics.com/
 [cloudfront]: http://aws.amazon.com/cloudfront/
