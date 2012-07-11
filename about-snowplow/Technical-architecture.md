@@ -45,6 +45,9 @@ advantages are:
 * **Clean separation of tracking and analysis** - new analyses will not
     require re-tagging of your site or app
 
+For a wider discussion of the strengths of SnowPlow from a business or
+product perspective, please see the [[Features and benefits]] page.
+
 # Technical limitations
 
 The current SnowPlow architecture, tightly coupled as it is to Amazon
@@ -58,6 +61,8 @@ CloudFront and S3, has some specific limitations to consider:
 * **Data payload limited by querystring length** - SnowPlow data is
     logged via a GET querystring - which of course could potentially
     hit the de facto [2000 character] [2000char] URL length limit
+
+For more information on these limitations, please see the [[Technical FAQ]].
 
 [tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
 [piwik]: http://piwik.org/
