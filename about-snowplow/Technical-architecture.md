@@ -66,3 +66,4 @@ CloudFront and S3, has some specific limitations to consider:
 [s3]: http://aws.amazon.com/s3/
 [hadoop]: http://hadoop.apache.org/
 [hive]: http://hive.apache.org/
+[2000char]: http://stackoverflow.com/questions/417142/what-is-the-maximum-length-of-a-url
