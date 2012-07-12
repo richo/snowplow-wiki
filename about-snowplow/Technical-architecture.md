@@ -35,7 +35,7 @@ advantages are:
 * **Scalable, fast tracking** - using CloudFront for event tracking
     reduces complexity and minimizes client slowdown worldwide
 * **Never lose your raw data** - your raw event data is never
-    compacted, corrupted or otherwise thrown away by SnowPlow
+    compacted, overwritten or otherwise corrupted by SnowPlow
 * **Direct access to events** - not intermediated by a third-party
     vendor, or a slow API, or an interface offering aggregates only
 * **Analysis tool agnostic** - SnowPlow can be used to feed whatever
