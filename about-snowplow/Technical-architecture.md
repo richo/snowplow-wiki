@@ -14,8 +14,8 @@ SnowPlow's distinctive architecture has been informed by a set of key design pri
 1. **Extreme scalability** - SnowPlow should be able to scale to tracking billions of customer events without affecting the performance of your client (e.g. website) or making it difficult to subsequently analyse all of those events
 2. **Permanent event history** - SnowPlow events should be stored in a simple, non-relational, immutable data store
 3. **Direct access to individual events** - you should have direct access to your raw SnowPlow event data at the atomic level
-4. **Separation of concerns** - event tracking and event analysis should be two separate systems in SnowPlow, only loosely-coupled
-5. **Support any analysis** - SnowPlow should make it easy for business analysts, data scientists and engineers to answer any business question they want, in as wide a range of analytical tools as possible
+4. **Separation of concerns** - event tracking and event analysis should be two separate systems, only loosely-coupled
+5. **Support any analysis** - SnowPlow should make it easy for business analysts, data scientists and engineers to answer any business question they want, using as wide a range of analytical tools as possible
 
 ## Architectural diagram
 
