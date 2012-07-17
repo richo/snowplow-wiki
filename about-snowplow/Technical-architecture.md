@@ -23,8 +23,7 @@ The current technical architecture for SnowPlow looks like this:
 
 ![SnowPlow Technical Architecture] [tech-architecture]
 
-This architecture diagram will be updated shortly with the new daily
-ETL job, written in Hive.
+This architecture diagram will be updated shortly with the new ETL control tool, written in Ruby.
 
 # Technical strengths
 
