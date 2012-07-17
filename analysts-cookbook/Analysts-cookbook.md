@@ -2,9 +2,9 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 
 ### Getting started
 
-[[Data structure orientation]]
-
 [[Why Hive]]
+
+[[Data structure]]
 
 ### Performing standard queries (same as those performed in other web analytics tools)
 
