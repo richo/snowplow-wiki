@@ -2,7 +2,7 @@
 
 **Getting started**  
 [Overview](Analysts-cookbook)  
-[[Why Hive]]
+[[Why Hive]]  
 [[Data structure]]  
 
 **Standard web analyses**  
