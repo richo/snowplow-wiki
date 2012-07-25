@@ -96,7 +96,7 @@ Download the latest version (currently `snowplow-log-deserializers-0.4.4.jar`) a
 
 We need to add the JAR to the Hive session, so Hive can access the deserializer. This is done by executing the following command, in the Hive interface:
 
-	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.4.jar
+	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.6.jar
 
 ![Add the SnowPlow deserializer JAR to Hive](technical-documentation/images/04_hive-add-deserializer.png)
 
