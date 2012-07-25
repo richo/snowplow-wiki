@@ -88,7 +88,7 @@ TO WRITE
 <a name="runninghivequeries"/>
 ## Running Hive queries and using the SnowPlow serde
 
-SnowPlow data is stored in the log files generated every time the tags on your website call the SnowPlow pixel `ice.png`. The format of that data is proprietary: to access it in Hive you need to use the [SnowPlow Log Deserializer](https://github.com/snowplow/snowplow-log-deserializers), a JAR file that tells Hive how to take raw SnowPlow logs and parse them into fields that are directly accessible to the user in Hive.
+SnowPlow data is stored in the log files generated every time the tags on your website call the SnowPlow pixel `ice.png`. The format of that data is proprietary: to access it in Hive you need to use the SnowPlow Log Deserializer, a JAR file that tells Hive how to take raw SnowPlow logs and parse them into fields that are directly accessible to the user in Hive.
 
 The deserializer can be downloaded directly from the [downloads](https://github.com/snowplow/snowplow/downloads) page of this repository.
 
