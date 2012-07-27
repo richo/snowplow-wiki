@@ -13,7 +13,7 @@ SnowPlow was developed out of frustration with traditional web analytics tools. 
 3. Provide a very limited analytic toolset - hard to integrate with powerful tools e.g. R and Mahout
 4. Siloed - hard to integrate with other customer data systems e.g. CRM and social
 5. Too narrowly focused on marketing-related metrics (sources of traffic, clicks, conversions)
-6. Too narrowly focused on web content sites (page views by page) and retail sites (conversion funnels)
+6. Too narrowly focused on conventional web publishers (page views by page) and retailers (conversion funnels)
 
 ## Overcoming those limitations: new possibilities
 
