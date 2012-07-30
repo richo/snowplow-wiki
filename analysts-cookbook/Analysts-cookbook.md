@@ -1,10 +1,12 @@
+# Analyst's Cookbook
+
 This section provides a guide to analysts who wish to use [Hive][hive] to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
 
 ### Getting started
 
-[[Data structure orientation]]
-
 [[Why Hive]]
+
+[[Hive data structure]]
 
 ### Performing standard queries (same as those performed in other web analytics tools)
 

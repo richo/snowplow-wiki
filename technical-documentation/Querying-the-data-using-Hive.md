@@ -88,15 +88,15 @@ TO WRITE
 <a name="runninghivequeries"/>
 ## Running Hive queries and using the SnowPlow serde
 
-SnowPlow data is stored in the log files generated every time the tags on your website call the SnowPlow pixel `ice.png`. The format of that data is proprietary: to access it in Hive you need to use the [SnowPlow Log Deserializer](https://github.com/snowplow/snowplow-log-deserializers), a JAR file that tells Hive how to take raw SnowPlow logs and parse them into fields that are directly accessible to the user in Hive.
+SnowPlow data is stored in the log files generated every time the tags on your website call the SnowPlow pixel `ice.png`. The format of that data is proprietary: to access it in Hive you need to use the SnowPlow Log Deserializer, a JAR file that tells Hive how to take raw SnowPlow logs and parse them into fields that are directly accessible to the user in Hive.
 
-The deserializer can be downloaded directly from the [downloads](https://github.com/snowplow/snowplow-log-deserializers/downloads) page on the [SnowPlow-log-deserializer](https://github.com/snowplow/snowplow-log-deserializers/downloads) repository.
+The deserializer can be downloaded directly from the [downloads](https://github.com/snowplow/snowplow/downloads) page of this repository.
 
-Download the latest version (currently `snowplow-log-deserializers-0.4.4.jar`) and upload it to S3, via the web UI on [console.aws.amazon.com](https://console.aws.amazon.com/). Make a note of where you've saved it. (We save it in the same `static` folder we store `sp.js` and `ice.png`.)
+Download the latest version (currently `snowplow-log-deserializers-0.4.6.jar`) and upload it to S3, via the web UI on [console.aws.amazon.com](https://console.aws.amazon.com/). Make a note of where you've saved it. (We save it in the same `static` folder we store `sp.js` and `ice.png`.)
 
 We need to add the JAR to the Hive session, so Hive can access the deserializer. This is done by executing the following command, in the Hive interface:
 
-	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.4.jar
+	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.6.jar
 
 ![Add the SnowPlow deserializer JAR to Hive](technical-documentation/images/04_hive-add-deserializer.png)
 

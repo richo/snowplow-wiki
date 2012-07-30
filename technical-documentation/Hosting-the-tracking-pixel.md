@@ -50,7 +50,7 @@ The notes above also hold true for this bucket: don't enable logging, and expect
 
 You can obtain a 1x1 transparent tracking pixel by right-clicking [this image file] [pixel] and selecting **Save Link As...**, or if you prefer run:
 
-    $ wget https://github.com/snowplow/snowplow/raw/master/tracker/static/ice.png 	
+    $ wget https://github.com/snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png 	
 
 Now you're ready to upload the pixel into S3. Within the S3 pane, hit **Upload** and browse to your tracking pixel:
 
@@ -141,7 +141,7 @@ However, data center choice, particularly for your access logs, does matter from
 It is your responsibility to ensure that you comply with the privacy laws governing your web property and users.
 
 [aws]: http://aws.amazon.com/
-[pixel]: /snowplow/snowplow/raw/master/tracker/static/ice.png
+[pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
 [pixelbucket]: technical-documentation/images/02_log_bucket.png
 [pixelselect]: technical-documentation/images/02_pixel_select.png
 [pixelupload]: technical-documentation/images/02_pixel_upload.png

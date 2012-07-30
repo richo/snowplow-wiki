@@ -1,3 +1,5 @@
+# Why Hive
+
 SnowPlow was built to meet the following 2 requirements:
 
 1. Make it easy for website owners to capture granular, event-level and customer-level data capturing how their audience / customers engage on their websites and digital platforms and store that data securely

@@ -30,7 +30,7 @@ First please download the source code to your development machine:
     $ cd ~/development
     $ git clone git@github.com:snowplow/snowplow.git
 	...
-	$ cd snowplow/tracker/js/
+	$ cd snowplow/1-trackers/javascript/js/
 	$ ls 
     snowplow.js   sp.js         snowpak.sh
 
@@ -60,7 +60,7 @@ Minification is handled by the bash shell script `snowpak.sh`, in the same folde
 
 To run `snowpak.sh` is easy:
 
-    $ cd ~/development/snowplow/tracker/js/
+    $ cd ~/development/snowplow/1-trackers/javascript/js/
     $ ./snowpak.sh /opt/yui/yuicompressor-2.4.2
 
 This will overwrite your existing `sp.js`.
@@ -101,6 +101,5 @@ As a final step, you'll want to just check that your self-hosted JavaScript is w
 **To write**
 
 [aws]: http://aws.amazon.com/
-[pixel]: /snowplow/snowplow/raw/master/tracker/static/ice.png
 [yuic]: http://developer.yahoo.com/yui/compressor/
 [crockford]: https://github.com/douglascrockford
