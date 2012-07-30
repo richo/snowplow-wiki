@@ -36,7 +36,7 @@ The parameters are descibed in the [Google Analytics help page] [gahelppage]. Go
 When tracking AdWords campaigns in SnowPlow, 2 things should be highlighted:
 
 1. Google offers customers who use both AdWords and Analytics a custom integration between the two programmes that means Analytics correctly reports which AdWords campaigns particular visitors to your site **without** adding the relevant query parameters to the query string. As a result, additional work is required to setup your AdWords campaigns so they are correctly tracked in SnowPlow. (In contrast, any other marketing channel that is correctly setup for Google Analytics will automatically work with SnowPlow with no additional work, because Google only offers the custom integration between AdWords and Analytics.)
-2. AdWords includes a number of dynamic parameters (called [ValueTrack parameters][gavaluetrackparameters]) that makes setting including parameters that might change for a particular campaign (like the particular keyword that triggered the ad) very easy
+2. AdWords includes a number of dynamic parameters (called [ValueTrack parameters][gavaluetrackparameters]) that makes setting parameters that might change for a particular campaign (like the particular keyword that triggered the ad) very easy
 
 #### Adding the query parameters to the AdWords link
 
