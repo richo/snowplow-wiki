@@ -7,6 +7,7 @@
 [[Integrating SnowPlow tracking tags on your website]]  
 [[Hosting the tracking pixel]]  
 [[Hosting SnowPlow js]]  
+[[Campaign-tracking]]
 
 **Amazon EMR and CLI tools**  
 [[Setting up EMR]]  
@@ -19,5 +20,3 @@
 [[For ad tracking]]  
 [[For mobile app tracking]]  
 
-**Additional setup**
-[[Campaign-tracking]]
