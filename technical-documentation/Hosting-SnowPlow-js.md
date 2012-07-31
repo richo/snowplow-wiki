@@ -28,7 +28,7 @@ Once you have those ready, please read on...
 First please download the source code to your development machine:
 
     $ cd ~/development
-    $ git clone git@github.com:snowplow/snowplow.git
+    $ git clone http://github.com/snowplow/snowplow.git
 	...
 	$ cd snowplow/1-trackers/javascript/js/
 	$ ls 
