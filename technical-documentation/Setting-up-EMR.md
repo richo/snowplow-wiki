@@ -26,9 +26,18 @@ This document will guide you through the steps required to install the EMR tools
 
 [Amazon Elastic MapReduce Ruby Client](http://aws.amazon.com/developertools/2264) is built in Ruby, so unless you have already have Ruby installed, you'll need to install it. Full instructions on downloading and setting up Ruby can be found [here](#http://www.ruby-lang.org/en/downloads/). There are many ways to install Ruby - if you don't have a strong preference for one of them, we recommend Mac OS X and Linux users use RVM, whilst Windows users use Ruby Installer.
 
-### Installing Ruby on Mac / Linux
+### Installing Ruby on Mac
 
-TO WRITE
+Mac OS X comes with Ruby installed. You can check the version (you
+need Ruby 1.8 or higher) with this command:
+
+    $ ruby -v
+
+### Installing Ruby on Linux
+
+On a Debian-like OS, installing Ruby is easy:
+
+    $ sudo apt-get install ruby-full
 
 ### Installing Ruby on Windows
 
@@ -55,7 +64,15 @@ TO WRITE
 
 ### Downloading the Client 
 
-* Navigate to your Ruby folder, and in it, create a new folder for the command line tools:
+* On **Linux** or **Mac**, install the Elastic Map Reduce tools into
+  your apps folder:
+  
+    $ mkdir -p ~/Apps/elastic-mapreduce-cli
+    $ cd ~/Apps/elastic-mapreduce-cli
+    $ wget http://elasticmapreduce.s3.amazonaws.com/elastic-mapreduce-ruby.zip
+    $ mv elastic-mapreduce-ruby.zip ~/downloads/
+
+* On **Windows**, navigate to your Ruby folder, and in it, create a new folder for the command line tools:
 
 ![Create a directory for the command-line tools](technical-documentation/images/emr-guide/install-cli-1.PNG)
 
@@ -63,10 +80,10 @@ TO WRITE
 
 ![Download CLI](technical-documentation/images/emr-guide/install-cli-2.PNG)
 
-* Go to the folder you just installed Ruby in, and in it, create a new folder where you'll save the Elastic Map Reduce tools. Give this folder an appropriate name e.g. `elastic-mapreduce-cli`. Unzip the download into the new folder, by double clicking on the Zip file (to access the contents), selecting the contents, copying it and then pasting it into the new folder.
+* Now go to the folder you just installed Ruby in, and in it, create a new folder where you'll save the Elastic Map Reduce tools. Give this folder an appropriate name e.g. `elastic-mapreduce-cli`. Unzip the download into the new folder, by double clicking on the Zip file (to access the contents), selecting the contents, copying it and then pasting it into the new folder.
 
 ![Unzip CLI](technical-documentation/images/emr-guide/install-cli-3.PNG)
-
+    
 ### Configuring the client
 
 * To use the client successfully, you will need the tools to talk directly to your Amazon account without any difficulty. That means ensuring that the correct security / login details are available to the command-line tools
