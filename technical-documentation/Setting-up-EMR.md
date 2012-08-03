@@ -179,7 +179,7 @@ Now that you have configured the Ruby client, the last thing to do before you ca
 
 * Navigate to your `.PEM` file in the command line tool and set the permissions on the file as below:
 
-![Fix permissions on .PEM file](technical-documentation/images/emr-guide/mac-ssh-1.jpg)
+    $ chmod og-rwx mykeypair.pem 
 
 #### SSH Setup: for Windows
 
@@ -197,5 +197,35 @@ Now that you have configured the Ruby client, the last thing to do before you ca
 
 * Exit the PUTTYgen application
 
-* Now download *PUTTY* and *Pageant* from [the same webpage you downloaded PUTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html). You will need these to establish the SSH connection and run Hive
+* Now download *PUTTY* and *Pageant* from
+  [the same webpage you downloaded PUTTYgen](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html). You
+  will need these to establish the SSH connection and run Hive
+  
+### Testing
 
+Now you're ready to test! Check that the EMR command-line tool runs
+okay:
+
+    $ cd ~/Apps/elastic-mapreduce-cli
+    $ ./elastic-mapreduce --help
+    Usage: elastic-mapreduce [options]
+
+      Creating Job Flows
+      <snip>
+      
+Let's try something more adventurous:
+
+    $ ./elastic-mapreduce --list
+    j-11IY9G5EHZGP1     WAITING        ec2-54-247-19-229.eu-west-1.compute.amazonaws.com Development Job Flow (requires manual termination)
+       COMPLETED      Setup Hive
+       <snip>
+       
+And finally, let's try starting and ending a job:
+
+    $ ./elastic-mapreduce --create --alive
+    Created job flow j-284VOXKIH634U
+    $ ./elastic-mapreduce --terminate --jobflow j-284VOXKIH634U
+    Terminated job flow j-284VOXKIH634U
+
+Obviously update the jobflow ID with yours. Excellent! Your EMR tool
+is now working. Next up, you can proceed to the guide to [[Querying the data using Hive]].
