@@ -19,6 +19,6 @@
 [[Migrating data to optimized format for Hive]]  
  
 **Advanced**  
-[[Modifying SnowPlow js]]  
+[[Modifying SnowPlow.js|Modifying-SnowPlow-js]]  
 [[Ad impression tracking]]  
 [[Mobile app tracking]]
