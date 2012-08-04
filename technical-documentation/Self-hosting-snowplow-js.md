@@ -44,7 +44,7 @@ A couple of notes on this:
 
 You want to upload the **minified** version of the SnowPlow JavaScript, which is called `sp.js`. You can obtain this by right-clicking [this JavaScript file] [js] and selecting **Save Link As...**, or if you prefer run:
 
-    $ wget https://github.com/snowplow/snowplow/master/1-collectors/javascript/js/sp.js 
+    $ wget https://raw.github.com/snowplow/snowplow/master/1-trackers/javascript/js/sp.js
 
 Now you're ready to upload the JavaScript file into S3. Within the S3 pane, hit **Upload** and browse to your file:
 
@@ -112,13 +112,13 @@ The second option is out of the scope of the SnowPlow documentation but you shou
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
 [crockford]: https://github.com/douglascrockford
-[js-]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
-[js-bucket]: technical-documentation/images/02_log_bucket.png
-[js-select]: technical-documentation/images/02_pixel_select.png
-[js-upload]: technical-documentation/images/02_pixel_upload.png
-[js-permissions]: technical-documentation/images/02_pixel_permissions.png
-[js-ready]: technical-documentation/images/02_pixel_ready.png
-[dist-create]: technical-documentation/images/02_js_dist_create.png
-[dist-details]: technical-documentation/images/02_js_dist_details.png
-[dist-review]: technical-documentation/images/02_js_dist_review.png
-[dist-enabled]: technical-documentation/images/02_js_dist_enabled.png
+[js]: https://raw.github.com/snowplow/snowplow/master/1-trackers/javascript/js/sp.js
+[js-bucket]: technical-documentation/images/js_bucket.png
+[js-select]: technical-documentation/images/js_select.png
+[js-upload]: technical-documentation/images/js_upload.png
+[js-permissions]: technical-documentation/images/js_permissions.png
+[js-ready]: technical-documentation/images/js_ready.png
+[dist-create]: technical-documentation/images/js_dist_create.png
+[dist-details]: technical-documentation/images/js_dist_details.png
+[dist-review]: technical-documentation/images/js_dist_review.png
+[dist-enabled]: technical-documentation/images/js_dist_enabled.png
