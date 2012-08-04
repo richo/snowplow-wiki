@@ -19,7 +19,7 @@ If you want to self-host the tracking pixel, you will need the following:
 
 * An account with [Amazon Web Services] [aws]
 * S3 and CloudFront enabled within your AWS account
-* Some level of technical ability _ta1_, where `noob < ta1 < ninja`
+* Some technical chops (not too many)
 
 Once you have those ready, please read on...
 

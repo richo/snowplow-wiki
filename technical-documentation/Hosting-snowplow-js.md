@@ -2,25 +2,45 @@
 
 ## Overview
 
-In addition to self-hosting the tracking pixel, it also possible to self-host the SnowPlow tracking JavaScript, `snowplow.js`. Unlike the tracking pixel, this does not have an impact on where your SnowPlow data gets stored, but it does have some definite advantages over using a 3rd party-hosted JavaScript:
+In addition to self-hosting the tracking pixel, we recommend self-hosting the SnowPlow tracking JavaScript, `snowplow.js`. Unlike the tracking pixel, this does not have an impact on where your SnowPlow data gets stored, but it does have some definite advantages over using a third-party-hosted JavaScript:
 
-1. Hosting your JavaScript allows you to use your own JavaScript minification and asset pipelining approach (e.g. bundling all JavaScripts into one minified JavaScript)
+1. Hosting your own JavaScript allows you to use your own JavaScript minification and asset pipelining approach (e.g. bundling all JavaScripts into one minified JavaScript)
 2. As [Douglas Crockford] [crockford] put it about third-party JavaScripts: _"it is extremely unwise to load code from servers you do not control."_
 
-So if you want to self-host `snowplow.js`, please read on...
+The alternative to self-hosting `snowplow.js` is to use the version hosted by SnowPlow analytics, which is okay too.
 
-## Prerequisites
+If you want to self-host `snowplow.js`, please read on...
 
-To self-host `snowplow.js` you will need the following:
+## Contents
 
-* Access to a Unix-like command line with `sed` and the Java runtime installed
-* Familiarity with and access to [Git] [git]
-* The ability to install [YUI Compressor 2.4.2] [yuic]
-* Some level of technical ability _ta2_, where `ta1 < ta2 < ninja`
+1. [Pre-requisites](#prerequisites)
+2. [Self-hosting instructions](#self-hosting-instructions)
+3. [Advanced options](#advanced-options)
+
+<a name="prerequisites" />
+## Pre-requisites
+
+For the purposes of this guide, we are going to assume that you want to serve the standard `snowplow.js` from CloudFront. (We discuss other approaches in the [Advanced options](#advanced-options) section below.). To accomplish this, you will need the following:
+
+* An account with [Amazon Web Services] [aws]
+* S3 and CloudFront enabled within your AWS account
+* Some technical chops (not too many)
 
 Once you have those ready, please read on...
 
+<a name="self-hosting-instructions" />
 ## Self-hosting instructions
+
+### 1. Create a bucket for the JavaScript
+
+First create a new bucket within your Amazon S3 account to store the pixel. Call this bucket something like `snowplow-static-js`:
+
+**IMAGE TO COME**
+
+A couple of notes on this:
+
+* Don't enable logging on this bucket
+* You won't be able to call this bucket exactly `snowplow-static-js`. This is because Amazon S3 bucket names have to be globally unique, and `snowplow-static-js` is unfortunately taken by us!
 
 ### 1. Check out the source code
 

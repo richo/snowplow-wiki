@@ -4,7 +4,7 @@
 [[SnowPlow setup guide]]  
 
 **Deploying to CloudFront**  
-[[Hosting SnowPlow.js|Hosting-snowplow-js]]  
+[[Hosting snowplow.js|Hosting-snowplow-js]]  
 [[Setting up the CloudFront collector]]
 
 **Implementing JavaScript tracking**  
@@ -18,7 +18,7 @@
 **Optimizing the data structure for query performance**  
 [[Migrating data to optimized format for Hive]]  
  
-**Advanced**  
-[[Modifying SnowPlow.js|Modifying-snowplow-js]]  
+**Advanced options**  
+[[Modifying snowplow.js|Modifying-snowplow-js]]  
 [[Ad impression tracking]]  
 [[Mobile app tracking]]

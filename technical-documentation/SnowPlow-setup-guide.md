@@ -20,7 +20,7 @@ Deploying SnowPlow to CloudFront is a two-step process:
 
 Note: in some cases, [SnowPlow Analytics] [snowplow-site] hosts SnowPlow on behalf of their clients, so these two steps are not always necessary.
 
-## 2. Installing SnowPlow JavaScript tracking
+## 2. Implementing SnowPlow JavaScript tracking
 
 Now you are ready to add SnowPlow's JavaScript tracking to your website. The guide for this follows below, along with an optional guide to setting up tracking of your marketing campaigns:
 
