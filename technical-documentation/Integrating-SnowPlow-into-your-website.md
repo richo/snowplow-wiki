@@ -1,19 +1,20 @@
+# Integrating SnowPlow into your website
+
+## Overview
+
+This guide takes you through the process for integrating SnowPlow's JavaScript tracker into your website or web app.
+
+The exact integration steps required vary depending on whether you choose to use the JavaScript tracker in a synchronous or an asynchronous manner; each option is covered separately below.
+
 ## Table of Contents
 
-1. [Introduction](#intro)
-2. [Asynchronous integration](#async)
-3. [Synchronous integration](#sync)
-4. [Event tracking](#events)
-5. [Testing and troubleshooting](#tt)
+1. [Asynchronous integration](#async)
+2. [Synchronous integration](#sync)
+3. [Event tracking](#events)
+4. [Changes for self-hosting](#self-hosting)
+5. [Testing](#testing)
 
-<a name="intro"/>
-## Introduction
-
-This guide takes you through the process for integrating SnowPlow's JavaScript tracker `snowplow.js` into your website or web app.
-
-This guide assumes that you are working with the hosted version of `snowplow.js` or that you have hosted `snowplow.js` yourself. (See [[Hosting-SnowPlow-js]] for details.) You will need to make some adjustments if you are bundling `snowplow.js` into your own site's JavaScript differently from the way described in [this guides](Hosting-SnowPlow-js).
-
-The exact integration steps required vary depending on whether you choose to use `snowplow.js` in a synchronous or an asynchronous manner; each option is covered separately below.
+Sections 1-3 assume for the sake of simplicity that you are using a hosted version of SnowPlow provided by **SnowPlow Analytics**. In section 4 we set out the adjustments that need to be made if you are self-hosting the CloudFront collector and/or the JavaScript tracker.
 
 <a name="async"/>
 ## Asynchronous integration
@@ -33,7 +34,7 @@ _snaq.push(['enableLinkTracking']);
 
 (function() {
 var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
-sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://snplow.com/sp.js';
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '//d2nqfiix2qwfci.cloudfront.net/sp.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
 })();
  </script>
@@ -42,7 +43,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 
 To explain a few things about this code:
 
-* You must update `{{ACCOUNT}}` with your specific account ID provided by the SnowPlow team (which looks something like `d2i847wvqleb11`)
+* You must update `{{ACCOUNT}}` with your specific account ID provided by the **SnowPlow Analytics** team (which looks something like `d2i847wvqleb11`)
 * This code works with both HTTPS (i.e. SSL-secured) and HTTP pages
 * The `trackPageView` command logs the page load 
 * The `enableLinkTracking` command ensures SnowPlow enables clicks and download tracking. If this is not required, it can be removed or commented out
@@ -77,7 +78,7 @@ To use `snowplow.js` in a 'sync' manner, first add the following script into you
 ```html
 <!-- SnowPlow starts plowing -->
 <script type="text/javascript">
-var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://snplow.com/sp.js';
+var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d2nqfiix2qwfci.cloudfront.net/sp.js';
 document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
@@ -186,10 +187,52 @@ The explanation of each argument passed to `_trackEvent()` is as follows:
 
 ### Further reading
 
-For further examples and additional background on the concepts around web event tracking, we would encourage you to read Google Analytics's [Event Tracking Guide] [gaeventguide], as there are many similarities between the two approaches. 
+For further examples and additional background on the concepts around web event tracking, we would encourage you to read Google Analytics's [Event Tracking Guide] [ga-event-guide], as there are many similarities between the two approaches. 
 
-<a name="tt"/>
-## Testing and troubleshooting
+<a name="self-hosting"/>
+## Changes for self-hosting
+
+_This section is common to both the synchronous and asynchronous integration approaches._
+
+### Self-hosted CloudFront collector
+
+If you are using your own tracking pixel (see the guide [[Setting up the CloudFront collector]] for details), you will need to tweak the JavaScript code given above.
+
+The secret is to realise that SnowPlow's `setAccount()` method in fact takes a CloudFront subdomain as its argument - so using your own CloudFront distribution is super-simple.
+
+If you are using **asynchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
+
+```javascript
+_snaq.push(['setAccount', 'd1x5tduoxffdr7']);
+```
+
+Whereas if you are using **synchronous tracking**, then update your header script to look like this:
+
+```javascript
+var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
+
+Done! It's that easy.
+
+### Self-hosted SnowPlow JavaScript file
+
+If you are hosting your own SnowPlow JavaScript file, then you need to update the JavaScript code for SnowPlow in your website's `<head>` section.
+
+If you are using **asynchronous tracking**, then update the corresponding line in your header script to look like this:
+
+```javascript
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+```
+
+Whereas if you are using **synchronous tracking**, then update the corresponding line in your header script to look like this:
+
+```javascript
+var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+```
+
+In both cases replace {{SUBDOMAIN}} with your CloudFront's distribution name.
+
+<a name="testing"/>
+## Testing
 
 _This section is common to both the synchronous and asynchronous integration approaches._
 
@@ -199,22 +242,23 @@ You can 'kick the tyres' of `snowplow.js` with the example HTML pages available 
 
     snowplow/tracker/examples
 
-Before running these HTML pages, make sure to update the `{{ACCOUNT}}` to your SnowPlow-supplied account ID.
+Before running these HTML pages, you will make sure to update the `{{ACCOUNT}}` to your SnowPlow-supplied account ID; if you are using a self-hosted `snowplow.js`, then update that in the HTML files too.
 
-We recommend using Chrome's [Developer Tools] [chromedevtools] or [Firebug] [firebug] for Firefox to check that SnowPlow's JavaScript tracking is working correctly. Here is what Chrome's Network panel looks like after loading the page and clicking each button once:
+We recommend using Chrome's [Developer Tools] [chrome-dev-tools] or [Firebug] [firebug] for Firefox to check that SnowPlow's JavaScript tracking is working correctly. Here is what Chrome's Network panel looks like after loading the page and clicking each button once:
 
-![networkpane] [networkpane]
+![network-pane] [network-pane]
 
 Note the three successful (status code 200) `GET`s to `ice.png`. The first of these was triggered by the page load, and then there is one `GET` each for the two user actions (button clicks) that we're tracking. 
-
-If you have any problems getting this to run, please [contact] [contact] the SnowPlow team.
+If you have any problems getting this to run, please [contact] [contact] the **SnowPlow Analytics** team.
 
 ### Confirming that SnowPlow is logging correctly
 
-If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] [contact] the SnowPlow team to confirm that your event data is being successfully logged. If you are self-hosting SnowPlow, then consult the [Troubleshooting section] [shtt] within the Self-Hosting Guide.
+If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] [contact] the **SnowPlow Analytics** team to confirm that your event data is being successfully logged.
 
-[gaeventguide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
-[chromedevtools]: http://code.google.com/chrome/devtools/docs/overview.html
+If you are self-hosting SnowPlow, then please proceed to the next section [[Setting up EMR]] to start working with the SnowPlow data.
+
+[ga-event-guide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
+[chrome-dev-tools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/
 [networkpane]: technical-documentation/images/01_network_pane.png
-[contact]: mailto:snowplow@keplarllp.com
+[contact]: mailto:services@snowplowanalytics.com

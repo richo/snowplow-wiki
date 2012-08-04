@@ -7,9 +7,7 @@ In addition to self-hosting the tracking pixel, we recommend self-hosting the Sn
 1. Hosting your own JavaScript allows you to use your own JavaScript minification and asset pipelining approach (e.g. bundling all JavaScripts into one minified JavaScript)
 2. As [Douglas Crockford] [crockford] put it about third-party JavaScripts: _"it is extremely unwise to load code from servers you do not control."_
 
-The alternative to self-hosting `snowplow.js` is to use the version hosted by SnowPlow analytics, which is okay too.
-
-If you want to self-host `snowplow.js`, please read on...
+The alternative to self-hosting `snowplow.js` is to use the version hosted by **SnowPlow Analytics**, which is okay too. But if you want to self-host `snowplow.js`, please read on...
 
 ## Contents
 
@@ -35,90 +33,90 @@ Once you have those ready, please read on...
 
 First create a new bucket within your Amazon S3 account to store the pixel. Call this bucket something like `snowplow-static-js`:
 
-**IMAGE TO COME**
+![js-bucket] [js-bucket]
 
 A couple of notes on this:
 
 * Don't enable logging on this bucket
 * You won't be able to call this bucket exactly `snowplow-static-js`. This is because Amazon S3 bucket names have to be globally unique, and `snowplow-static-js` is unfortunately taken by us!
 
-### 1. Check out the source code
+### 2. Upload the JavaScript
 
-First please download the source code to your development machine:
+You want to upload the **minified** version of the SnowPlow JavaScript, which is called `sp.js`. You can obtain this by right-clicking [this JavaScript file] [js] and selecting **Save Link As...**, or if you prefer run:
 
-    $ cd ~/development
-    $ git clone http://github.com/snowplow/snowplow.git
-	...
-	$ cd snowplow/1-trackers/javascript/js/
-	$ ls
-    snowplow.js   sp.js         snowpak.sh
+    $ wget https://github.com/snowplow/snowplow/master/1-collectors/javascript/js/sp.js 
 
-In the listing above, `snowplow.js` is the original JavaScript; `sp.js` is the minified version and `snowpak.sh` is a Bash shell script for performing the minification.
+Now you're ready to upload the JavaScript file into S3. Within the S3 pane, hit **Upload** and browse to your file:
 
-### 2. Install YUI Compressor 2.4.2
+![js-select] [js-select]
 
-To minify the JavaScript, we use a bash shell script which in turn uses YUI Compressor 2.4.2. YUI Compressor depends on the Java runtime - but we'll assume that you already have Java installed.
+Then hit **Open** and you will see the following screen:
 
-To install YUI Compressor 2.4.2:
+![js-upload] [js-upload]
 
-    $ sudo mkdir /opt/yui
-    $ cd /opt/yui
-    $ sudo wget http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.2.zip
-    $ sudo unzip yuicompressor-2.4.2.zip
+Hit **Set Details >**, then hit **Set Permissions >** to set permissions on this file allowing **Everyone** to **Open/Download** it:
 
-Just check that the required jarfile has now been installed:
+![js-permissions] [js-permissions]
 
-    $ file /opt/yui/yuicompressor-2.4.2/build/yuicompressor-2.4.2.jar
-    /opt/yui/yuicompressor-2.4.2/build/yuicompressor-2.4.2.jar: Zip archive data, at least v1.0 to extract
+Now hit **Start Upload** to upload the JavaScript file into your bucket. When done, you should have something like this:
 
-Now you're ready to minify `snowplow.js`.
+![js-ready] [js-ready]
 
-### 3. Minify the JavaScript
+The Properties pane at the bottom is viewable by pressing the **Properties** button and selecting `sp.js`.
 
-Minification is handled by the bash shell script `snowpak.sh`, in the same folder as `snowplow.js`. `snowpak.sh` takes one argument, which is the path to the folder in which you installed YUI Compressor.
+### 4. Create your CloudFront distribution
 
-To run `snowpak.sh` is easy:
+Now you are ready to create the CloudFront distribution which will serve your JavaScript. In the CloudFront tab, hit the **Create Distribution** button:
 
-    $ cd ~/development/snowplow/1-trackers/javascript/js/
-    $ ./snowpak.sh /opt/yui/yuicompressor-2.4.2
+![dist-create] [dist-create]
 
-This will overwrite your existing `sp.js`.
+Choose `snowplow-static-js` as your Amazon S3 Origin bucket and hit **Continue**:
 
-A note: in theory it should be possible to use any JavaScript minifier or pipelining tool to minify the JavaScript - however, you would need to read through and understand what `snowpak.sh` is doing and make sure to recreate that same behaviour in your minification process.
+![dist-details] [dist-details]
 
-### 4. Upload the minified JavaScript
+On this screen you want to leave Logging as **Off**. Then hit `Continue` to review a summary of your new distribution:
 
-Use your standard asset pipelining strategy to upload the minified `sp.js` JavaScript to your servers. Note that to avoid "mixed content" warnings, SnowPlow expects the `sp.js` JavaScript to be available both via HTTP and via HTTPS.
+![dist-review] [dist-review]
 
-### 5. Update your header script
+Hit **Create Distribution** and then you should see something like this:
 
-Now you need to update the JavaScript code for SnowPlow in your website's `<head>` section to use your hosted copy of `snowplow.js`. For the purposes of this section, we're going to assume that you have a minified `sp.js` available at the URL:
+![dist-enabled] [dist-enabled]
 
-    http(s)://eskimo-ice.com/js/sp.js
+Write down your CloudFront distribution's **Domain Name** (highlighted above) - e.g. `http://d1x5tduoxffdr7.cloudfront.net`. You will need this later when you integrate SnowPlow into your website.
 
-If you are using **asynchronous tracking**, then update the corresponding line in your header script to look like this:
+### 5. Testing your JavaScript file on CloudFront
 
-```javascript
-sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://eskimo-ice.com/js/sp.js';
-```
+Before testing, take a 10 minute coffee or brandy break (that's how long CloudFront takes to synchronize).
 
-Whereas if you are using **synchronous tracking**, then update the corresponding line in your header script to look like this:
+Done? Now just check that you can access your JavaScript file over both HTTP and HTTPS using a browser, `wget` or `curl`:
 
-```javascript
-var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://eskimo-ice.com/js/sp.js';
-```
+    http://{{SUBDOMAIN}}.cloudfront.net/sp.js
+    https://{{SUBDOMAIN}}.cloudfront.net/sp.js
 
-Simple as that really.
+If you have any problems, then double-check your CloudFront distribution's URL, and check the permissions on your `sp.js` file: it must be Openable by Everyone.
 
-### 6. Test your hosted JavaScript
+All done! That's it - you now have a CloudFront distribution which will serve your SnowPlow JavaScript to anybody anywhere in the world, fast.
 
-As a final step, you'll want to just check that your self-hosted JavaScript is working okay. To do this:
+<a name="advanced-options" />
+## Advanced options
 
-* Upload a test page (possibly based on `tracker/examples/async.html`) to your server
-*
+The guide above assumed that you were happy to take the already-minified `sp.js` and host it on CloudFront. In fact, you may prefer to:
 
-**To write**
+* Update the contents of `snowplow.js` and then minify it yourself, _and/or:_
+* Add the un-minifed `snowplow.js` into your own asset pipelining process and serve it using something other than CloudFront
+
+The first option above is explored in more detail in the guide to [[Modifying snowplow.js|Modifying-snowplow-js]]. The second option is out of the scope of this guide, but you should get some ideas as to how the minification step should be customised for SnowPlow from the same guide.
 
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
 [crockford]: https://github.com/douglascrockford
+[js-]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
+[js-bucket]: technical-documentation/images/02_log_bucket.png
+[js-select]: technical-documentation/images/02_pixel_select.png
+[js-upload]: technical-documentation/images/02_pixel_upload.png
+[js-permissions]: technical-documentation/images/02_pixel_permissions.png
+[js-ready]: technical-documentation/images/02_pixel_ready.png
+[dist-create]: technical-documentation/images/02_js_dist_create.png
+[dist-details]: technical-documentation/images/02_js_dist_details.png
+[dist-review]: technical-documentation/images/02_js_dist_review.png
+[dist-enabled]: technical-documentation/images/02_js_dist_enabled.png
