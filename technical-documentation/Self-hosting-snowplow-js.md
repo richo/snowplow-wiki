@@ -70,11 +70,19 @@ Now you are ready to create the CloudFront distribution which will serve your Ja
 
 ![dist-create] [dist-create]
 
-Choose `snowplow-static-js` as your Amazon S3 Origin bucket and hit **Continue**:
+Select the **Download** option and hit **Continue**:
+
+![dist-origin] [dist-origin]
+
+For the **Origin Domain Name**, choose your S3 bucket (`snowplow-static-js`) from the dropdown, and accept the suggested **Origin ID**. Now hit **Continue**:
+
+![dist-behaviour] [dist-behaviour]
+
+The defaults are fine on this screen, hit **Continue** again:
 
 ![dist-details] [dist-details]
 
-On this screen you want to leave Logging as **Off**. Then hit `Continue` to review a summary of your new distribution:
+On this screen leave Logging as **Off** and hit **Continue** to review a summary of your new distribution:
 
 ![dist-review] [dist-review]
 
@@ -82,7 +90,7 @@ Hit **Create Distribution** and then you should see something like this:
 
 ![dist-enabled] [dist-enabled]
 
-Write down your CloudFront distribution's **Domain Name** (highlighted above) - e.g. `http://d1x5tduoxffdr7.cloudfront.net`. You will need this later when you integrate SnowPlow into your website.
+Write down your CloudFront distribution's **Domain Name** (highlighted above) - e.g. `http://d1fc8wv8zag5ca.cloudfront.net`. You will need this later when you integrate SnowPlow into your website.
 
 ### 5. Testing your JavaScript file on CloudFront
 
@@ -119,6 +127,8 @@ The second option is out of the scope of the SnowPlow documentation but you shou
 [js-permissions]: technical-documentation/images/js_permissions.png
 [js-ready]: technical-documentation/images/js_ready.png
 [dist-create]: technical-documentation/images/js_dist_create.png
+[dist-origin]: technical-documentation/images/js_dist_origin.png
+[dist-behaviour]: technical-documentation/images/js_dist_behaviour.png
 [dist-details]: technical-documentation/images/js_dist_details.png
 [dist-review]: technical-documentation/images/js_dist_review.png
 [dist-enabled]: technical-documentation/images/js_dist_enabled.png
