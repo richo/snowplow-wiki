@@ -3,7 +3,7 @@
 **Introduction**  
 [[SnowPlow setup guide]]  
 
-**Deploying to CloudFront**  
+**Self-hosting on CloudFront**  
 [[Self-hosting the tracking pixel]]  
 [[Self-hosting snowplow.js|Self-hosting-snowplow-js]]  
 

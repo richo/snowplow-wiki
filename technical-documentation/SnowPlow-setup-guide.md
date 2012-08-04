@@ -9,11 +9,11 @@ Setting up a new SnowPlow installation involves the following steps:
 
 To take each of these steps in turn:
 
-### 1. Deploying SnowPlow to CloudFront
+### 1. Self-hosting SnowPlow on CloudFront
 
-Like most web analytics solutions, SnowPlow works through JavaScript tracking tags; typically this JavaScript is served from Amazon CloudFront. The SnowPlow JavaScript tags then transmit SnowPlow event data to an event "collector", which also runs on Amazon CloudFront.
+Like most web analytics solutions, SnowPlow works through JavaScript tracking tags; typically this JavaScript is served from Amazon CloudFront. The SnowPlow JavaScript tags transmit SnowPlow event data to an event 'collector', which also runs on Amazon CloudFront.
 
-Deploying SnowPlow to CloudFront is a two-step process:
+Self-hosting SnowPlow on CloudFront, then, is a two-step process:
 
 1. [[Self-hosting the tracking pixel]]
 2. [[Self-hosting snowplow.js|Self-hosting-snowplow-js]]
