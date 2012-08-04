@@ -4,7 +4,7 @@
 [[SnowPlow setup guide]]  
 
 **Deploying to CloudFront**  
-[[Hosting snowplow.js|Hosting-snowplow-js]]  
+[[Self-hosting snowplow.js|Self-hosting-snowplow-js]]  
 [[Setting up the CloudFront collector]]
 
 **Implementing JavaScript tracking**  
