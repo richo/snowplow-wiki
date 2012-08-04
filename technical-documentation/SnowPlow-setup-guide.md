@@ -15,7 +15,7 @@ Like most web analytics solutions, SnowPlow works through JavaScript tracking ta
 
 Deploying SnowPlow to CloudFront is a two-step process:
 
-1. [[Hosting SnowPlow.js|Hosting-SnowPlow-js]]
+1. [[Hosting snowpow.js|Hosting-snowplow-js]]
 2. [[Setting up the CloudFront collector]]
 
 Note: in some cases, [SnowPlow Analytics] [snowplow-site] hosts SnowPlow on behalf of their clients, so these two steps are not always necessary.
@@ -25,7 +25,7 @@ Note: in some cases, [SnowPlow Analytics] [snowplow-site] hosts SnowPlow on beha
 Now you are ready to add SnowPlow's JavaScript tracking to your website. The guide for this follows below, along with an optional guide to setting up tracking of your marketing campaigns:
 
 1. [[Integrating SnowPlow into your website]]
-2. [[Tracking your marketing campaigns]]
+2. [[Tracking your marketing campaigns]] (optional)
 
 ## 3. Setting up Amazon Elastic Mapreduce and the Hive client
 

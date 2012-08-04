@@ -2,7 +2,7 @@
 
 This guide assumes that you will be hosting your the tracking pixel used by your SnowPlow implementation. (Self hosting the tracking pixel on your own Amazon S3 / Cloudfront account means that all your SnowPlow data will be stored on your own Amazon account.)
 
-If you prefer the tracking pixel and data to be hosted by a 3rd party, then get in touch with the team at [Keplar LLP](#http://www.keplarllp.com) for this and other services related to SnowPlow implementation.
+If you prefer the tracking pixel and data to be hosted by a 3rd party, then get in touch with the team at [SnowPlow Analytics] [contact] for this and other services related to SnowPlow implementation.
 
 Self hosting the tracking pixel is straightforward. Implementation steps are described below.
 
@@ -156,3 +156,4 @@ It is your responsibility to ensure that you comply with the privacy laws govern
 [dataprivacy]: http://aws.amazon.com/s3/faqs/#Can_I_comply_with_EU_data_privacy_regulations_using_Amazon_S3
 [git]: http://git-scm.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
+[contact]: hosting@snowplowanalytics.com
