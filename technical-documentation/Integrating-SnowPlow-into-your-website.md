@@ -196,7 +196,7 @@ _This section is common to both the synchronous and asynchronous integration app
 
 ### Self-hosted CloudFront collector
 
-If you are using your own tracking pixel (see the guide [[Setting up the CloudFront collector]] for details), you will need to tweak the JavaScript code given above.
+If you are using your own tracking pixel (see the guide [[Setting up the CloudFront collector]]), you will need to tweak the JavaScript code given above.
 
 The secret is to realise that SnowPlow's `setAccount()` method in fact takes a CloudFront subdomain as its argument - so using your own CloudFront distribution is super-simple.
 
@@ -210,12 +210,13 @@ Whereas if you are using **synchronous tracking**, then update your header scrip
 
 ```javascript
 var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
+```
 
 Done! It's that easy.
 
 ### Self-hosted SnowPlow JavaScript file
 
-If you are hosting your own SnowPlow JavaScript file, then you need to update the JavaScript code for SnowPlow in your website's `<head>` section.
+If you are hosting your own SnowPlow JavaScript file (see the guide [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the JavaScript code for SnowPlow in your website's `<head>` section.
 
 If you are using **asynchronous tracking**, then update the corresponding line in your header script to look like this:
 

@@ -16,7 +16,7 @@ Like most web analytics solutions, SnowPlow works through JavaScript tracking ta
 Deploying SnowPlow to CloudFront is a two-step process:
 
 1. [[Setting up the CloudFront collector]]
-2. [[Hosting snowplow.js|Hosting-snowplow-js]]
+2. [[Self-hosting snowplow.js|Self-hosting-snowplow-js]]
 
 Note: in some cases, **SnowPlow Analytics** hosts SnowPlow on behalf of their clients, so these two steps are not always necessary.
 
