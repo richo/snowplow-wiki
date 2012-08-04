@@ -103,11 +103,11 @@ All done! That's it - you now have a CloudFront distribution which will serve yo
 The guide above assumed that you were happy to take the already-minified `sp.js` and host it on CloudFront. In fact, you may prefer to:
 
 * Update the contents of `snowplow.js` and then minify it yourself, _and/or:_
-* Add the un-minifed `snowplow.js` into your own asset pipelining process and serve it using something other than CloudFront
+* Add the un-minified `snowplow.js` into your own asset pipelining process and serve it using something other than CloudFront
 
 The first option above is explored in more detail in the guide to [[Modifying snowplow.js|Modifying-snowplow-js]].
 
-The second option is out of the scope of this guide, but you should get some ideas as to how the minification step should be customised for SnowPlow from the same guide.
+The second option is out of the scope of the SnowPlow documentation but you should get some ideas as to how the minification should be handled from that same guide, [[Modifying snowplow.js|Modifying-snowplow-js]].
 
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
