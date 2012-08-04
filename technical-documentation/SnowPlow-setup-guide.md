@@ -24,8 +24,8 @@ Note: in some cases, [SnowPlow Analytics](http://snowplowanalytics.com) hosts Sn
 
 Now you are ready to add SnowPlow's JavaScript tracking to your website. The guide for this follows below, along with an optional guide to setting up tracking of your marketing campaigns:
 
-1. [[Integrating SnowPlow tracking tags on your website]]
-2. [[Marketing campaign tracking]]
+1. [[Adding SnowPlow tracking to your website]]
+2. [[Tracking your marketing campaigns]]
 
 ## 3. Setting up Amazon Elastic Mapreduce and the Hive client
 
