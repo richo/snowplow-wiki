@@ -256,10 +256,10 @@ If you have any problems getting this to run, please [contact] [contact] the **S
 
 If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] [contact] the **SnowPlow Analytics** team to confirm that your event data is being successfully logged.
 
-If you are self-hosting SnowPlow, then please proceed to the next section [[Setting up EMR]] to start working with the SnowPlow data.
+If you are self-hosting SnowPlow, then please proceed to the next section [[Setting up EMR]] to start testing (and working with) the SnowPlow data.
 
 [ga-event-guide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
 [chrome-dev-tools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/
-[networkpane]: technical-documentation/images/01_network_pane.png
+[network-pane]: technical-documentation/images/01_network_pane.png
 [contact]: mailto:services@snowplowanalytics.com
