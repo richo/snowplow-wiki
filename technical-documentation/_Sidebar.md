@@ -1,14 +1,14 @@
-**SNOWPLOW SETUP**
+**SNOWPLOW SETUP GUIDE**
 
 **Introduction**  
 [[SnowPlow setup guide]]  
 
 **Deploying to CloudFront**  
-[[Hosting SnowPlow js]]  
+[[Hosting SnowPlow.js|Hosting-SnowPlow-js]]  
 [[Setting up the CloudFront collector]]
 
 **Implementing JavaScript tracking**  
-[[Adding SnowPlow tracking to your website]]  
+[[Integrating SnowPlow into your website]]  
 [[Tracking your marketing campaigns]]
 
 **Amazon EMR and CLI tools**  

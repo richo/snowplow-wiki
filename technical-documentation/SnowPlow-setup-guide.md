@@ -18,13 +18,13 @@ Deploying SnowPlow to CloudFront is a two-step process:
 1. [[Hosting-SnowPlow-js|Hosting SnowPlow.js]]
 2. [[Setting up the CloudFront collector]]
 
-Note: in some cases, [SnowPlow Analytics](http://snowplowanalytics.com) hosts SnowPlow on behalf of their clients, so these two steps are not always necessary.
+Note: in some cases, [SnowPlow Analytics] [snowplow-site] hosts SnowPlow on behalf of their clients, so these two steps are not always necessary.
 
 ## 2. Installing SnowPlow JavaScript tracking
 
 Now you are ready to add SnowPlow's JavaScript tracking to your website. The guide for this follows below, along with an optional guide to setting up tracking of your marketing campaigns:
 
-1. [[Adding SnowPlow tracking to your website]]
+1. [[Integrating SnowPlow into your website]]
 2. [[Tracking your marketing campaigns]]
 
 ## 3. Setting up Amazon Elastic Mapreduce and the Hive client
@@ -41,3 +41,5 @@ To query the data, however, you need to setup Amazon's Elastic Mapreduce and ins
 Although the raw SnowPlow data can be queried directly in the format it is collected in, it is generally more efficient if a lot of analytic work will be performed using Hive, to migrate the data into a new format optimised for analysis in Hive. Instructions on performing the migration are described below:
 
 1. [[Migrating data into a format optimized for querying with Hive|Migrating-data-to-optimized-format-for-Hive|Migrating-data-to-optimized-format-for-Hive]]
+
+[snowplow-site]: http://snowplowanalytics.com
