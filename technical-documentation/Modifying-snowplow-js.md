@@ -2,7 +2,7 @@
 
 ## Overview
 
-It may be necessary for you to make changes to `snowplow.js`. If you do, then you will also need to minify your updated `nowplow.js` prior to deploying it. This guide covers how to do this.
+It may be necessary for you to make changes to `snowplow.js`. If you do, then you will also need to minify your updated `snowplow.js` prior to deploying it. This guide covers how to do this.
 
 To continue with this guide, you will need the following
 
@@ -75,4 +75,3 @@ To do this, please follow the testing instructions at the end of the guide to [[
 
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
-[crockford]: https://github.com/douglascrockford
