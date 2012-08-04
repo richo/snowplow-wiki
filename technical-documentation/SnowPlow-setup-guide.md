@@ -27,7 +27,7 @@ Now you are ready to add SnowPlow's JavaScript tracking to your website. The gui
 1. [[Integrating SnowPlow into your website]]
 2. [[Tracking your marketing campaigns]] (optional)
 
-## 3. Setting up Amazon Elastic Mapreduce and the Hive client
+## 3. Setting up Amazon Elastic MapReduce and Hive
 
 Setting up the JavaScript tracking (above) ensures that you are collecting web analytics data and storing it to the SnowPlow data warehouse on Amazon S3.
 
