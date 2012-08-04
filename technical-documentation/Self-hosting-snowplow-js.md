@@ -90,7 +90,7 @@ Hit **Create Distribution** and then you should see something like this:
 
 ![dist-enabled] [dist-enabled]
 
-Write down your CloudFront distribution's **Domain Name** (highlighted above) - e.g. `http://d1fc8wv8zag5ca.cloudfront.net`. You will need this later when you integrate SnowPlow into your website.
+Write down your CloudFront distribution's **Domain Name** - e.g. `http://d1fc8wv8zag5ca.cloudfront.net`. You will need this later when you integrate SnowPlow into your website.
 
 ### 5. Testing your JavaScript file on CloudFront
 

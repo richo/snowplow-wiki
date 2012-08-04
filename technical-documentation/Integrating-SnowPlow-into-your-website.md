@@ -196,7 +196,7 @@ _This section is common to both the synchronous and asynchronous integration app
 
 ### Self-hosted CloudFront collector
 
-If you are using your own tracking pixel (see the guide [[Setting up the CloudFront collector]]), you will need to tweak the JavaScript code given above.
+If you are using your own tracking pixel (see the guide [[Self-hosting the tracking pixel]]), you will need to tweak the JavaScript code given above.
 
 The secret is to realise that SnowPlow's `setAccount()` method in fact takes a CloudFront subdomain as its argument - so using your own CloudFront distribution is super-simple.
 
