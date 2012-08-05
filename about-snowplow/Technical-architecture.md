@@ -1,13 +1,18 @@
-SnowPlow has a very different architecture from conventional open-source web analytics packages such as [Piwik] [piwik] or [Open Web Analytics] [owa]. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a polyglot, loosely-coupled architecture, involving:
+SnowPlow has a very different architecture from conventional open-source web analytics packages such as [Piwik] [piwik] or [Open Web Analytics] [owa]. Where those packages are built on a tightly-coupled LAMP stack, SnowPlow has a loosely-coupled architecture which consists of five sub-systems:
 
-* A JavaScript event tracker
-* A CDN ([Amazon CloudFront] [cloudfront])
-* An immutable flatfile-based data store ([Amazon S3] [s3])
-* JVM-based "big data" storage and querying tools ([Apache Hadoop] [hadoop] and [Hive] [hive]).
+![architecture] [conceptual-architecture]
 
-In the rest of this page we explain our rationale for this architecture, map out the technical components and finally flag up the strengths and limitations of this architecture.
+To briefly explain these five sub-systems:
 
-# Rationale for architecture
+* **Trackers** fire SnowPlow events. Currently we have a JavaScript tracker; iOS and Android trackers are on the roadmap
+* **Collectors** receive SnowPlow events from trackers. Currently we have a simple CDN-based collector on [Amazon CloudFront] [cloudfront]
+* **ETL (extract, transform and load)** cleans up the raw SnowPlow events, enriches them and puts them into storage. Currently we have an ETL process using [Apache Hive] [hive]
+* **Storage** is where the SnowPlow events live. Currently we store the SnowPlow events in an immutable Hive-format flatfile structure on S3
+* **Analytics** are performed on the SnowPlow events. Currently we have a set of ad hoc analyses written in Hive
+
+In the rest of this page we explain our rationale for this architecture, map out the specific technical components and finally flag up the strengths and limitations of this architecture.
+
+## Rationale for architecture
 
 SnowPlow's distinctive architecture has been informed by a set of key design principles:
 
@@ -25,7 +30,7 @@ The current technical architecture for SnowPlow looks like this:
 
 This architecture diagram will be updated shortly with the new ETL control tool, written in Ruby.
 
-# Technical strengths
+## Technical strengths
 
 The SnowPlow approach has several technical advantages over more
 conventional web analytics approaches. In no particular order, these
@@ -47,7 +52,7 @@ advantages are:
 For a wider discussion of the strengths of SnowPlow from a business or
 product perspective, please see the [[Features and benefits]] page.
 
-# Technical limitations
+## Technical limitations
 
 The current SnowPlow architecture, tightly coupled as it is to Amazon
 CloudFront and S3, has some specific limitations to consider:
@@ -63,7 +68,8 @@ CloudFront and S3, has some specific limitations to consider:
 
 For more information on these limitations, please see the [[Technical FAQ]].
 
-[tech-architecture]: /snowplow/snowplow/wiki/about-snowplow/images/snowplow-tech-architecture.jpg
+[conceptual-architecture]: /about-snowplow/images/snowplow-tech-architecture.jpg
+[tech-architecture]: /about-snowplow/images/snowplow-tech-architecture.jpg
 [piwik]: http://piwik.org/
 [owa]: http://www.openwebanalytics.com/
 [cloudfront]: http://aws.amazon.com/cloudfront/
