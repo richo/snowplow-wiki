@@ -7,8 +7,8 @@ To briefly explain these five sub-systems:
 * **Trackers** fire SnowPlow events. Currently we have a JavaScript tracker; iOS and Android trackers are on the roadmap
 * **Collectors** receive SnowPlow events from trackers. Currently we have a simple CDN-based collector on [Amazon CloudFront] [cloudfront]
 * **ETL (extract, transform and load)** cleans up the raw SnowPlow events, enriches them and puts them into storage. Currently we have an ETL process using [Apache Hive] [hive]
-* **Storage** is where the SnowPlow events live. Currently we store the SnowPlow events in an immutable [Hive] [hive]-format flatfile structure on S3
-* **Analytics** are performed on the SnowPlow events. Currently we have a set of ad hoc analyses written in [Hive] [hive]
+* **Storage** is where the SnowPlow events live. Currently we store the SnowPlow events in an immutable Hive-format flatfile structure on S3
+* **Analytics** are performed on the SnowPlow events. Currently we have a set of ad hoc analyses written in Hive
 
 In the rest of this page we explain our rationale for this architecture, map out the specific technical components and finally flag up the strengths and limitations of this architecture.
 
