@@ -258,6 +258,8 @@ If you are using the SnowPlow-hosted version of SnowPlow, then please [contact] 
 
 If you are self-hosting SnowPlow, then please proceed to the next section [[Setting up EMR]] to start testing (and working with) the SnowPlow data.
 
+If you want SnowPlow to track inbound marketing campaigns you are running then [[learn how to do campaign tracking using SnowPlow|Tracking your marketing campaigns]]  
+
 [ga-event-guide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
 [chrome-dev-tools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/

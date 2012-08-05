@@ -116,7 +116,7 @@ It is your responsibility to ensure that you comply with the privacy laws govern
 
 ## All done?
 
-Now [[setup the tracking pixel|Self-hosting-snowplow-js]]
+Now [[setup the hosting of snowplow.js|Self-hosting-snowplow-js]]
 
 [aws]: http://aws.amazon.com/
 [pixel-]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
