@@ -114,6 +114,10 @@ However, data center choice, particularly for your access logs, does matter from
 
 It is your responsibility to ensure that you comply with the privacy laws governing your web property and users.
 
+## All done?
+
+Now [[setup the tracking pixel|Self-hosting-snowplow-js]]
+
 [aws]: http://aws.amazon.com/
 [pixel-]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
 [pixel-bucket]: technical-documentation/images/02_log_bucket.png
