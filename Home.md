@@ -14,7 +14,8 @@ If this is your first time learning about SnowPlow, we recommend starting with t
 
 ## Questions or need help?
 
-Contact us at support@snowplowanalytics.com
+Contact us at support@snowplowanalytics.com or join our [SnowPlow Google Group] [snowplow-user].
 
 [hadoop]: http://hadoop.apache.org/
 [hive]: http://hive.apache.org/
+[snowplow-user]: https://groups.google.com/d/forum/snowplow-user
