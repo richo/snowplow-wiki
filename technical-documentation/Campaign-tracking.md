@@ -88,8 +88,11 @@ It is valuable to know which keywords a user entered in his / her search query t
 
 ##### 5. Adding utm_content
 
-There may be many different creatives associated with each campaign in AdWords. To identify which it was that this user clicked on, we can use the `{}` value parameter by adding: `&utm_content={creative}` to the link:
+There may be many different creatives associated with each campaign in AdWords. To identify which creative it was that this user clicked on, we can use the `{creative}` value parameter (which returns the creative id) by adding: `&utm_content={creative}` to the link:
 
+	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion&utm_term={keyword}&utm_content={creative}
+
+In the analysis phase, we can then look this creative id up via the AdWords API, to retrieve the actual ad contents displayed.
 
 [gahelppage]: https://support.google.com/analytics/bin/answer.py?hl=en&answer=1033863&ctx=cb&src=cb&cbid=-oxeewb61m1du&cbrank=1 
 [gaurlbuilder]: https://support.google.com/analytics/bin/answer.py?hl=en&answer=1033867
