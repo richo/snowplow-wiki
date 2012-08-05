@@ -68,8 +68,8 @@ CloudFront and S3, has some specific limitations to consider:
 
 For more information on these limitations, please see the [[Technical FAQ]].
 
-[conceptual-architecture]: /about-snowplow/images/snowplow-tech-architecture.jpg
-[tech-architecture]: /about-snowplow/images/snowplow-tech-architecture.jpg
+[conceptual-architecture]: about-snowplow/images/snowplow-tech-architecture.jpg
+[tech-architecture]: about-snowplow/images/snowplow-tech-architecture.jpg
 [piwik]: http://piwik.org/
 [owa]: http://www.openwebanalytics.com/
 [cloudfront]: http://aws.amazon.com/cloudfront/
