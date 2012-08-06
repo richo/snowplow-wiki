@@ -120,8 +120,8 @@ Now [[setup the hosting of snowplow.js|Self-hosting-snowplow-js]]
 
 [aws]: http://aws.amazon.com/
 [pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
+[pixel-bucket]: technical-documentation/images/02_pixel_bucket.png
 [log-bucket]: technical-documentation/images/02_log_bucket.png
-[pixel-bucket]: technical-documentation/images/02_log_bucket.png
 [pixel-select]: technical-documentation/images/02_pixel_select.png
 [pixel-upload]: technical-documentation/images/02_pixel_upload.png
 [pixel-permissions]: technical-documentation/images/02_pixel_permissions.png
