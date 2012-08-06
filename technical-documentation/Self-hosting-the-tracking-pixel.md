@@ -42,7 +42,7 @@ A couple of notes on this:
 
 Now let's create a second bucket to store our CloudFront logs - i.e. our actual SnowPlow data. Call this bucket something like `snowplow-logs`:
 
-![logbucket] [logbucket]
+![log-bucket] [log-bucket]
 
 The notes above also hold true for this bucket: don't enable logging, and expect to have to change the bucket's name slightly.
 
