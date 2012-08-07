@@ -56,15 +56,15 @@ First let's identify the source of this campaign as Google AdWords, by updating 
 
 We might want to distinguish ads from Google Search results with results from the Google content network. In this case, we can use [ValueTrack parameters] [gavaluetrackparameters] as follows:
 
-	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}
+	http://mysite.com/myproduct.html?utm_source=Google{ifsearch:Search}{ifcontent:Content}
 
 The above makes use of the [Value Click parameters] [gavaluetrackparameters]. These are set when an ad is shown: if the ad is shown on the Google Display Network the link will read:
 
-	http://mysite.com/myproduct.html?utmsource=GoogleSearch
+	http://mysite.com/myproduct.html?utm_source=GoogleSearch
 
 Hence SnowPlow will classify the campaign as having source='GoogleSearch'.  If on the other hand the ad is shown on the Google Display Network, the link will read:
 
-	http://mysite.com/myproduct.html?utmsource=GoogleDispay
+	http://mysite.com/myproduct.html?utm_source=GoogleDispay
 
 Note: what actual text you choose to display if the source is Google, Google Search or Google Display is up to you: SnowPlow take whatever text you provide and let you report against it. (So differentiate traffic from this source with others.) The important thing is that you consistently identify traffic from the same sources using the same `utm_source` parameter, so it is all correctly identified as coming from the same source. What you call that parameter, however, is entirely up to you.
 
@@ -72,25 +72,25 @@ Note: what actual text you choose to display if the source is Google, Google Sea
 
 Next, let's identify the medium of this campaign. If it is an AdWords campaign, then it is probably a CPC (cost-per-click) campaign, so we add `&utm_medium=cpc` to the end of the query string. (If it's been setup as a CPA (cost per acquisition) campaign, we can add `&utm_medium=cpa` instead):
 
-	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc
+	http://mysite.com/myproduct.html?utm_source=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc
 
 ##### 3. Adding utm_campaign
 
 A sensible campaign name / ID is the campaign name given in Google AdWords. If this is "handbag-summer-2012-promotion" then we add `&utm_campaign=handbag-summer-2012-promotion` to the query string:
 
-	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion
+	http://mysite.com/myproduct.html?utm_source=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion
 
 ##### 4. Adding utm_term
 
 It is valuable to know which keywords a user entered in his / her search query to trigger the ad being shown. (Or if it's the display network, which words on the web page triggered the ad.) Because a single ad may have many different keywords associated with it, this value needs to be set dynamically when an ad is shown. Fortunately, Google has provided a [value parameter] [gavalueparameters] that does just that: `{keyword}`. Hence, all we have to do is add `&utm_term={keyword}` to our link:
 
-	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion&utm_term={keyword}
+	http://mysite.com/myproduct.html?utm_source=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion&utm_term={keyword}
 
 ##### 5. Adding utm_content
 
 There may be many different creatives associated with each campaign in AdWords. To identify which creative it was that this user clicked on, we can use the `{creative}` value parameter (which returns the creative id) by adding: `&utm_content={creative}` to the link:
 
-	http://mysite.com/myproduct.html?utmsource=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion&utm_term={keyword}&utm_content={creative}
+	http://mysite.com/myproduct.html?utm_source=Google{ifsearch:Search}{ifcontent:Content}&utm_medium=cpc&utm_campaign=handbag-summer-2012-promotion&utm_term={keyword}&utm_content={creative}
 
 In the analysis phase, we can then look this creative id up via the AdWords API, to retrieve the actual ad contents displayed.
 

@@ -117,6 +117,10 @@ The first option above is explored in more detail in the guide to [[Modifying sn
 
 The second option is out of the scope of the SnowPlow documentation but you should get some ideas as to how the minification should be handled from that same guide, [[Modifying snowplow.js|Modifying-snowplow-js]].
 
+## All done?
+
+Now [[add the SnowPlow javascript tracking tags to your site|Integrating-SnowPlow-into-your-website]]
+
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
 [crockford]: https://github.com/douglascrockford
