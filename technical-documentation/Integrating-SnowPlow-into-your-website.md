@@ -43,7 +43,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 
 **Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the **SnowPlow Analytics** team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
 
-To explain a few things about this code:
+To explain a few things about this async tracking code:
 
 * This code works with both HTTPS (i.e. SSL-secured) and HTTP pages
 * The `trackPageView` command logs the page load 
@@ -94,7 +94,7 @@ snowplowTracker.enableLinkTracking();
 
 **Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the **SnowPlow Analytics** team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
 
-To explain a few things about this code:
+To explain a few things about this synchronous tracking code:
 
 * This code works with both HTTPS (i.e. SSL-secured) and HTTP pages
 * The `trackPageView` command logs the page load 
