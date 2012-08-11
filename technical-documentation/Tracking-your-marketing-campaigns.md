@@ -1,7 +1,7 @@
 A very common requirement for web analytics platforms including SnowPlow is that they correctly identify traffic from different campaigns, so that it is possible to:
 
-1. calculate the return on ad spend (ROAS) on those campaigns, and 
-2. compare the behaviour of customers from different ad campaigns on your website.
+1. Calculate the return on ad spend (ROAS) on those campaigns
+2. Compare the behaviour of customers from different ad campaigns on your website
 
 In order to ensure that the campaigns you setup are correctly tracked by SnowPlow, it is important that any links from those campaigns to your site have the relevant query string parameters (described below) included in them. The query string parameters used are exactly the same employed by Google Analytics: as a result, any campaign that is setup to be correctly tracked in Google Analytics should automatically be correctly tracked in SnowPlow. (The only exception is campaigns in AdWords, which Google uses an alternative, proprietary technique for joining AdWords data to Analytics data.)
 
