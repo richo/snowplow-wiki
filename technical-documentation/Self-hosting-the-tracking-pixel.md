@@ -127,6 +127,10 @@ A couple of notes on this approach:
 * You would need to configure your web application to use the correct CloudFront account ID depending on environment
 * Unless you want to analyse your development or test environment, disable logging on the CloudFront distribution for your pixel
 
+If you prefer, the SnowPlow Analytics team maintains a publically available `/dev/null` tracking pixel on this account ID:
+
+    d3rkrsqld9gmqf
+
 ## All done?
 
 Now [[setup the hosting of snowplow.js|Self-hosting-snowplow-js]]
