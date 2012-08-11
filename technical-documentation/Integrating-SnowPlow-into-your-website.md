@@ -41,7 +41,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the **SnowPlow Analytics** team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
+**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the SnowPlow Analytics team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
 
 To explain a few things about this async tracking code:
 
@@ -92,7 +92,7 @@ snowplowTracker.enableLinkTracking();
 <!-- SnowPlow stops plowing -->
 ```
 
-**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the **SnowPlow Analytics** team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
+**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the SnowPlow Analytics team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d2i847wvqleb11`
 
 To explain a few things about this synchronous tracking code:
 
