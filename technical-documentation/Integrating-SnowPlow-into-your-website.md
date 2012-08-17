@@ -156,10 +156,10 @@ If you have setup event tracking with Google Analytics, these will seem familiar
 Here is an (asynchronous) example of tracking a user listening to a music mix:
 
 ```javascript
-_snaq.push(['_trackEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', , '0.0']);
+_snaq.push(['trackEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', , '0.0']);
 ```
 
-The explanation of each argument passed to `'_trackEvent'` is as follows:
+The explanation of each argument passed to `'trackEvent'` is as follows:
 
 | **Argument**          | **Attribute** | **Explanation**                                                         |
 |----------------------:|:--------------|:------------------------------------------------------------------------|
@@ -174,10 +174,10 @@ The explanation of each argument passed to `'_trackEvent'` is as follows:
 Here is a (synchronous) example of tracking a user adding a product to their shopping basket:
 
 ```javascript
-_trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0']);
+trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0']);
 ```
 
-The explanation of each argument passed to `_trackEvent()` is as follows:
+The explanation of each argument passed to `trackEvent()` is as follows:
 
 | **Argument** | **Attribute** | **Explanation**                                                                                         |
 |-------------:|:--------------|:--------------------------------------------------------------------------------------------------------|
