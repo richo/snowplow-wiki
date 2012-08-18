@@ -42,6 +42,7 @@ To install YUI Compressor 2.4.2:
     $ cd /opt/yui
     $ sudo wget http://yui.zenfs.com/releases/yuicompressor/yuicompressor-2.4.2.zip
     $ sudo unzip yuicompressor-2.4.2.zip
+    $ sudo rm yuicompressor-2.4.2.zip
 
 Just check that the required jarfile has now been installed:
 
