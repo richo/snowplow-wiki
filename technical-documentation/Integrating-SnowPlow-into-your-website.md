@@ -174,7 +174,7 @@ The explanation of each argument passed to `'trackEvent'` is as follows:
 Here is a (synchronous) example of tracking a user adding a product to their shopping basket:
 
 ```javascript
-trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0']);
+trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
 ```
 
 The explanation of each argument passed to `trackEvent()` is as follows:
