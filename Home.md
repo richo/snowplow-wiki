@@ -2,6 +2,8 @@ Welcome to SnowPlow - the open-source, web-scale analytics platform powered by [
 
 If this is your first time learning about SnowPlow, we recommend starting with the [[SnowPlow overview]].
 
+As well as this wiki, more information on SnowPlow can be found on the [SnowPlow website][website].
+
 ## Quick navigation
 
 | About SnowPlow             | Features & Benefits              | Setup Guide          | Analyst's Cookbook                  |
@@ -16,6 +18,7 @@ If this is your first time learning about SnowPlow, we recommend starting with t
 
 Contact us at support@snowplowanalytics.com or join our [SnowPlow Google Group] [snowplow-user].
 
+[website]: http://snowplowanalytics.com
 [hadoop]: http://hadoop.apache.org/
 [hive]: http://hive.apache.org/
 [snowplow-user]: https://groups.google.com/d/forum/snowplow-user
