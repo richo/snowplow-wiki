@@ -2,6 +2,8 @@
 
 This section provides a guide to analysts who wish to use [Hive][hive] to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
 
+*Note:* we are building out the SnowPlow analytics content (i.e. this cookbook) on the [SnowPlow website][website]. Visit the [analytics section][snowplow-website-analytics] on the [SnowPlow website][website].
+
 ### Getting started
 
 [[Why Hive]]
@@ -32,5 +34,6 @@ This section provides a guide to analysts who wish to use [Hive][hive] to analys
 
 [[Retailers]]
 
+[website]: http://snowplowanalytics.com
+[snowplow-website-analytics]: http://snowplowanalytics.com/analytics/index.html
 [hive]: http://hive.apache.org/
-
