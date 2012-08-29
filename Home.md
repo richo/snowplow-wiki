@@ -1,8 +1,6 @@
-Welcome to SnowPlow - the open-source, web-scale analytics platform powered by [Hadoop](hadoop) and [Hive](hive). This wiki is the main source of documentation for the SnowPlow Analytics project.
+Welcome to SnowPlow - the open-source, web-scale analytics platform powered by [Hadoop](hadoop) and [Hive](hive). This wiki is the main source of documentation for **developers** working with (or contributing to) the SnowPlow Analytics project.
 
-If this is your first time learning about SnowPlow, we recommend starting with the [[SnowPlow overview]].
-
-As well as this wiki, more information on SnowPlow can be found on the [SnowPlow website][website].
+If this is your first time hearing about SnowPlow, we recommend starting with the [SnowPlow website][website].
 
 ## Quick navigation
 
