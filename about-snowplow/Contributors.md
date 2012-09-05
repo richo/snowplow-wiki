@@ -5,8 +5,9 @@ Thanks to the following people who have contributed patches, new code or given u
 * [Alex Dean](https://github.com/alexanderdean)
 * [Yali Sassoon](https://github.com/yalisassoon)
 * [Anthon Pang](https://github.com/robocoder)
+* [Richo Healey](https://github.com/richo) (Documentation)
 * [Simon Rumble](https://github.com/shermozle) ([SnowCannon] [snowcannon])
-* [Richo Healey](https://github.com/richo)
+* [Simon Andersson](https://github.com/ramn) (ecommerce tracking)
 
 Original concept for SnowPlow inspired by [Radek Maciaszek](https://github.com/rathko).
 
