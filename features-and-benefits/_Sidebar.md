@@ -1,6 +1,6 @@
 **FEATURES & BENEFITS** 
 
-[SnowPlow Overview][SnowPlow-overview]  
+[SnowPlow Overview] [snowplow-overview]  
 [[Features and benefits]]
-[Analysts Cookbook][analysts-cookbook]
-[SnowPlow setup guide][SnowPlow-setup-guide]
+[Analysts Cookbook] [analysts-cookbook]
+[SnowPlow setup guide] [snowplow-setup-guide]
