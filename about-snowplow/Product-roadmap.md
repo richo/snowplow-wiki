@@ -1,5 +1,7 @@
 ## Roadmap
 
-* Build out the list of recipe analyses using Apache Hive
-* Build a set of connectors to manage ongoing data migration (ETL) from S3 into analytics databases for improved train-of-thought and repeatable analyses
-* Make `snowplow.js` available over SSL (currently not working)
+* Build out the list of recipe analyses using Apache Hive, Infobright
+* Complete Ruby harness for automating the Hive-based ETL process
+* Build out ETL process from S3 logs -> Hive and Infobright using [Scalding][scalding]. (Replace the current Hive-based ETL)
+
+[scalding]: https://github.com/twitter/scalding
