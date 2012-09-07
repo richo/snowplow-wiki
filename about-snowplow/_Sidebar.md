@@ -11,6 +11,7 @@
 [Contributors](Contributors)  
 
 **More documentation...**  
-[For business folks](Product-overview)  
-[For analysts](Analysts-cookbook)  
-[For engineers](Setting-up-SnowPlow)  
+[Getting up and running with SnowPlow](SnowPlow-setup-guide)
+[SnowPlow website](http://snowplowanalytics.com)  
+[SnowPlow on the Keplar blog](http://www.keplarllp.com/blog/category/snowplow)  
+ 
