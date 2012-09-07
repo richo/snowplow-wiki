@@ -13,7 +13,7 @@ SnowPlow has been technically designed to:
 * Give you access, ownership and control of your own web analytics data. (No lock in)
 * Loosely coupled and extensible, so that it is easy to add e.g. new trackers to capture data from new platforms (e.g. mobile, TV) and put the data to new uses
 
-## More information
+### More information
 
 For documentation geared towards business, product and analytics folk, please see the [SnowPlow website](http://snowplowanalytics.com)
 
