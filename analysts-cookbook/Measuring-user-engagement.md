@@ -63,7 +63,7 @@ Note: as well as looking at how the distribution of users by engagement level ch
 <a name="visits-per-time-period" />
 ## 2. Number of visits by each user per day / week / month
 
-A similar metric is to count the number of visits that each user makes in a given time period. The difference here, is that if a user visits a site more than once a day, each individual visit contributes to the "engagement" value assigned to that user. When we look at the number of days per month a user visits a website, by contrast, we do not distinguish users who've visited once from users who've visited twice. 
+A similar metric is calculated by countint the number of visits that each user makes in a given time period. The difference here, is that if a user visits a site more than once a day, each individual visit contributes to the "engagement" value assigned to that user. When we look at the number of days per month a user visits a website, by contrast, we do not distinguish users who've visited once from users who've visited twice. 
 
 Which approach is better depends on the type of product / service you offer online and the way users engage with it. If users typically open your service in a browser window, and then leave it on (but in the background), distinguishing users who visit once and twice a day may not be meaningful. If each visit is distinct, however, this metric might be preferable.
 
@@ -151,4 +151,4 @@ If we want to see whether this metric is improving over time, we can repeat the 
 <a name="weighted-events-per-visit" />
 ## 4. Weighting events by value
 
-[TO WRITE]
+TO WRITE

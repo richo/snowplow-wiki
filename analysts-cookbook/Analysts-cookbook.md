@@ -1,39 +1,5 @@
 # Analyst's Cookbook
 
-This section provides a guide to analysts who wish to use [Hive][hive] to analyse the SnowPlow data. It comprises sets of Hive queries, organised by topic area and supporting commentary.
+The Analyst's Cookbook has moved! You can find it on the [SnowPlow website][analyst-cookbook].
 
-*Note:* we are building out the SnowPlow analytics content (i.e. this cookbook) on the [SnowPlow website][website]. Visit the [analytics section][snowplow-website-analytics] on the [SnowPlow website][website].
-
-### Getting started
-
-[[Why Hive]]
-
-[[Hive data structure]]
-
-### Performing standard queries (same as those performed in other web analytics tools)
-
-[[Basic recipes part 1]]
-
-[[Basic recipes part 2]]
-
-### More powerful metrics with SnowPlow
-
-[[Measuring user engagement]]
-
-[[Measuring customer lifetime-value]]
-
-### More sophisticated analytics with SnowPlow
-
-[[Cohort analysis]]
-
-[[Flexible funnels]]
-
-[[Attribution modelling]]
-
-### Industry-specific queries
-
-[[Retailers]]
-
-[website]: http://snowplowanalytics.com
-[snowplow-website-analytics]: http://snowplowanalytics.com/analytics/index.html
-[hive]: http://hive.apache.org/
+[analyst-cookbook]: http://snowplowanalytics.com/analytics/index.html
