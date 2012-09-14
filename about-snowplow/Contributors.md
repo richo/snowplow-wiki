@@ -5,7 +5,7 @@ Thanks to the following people who have contributed patches, new code or given u
 * [Alex Dean](https://github.com/alexanderdean)
 * [Yali Sassoon](https://github.com/yalisassoon)
 * [Anthon Pang](https://github.com/robocoder)
-* [Richo Healey](https://github.com/richo) (documentation)
+* [Richo Healey](https://github.com/richo) @ [99designs] [99designs] (documentation)
 * [Simon Rumble](https://github.com/shermozle) ([SnowCannon] [snowcannon])
 * [Simon Andersson](https://github.com/ramn) @ [Qwaya] [qwaya] (ecommerce tracking)
 * [Michael Tibben](https://github.com/mtibben) @ [99designs] [99designs] (Hive deserializer improvements)
