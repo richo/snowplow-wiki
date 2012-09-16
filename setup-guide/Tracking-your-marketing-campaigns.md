@@ -97,5 +97,5 @@ In the analysis phase, we can then look this creative id up via the AdWords API,
 [gahelppage]: https://support.google.com/analytics/bin/answer.py?hl=en&answer=1033863&ctx=cb&src=cb&cbid=-oxeewb61m1du&cbrank=1 
 [gaurlbuilder]: https://support.google.com/analytics/bin/answer.py?hl=en&answer=1033867
 [gavaluetrackparameters]: http://support.google.com/adwords/bin/answer.py?hl=en&answer=2375447
-[gaadwordsediturl]: /snowplow/snowplow/wiki/technical-documentation/images/adwords-query-string.png
-[zoneappend]: /snowplow/snowplow/wiki/technical-documentation/images/03a_zone_prepend_openx.png
+[gaadwordsediturl]: /snowplow/snowplow/wiki/setup-guide/images/adwords-query-string.png
+[zoneappend]: /snowplow/snowplow/wiki/setup-guide/images/03a_zone_prepend_openx.png

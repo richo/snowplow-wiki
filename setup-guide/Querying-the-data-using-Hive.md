@@ -32,7 +32,7 @@ To initiative a new session on Mac / Linux, navigate to the `elastic-mapreduce-c
 
 You should see something like:
 
-![Launch a Hive session from the command-line](technical-documentation/images/emr-guide/run-hive-interactive-session-1.jpg)
+![Launch a Hive session from the command-line](setup-guide/images/emr-guide/run-hive-interactive-session-1.jpg)
 
 Note: The Ruby command line interface tools uses the security information you provided in the `credentials.json` file and takes a set of default values for e.g. the number of instances that are fired up. For more details, consult the [EMR command line tools documentation](http://aws.amazon.com/developertools/2264).
 
@@ -54,7 +54,7 @@ Note: this will work however you initiated the job. (Whether you used the Ruby C
 
 Log into the [Amazon Web Console](https://console.aws.amazon.com/console/home) and click on [Elastic MapReduce] in the top menu bar. You should see the job you created listed. (In the screenshot below you'll see that we've initiated 2 Hive sessions.)
 
-![Launch a Hive session from the command-line](technical-documentation/images/emr-guide/run-hive-interactive-session-2.jpg)
+![Launch a Hive session from the command-line](setup-guide/images/emr-guide/run-hive-interactive-session-2.jpg)
 
 Note: you can also check on the status of your current jobs via the command-line interface:
 
@@ -75,11 +75,11 @@ You can get your jobflowID either from the Amazon web UI or by listing all the j
 
 Substituting the JobFlowID generated when you created the session. You should see:
 
-![Launch a Hive session from the command-line](technical-documentation/images/emr-guide/run-hive-interactive-session-3.jpg)
+![Launch a Hive session from the command-line](setup-guide/images/emr-guide/run-hive-interactive-session-3.jpg)
 
 Now you can launch Hive by typing `Hive` at the command line:
 
-![Launch a Hive session from the command-line](technical-documentation/images/emr-guide/run-hive-interactive-session-4.jpg)
+![Launch a Hive session from the command-line](setup-guide/images/emr-guide/run-hive-interactive-session-4.jpg)
 
 ### Establishing the SSH connection: PC users
 
@@ -98,7 +98,7 @@ We need to add the JAR to the Hive session, so Hive can access the deserializer.
 
 	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.6.jar
 
-![Add the SnowPlow deserializer JAR to Hive](technical-documentation/images/04_hive-add-deserializer.png)
+![Add the SnowPlow deserializer JAR to Hive](setup-guide/images/04_hive-add-deserializer.png)
 
 Now in Hive we need to define create a table with the data stored in the SnowPlow logs, using the deserializer. Do this by entering the following query:
 
@@ -106,7 +106,7 @@ Now in Hive we need to define create a table with the data stored in the SnowPlo
 	ROW FORMAT SERDE 'com.snowplowanalytics.snowplow.hadoop.hive.SnowPlowEventDeserializer'
 	LOCATION 's3://{{LOGS-BUCKET-NAME}}/'
 
-![Create SnowPlow events table](technical-documentation/images/04_create-table-with-serde.png)
+![Create SnowPlow events table](setup-guide/images/04_create-table-with-serde.png)
 
 Don't forget to include the trailing slash in the location address. The above query creates a new table. The table is `EXTERNAL` because the data in it is not managed by Hive: it is stored in S3 (and only accessed by Hive). As a result, if you drop the table in Hive (`DROP TABLE snowplow_events_log`), the data will remain safely in S3, even if the table disappears from Hive. (You can re-enter the above query to _bring it back_):
 

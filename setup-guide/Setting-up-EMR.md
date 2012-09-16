@@ -43,21 +43,21 @@ On a Debian-like OS, installing Ruby is easy:
 
 * Go to [RubyInstaller](http://rubyinstaller.org/). Click "Download"
 
-![Downloading Ruby](technical-documentation/images/emr-guide/ruby-1.PNG)
+![Downloading Ruby](setup-guide/images/emr-guide/ruby-1.PNG)
 
 * Select the most recent RubyInstaller. The download should begin immediately
 
-![Select the latest Ruby verison](technical-documentation/images/emr-guide/ruby-2.PNG)
+![Select the latest Ruby verison](setup-guide/images/emr-guide/ruby-2.PNG)
 
 * Launch the executable file you just downloaded, by double clicking on it. Accept the license terms. When prompted, remember to "Add Ruby executables to your PATH". We also recommend checking the box "Associate .rb and .rbw files with this Ruby installation."
 
-![Select the relevant options](technical-documentation/images/emr-guide/ruby-5.PNG)
+![Select the relevant options](setup-guide/images/emr-guide/ruby-5.PNG)
 
 * The installation should proceed automatically. When completed, click "finish".
 
 * Verify the installation: in either the command-prompt or Windows PowerShell, enter "ruby -v". The Ruby version should display as below:
 
-![Verify installation was successful](technical-documentation/images/emr-guide/ruby-6.PNG)
+![Verify installation was successful](setup-guide/images/emr-guide/ruby-6.PNG)
 
 <a name="rubyclient"/>
 ## Installing the Amazon Elastic MapReduce Ruby Client
@@ -74,15 +74,15 @@ On a Debian-like OS, installing Ruby is easy:
 
 * On **Windows**, navigate to your Ruby folder, and in it, create a new folder for the command line tools:
 
-![Create a directory for the command-line tools](technical-documentation/images/emr-guide/install-cli-1.PNG)
+![Create a directory for the command-line tools](setup-guide/images/emr-guide/install-cli-1.PNG)
 
 * Go to [http://aws.amazon.com/developertools/2264](http://aws.amazon.com/developertools/2264). Login if prompted and click download.
 
-![Download CLI](technical-documentation/images/emr-guide/install-cli-2.PNG)
+![Download CLI](setup-guide/images/emr-guide/install-cli-2.PNG)
 
 * Now go to the folder you just installed Ruby in, and in it, create a new folder where you'll save the Elastic Map Reduce tools. Give this folder an appropriate name e.g. `elastic-mapreduce-cli`. Unzip the download into the new folder, by double clicking on the Zip file (to access the contents), selecting the contents, copying it and then pasting it into the new folder.
 
-![Unzip CLI](technical-documentation/images/emr-guide/install-cli-3.PNG)
+![Unzip CLI](setup-guide/images/emr-guide/install-cli-3.PNG)
     
 ### Configuring the client
 
@@ -90,29 +90,29 @@ On a Debian-like OS, installing Ruby is easy:
 
 * Start by fetching your AWS Access Key ID and AWS Secret Access Key. To get both of these, log in to [http://aws.amazon.com](#http://aws.amazon.com)
 
-![Download CLI](technical-documentation/images/emr-guide/install-cli-4.PNG)
+![Download CLI](setup-guide/images/emr-guide/install-cli-4.PNG)
 
 * Click on *My Account* (by clicking on your name on the top right of the screen) and select *Security Credentials*. Scroll down to *Access Credentials*: you will be able to take a copy of your *Access Key ID*. To reveal the associated *Secret Access Key*, click on the _Show_ link. Copy and paste both of these to a text-editor: in a bit you will use these to create a config file.
 
-![Download CLI](technical-documentation/images/emr-guide/install-cli-5.png)
+![Download CLI](setup-guide/images/emr-guide/install-cli-5.png)
 
 * Now you have your *access key* and *secret access key*, you need to create an *Amazon EC2 Key Pair*. Elastic MapReduce is built on top of EC2, and Key Pairs are a key part of Amazon's security apparatus. Click on the *Key Pairs* tab (2 along from *Access Keys* in the same screen) and click *Access your Amazon EC2 Key Pairs using the AWS Management Console*. (Don't be distracted by the CloudFront Key Pairs section above - that is not relevant here...)
 
-![Navigate to key pair](technical-documentation/images/emr-guide/install-cli-6.PNG)
+![Navigate to key pair](setup-guide/images/emr-guide/install-cli-6.PNG)
 
 * In the EC2 window, check what region has been set in the top left, and if necessary, change the region to the one in which you plan to do your analysis. (We use EU West (Ireland) for most of our analysis because we're based in the UK, but Amazon still often defaults to one of the US data center locations...)
 
 * Click on *Key Pairs* on the left hand navigation. (In the _Network & Security_ section.) 
 
-![Create key pair](technical-documentation/images/emr-guide/install-cli-7.PNG)
+![Create key pair](setup-guide/images/emr-guide/install-cli-7.PNG)
 
 * Click on the *Create Key Pair* button
 
-![Create key pair](technical-documentation/images/emr-guide/install-cli-8.PNG)
+![Create key pair](setup-guide/images/emr-guide/install-cli-8.PNG)
 
 * When prompted, give the key pair an appropriate name of your choice. Note it down in your text-editor
 
-![Name new key pair](technical-documentation/images/emr-guide/install-cli-0.PNG)
+![Name new key pair](setup-guide/images/emr-guide/install-cli-0.PNG)
 
 * The `.PEM` file should automatically download. Move it to a safe location (e.g. in a subdirectory of `elastic-mapreduce-cli`) and note the location, again in your text editor, along with the name of the key pair. (This should be the same as the name of the `.PEM` file)
 
@@ -134,7 +134,7 @@ On a Debian-like OS, installing Ruby is easy:
 
 * The `log-uri` parameter in the `credentials.json` file needs to point at the Amazon S3 bucket that you will use to store the outputs of your analysis. (And any logging of Hadoop sessions, if you desire.) It makes sense to create a new bucket to store these results. To do so, click on the `S3` tab at the top of the _AWS Management Console_, and in the left hand menu under _Buckets_ click the *Create Bucket* button:
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-11.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-11.PNG)
 
 * Name the bucket. (You'll need top pick a name that is unique across Amazon S3, to `snowplow-analysis` will not be an option, unfortunately 
 
@@ -159,15 +159,15 @@ On a Debian-like OS, installing Ruby is easy:
 
 * You need to set permissions on the S3 bucket, so that the command line tools can write results output to it. To do so, go back to the [S3 console](https://console.aws.amazon.com/s3/), right click on the bucket you created and click on *properties*
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-12.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-12.PNG)
 
 * A _Properties_ pane will appear at the bottom of the screen. On the _Permissions_ tabl, click *Add more permissions*
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-13.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-13.PNG)
 
 * Select *Authenticated Users* from the *Grantee* dropdown, then select *List* just next to it and click *Save*
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-14.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-14.PNG)
 
 
 ### Setting up SSH
@@ -185,13 +185,13 @@ Now that you have configured the Ruby client, the last thing to do before you ca
 
 * Download PuTTYgen.exe from [here](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-15a.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-15a.PNG)
 
 * Double click on the download to launch PuTTYgen. Click on the *Load* button and select the `.PEM` file you downloaded from Amazon earlier, when you created the EC2 key-pair
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-15a.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-15a.PNG)
 
-![Name new S3 bucket to house analysis](technical-documentation/images/emr-guide/install-cli-16.PNG)
+![Name new S3 bucket to house analysis](setup-guide/images/emr-guide/install-cli-16.PNG)
 
 * Enter a passphrase in the dialogue box, confirm the passphrase, and click the *Save private key* button. Save the file down as a `.ppk` file: this will be what you use to establish a secure SSL connection.
 

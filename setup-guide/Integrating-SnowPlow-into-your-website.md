@@ -267,5 +267,5 @@ If you want SnowPlow to track inbound marketing campaigns you are running then [
 [ga-event-guide]: http://code.google.com/apis/analytics/docs/tracking/eventTrackerGuide.html
 [chrome-dev-tools]: http://code.google.com/chrome/devtools/docs/overview.html
 [firebug]: http://getfirebug.com/
-[network-pane]: technical-documentation/images/01_network_pane.png
+[network-pane]: setup-guide/images/01_network_pane.png
 [contact]: mailto:services@snowplowanalytics.com
