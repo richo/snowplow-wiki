@@ -21,7 +21,7 @@ limitations under the License.
 
 The loosely-coupled architecture of SnowPlow makes it easy to swap out individual sub-system implementations for first- or third-party alternatives. For example, in place of the first-party CloudFront collector, you can use the third-party [SnowCannon] [snowcannon] node.js-based collector. 
 
-The SnowPlow team "endorse" some third-party sub-system implementations by git-submoduling those GitHub repositories into the SnowPlow repository - see the [2-collectors] [2-collectors] folder for an example of this.
+The SnowPlow team curate some third-party sub-system implementations by git-submoduling those GitHub repositories into the SnowPlow repository - see the [2-collectors] [2-collectors] folder for an example of this.
 
 Please note that third-party, git-submoduled contributions to SnowPlow remain the copyright their respective authors.
 
