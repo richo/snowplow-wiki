@@ -19,7 +19,7 @@ As explained in the [Fluentd installation guide] [fluentd-install], there are fo
 3. `.tar.gz` file
 4. Git repository
 
-If you are running one of the OSes supported by `td-agent`, then we recommend the binary package installation, as it the most straightforward.
+If you are running one of the OSes supported by `td-agent`, then we strongly recommend installing the binary package, as it the most straightforward and also bundles jemalloc. If the binary package is not available, then we recommend the RubyGem installation using RVM.
 
 To install the binary package, please follow the appropriate [`td-agent` installation instructions] [td-agent-install]; the other three installation options are detailed back in the [Fluentd installation guide] [fluentd-install].
 
