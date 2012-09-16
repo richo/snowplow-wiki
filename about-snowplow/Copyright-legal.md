@@ -25,7 +25,9 @@ For example, in place of the first-party CloudFront collector, you can use the t
 
 The SnowPlow team "endorse" some third-party sub-system implementations by git-submoduling those GitHub repositories into the SnowPlow repository - see the [2-collectors] [2-collectors] folder for an example of this.
 
-Please note that third-party, git-submoduled contributions to SnowPlow remain the copyright their respective authors. Also note that these third-party, git-submoduled contributions may be released under a different license to [Apache License, Version 2.0] [license]; please consult the licensing information in their original GitHub repositories for confirmation.
+Please note that third-party, git-submoduled contributions to SnowPlow remain the copyright their respective authors.
+
+Also be aware that third-party, git-submoduled contributions may be released under a different license to [Apache License, Version 2.0] [license]; please consult the licensing information in their original GitHub repositories for confirmation.
 
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [piwik]: http://piwik.org/
