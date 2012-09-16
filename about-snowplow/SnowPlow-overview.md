@@ -26,7 +26,7 @@ This wiki is the main source of documentation for **developers** working with (o
 ### Additional support / resources
 
 * [SnowPlow Google Group](https://groups.google.com/forum/#!forum/snowplow-user)
-* The team at digital consultancy Keplar have [[blogged extensively about SnowPlow](http://www.keplarllp.com/blog/category/snowplow)  
+* The team at digital consultancy Keplar have [blogged extensively about SnowPlow](http://www.keplarllp.com/blog/category/snowplow)  
 * SnowPlow Analytics Ltd ([contact] [contact]) provides consultancy services around SnowPlow, including setup and business consultancy to use SnowPlow data to drive customer understanding and growth in customer value and volume. 
 
 [contact]: mailto:services@snowplowanalytics.com
