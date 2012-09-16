@@ -27,7 +27,7 @@ Fluentd installed? Great, now it's time to configure it...
 
 ### Configuration
 
-For the purpose of this section, we are going to assume that you want to log your SnowPlow event data to Amazon S3 using Fluentd.
+For the purpose of this section, we are going to assume that you want to log your SnowPlow event data to **Amazon S3** using Fluentd.
 
 Rest of section to come
 
