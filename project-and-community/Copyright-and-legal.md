@@ -25,7 +25,7 @@ The SnowPlow team curate some third-party sub-system implementations by git-subm
 
 Please note that third-party, git-submoduled contributions to SnowPlow remain the copyright their respective authors.
 
-Also be aware that third-party, git-submoduled contributions may be released under a different license to [Apache License, Version 2.0] [license]; please consult the licensing information in their original GitHub repositories for confirmation.
+Third-party, git-submoduled contributions may be released under a different license to [Apache License, Version 2.0] [license]; please consult the licensing information in their original GitHub repositories for confirmation.
 
 [license]: http://www.apache.org/licenses/LICENSE-2.0
 [piwik]: http://piwik.org/
