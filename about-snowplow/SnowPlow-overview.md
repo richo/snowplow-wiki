@@ -19,9 +19,9 @@ For documentation geared towards business, product and analytics folk, please se
 
 This wiki is the main source of documentation for **developers** working with (or contributing to) the SnowPlow project. Sections include:
 * [[About SnowPlow|SnowPlow-overview]] (this section) - introducing SnowPlow, why we built it and what it does
-* [[Project and Community|SnowPlow-project-and-community]] - SnowPlow the open-source project, its community and how to contribute
+* [[Project and Community|SnowPlow-project-and-community]] - the open-source project, our community and how to contribute
 * [[Setup Guide|SnowPlow-setup-guide]] - a step-by-step guide to setting up and running SnowPlow
-* [[Technical Documentation|SnowPlow-technical-documentation]] - detailed technical documentation on SnowPlow and its five sub-systems
+* [[Technical Documentation|SnowPlow-technical-documentation]] - technical documentation on SnowPlow and its five sub-systems
 
 ### Additional support / resources
 
