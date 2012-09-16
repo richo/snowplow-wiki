@@ -29,6 +29,8 @@ Fluentd installed? Great, now it's time to configure it...
 
 For the purpose of this section, we are going to assume that you want to log your SnowPlow event data to **Amazon S3** using Fluentd.
 
+Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default, so we just need to configure `td-agent` correctly.
+
 Rest of section to come
 
 [fluentd]: http://fluentd.org
