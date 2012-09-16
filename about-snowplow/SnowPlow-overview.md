@@ -10,18 +10,18 @@ SnowPlow is a complete, loosely coupled web analytics platform that lets you cap
 
 SnowPlow has been technically designed to:
 
-* Give you access, ownership and control of your own web analytics data. (No lock in)
+* Give you access, ownership and control of your own web analytics data (no lock in)
 * Loosely coupled and extensible, so that it is easy to add e.g. new trackers to capture data from new platforms (e.g. mobile, TV) and put the data to new uses
 
 ### More information
 
 For documentation geared towards business, product and analytics folk, please see the [SnowPlow website](http://snowplowanalytics.com)
 
-This wiki is the site for technical documentation associated with the SnowPlow project, including:
-* The SnowPlow [technical architecture][technical-architecture]
-* The [technical FAQ][technical-faq]
-* The [techncial roadmap][product-roadmap]
-* The [setup guide][snowplow-setup-guide]
+This wiki is the main source of documentation for **developers** working with (or contributing to) the SnowPlow project. Sections include:
+* [[About SnowPlow|SnowPlow-overview]] (this section) - introducing SnowPlow, why we built it and what it does
+* [[Project and Community|SnowPlow-project-and-community]] - SnowPlow the open-source project, its community and how to contribute
+* [[Setup Guide|SnowPlow-setup-guide]] - a step-by-step guide to setting up and running SnowPlow
+* [[Technical Documentation|SnowPlow-technical-documentation]] - detailed technical documentation on SnowPlow and its five sub-systems
 
 ### Additional support / resources
 
