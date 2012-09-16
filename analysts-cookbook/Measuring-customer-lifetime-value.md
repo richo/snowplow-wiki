@@ -1,1 +1,0 @@
-This documentation still has to be written. However, a blog post on using SnowPlow to measure customer value and customer lifetime value can be found on the [Keplar blog](http://www.keplarllp.com/blog/2012/06/different-approaches-to-measuring-customer-lifetime-value-with-snowplow).

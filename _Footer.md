@@ -1,4 +1,4 @@
 [[Home]] *|* [[About|SnowPlow-overview]] *|*
-[[Features & Benefits|Features-and-benefits]] *|*
+[[Project|SnowPlow-project-and-community]] *|*
 [[Setup Guide|SnowPlow-setup-guide]] *|*
-[[Analyst's Cookbook|Analysts-cookbook]] *|* Copyright &copy; 2012 SnowPlow Analytics
+[[Technical Docs|SnowPlow-technical-documentation]] *|* Copyright &copy; 2012 SnowPlow Analytics Ltd

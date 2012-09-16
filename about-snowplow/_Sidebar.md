@@ -6,12 +6,7 @@
 [Technical FAQ](Technical-FAQ)  
 [Roadmap](Product-roadmap)  
 
-**The open-source project**  
-[Copyright & legal](Copyright-legal)  
-[Contributors](Contributors)  
-
-**More documentation...**  
-[Getting up and running with SnowPlow](SnowPlow-setup-guide)
-[SnowPlow website](http://snowplowanalytics.com)  
+**External resources**  
+[SnowPlow Analytics website](http://snowplowanalytics.com)  
 [SnowPlow on the Keplar blog](http://www.keplarllp.com/blog/category/snowplow)  
- 
+[SnowPlow Google Group](https://groups.google.com/forum/#!forum/snowplow-user)
