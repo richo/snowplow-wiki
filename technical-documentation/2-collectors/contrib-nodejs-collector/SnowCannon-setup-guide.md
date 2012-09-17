@@ -1,10 +1,17 @@
 ## Before You Begin
 
-### Hardware
+### Assumptions
+
+For the purpose of this guide, we are going to assume:
+
+1. That you want to log the SnowPlow event data collected by SnowCannon to **Amazon S3**
+2. That you want to use Fluentd to handle the actual file upload to S3
+
+If either of those assumptions are not true, then you may need to consult the SnowCannon README file and/or the Fluentd user manual alongside this guide.
+
+### Hardware and OS
 
 If you can choose your hardware, we recommend running SnowCannon on a **multi-core machine** (preferably quad-core or better), to take advantage of SnowCannon's built-in clustering support.
-
-### OS
 
 If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 LTS / Precise**. This is the most modern Debian-based OS supported by Fluentd (which we use alongside SnowCannon).
 
@@ -29,13 +36,29 @@ As explained in the [Fluentd installation guide] [fluentd-install], there are fo
 
 If you are running one of the OSes supported by `td-agent`, then we strongly recommend installing the binary package, as it the most straightforward and also bundles jemalloc. If the binary package is not available, then we recommend the RubyGem installation using RVM.
 
-To install the binary package, please follow the appropriate [td-agent installation instructions] [td-agent-install]; the other three installation options are detailed in the [Fluentd installation guide] [fluentd-install].
+### Installation
 
-Fluentd installed? Great, now it's time to configure it...
+To install the binary package, please follow the appropriate [td-agent installation instructions] [td-agent-install].
+
+For any of the other three installation options, please consult the [Fluentd installation guide] [fluentd-install].
+
+Fluentd installed? Great, now let's test it:
+
+### Testing
+
+To confirm that Fluentd was installed successfully, run the following commands:
+
+    $ fluentd --setup ./fluent
+    $ fluentd -c ./fluent/fluent.conf -vv &
+    $ echo '{"json":"message"}' | fluent-cat debug.test
+
+The last command sends Fluentd a message ‘{“json”:”message”}’ with a “debug.test” tag. If the installation was successful, Fluentd will output the following message:
+
+    2011-07-10 16:49:50 +0900 debug.test: {"json":"message"}
 
 ### Configuration
 
-For the purpose of this section, we are going to assume that you want to log your SnowPlow event data to **Amazon S3** using Fluentd.
+
 
 Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default, so we just need to configure `td-agent` correctly.
 
