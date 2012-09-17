@@ -48,9 +48,9 @@ Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent
 
 For any of the three manual installation options, please consult the [Fluentd installation guide] [fluentd-install].
 
-With the manual options, you will need to install jemalloc and the Amazon S3 output plugin fluent-plugin-s3 separately. Installing jemalloc is out of scope of this guide; installing the Amazon S3 plugin happily is easy:
+With the manual options, you will need to install jemalloc and the Amazon S3 output plugin fluent-plugin-s3 separately. Installing jemalloc is out of scope of this guide; happily installing the Amazon S3 plugin is easy:
 
-    $ 
+    $ fluent-gem install fluent-plugin-s3
 
 ### Testing
 
