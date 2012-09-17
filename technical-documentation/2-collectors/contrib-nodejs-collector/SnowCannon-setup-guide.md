@@ -25,7 +25,7 @@ If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 L
 
 ### Overview
 
-[Fluentd] [fluentd] is a lightweight log collector from the team at [Treasure Data] [treasure-data]. SnowCannon supports Fluentd as an event sink - and Fluentd supports a variety of different "output plugins", meaning that SnowCannon to use Fluentd to send SnowPlow events to Amazon S3 as well as other data stores.
+[Fluentd] [fluentd] is a lightweight log collector from the team at [Treasure Data] [treasure-data]. SnowCannon supports Fluentd as an event sink - and Fluentd in turn supports a variety of different "output plugins", meaning that SnowCannon to use Fluentd to send SnowPlow events to Amazon S3 as well as other data stores.
 
 ### Installation options
 
