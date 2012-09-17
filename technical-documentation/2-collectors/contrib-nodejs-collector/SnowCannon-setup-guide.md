@@ -1,8 +1,12 @@
 ## Before You Begin
 
-If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 LTS / Precise**. This is the most modern Debian-based OS supported by Fluentd (which we use alongside SnowCannon).
+### Hardware
 
 If you can choose your hardware, we recommend running SnowCannon on a **multi-core machine** (preferably quad-core or better), to take advantage of SnowCannon's built-in clustering support.
+
+### OS
+
+If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 LTS / Precise**. This is the most modern Debian-based OS supported by Fluentd (which we use alongside SnowCannon).
 
 ## Installing SnowCannon
 
