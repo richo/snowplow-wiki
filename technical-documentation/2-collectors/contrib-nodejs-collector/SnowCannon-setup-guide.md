@@ -5,9 +5,10 @@
 For the purpose of this guide, we are going to assume:
 
 1. That you want to log the SnowPlow event data collected by SnowCannon to **Amazon S3**
-2. That you want to use **Fluentd** to handle the actual file upload to S3
+2. That you will use **Fluentd** to handle the actual file upload to S3
+3. That you will use **XXX** to make sure SnowCannon keeps running
 
-If either of those assumptions are not true, then you may need to consult the SnowCannon README file and/or the Fluentd user manual alongside this guide.
+If any of these assumptions are not true, then you may need to additionally consult the SnowCannon README file, the Fluentd user manual and/or the manual to your preferred process monitor.
 
 ### Hardware and OS
 
@@ -67,9 +68,13 @@ The last command sends Fluentd a message ‘{“json”:”message”}’ with a
 
 ### Configuration
 
+#### Setting up log folders
 
+To come
 
+#### Updating fluent.conf
 
+To come
 
 Rest of section to come
 
