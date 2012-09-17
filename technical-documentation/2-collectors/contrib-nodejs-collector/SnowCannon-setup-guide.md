@@ -38,11 +38,19 @@ If you are running one of the OSes supported by `td-agent`, then we strongly rec
 
 ### Installation
 
+#### Binary package
+
 To install the binary package, please follow the appropriate [td-agent installation instructions] [td-agent-install].
 
-For any of the other three installation options, please consult the [Fluentd installation guide] [fluentd-install].
+Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default, so we just need to configure `td-agent` correctly.
 
-Fluentd installed? Great, now let's test it:
+#### Manual installation
+
+For any of the three manual installation options, please consult the [Fluentd installation guide] [fluentd-install].
+
+With the manual options, you will need to install jemalloc and the Amazon S3 output plugin fluent-plugin-s3 separately. Installing jemalloc is out of scope of this guide; installing the Amazon S3 plugin happily is easy:
+
+    $ 
 
 ### Testing
 
@@ -60,7 +68,7 @@ The last command sends Fluentd a message ‘{“json”:”message”}’ with a
 
 
 
-Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default, so we just need to configure `td-agent` correctly.
+
 
 Rest of section to come
 
