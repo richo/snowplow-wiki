@@ -9,7 +9,7 @@ For the purpose of this guide, we are going to assume:
 3. That you will use **Forever** as your service daemon
 4. That you will use **Monit** as your process monitor
 
-If any of these assumptions are not true, then you may need to additionally consult the SnowCannon README file, the Fluentd user manual and/or the manual to your preferred service daemon or process monitor.
+If any of these assumptions are not true, then you may need to additionally consult the SnowCannon README file, the Fluentd user manual and/or the manual for your preferred service daemon or process monitor.
 
 ### Hardware and OS
 
