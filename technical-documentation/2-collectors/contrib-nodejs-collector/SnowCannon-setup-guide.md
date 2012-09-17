@@ -5,7 +5,7 @@
 For the purpose of this guide, we are going to assume:
 
 1. That you want to log the SnowPlow event data collected by SnowCannon to **Amazon S3**
-2. That you want to use Fluentd to handle the actual file upload to S3
+2. That you want to use **Fluentd** to handle the actual file upload to S3
 
 If either of those assumptions are not true, then you may need to consult the SnowCannon README file and/or the Fluentd user manual alongside this guide.
 
