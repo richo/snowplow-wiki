@@ -56,6 +56,7 @@ With the manual options, you will need to install jemalloc and the Amazon S3 out
 
 To confirm that Fluentd was installed successfully, run the following commands:
 
+    $ cd ~
     $ fluentd --setup ./fluent
     $ fluentd -c ./fluent/fluent.conf -vv &
     $ echo '{"json":"message"}' | fluent-cat debug.test
