@@ -1,4 +1,8 @@
-Instructions on how to setup SnowCannon
+## Before You Begin
+
+If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 LTS / Precise**. This is the most modern Debian-based OS supported by Fluentd (which we use alongside SnowCannon).
+
+If you can choose your hardware, we recommend running SnowCannon on a multi-core machine (preferably quad-core or better), to take advantage of SnowCannon's built-in clustering support.
 
 ## Installing SnowCannon
 
@@ -37,4 +41,3 @@ Rest of section to come
 [treasure-data]: http://treasure-data.com
 [fluentd-install]: http://fluentd.org/doc/install.html
 [td-agent-install]: http://help.treasure-data.com/kb/installing-td-agent-daemon
-
