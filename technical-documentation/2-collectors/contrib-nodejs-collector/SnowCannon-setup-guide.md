@@ -44,7 +44,7 @@ If you are running one of the OSes supported by `td-agent`, then we strongly rec
 
 To install the binary package, please follow the appropriate [td-agent installation instructions] [td-agent-install].
 
-Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default, so we just need to configure `td-agent` correctly.
+Happily, with the `td-agent` binary packages, the Amazon S3 output plugin fluent-plugin-s3 is installed by default.
 
 #### Manual installation
 
