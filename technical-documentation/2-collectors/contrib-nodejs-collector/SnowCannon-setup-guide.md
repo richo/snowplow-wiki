@@ -9,7 +9,7 @@ For the purpose of this guide, we are going to assume:
 3. That you will use **Upstart** as your service wrapper
 4. That you will use **Monit** as your process monitor
 
-If any of these assumptions are not true, then you may need to additionally consult the SnowCannon README file, the Fluentd user manual and/or the manual for your preferred service daemon or process monitor.
+If any of these assumptions are not true, then you may need to additionally consult the [SnowCannon README file] [snowcannon-readme], the [Fluentd user manual] [fluentd-manual] and/or the manual for your preferred service daemon or process monitor.
 
 ### Hardware and OS
 
@@ -84,6 +84,8 @@ To come
 Rest of section to come
 
 [fluentd]: http://fluentd.org
+[fluentd-manual]: http://fluentd.org/doc/
+[snowcannon-readme]: https://github.com/shermozle/SnowCannon/blob/master/README.md
 [treasure-data]: http://treasure-data.com
 [fluentd-install]: http://fluentd.org/doc/install.html
 [td-agent-install]: http://help.treasure-data.com/kb/installing-td-agent-daemon
