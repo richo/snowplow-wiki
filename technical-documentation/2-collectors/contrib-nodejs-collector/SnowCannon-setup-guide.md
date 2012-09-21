@@ -6,7 +6,7 @@ For the purpose of this guide, we are going to assume:
 
 1. That you want to log the SnowPlow event data collected by SnowCannon to **Amazon S3**
 2. That you want to use **Fluentd** to handle the actual file upload to S3 (versus SnowCannon's built-in S3 sink)
-3. That you will use **Forever** as your service daemon
+3. That you will use **Upstart** as your service wrapper
 4. That you will use **Monit** as your process monitor
 
 If any of these assumptions are not true, then you may need to additionally consult the SnowCannon README file, the Fluentd user manual and/or the manual for your preferred service daemon or process monitor.
