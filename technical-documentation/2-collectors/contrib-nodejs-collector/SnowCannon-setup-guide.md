@@ -19,7 +19,11 @@ If you can choose your OS, we recommend deploying SnowCannon on **Ubuntu 12.04 L
 
 ## Installing SnowCannon
 
+Section to come.
+
 ## Configuring SnowCannon
+
+Section to come.
 
 ## Setting up Fluentd
 
