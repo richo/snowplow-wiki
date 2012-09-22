@@ -6,7 +6,7 @@ Thanks to the following people who have contributed patches, new code or given u
 * [Yali Sassoon](https://github.com/yalisassoon)
 * [Anthon Pang](https://github.com/robocoder)
 * [Richo Healey](https://github.com/richo) @ [99designs] [99designs] (documentation)
-* [Simon Rumble](https://github.com/shermozle) ([SnowCannon] [snowcannon])
+* [Simon Rumble](https://github.com/shermozle) ([SnowCannon] [snowcannon] node.js-based collector)
 * [Simon Andersson](https://github.com/ramn) @ [Qwaya] [qwaya] (JavaScript tracker and Hive deserializer improvements)
 * [Michael Tibben](https://github.com/mtibben) @ [99designs] [99designs] (Hive deserializer improvements)
 
