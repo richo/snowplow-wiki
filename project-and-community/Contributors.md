@@ -8,7 +8,7 @@ Thanks to the following people who have contributed patches, new code or given u
 * [Richo Healey](https://github.com/richo) @ [99designs] [99designs] (documentation)
 * [Simon Rumble](https://github.com/shermozle) ([SnowCannon] [snowcannon] node.js-based collector)
 * [Simon Andersson](https://github.com/ramn) @ [Qwaya] [qwaya] (JavaScript tracker and Hive deserializer improvements)
-* [Michael Tibben](https://github.com/mtibben) @ [99designs] [99designs] (Hive deserializer improvements)
+* [Michael Tibben](https://github.com/mtibben) @ [99designs] [99designs] (EMR ETL runner and Hive deserializer improvements)
 
 Original concept for SnowPlow inspired by [Radek Maciaszek](https://github.com/rathko).
 
