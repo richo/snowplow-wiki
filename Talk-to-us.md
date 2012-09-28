@@ -28,7 +28,7 @@ _Date and time to come_
 
 [SnowPlow issues] [issues]
 
-If you spot a bug, then please raise an issue in our main GitHub project (`snowplow/snowplow`); likewise if you have developed a cool new feature or improvement in your SnowPlow fork, then by all means send us a pull request!
+If you spot a bug, then please raise an issue in our main GitHub project (`snowplow/snowplow`); likewise if you have developed a cool new feature or improvement in your SnowPlow fork, then send us a pull request!
 
 If you want to brainstorm a potential new feature, then the SnowPlow Google Group (see above) is probably a better place to start.
 
