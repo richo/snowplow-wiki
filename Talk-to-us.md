@@ -4,13 +4,13 @@ We want to make it super-easy for SnowPlow users and contributors to talk to us 
 
 [SnowPlow Google Group] [google-group]
 
-The SnowPlow Google Group (aka `snowplow-user`) is a good first stop for a general inquiry about SnowPlow or a specific support issue (e.g. trouble setting SnowPlow up). It's also a good forum for discussions about the roadmap or potential new functionality - as it's more public than just opening a GitHub issue or sending us an email.
+The SnowPlow Google Group (aka `snowplow-user`) is a good first stop for a general inquiry about SnowPlow or a specific support issue (e.g. trouble setting SnowPlow up). It's also a good forum for discussions about the roadmap or potential new functionality.
 
 ## HipChat
 
-We're big fans of HipChat here at SnowPlow. We have a [public SnowPlow chatroom] [hipchat-snowplow] available here - you don't need to install anything to join!
+[Public HipChat room] [hipchat-room]
 
-The chatroom is connected into GitHub so you can see new issues, merged pull requests and so on all as they take place.
+We're big fans of HipChat here at SnowPlow. We have a public SnowPlow chatroom - stop by and say hi, you don't need to install anything to access it. This chatroom is also connected into GitHub - so you can see new issues, merged pull requests and so on all as they take place.
 
 ## Google+ Hangout
 
@@ -42,4 +42,4 @@ You can reach us on: [community@snowplowanalytics.com] [community-email]
 [new-issue]: https://github.com/snowplow/snowplow/issues/new
 [snowplow-repo]: https://github.com/snowplow/snowplow
 [community-email]: mailto:community@snowplowanalytics.com
-[hipchat-snowplow]: http://www.hipchat.com/gxNgWtAa5
+[hipchat-room]: http://www.hipchat.com/gxNgWtAa5
