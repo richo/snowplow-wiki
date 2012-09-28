@@ -1,4 +1,4 @@
-We want to make it super-easy for SnowPlow users and contributors to talk to us and connect with each other, to share ideas, solve problems and help make SnowPlow awesome. Here are the main channels we're running currently, take your pick:
+We want to make it super-easy for SnowPlow users and contributors to talk to us and connect with each other, to share ideas, solve problems and help make SnowPlow awesome. Here are the main channels we're running currently, we'd love to hear from you on one of them:
 
 ## Google Group
 
