@@ -14,7 +14,7 @@ We're big fans of HipChat here at SnowPlow. We have a public SnowPlow chatroom -
 
 ## Google Hangout
 
-Our regular voice- and video-enabled Google Hangouts give us all a chance to meet face-to-face (albeit virtually!). We alternate holding a "SnowPlow West" and a "SnowPlow East" Hangout - the next ones are as follows:
+Our regular voice- and video-enabled Google Hangouts give us a chance to all meet face-to-face (albeit virtually!). We alternate holding a "SnowPlow West" and a "SnowPlow East" Hangout - the next ones are as follows:
 
 ### SnowPlow West Hangout
 
