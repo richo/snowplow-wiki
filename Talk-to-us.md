@@ -28,18 +28,20 @@ _Date and time to come_
 
 ## GitHub
 
-If you spot a bug, then by all means [raise an issue] [new-issue] in our [main GitHub project] [snowplow-repo] (`snowplow/snowplow`); likewise if you have developed a cool new feature or improvement in your SnowPlow fork, then by all means send us a pull request!
+[SnowPlow issues] [issues]
+
+If you spot a bug, then by all means raise an issue in our main GitHub project (`snowplow/snowplow`); likewise if you have developed a cool new feature or improvement in your SnowPlow fork, then by all means send us a pull request!
 
 If you want to brainstorm a potential new feature, then the SnowPlow Google Group (see above) is probably a better place to start.
 
 ## Email
 
-If you want to talk directly to us (e.g. about a commercially sensitive issue), email is the easiest way.
+[community@snowplowanalytics.com] [community-email]
 
-You can reach us on: [community@snowplowanalytics.com] [community-email]
+If you want to talk directly to us (e.g. about a commercially sensitive issue), email is the easiest way.
 
 [google-group]: https://groups.google.com/forum/#!forum/snowplow-user
 [new-issue]: https://github.com/snowplow/snowplow/issues/new
-[snowplow-repo]: https://github.com/snowplow/snowplow
+[issues]: https://github.com/snowplow/snowplow/issues?direction=desc&sort=created&state=open
 [community-email]: mailto:community@snowplowanalytics.com
 [hipchat-room]: http://www.hipchat.com/gxNgWtAa5
