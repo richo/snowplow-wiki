@@ -2,7 +2,9 @@ We want to make it super-easy for SnowPlow users and contributors to talk to us 
 
 ## Google Group
 
-The [SnowPlow Google Group] [google-group] (aka `snowplow-user`) is a good first stop for a general inquiry about SnowPlow or a specific support issue (e.g. trouble setting SnowPlow up). It's also a good forum for discussions about the roadmap or potential new functionality - as it's more public than just opening a GitHub issue or sending us an email.
+[SnowPlow Google Group] [google-group]
+
+The SnowPlow Google Group (aka `snowplow-user`) is a good first stop for a general inquiry about SnowPlow or a specific support issue (e.g. trouble setting SnowPlow up). It's also a good forum for discussions about the roadmap or potential new functionality - as it's more public than just opening a GitHub issue or sending us an email.
 
 ## HipChat
 
