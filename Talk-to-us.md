@@ -10,7 +10,7 @@ The SnowPlow Google Group (aka `snowplow-user`) is a good first stop for a gener
 
 [Public HipChat room] [hipchat-room]
 
-We're big fans of HipChat here at SnowPlow. We have a public SnowPlow chatroom - stop by and say hi, you don't need to install anything to access it. This chatroom is linked to our GitHub - so you can see new issues, merged pull requests and so on all as they take place.
+We're big fans of HipChat here at SnowPlow. We have a public SnowPlow chatroom - stop by and say hi, you don't need to install anything to access it. This chatroom is linked to our GitHub - so you can see new issues, merged pull requests and so on as they happen.
 
 ## Google Hangout
 
