@@ -12,9 +12,8 @@ This wiki is the main source of documentation for **developers** working with (o
 
 ## Questions or need help?
 
-Contact us at support@snowplowanalytics.com or join our [SnowPlow Google Group] [snowplow-user].
+Check out our [[Talk to us]] page for different ways of getting in touch.
 
 [website]: http://snowplowanalytics.com
 [hadoop]: http://hadoop.apache.org/
 [hive]: http://hive.apache.org/
-[snowplow-user]: https://groups.google.com/d/forum/snowplow-user
