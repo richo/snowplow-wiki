@@ -61,7 +61,7 @@ Accessing the optimized table in Hive is straightforward. Because the data is st
 	mkt_medium string,
 	mkt_term string,
 	mkt_content string,
-	mkt_name string,
+	mkt_campaign string,
 	ev_category string,
 	ev_action string,
 	ev_label string,
