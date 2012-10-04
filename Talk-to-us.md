@@ -18,7 +18,7 @@ Our regular voice- and video-enabled Google Hangouts give us a chance to all mee
 
 ### SnowPlow West Hangout
 
-**10th October 2012**
+**10 October 2012**
 
 San Francisco (PDT) 10am  
 New York (EDT) 1pm  
@@ -29,7 +29,7 @@ We will share a link in our public HipChat room (see above) when the Hangout sta
 
 ### SnowPlow East Hangout 
 
-**31st October 2012**
+**31 October 2012**
 
 London 8am  
 Moscow midday  
