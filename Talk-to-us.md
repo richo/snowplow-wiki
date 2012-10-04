@@ -22,14 +22,21 @@ Our regular voice- and video-enabled Google Hangouts give us a chance to all mee
 
 San Francisco (PDT) 10am  
 New York (EDT) 1pm  
-London (BST) 6pm  
+London 6pm  
 Berlin (CEST) 7pm
 
-We will share a link in our public HipChat room when the Hangout starts.
+We will share a link in our public HipChat room (see above) when the Hangout starts.
 
 ### SnowPlow East Hangout 
 
-_Date and time to come_
+**31st October 2012**
+
+London 8am  
+Moscow midday  
+Singapore 4pm  
+Sydney (EDT) 7pm
+
+We will share a link in our public HipChat room (see above) when the Hangout starts.
 
 ## GitHub
 
