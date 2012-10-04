@@ -25,7 +25,7 @@ New York (EDT) 1pm
 London 6pm  
 Berlin (CEST) 7pm
 
-We will share a link in our public HipChat room (see above) when the Hangout starts.
+We will share a link in our [public HipChat room] [hipchat-room] when the Hangout starts.
 
 ### SnowPlow East Hangout 
 
@@ -36,7 +36,7 @@ Moscow midday
 Singapore 4pm  
 Sydney (EDT) 7pm
 
-We will share a link in our public HipChat room (see above) when the Hangout starts.
+We will share a link in our [public HipChat room] [hipchat-room] when the Hangout starts.
 
 ## GitHub
 
