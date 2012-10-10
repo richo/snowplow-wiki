@@ -3,8 +3,9 @@
 ## Table of Contents
 
 1. [Before you get started...](#intro)
-2. [Installing Ruby](#rubyinstall)
-3. [Installing the Amazon Elastic MapReduce Ruby Client](#rubyclient)
+2. [A note on OSes](#oses)
+3. [Installing Ruby](#rubyinstall)
+4. [Installing the Amazon Elastic MapReduce Ruby Client](#rubyclient)
 
 <a name="intro"/>
 ## Before you get started...
@@ -20,6 +21,11 @@ Amazon has published a very good [getting started](http://docs.amazonwebservices
 To use Elastic MapReduce you will need to install Amazon's "EMR Command Line Interface". This will, in particular, let you run "Hive interactive sessions" in which you can try different queries and develop differnet analyses, using the results of each analysis to inform the next query.
 
 This document will guide you through the steps required to install the EMR tools. The [following guide](Querying-the-data-using-Hive) will talk you through the steps required to use Apache Hive via the command-line tools to query your SnowPlow data.
+
+<a name="oses"/>
+## A note on OSes
+
+We have had reports from community members that setting up Ruby and Amazon's "EMR Command Line Interface" is more straightforward in a Unix-based environment (such as Ubuntu or OS X) rather than in Windows. You may want to bear this in mind if you have a choice of environments to use to set up EMR.
 
 <a name="rubyinstall"/>
 ## Installing Ruby
