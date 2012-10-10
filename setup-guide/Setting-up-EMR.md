@@ -25,7 +25,9 @@ This document will guide you through the steps required to install the EMR tools
 <a name="oses"/>
 ## A note on OSes
 
-We have had reports from community members that setting up Ruby and Amazon's "EMR Command Line Interface" is more straightforward in a Unix-based environment (such as Ubuntu or OS X) rather than in Windows. You may want to bear this in mind if you have a choice of environments to use to set up EMR.
+We have had reports from community members that setting up Ruby and Amazon's "EMR Command Line Interface" is more straightforward in a Unix-based environment (such as Ubuntu or OS X) rather than in Windows.
+
+You may want to bear this in mind if you have a choice of different environments to use to set up EMR.
 
 <a name="rubyinstall"/>
 ## Installing Ruby
