@@ -12,6 +12,12 @@ The SnowPlow Google Group (aka `snowplow-user`) is a good first stop for a gener
 
 We're big fans of HipChat here at SnowPlow. We have a public SnowPlow chatroom - stop by and say hi, you don't need to install anything to access it. This chatroom is linked to our GitHub - so you can see new issues, merged pull requests and so on as they happen.
 
+## Twitter
+
+[@SnowPlowData] [snowplow-twitter]
+
+Follow and chat to us on Twitter.
+
 ## Google Hangout
 
 Our regular voice- and video-enabled Google Hangouts give us a chance to all meet face-to-face (albeit virtually!). We alternate holding a "SnowPlow West" and a "SnowPlow East" Hangout - the next ones are as follows:
@@ -53,6 +59,7 @@ If you want to brainstorm a potential new feature, then the SnowPlow Google Grou
 If you want to talk directly to us (e.g. about a commercially sensitive issue), email is the easiest way.
 
 [google-group]: https://groups.google.com/forum/#!forum/snowplow-user
+[snowplow-twitter]: https://twitter.com/SnowPlowData
 [new-issue]: https://github.com/snowplow/snowplow/issues/new
 [issues]: https://github.com/snowplow/snowplow/issues?direction=desc&sort=created&state=open
 [community-email]: mailto:community@snowplowanalytics.com
