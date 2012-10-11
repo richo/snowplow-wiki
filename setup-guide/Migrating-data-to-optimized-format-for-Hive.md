@@ -37,8 +37,8 @@ We recommend setting up a daily CRON job that copies the previous days worth of 
 
 There are two parts to performing the ETL: 
 
-	1. Copying the data from the log files into the optimised format in S3, using the above script
-	2. Deleting (or archiving) the old log files
+1. Copying the data from the log files into the optimised format in S3, using the above script
+2. Deleting (or archiving) the old log files
 
 Running the above query will only copy data from the SnowPlow Cloudfront logs into the partitioned table. It is important that once data has been copied, the log files are archived (e.g. moved into a different bucket) or deleted. If this doesn't happen, the script will become more expensive to run, as it processes all the log files present, so without archiving the cost of performing the query will increase with the data volume.
 
