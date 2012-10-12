@@ -22,17 +22,6 @@ Follow and chat to us on Twitter.
 
 Our regular voice- and video-enabled Google Hangouts give us a chance to all meet face-to-face (albeit virtually!). We alternate holding a "SnowPlow West" and a "SnowPlow East" Hangout - the next ones are as follows:
 
-### SnowPlow West Hangout
-
-**10 October 2012**
-
-San Francisco (PDT) 10am  
-New York (EDT) 1pm  
-London 6pm  
-Berlin (CEST) 7pm
-
-We will share a link in our [public HipChat room] [hipchat-room] when the Hangout starts.
-
 ### SnowPlow East Hangout 
 
 **31 October 2012**
@@ -41,6 +30,12 @@ London 8am
 Moscow midday  
 Singapore 4pm  
 Sydney (EDT) 7pm
+
+We will share a link in our [public HipChat room] [hipchat-room] when the Hangout starts.
+
+### SnowPlow West Hangout
+
+**Date TBC**
 
 We will share a link in our [public HipChat room] [hipchat-room] when the Hangout starts.
 
