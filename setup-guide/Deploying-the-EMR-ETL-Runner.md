@@ -31,10 +31,10 @@ In theory EmrEtlRunner can be deployed onto a Windows-based server, using the Wi
 
 To install EmrEtlRunner, first make sure that your server has **all** of the following installed:
 
-1. Ruby installed. Please see the [Ruby Download Instructions] [ruby-install] as needed
-2. RubyGems installed. Please see the [RubyGems Installation Instructions] [rubygems-install]
+1. **Ruby**. Please see the [Ruby Download Instructions] [ruby-install] as needed
+2. **RubyGems**. Please see the [RubyGems Installation Instructions] [rubygems-install]
    as needed
-3. Nokogiri installed. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
+3. **Nokogiri**. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
 
 Done? Right, now we can install EmrEtlRunner.
 
