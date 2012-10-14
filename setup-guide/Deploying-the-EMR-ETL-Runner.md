@@ -99,17 +99,17 @@ To take each section in turn:
 
 #### aws
 
-The `aws` variables should be self-explanatory - supply your AWS access
+The `aws` variables should be self-explanatory - enter your AWS access
 key and secret here.
 
 #### s3
 
 Within the `s3` section, the `buckets` variables are as follows:
 
-* `assets` is where the ETL job's static assets (HiveQL script plus Hive
-  deserializer) are stored. You can leave this as is (pointing to
-  SnowPlow Analytics' own public bucket containing these assets) or
-  replace this with your own private bucket containing the assets
+* `assets` holds the ETL job's static assets (HiveQL script plus Hive
+  deserializer). You can leave this as-is (pointing to SnowPlow
+  Analytics' own public bucket containing these assets) or replace this
+  with your own private bucket containing the assets
 * `in` is the bucket containing the raw SnowPlow event logs to process
 * `processing` is the bucket where the raw event logs will be moved to
   for processing
