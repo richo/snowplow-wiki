@@ -2,13 +2,14 @@
 
 ## Table of Contents
 
-1. [Introduction](#intro)  
+1. [Introduction](#intro)
 2. [Installation](#install)
  1. [Assumptions](#assumptions)
  2. [Dependencies](#dependencies)
  3. [Installation](#installation)
- 4. [Configuration](#configuration)  
+ 4. [Configuration](#configuration)
 3. [Usage](#usage)
+ 1. [Overview](#overview)
 
 <a name="intro"/>
 ## Introduction
@@ -43,7 +44,7 @@ To install EmrEtlRunner, first make sure that your server has **all** of the fol
    as needed
 3. **Nokogiri**. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
 
-You will also need a EC2 key setup in your Amazon EMR account.
+You will also need a EC2 key setup in your Amazon EMR account. **TO COME.**
 
 Done? Right, now we can install EmrEtlRunner.
 
@@ -151,18 +152,20 @@ process without having to update EmrEtlRunner itself.
 <a name="usage"/>
 ## Usage
 
+<a name="overview"/>
 ### Overview
 
-There are two usage modes for the SnowPlow::Etl gem:
+There are two usage modes for EmrEtlRunner:
 
-1. **Daily mode** where the gem is run daily to process the last 24 hours
-   worth of CloudFront access logs ready for SnowPlow
-2. **Catchup mode** where the gem is run across a "datespan" of multiple 
-   days to bring processing of the CloudFront access logs up-to-date 
+1. **Daily mode** where EmrEtlRunner is run daily to process the last 24
+   hours worth of raw SnowPlow event logs ready
+2. **Catchup mode** where EmrEtlRunner is run across a "datespan" of
+   multiple days to bring processing of the raw SnowPlow event logs
+   up-to-date 
 
 In particular, catchup mode is useful when running SnowPlow::Etl for the 
 first time, or when something has gone wrong with daily mode and a day's
-processing needs to be rerun.
+processing needs to be re-run.
 
 ### Command-line options
 
