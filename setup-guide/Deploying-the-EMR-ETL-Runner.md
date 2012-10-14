@@ -3,7 +3,9 @@
 ## Table of Contents
 
 1. [Introduction](#intro)
+1.1 Blah
 2. [Installation](#install)
+3. [Usage](#usage)
 
 <a name="intro"/>
 ## Introduction
@@ -65,7 +67,7 @@ EmrEtlRunner requires a YAML format configuration file to run. There is a config
 :s3:
   :buckets:
     # Update assets if you want to host the serde and HiveQL yourself
-    :assets: 's3://pbz-snowplow-emr-assets'
+    :assets: 's3n://snowplow-emr-assets'
     :in: 'ADD HERE'
     :processing: 'ADD HERE'
     :out: 'ADD HERE'
@@ -127,9 +129,9 @@ Please note that all buckets must exist prior to running EmrEtlRunner.
 This is where we configure the operation of EMR. The variables with
 defaults can typically left as-is, but you will need to set:
 
-1. `placement` is the which Amazon EC2 location in which the job should
-   run. The full list of EC2 locations, please see XXX
-2. `ec2_key_name`
+1. `placement` is the Amazon EC2 region and availability zone
+   in which the job should run, e.g. 'us-east-1a' or 'eu-west-1b'
+2. `ec2_key_name` 
 
 Section to come.
 
@@ -140,6 +142,7 @@ This section allows you to update the versions of the Hive deserializer
 versioning in the `config.yml` file means that you can upgrade the ETL
 process without having to update EmrEtlRunner itself.
 
+<a name="usage"/>
 ## Usage
 
 ### Overview
