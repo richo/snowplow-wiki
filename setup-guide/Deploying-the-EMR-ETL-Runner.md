@@ -3,8 +3,11 @@
 ## Table of Contents
 
 1. [Introduction](#intro)
-1.1 Blah
 2. [Installation](#install)
+ 1. [Assumptions](#assumptions)
+ 2. [Dependencies](#dependencies)
+ 3. [Installation](#installation)
+ 4. [Configuration](#configuration)
 3. [Usage](#usage)
 
 <a name="intro"/>
@@ -19,6 +22,7 @@ This guide will take you through installing and configuring EmrEtlRunner on your
 <a name="install"/>
 ## Installation
 
+<a name="assumptions"/>
 ### Assumptions
 
 This guide assumes that you have already integrated one or more [SnowPlow trackers] [trackers] into your website or app, and have deployed a [SnowPlow collector] [collectors] which is logging raw SnowPlow events to Amazon S3.
@@ -29,6 +33,7 @@ This guide also assumes that you have administrator access to a Unix-based serve
 
 _In theory EmrEtlRunner can be deployed onto a Windows-based server, using the Windows Task Scheduler instead of cron, but this has not been tested or documented._
 
+<a name="dependencies"/>
 ### Dependencies
 
 To install EmrEtlRunner, first make sure that your server has **all** of the following installed:
@@ -42,6 +47,7 @@ You will also need a EC2 key setup in your Amazon EMR account.
 
 Done? Right, now we can install EmrEtlRunner.
 
+<a name="installation"/>
 ### Installation
 
 EmrEtlRunner is [published on RubyGems.org] [rubygems-emretlrunner], so installing is easy:
@@ -55,6 +61,7 @@ Check it worked okay:
 
 If you have any problems installing, it may be because of a missing dependency on the Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help installing Nokogiri in your system.
 
+<a name="configuration"/>
 ### Configuration
 
 EmrEtlRunner requires a YAML format configuration file to run. There is a configuration file template available in the SnowPlow GitHub repository at 
@@ -131,9 +138,8 @@ defaults can typically left as-is, but you will need to set:
 
 1. `placement` is the Amazon EC2 region and availability zone
    in which the job should run, e.g. 'us-east-1a' or 'eu-west-1b'
-2. `ec2_key_name` 
-
-Section to come.
+2. `ec2_key_name` is the name of the Amazon EC2 key that you set up in
+   the [Dependencies](#dependencies) above
 
 #### snowplow
 
