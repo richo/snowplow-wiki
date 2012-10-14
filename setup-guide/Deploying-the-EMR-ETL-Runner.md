@@ -39,10 +39,9 @@ _In theory EmrEtlRunner can be deployed onto a Windows-based server, using the W
 
 To install EmrEtlRunner, first make sure that your server has **all** of the following installed:
 
-1. **Ruby**. Please see the [Ruby Download Instructions] [ruby-install] as needed
-2. **RubyGems**. Please see the [RubyGems Installation Instructions] [rubygems-install]
-   as needed
-3. **Nokogiri**. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
+1. **Ruby** - please see the [Ruby Download Instructions] [ruby-install]
+2. **RubyGems** - please see the [RubyGems Installation Instructions] [rubygems-install]
+3. **Nokogiri** - please see the [Installing Nokogiri Guide] [nokogiri-install]
 
 You will also need a EC2 key setup in your Amazon EMR account. For details on how to do this, please see the section **Configuring the client** in the [[Setting up EMR]] wiki page. Make sure that you setup the EC2 key pair inside the region in which you will be running your ETL jobs.
 
