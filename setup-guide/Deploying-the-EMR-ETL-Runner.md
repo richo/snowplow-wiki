@@ -36,6 +36,8 @@ To install EmrEtlRunner, first make sure that your server has **all** of the fol
    as needed
 3. **Nokogiri**. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
 
+You will also need a EC2 key setup in your Amazon EMR account.
+
 Done? Right, now we can install EmrEtlRunner.
 
 ### Installation
@@ -78,7 +80,7 @@ EmrEtlRunner requires a YAML format configuration file to run. There is a config
     :instance_count: 2
     :master_instance_type: 'm1.small'
     :slave_instance_type: 'm1.small'
-# Can bump the below as new versions are released
+# Can bump the below as SnowPlow releases new versions
 :snowplow:
   :serde_version: '0.4.9'
   :hiveql_version: '0.4.10'
@@ -88,16 +90,17 @@ To take each section in turn:
 
 #### aws
 
-The `aws` variables should be self-explanatory - fill in your AWS access
-key and secret.
+The `aws` variables should be self-explanatory - supply your AWS access
+key and secret here.
 
 #### s3
 
-The `buckets` variables are as follows:
+Within the `s3` section, the `buckets` variables are as follows:
 
 * `assets` is where the ETL job's static assets (HiveQL script plus Hive
-  deserializer) are stored. You can use our own public bucket containing
-  these assets, or replace this with your own private bucket
+  deserializer) are stored. You can leave this as is (pointing to
+  SnowPlow Analytics' own public bucket containing these assets) or
+  replace this with your own private bucket containing the assets
 * `in` is the bucket containing the raw SnowPlow event logs to process
 * `processing` is the bucket where the raw event logs will be moved to
   for processing
@@ -108,24 +111,34 @@ The `buckets` variables are as follows:
 
 All `buckets` variables should start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
-bucket as required. A trailing slash is optional.
+bucket as required, and a trailing slash is optional.
 
-For example, the following are all valid bucket settings:
+The following are all valid bucket settings:
 
     :buckets:
-      :assets: my-snowplow-static/hiveql/
-      :serde: my-snowplow-static/jars
-      :in: my-snowplow-log-bucket
+      :assets: s3://my-public-snowplow-assets
+      :serde: s3n://my-snowplow-logs/
+      :processing: s3n://my-snowplow-etl/processing
 
 Please note that all buckets must exist prior to running EmrEtlRunner.
 
 #### emr
 
+This is where we configure the operation of EMR. The variables with
+defaults can typically left as-is, but you will need to set:
+
+1. `placement` is the which Amazon EC2 location in which the job should
+   run. The full list of EC2 locations, please see XXX
+2. `ec2_key_name`
+
 Section to come.
 
 #### snowplow
 
-Section to come.
+This section allows you to update the versions of the Hive deserializer
+(`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. Having this
+versioning in the `config.yml` file means that you can upgrade the ETL
+process without having to update EmrEtlRunner itself.
 
 ## Usage
 
