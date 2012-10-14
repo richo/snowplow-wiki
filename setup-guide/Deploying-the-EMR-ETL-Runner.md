@@ -138,7 +138,7 @@ This is where we configure the operation of EMR. The variables with
 defaults can typically left as-is, but you will need to set:
 
 1. `placement` is the Amazon EC2 region and availability zone
-   in which the job should run, e.g. 'us-east-1a' or 'eu-west-1b'
+   in which the job should run, e.g. "us-east-1a" or "eu-west-1b"
 2. `ec2_key_name` is the name of the Amazon EC2 key that you set up in
    the [Dependencies](#dependencies) above
 
@@ -159,7 +159,7 @@ There are two usage modes for EmrEtlRunner:
 
 1. **Daily mode** where EmrEtlRunner is run daily to process the last 24
    hours worth of raw SnowPlow event logs ready
-2. **Catchup mode** where EmrEtlRunner is run across a "datespan" of
+2. **Catchup mode** where EmrEtlRunner is run across a 'datespan' of
    multiple days to bring processing of the raw SnowPlow event logs
    up-to-date 
 
