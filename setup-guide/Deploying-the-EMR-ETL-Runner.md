@@ -2,12 +2,12 @@
 
 ## Table of Contents
 
-1. [Introduction](#intro)
+1. [Introduction](#intro)  
 2. [Installation](#install)
  1. [Assumptions](#assumptions)
  2. [Dependencies](#dependencies)
  3. [Installation](#installation)
- 4. [Configuration](#configuration)
+ 4. [Configuration](#configuration)  
 3. [Usage](#usage)
 
 <a name="intro"/>
