@@ -86,27 +86,44 @@ To take each section in turn:
 
 #### aws
 
-The `aws` variables should be self-explanatory - fill in your AWS access key and secret.
+The `aws` variables should be self-explanatory - fill in your AWS access
+key and secret.
 
 #### s3
 
 The `buckets` variables are as follows:
 
-* `assets` is where the ETL job's static assets (HiveQL script plus Hive deserializer) are stored. You can use our own public bucket containing these assets, or replace this with your own private bucket
+* `assets` is where the ETL job's static assets (HiveQL script plus Hive
+  deserializer) are stored. You can use our own public bucket containing
+  these assets, or replace this with your own private bucket
 * `in` is the bucket containing the raw SnowPlow event logs to process
-* `out` is the bucket to store the SnowPlow-format event files in
-* `archive` is the bucket to move the processed CloudFront logs to
+* `processing` is the bucket where the raw event logs will be moved to
+  for processing
+* `out` is the bucket where the processed SnowPlow-format event files
+  will be stored
+* `archive` is the bucket to move the raw SnowPlow event logs to after
+  successful processing
 
-All `buckets` variables can include a sub-folder within the bucket as 
-required. A trailing slash is optional. For example, the following are
-all valid configuration settings:
+All `buckets` variables should start with an S3 protocol - either
+`s3://` or `s3n://`. Each variable can include a sub-folder within the
+bucket as required. A trailing slash is optional.
+
+For example, the following are all valid bucket settings:
 
     :buckets:
-      :query: my-snowplow-static/hiveql/
+      :assets: my-snowplow-static/hiveql/
       :serde: my-snowplow-static/jars
       :in: my-snowplow-log-bucket
 
 Please note that all buckets must exist prior to running EmrEtlRunner.
+
+#### emr
+
+Section to come.
+
+#### snowplow
+
+Section to come.
 
 ## Usage
 
