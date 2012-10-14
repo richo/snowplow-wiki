@@ -44,7 +44,7 @@ To install EmrEtlRunner, first make sure that your server has **all** of the fol
    as needed
 3. **Nokogiri**. Please see the [Installing Nokogiri Guide] [nokogiri-install] as needed
 
-You will also need a EC2 key setup in your Amazon EMR account. **TO COME.**
+You will also need a EC2 key setup in your Amazon EMR account. For details on how to do this, please see the section **Configuring the client** in the [[Setting up EMR]] wiki page. Make sure that you setup the EC2 key pair inside the region in which you will be running your ETL jobs.
 
 Done? Right, now we can install EmrEtlRunner.
 
@@ -135,12 +135,15 @@ Please note that all buckets must exist prior to running EmrEtlRunner.
 #### emr
 
 This is where we configure the operation of EMR. The variables with
-defaults can typically left as-is, but you will need to set:
+defaults can typically be left as-is, but you will need to set:
 
-1. `placement` is the Amazon EC2 region and availability zone
+1. `placement`, which is the Amazon EC2 region and availability zone
    in which the job should run, e.g. "us-east-1a" or "eu-west-1b"
-2. `ec2_key_name` is the name of the Amazon EC2 key that you set up in
-   the [Dependencies](#dependencies) above
+2. `ec2_key_name`, which is the name of the Amazon EC2 key that you
+   set up in the [Dependencies](#dependencies) above
+
+Make sure that placement and the EC2 key you specify both belong to the
+same region, or else EMR won't be able to find the key.
 
 #### snowplow
 
