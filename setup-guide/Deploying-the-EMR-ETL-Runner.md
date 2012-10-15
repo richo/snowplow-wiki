@@ -23,7 +23,7 @@
 
 To make it easier to run SnowPlow's Hive-based ETL (extract, transform, load) process on Amazon Elastic MapReduce, we have written the [SnowPlow::EmrEtlRunner] [emr-etl-runner] Ruby gem.
 
-EmrEtlRunner is a command-line tool which runs and monitors our [Hive-based ETL process] [hive-etl] on EMR, as well as performing necessary housekeeping tasks (such as archiving the raw event logs).
+EmrEtlRunner is a command-line tool which runs and monitors our [Hive-based ETL process] [hive-etl] on EMR, as well as performing the required housekeeping tasks (such as archiving the raw event logs).
 
 This guide will take you through installing and configuring EmrEtlRunner on your own server.
 
@@ -126,8 +126,8 @@ Within the `s3` section, the `buckets` variables are as follows:
   deserializer). You can leave this as-is (pointing to SnowPlow
   Analytics' own public bucket containing these assets) or replace this
   with your own private bucket containing the assets
-* `log` is the bucket in which Amazon EMR will log processing
-  information for this job run - including any errors  
+* `log` is the bucket in which Amazon EMR will record processing
+  information for this job run, including logging any errors  
 * `in` is the bucket containing the raw SnowPlow event logs to process
 * `processing` is the bucket where the raw event logs will be moved to
   for processing
@@ -136,7 +136,7 @@ Within the `s3` section, the `buckets` variables are as follows:
 * `archive` is the bucket to move the raw SnowPlow event logs to after
   successful processing
 
-Each of the bucket variables should start with an S3 protocol - either
+Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
 bucket as required, and a trailing slash is optional.
 
@@ -165,9 +165,9 @@ same region, or else EMR won't be able to find the key.
 #### snowplow
 
 This section allows you to update the versions of the Hive deserializer
-(`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. Having this
-versioning in the `config.yml` file means that you can upgrade the ETL
-process without having to update EmrEtlRunner itself.
+(`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. These
+variables let you upgrade the ETL process without having to update
+the EmrEtlRunner gem itself.
 
 <a name="usage"/>
 ## Usage
@@ -212,12 +212,16 @@ The command-line options for EmrEtlRunner look like this:
 
 <a name="running"/>
 ### Running in each mode
-   
+
+#### Daily mode
+
 Invoking EmrEtlRunner with just the `--config` option puts it into daily
 mode, processing raw SnowPlow event logs from **yesterday** only:
 
     $ bundle exec bundle exec snowplow-emr-etl-runner --config my-config.yml
- 
+
+#### Catchup mode
+
 To run EmrEtlRunner in catchup mode, you need to specify the start and end
 dates as well as the `--config` option, like so:
 
@@ -236,9 +240,9 @@ inclusive.
 ### Overview
 
 Once you have the ETL process working smoothly, you can schedule a daily task
-to automate the daily ETL process. The job should run in the early morning 
-(say, 4am) when the full set of raw SnowPlow event logs for yesterday have been 
-finalised.
+to automate the daily ETL process. We recommend running the job in the early
+morning  (say, 4am) when the full set of raw SnowPlow event logs for the day
+before have definitely been finalised.
 
 To consider the different scheduling options in turn:
 
@@ -246,8 +250,10 @@ To consider the different scheduling options in turn:
 ### cron
 
 The recommended way of scheduling the ETL process is as a daily cronjob using the 
-shell script `snowplow-emr-etl.sh`. You need to edit this script and 
-update the two variables:
+shell script `snowplow-emr-etl.sh` available in the SnowPlow GitHub repository at 
+[`/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh`] [bash-script].
+
+You need to edit this script and update the two variables:
 
     BUNDLE_GEMFILE=/path/to/snowplow/hive/snowplow-etl
     ETL_CONFIGFILE=/path/to/your-etl-config.yml
@@ -291,6 +297,7 @@ If you get this working, please let us know!
 [rubygems-emretlrunner]: http://rubygems.org/gems/snowplow-emr-etl-runner
 
 [config-yml]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/config/config.yml
+[bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh
 
 [cronic]: http://habilis.net/cronic/
 [jenkins]: http://jenkins-ci.org/
