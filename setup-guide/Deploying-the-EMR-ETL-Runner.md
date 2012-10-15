@@ -90,11 +90,11 @@ file template available in the SnowPlow GitHub repository at
   :buckets:
     # Update assets if you want to host the serde and HiveQL yourself
     :assets: 's3://snowplow-emr-assets'
-    :log: 'ADD HERE WITH PROTOCOL'
-    :in: 'ADD HERE WITHOUT PROTOCOL'
-    :processing: 'ADD HERE WITHOUT PROTOCOL'
-    :out: 'ADD HERE WITHOUT PROTOCOL'
-    :archive: 'ADD HERE WITHOUT PROTOCOL'
+    :log: 'ADD HERE'
+    :in: 'ADD HERE'
+    :processing: 'ADD HERE
+    :out: 'ADD HERE'
+    :archive: 'ADD HERE'
 :emr:
   # Can bump the below as EMR upgrades Hadoop
   :hadoop_version: '1.0.3'
@@ -126,7 +126,8 @@ Within the `s3` section, the `buckets` variables are as follows:
   deserializer). You can leave this as-is (pointing to SnowPlow
   Analytics' own public bucket containing these assets) or replace this
   with your own private bucket containing the assets
-* `log` is the bucket which Amazon EMR will write its 
+* `log` is the bucket in which Amazon EMR will log processing
+  information for this job run - including any errors  
 * `in` is the bucket containing the raw SnowPlow event logs to process
 * `processing` is the bucket where the raw event logs will be moved to
   for processing
@@ -135,12 +136,9 @@ Within the `s3` section, the `buckets` variables are as follows:
 * `archive` is the bucket to move the raw SnowPlow event logs to after
   successful processing
 
-Only the `assets` and `log` variables should start with an S3 protocol -
-either `s3://` or `s3n://`. For the four data buckets, the protocol should
-be left out.
-
-Each variable can include a sub-folder within the bucket as required,
-and a trailing slash is optional.
+Each of the bucket variables should start with an S3 protocol - either
+`s3://` or `s3n://`. Each variable can include a sub-folder within the
+bucket as required, and a trailing slash is optional.
 
 The following are all valid bucket settings:
 
