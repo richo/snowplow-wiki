@@ -9,7 +9,14 @@
  3. [Installation](#installation)
  4. [Configuration](#configuration)
 3. [Usage](#usage)
- 1. [Overview](#overview)
+ 1. [Overview](#usage-overview)
+ 2. [Command-line options](#cli-options)
+ 3. [Running in each mode](#running)
+4. [Scheduling](#scheduling)
+ 1. [Overview](#scheduling-overview)
+ 2. [cron](#cron)
+ 3. [Jenkins](#jenkins)
+ 4. [Windows Task Scheduler](#windows)
 
 <a name="intro"/>
 ## Introduction
@@ -26,7 +33,9 @@ This guide will take you through installing and configuring EmrEtlRunner on your
 <a name="assumptions"/>
 ### Assumptions
 
-This guide assumes that you have already integrated one or more [SnowPlow trackers] [trackers] into your website or app, and have deployed a [SnowPlow collector] [collectors] which is logging raw SnowPlow events to Amazon S3.
+This guide assumes that you have already integrated one or more
+[SnowPlow trackers][trackers] into your website or app, and have deployed a
+[SnowPlow collector] [collectors] which is logging raw SnowPlow events to Amazon S3.
 
 If you have not completed these steps yet, then please consult the [Getting started] [getting-started] page on the SnowPlow Analytics website.
 
@@ -43,7 +52,10 @@ To install EmrEtlRunner, first make sure that your server has **all** of the fol
 2. **RubyGems** - please see the [RubyGems Installation Instructions] [rubygems-install]
 3. **Nokogiri** - please see the [Installing Nokogiri Guide] [nokogiri-install]
 
-You will also need a EC2 key setup in your Amazon EMR account. For details on how to do this, please see the section **Configuring the client** in the [[Setting up EMR]] wiki page. Make sure that you setup the EC2 key pair inside the region in which you will be running your ETL jobs.
+You will also need a EC2 key setup in your Amazon EMR account. For details on how to
+do this, please see the section **Configuring the client** in the [[Setting up EMR]]
+wiki page. Make sure that you setup the EC2 key pair inside the region in which you
+will be running your ETL jobs.
 
 Done? Right, now we can install EmrEtlRunner.
 
@@ -59,12 +71,15 @@ Check it worked okay:
     $ snowplow-emr-etl-runner --version
     snowplow-emr-etl-runner 0.0.2
 
-If you have any problems installing, it may be because of a missing dependency on the Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help installing Nokogiri in your system.
+If you have any problems installing, it may be because of a missing dependency on the 
+Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help 
+installing Nokogiri in your system.
 
 <a name="configuration"/>
 ### Configuration
 
-EmrEtlRunner requires a YAML format configuration file to run. There is a configuration file template available in the SnowPlow GitHub repository at 
+EmrEtlRunner requires a YAML format configuration file to run. There is a configuration
+file template available in the SnowPlow GitHub repository at 
 [`/3-etl/emr-etl-runner/config/config.yml`] [config-yml]. The template looks like this:
 
 ```yaml
@@ -74,11 +89,12 @@ EmrEtlRunner requires a YAML format configuration file to run. There is a config
 :s3:
   :buckets:
     # Update assets if you want to host the serde and HiveQL yourself
-    :assets: 's3n://snowplow-emr-assets'
-    :in: 'ADD HERE'
-    :processing: 'ADD HERE'
-    :out: 'ADD HERE'
-    :archive: 'ADD HERE'
+    :assets: 's3://snowplow-emr-assets'
+    :log: 'ADD HERE WITH PROTOCOL'
+    :in: 'ADD HERE WITHOUT PROTOCOL'
+    :processing: 'ADD HERE WITHOUT PROTOCOL'
+    :out: 'ADD HERE WITHOUT PROTOCOL'
+    :archive: 'ADD HERE WITHOUT PROTOCOL'
 :emr:
   # Can bump the below as EMR upgrades Hadoop
   :hadoop_version: '1.0.3'
@@ -110,6 +126,7 @@ Within the `s3` section, the `buckets` variables are as follows:
   deserializer). You can leave this as-is (pointing to SnowPlow
   Analytics' own public bucket containing these assets) or replace this
   with your own private bucket containing the assets
+* `log` is the bucket which Amazon EMR will write its 
 * `in` is the bucket containing the raw SnowPlow event logs to process
 * `processing` is the bucket where the raw event logs will be moved to
   for processing
@@ -118,9 +135,12 @@ Within the `s3` section, the `buckets` variables are as follows:
 * `archive` is the bucket to move the raw SnowPlow event logs to after
   successful processing
 
-All `buckets` variables should start with an S3 protocol - either
-`s3://` or `s3n://`. Each variable can include a sub-folder within the
-bucket as required, and a trailing slash is optional.
+Only the `assets` and `log` variables should start with an S3 protocol -
+either `s3://` or `s3n://`. For the four data buckets, the protocol should
+be left out.
+
+Each variable can include a sub-folder within the bucket as required,
+and a trailing slash is optional.
 
 The following are all valid bucket settings:
 
@@ -154,7 +174,7 @@ process without having to update EmrEtlRunner itself.
 <a name="usage"/>
 ## Usage
 
-<a name="overview"/>
+<a name="usage-overview"/>
 ### Overview
 
 There are two usage modes for EmrEtlRunner:
@@ -169,16 +189,17 @@ In particular, catchup mode is useful when running SnowPlow::Etl for the
 first time, or when something has gone wrong with daily mode and a day's
 processing needs to be re-run.
 
+<a name="cli-options"/>
 ### Command-line options
 
-Invoke the SnowPlow::Etl gem using Bundler's `bundle exec` syntax:
+Invoke EmrEtlRunner using Bundler's `bundle exec` syntax:
 
-    $ bundle exec snowplow-etl
+    $ bundle exec snowplow-emr-etl-runner
     
 Note that the `bundle exec` command will only work when you are inside the 
 `snowplow-etl` folder.
 
-The command-line options for SnowPlow::Etl look like this:
+The command-line options for EmrEtlRunner look like this:
 
     Usage: snowplow-etl [options]
 
@@ -190,29 +211,44 @@ The command-line options for SnowPlow::Etl look like this:
     Common options:
         -h, --help                       Show this message
         -v, --version                    Show version
-   
-Invoking SnowPlow::Etl with just a `--config` option puts it into daily
-mode, processing CloudFront log files from **yesterday** only:
 
-    $ bundle exec snowplow-etl --config my-config.yml
+<a name="running"/>
+### Running in each mode
+   
+Invoking EmrEtlRunner with just the `--config` option puts it into daily
+mode, processing raw SnowPlow event logs from **yesterday** only:
+
+    $ bundle exec bundle exec snowplow-emr-etl-runner --config my-config.yml
  
-To run SnowPlow::Etl in catchup mode, you need to specify the start and end
+To run EmrEtlRunner in catchup mode, you need to specify the start and end
 dates as well as the `--config` option, like so:
 
-    $ bundle exec snowplow-etl --config my-config.yml --start 2012-06-20 --end 2012-06-24 
+    $ bundle exec bundle exec snowplow-emr-etl-runner \
+      --config my-config.yml \
+      --start 2012-06-20 \
+      --end 2012-06-24 
 
-This will run SnowPlow::Etl for the period 20 June 2012 to 24 June 2012
+This will run EmrEtlRunner for the period 20 June 2012 to 24 June 2012
 inclusive.
 
-### Scheduling
+<a name="scheduling"/>
+## Scheduling
 
-Once you have the ETL process working smoothly, you can set up a daily cronjob
+<a name="scheduling-overview"/>
+### Overview
+
+Once you have the ETL process working smoothly, you can schedule a daily task
 to automate the daily ETL process. The job should run in the early morning 
-(say, 4am) when the full set of CloudFront log files for yesterday have been 
+(say, 4am) when the full set of raw SnowPlow event logs for yesterday have been 
 finalised.
 
-The recommended way of running the ETL process as a daily cronjob is by using 
-the shell script `bin/snowplow-etl-cron`. You need to edit this script and 
+To consider the different scheduling options in turn:
+
+<a name="cron"/>
+### cron
+
+The recommended way of scheduling the ETL process is as a daily cronjob using the 
+shell script `snowplow-emr-etl.sh`. You need to edit this script and 
 update the two variables:
 
     BUNDLE_GEMFILE=/path/to/snowplow/hive/snowplow-etl
@@ -225,6 +261,25 @@ configure your cronjob like so:
     0 4   * * *   root    cronic /path/to/snowplow/hive/snowplow-etl/bin/etl-cron
 
 This will run the ETL job daily at 4am, emailing any failures to you via cronic.
+
+<a name="jenkins"/>
+### Jenkins
+
+Some developers use the [Jenkins] [jenkins] continuous integration server (or
+[Hudson] [hudson], which is very similar) to schedule their Hadoop and Hive jobs.
+
+Describing how to do this is out of scope for this guide, but the blog post
+[Lowtech Monitoring with Jenkins] [jenkins-tutorial] is a great tutorial on using
+Jenkins for non-CI-related tasks, and could be easily adapted to schedule
+EmrEtlRunner.
+
+<a name="windows"/>
+### Windows Task Scheduler
+
+For Windows servers, in theory it should be possible to use a Windows PowerShell
+script plus [Windows Task Scheduler] [windows-task-scheduler] instead of bash and cron. However, this has not been tested or documented.
+
+If you get this working, please let us know!
 
 [emr-etl-runner]: https://github.com/snowplow/snowplow/tree/master/3-etl/emr-etl-runner
 [hive-etl]: https://github.com/snowplow/snowplow/tree/master/3-etl/hive-etl
@@ -240,3 +295,7 @@ This will run the ETL job daily at 4am, emailing any failures to you via cronic.
 [config-yml]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/config/config.yml
 
 [cronic]: http://habilis.net/cronic/
+[jenkins]: http://jenkins-ci.org/
+[hudson]: http://hudson-ci.org/
+[jenkins-tutorial]: http://blog.lusis.org/blog/2012/01/23/lowtech-monitoring-with-jenkins/
+[windows-task-scheduler]: http://en.wikipedia.org/wiki/Windows_Task_Scheduler#Task_Scheduler_2.0
