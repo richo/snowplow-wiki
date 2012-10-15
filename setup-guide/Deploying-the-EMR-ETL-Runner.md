@@ -250,7 +250,7 @@ To consider the different scheduling options in turn:
 ### cron
 
 The recommended way of scheduling the ETL process is as a daily cronjob using the 
-shell script `snowplow-emr-etl.sh` available in the SnowPlow GitHub repository at 
+shell script available in the SnowPlow GitHub repository at 
 [`/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh`] [bash-script].
 
 You need to edit this script and update the two variables:
@@ -262,7 +262,7 @@ Now, assuming you're using the excellent [cronic] [cronic] as a wrapper for
 your cronjobs, and that both cronic and Bundler are on your path, you can 
 configure your cronjob like so:
 
-    0 4   * * *   root    cronic /path/to/snowplow/hive/snowplow-etl/bin/etl-cron
+    0 4   * * *   root    cronic /path/to/your/gem/bin/snowplow-emr-etl.sh
 
 This will run the ETL job daily at 4am, emailing any failures to you via cronic.
 
