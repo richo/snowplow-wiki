@@ -70,12 +70,12 @@ in which you will be running your ETL jobs.
 EmrEtlRunner moves the SnowPlow event data through four distinct buckets during
 the ETL process. These buckets are as follows:
 
-1. The In Bucket contains the raw SnowPlow event logs to process
-2. The Processing Bucket is where EmrEtlRunner moves the raw event logs
-   for processing
-3. The Out Bucket is where EmrEtlRunner stores the processed
+1. **In Bucket** - contains the raw SnowPlow event logs to process
+2. **Processing Bucket** - where EmrEtlRunner moves the raw event
+   logs for processing
+3. **Out Bucket** - where EmrEtlRunner stores the processed
    SnowPlow-format event files
-4. The Archive Bucket is where EmrEtlRunner moves the raw SnowPlow
+4. **Archive Bucket** - where EmrEtlRunner moves the raw SnowPlow
    event logs after successful processing
 
 You will have already setup the In Bucket when you were configuring your SnowPlow
