@@ -70,15 +70,15 @@ in which you will be running your ETL jobs.
 EmrEtlRunner moves the SnowPlow event data through four distinct buckets during
 the ETL process. These buckets are as follows:
 
-1. The **in** bucket contains the raw SnowPlow event logs to process
-2. The **processing** bucket is where EmrEtlRunner moves the raw event
-   logs for processing
-3. The **out** bucket is where EmrEtlRunner stores the processed
+1. The In Bucket contains the raw SnowPlow event logs to process
+2. The Processing Bucket is where EmrEtlRunner moves the raw event logs
+   for processing
+3. The Out Bucket is where EmrEtlRunner stores the processed
    SnowPlow-format event files
-4. The **archive** bucket is where EmrEtlRunner moves the raw SnowPlow
+4. The Archive Bucket is where EmrEtlRunner moves the raw SnowPlow
    event logs after successful processing
 
-You will have already setup the **in** bucket when you were configuring your SnowPlow
+You will have already setup the In Bucket when you were configuring your SnowPlow
 collector - but the other three buckets do not exist yet.
 
 So, create the other three buckets in the same AWS region as your in bucket. Take
@@ -167,13 +167,14 @@ Within the `s3` section, the `buckets` variables are as follows:
   with your own private bucket containing the assets
 * `log` is the bucket in which Amazon EMR will record processing
   information for this job run, including logging any errors  
-* `in` is where you specify your in bucket _(see the
+* `in` is where you specify your In Bucket _(see the
   [S3 Buckets](#s3-buckets) section above for details)_
-* `processing` is where you specify your processing bucket _(see the
+* `processing` is where you specify your Processing Bucket _(see the
   [S3 Buckets](#s3-buckets) section above for details)_
-* `out` is where you specify your out bucket _(see the
-  [S3 Buckets](#s3-buckets) section above for details)_
-* `archive` is where you specify your archive bucket _(see the
+* `out` is where you specify your Out Bucket _(see the
+  [S3 Buckets](#s3-buckets) section above for details)_ - **always
+  include a sub-folder (read on for the reason why)**
+* `archive` is where you specify your Archive Bucket _(see the
   [S3 Buckets](#s3-buckets) section above for details)_
 
 Each of the bucket variables must start with an S3 protocol - either
