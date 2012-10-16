@@ -87,9 +87,7 @@ Done? Right, now we can install EmrEtlRunner.
 <a name="installation"/>
 ### Installation
 
-EmrEtlRunner is [published on RubyGems.org] [rubygems-emretlrunner], so installing is easy:
-
-    $ gem install snowplow-emr-etl-runner
+INSTRUCTIONS TO COME
 
 Check it worked okay:
 
@@ -331,7 +329,6 @@ If you get this working, please let us know!
 [ruby-install]: http://www.ruby-lang.org/en/downloads/
 [nokogiri-install]: http://nokogiri.org/tutorials/installing_nokogiri.html
 [rubygems-install]: http://docs.rubygems.org/read/chapter/3
-[rubygems-emretlrunner]: http://rubygems.org/gems/snowplow-emr-etl-runner
 
 [config-yml]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/config/config.yml
 [bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh
