@@ -77,9 +77,10 @@ the ETL process. These buckets are as follows:
    event logs after successful processing
 
 You will have already setup the **in** bucket when you were configuring your SnowPlow
-collector. You will need to create the other three buckets - preferably in the same
-AWS region as your **in** bucket. Take a note of their names as you will need to use
-these buckets shortly.
+collector - but the other three buckets do not exist yet.
+
+So, create the other three buckets in the same AWS region as your in bucket. Take
+a note of their names as you will need to use these buckets shortly.
 
 Done? Right, now we can install EmrEtlRunner.
 
