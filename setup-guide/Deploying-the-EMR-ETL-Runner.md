@@ -58,9 +58,9 @@ To install EmrEtlRunner, first make sure that your server has **all** of the fol
 
 #### EC2 key
 
-You will also need a EC2 key setup in your Amazon EMR account.
+You will also need an **EC2 key pair** setup in your Amazon EMR account.
 
-For details on how to do this, please see the section **Configuring the client** in the
+For details on how to do this, please see the section "Configuring the client" in the
 [[Setting up EMR]] wiki page. Make sure that you setup the EC2 key pair inside the region
 in which you will be running your ETL jobs.
 
@@ -81,21 +81,21 @@ the ETL process. These buckets are as follows:
 You will have already setup the In Bucket when you were configuring your SnowPlow
 collector - but the other three buckets do not exist yet.
 
-So, create the other three buckets in the same AWS region as your in bucket. Take
-a note of their names as you will need to use these buckets shortly.
+So, create the other three buckets in the same AWS region as your In Bucket. Take
+a note of the buckets' names as you will need to use these buckets shortly.
 
 Done? Right, now we can install EmrEtlRunner.
 
 <a name="installation"/>
 ### Installation
 
-First, checkout the repository:
+First, checkout the SnowPlow repository and navigate to the EmrEtlRunner root:
 
     $ git clone git://github.com/snowplow/snowplow.git
+    $ cd snowplow/3-etl/emr-etl-runner
     
 Next install the application on your system:
 
-    $ cd snowplow/3-etl/emr-etl-runner
     $ gem build snowplow-emr-etl-runner.gemspec
     $ sudo gem install snowplow-emr-etl-runner-0.0.2.gem
     $ bundle install
