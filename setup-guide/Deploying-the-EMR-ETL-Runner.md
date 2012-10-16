@@ -21,7 +21,7 @@
 <a name="intro"/>
 ## Introduction
 
-To make it easier to run SnowPlow's Hive-based ETL (extract, transform, load) process on Amazon Elastic MapReduce, we have written the [SnowPlow::EmrEtlRunner] [emr-etl-runner] Ruby gem.
+To make it easier to run SnowPlow's Hive-based ETL (extract, transform, load) process on Amazon Elastic MapReduce, we have written the [SnowPlow::EmrEtlRunner] [emr-etl-runner] Ruby application.
 
 EmrEtlRunner is a command-line tool which runs and monitors our [Hive-based ETL process] [hive-etl] on EMR, as well as performing the required housekeeping tasks (such as archiving the raw event logs).
 
@@ -50,9 +50,11 @@ _In theory EmrEtlRunner can be deployed onto a Windows-based server, using the W
 
 To install EmrEtlRunner, first make sure that your server has **all** of the following installed:
 
-1. **Ruby** - please see the [Ruby Download Instructions] [ruby-install]
-2. **RubyGems** - please see the [RubyGems Installation Instructions] [rubygems-install]
-3. **Nokogiri** - please see the [Installing Nokogiri Guide] [nokogiri-install]
+1. **Git** - see the [Git Installation Guide] [git-install]
+2. **Ruby** - see the [Ruby Download Instructions] [ruby-install]
+3. **RubyGems** - see the [RubyGems Installation Instructions] [rubygems-install]
+4. **Nokogiri** - see the [Installing Nokogiri Guide] [nokogiri-install]
+5. **Bundler** - this is a one-liner: `gem install bundler`
 
 #### EC2 key
 
@@ -87,7 +89,16 @@ Done? Right, now we can install EmrEtlRunner.
 <a name="installation"/>
 ### Installation
 
-INSTRUCTIONS TO COME
+First, checkout the repository:
+
+    $ git clone git://github.com/snowplow/snowplow.git
+    
+Next install the application on your system:
+
+    $ cd snowplow/3-etl/emr-etl-runner
+    $ gem build snowplow-emr-etl-runner.gemspec
+    $ sudo gem install snowplow-emr-etl-runner-0.0.2.gem
+    $ bundle install
 
 Check it worked okay:
 
@@ -202,7 +213,7 @@ same region, or else EMR won't be able to find the key.
 This section allows you to update the versions of the Hive deserializer
 (`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. These
 variables let you upgrade the ETL process without having to update
-the EmrEtlRunner gem itself.
+the EmrEtlRunner application itself.
 
 <a name="usage"/>
 ## Usage
@@ -297,7 +308,7 @@ Now, assuming you're using the excellent [cronic] [cronic] as a wrapper for
 your cronjobs, and that both cronic and Bundler are on your path, you can 
 configure your cronjob like so:
 
-    0 4   * * *   root    cronic /path/to/your/gem/bin/snowplow-emr-etl.sh
+    0 4   * * *   root    cronic /path/to/emr-etl-runner/bin/snowplow-emr-etl.sh
 
 This will run the ETL job daily at 4am, emailing any failures to you via cronic.
 
@@ -326,6 +337,7 @@ If you get this working, please let us know!
 [collectors]: https://github.com/snowplow/snowplow/tree/master/2-collectors
 [getting-started]: http://snowplowanalytics.com/product/get-started.html
 
+[git-install]: http://git-scm.com/book/en/Getting-Started-Installing-Git
 [ruby-install]: http://www.ruby-lang.org/en/downloads/
 [nokogiri-install]: http://nokogiri.org/tutorials/installing_nokogiri.html
 [rubygems-install]: http://docs.rubygems.org/read/chapter/3
