@@ -109,32 +109,32 @@ file template available in the SnowPlow GitHub repository at
 
 ```yaml
 :aws:
-  :access_key_id: 'ADD HERE'
-  :secret_access_key: 'ADD HERE'
+  :access_key_id: ADD HERE
+  :secret_access_key: ADD HERE
 :s3:
-  :region: 'ADD HERE'
+  :region: ADD HERE
   :buckets:
     # Update assets if you want to host the serde and HiveQL yourself
-    :assets: 's3://snowplow-emr-assets'
-    :log: 'ADD HERE'
-    :in: 'ADD HERE'
-    :processing: 'ADD HERE
-    :out: 'ADD HERE'
-    :archive: 'ADD HERE'
+    :assets: s3://snowplow-emr-assets
+    :log: ADD HERE
+    :in: ADD HERE
+    :processing: ADD HERE
+    :out: ADD HERE
+    :archive: ADD HERE
 :emr:
   # Can bump the below as EMR upgrades Hadoop
-  :hadoop_version: '1.0.3'
-  :placement: 'ADD HERE'
-  :ec2_key_name: 'ADD HERE'
+  :hadoop_version: 1.0.3
+  :placement: ADD HERE
+  :ec2_key_name: ADD HERE
   # Adjust your Hive cluster below
   :jobflow:
     :instance_count: 2
-    :master_instance_type: 'm1.small'
-    :slave_instance_type: 'm1.small'
+    :master_instance_type: m1.small
+    :slave_instance_type: m1.small
 # Can bump the below as SnowPlow releases new versions
 :snowplow:
-  :serde_version: '0.4.9'
-  :hiveql_version: '0.4.10'
+  :serde_version: 0.4.9
+  :hiveql_version: 0.4.10
 ```
 
 To take each section in turn:
@@ -170,6 +170,11 @@ Within the `s3` section, the `buckets` variables are as follows:
 Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
 bucket as required, and a trailing slash is optional.
+
+**Important:** there is a bug in Hive on Amazon EMR where Hive dies if 
+you attempt to write out to the root of an S3 bucket. **Therefore please 
+always specify a sub-folder (e.g. `/events/`) for the `out` bucket
+variable.**
 
 The following are all valid bucket settings:
 
