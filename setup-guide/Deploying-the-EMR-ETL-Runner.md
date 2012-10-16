@@ -158,21 +158,21 @@ Within the `s3` section, the `buckets` variables are as follows:
   with your own private bucket containing the assets
 * `log` is the bucket in which Amazon EMR will record processing
   information for this job run, including logging any errors  
-* `in` is where you specify your in bucket __(see the
-  [S3 Buckets](#s3-buckets) section above for details)__
-* `processing` is where you specify your processing bucket __(see the
-  [S3 Buckets](#s3-buckets) section above for details)__
-* `out` is where you specify your out bucket __(see the
-  [S3 Buckets](#s3-buckets) section above for details)__
-* `archive` is where you specify your archive bucket __(see the
-  [S3 Buckets](#s3-buckets) section above for details)__
+* `in` is where you specify your in bucket _(see the
+  [S3 Buckets](#s3-buckets) section above for details)_
+* `processing` is where you specify your processing bucket _(see the
+  [S3 Buckets](#s3-buckets) section above for details)_
+* `out` is where you specify your out bucket _(see the
+  [S3 Buckets](#s3-buckets) section above for details)_
+* `archive` is where you specify your archive bucket _(see the
+  [S3 Buckets](#s3-buckets) section above for details)_
 
 Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
 bucket as required, and a trailing slash is optional.
 
 **Important:** there is a bug in Hive on Amazon EMR where Hive dies if 
-you attempt to write out to the root of an S3 bucket. **Therefore please 
+you attempt to write data to the root of an S3 bucket. **Therefore
 always specify a sub-folder (e.g. `/events/`) for the `out` bucket
 variable.**
 
@@ -180,8 +180,9 @@ The following are all valid bucket settings:
 
     :buckets:
       :assets: s3://my-public-snowplow-assets
-      :serde: s3n://my-snowplow-logs/
-      :processing: s3n://my-snowplow-etl/processing
+      :in: s3n://my-cloudfront-logs/
+      :processing: s3n://my-cloudfront-logs/processing
+      :out: s3n://my-snowplow-data/events
 
 Please note that all buckets must exist prior to running EmrEtlRunner.
 
