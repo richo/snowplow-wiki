@@ -157,14 +157,14 @@ Within the `s3` section, the `buckets` variables are as follows:
   with your own private bucket containing the assets
 * `log` is the bucket in which Amazon EMR will record processing
   information for this job run, including logging any errors  
-* `in` is where you specify your **in** bucket (see the
-  [S3 Buckets](#s3-buckets) section above for details)
-* `processing` is where you specify your **processing** bucket (see
-  the [S3 Buckets](#s3-buckets) section above for details)
-* `out` is where you specify your **out** bucket (see the
-  [S3 Buckets](#s3-buckets) section above for details)
-* `archive` is where you specify your **archive** bucket (see the
-  [S3 Buckets](#s3-buckets) section above for details)
+* `in` is where you specify your in bucket __(see the
+  [S3 Buckets](#s3-buckets) section above for details)__
+* `processing` is where you specify your processing bucket __(see the
+  [S3 Buckets](#s3-buckets) section above for details)__
+* `out` is where you specify your out bucket __(see the
+  [S3 Buckets](#s3-buckets) section above for details)__
+* `archive` is where you specify your archive bucket __(see the
+  [S3 Buckets](#s3-buckets) section above for details)__
 
 Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
