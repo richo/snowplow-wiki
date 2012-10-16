@@ -128,7 +128,7 @@ file template available in the SnowPlow GitHub repository at
     :log: ADD HERE
     :in: ADD HERE
     :processing: ADD HERE
-    :out: ADD HERE
+    :out: ADD HERE WITH SUB-FOLDER
     :archive: ADD HERE
 :emr:
   # Can bump the below as EMR upgrades Hadoop
@@ -155,9 +155,9 @@ key and secret here.
 
 #### s3
 
-The `region` variable should hold the AWS region in which your data buckets
-(`in`, `processing`, `out`, `archive`) reside, e.g. "us-east-1" or
-"eu-west-1".
+The `region` variable should hold the AWS region in which your four data
+buckets (In Bucket, Processing Bucket etc) are located, e.g. "us-east-1"
+or "eu-west-1".
 
 Within the `s3` section, the `buckets` variables are as follows:
 
@@ -173,7 +173,7 @@ Within the `s3` section, the `buckets` variables are as follows:
   [S3 Buckets](#s3-buckets) section above for details)_
 * `out` is where you specify your Out Bucket _(see the
   [S3 Buckets](#s3-buckets) section above for details)_ - **always
-  include a sub-folder (read on for the reason why)**
+  include a sub-folder (see below for why)**
 * `archive` is where you specify your Archive Bucket _(see the
   [S3 Buckets](#s3-buckets) section above for details)_
 
