@@ -46,16 +46,40 @@ _In theory EmrEtlRunner can be deployed onto a Windows-based server, using the W
 <a name="dependencies"/>
 ### Dependencies
 
+#### Software
+
 To install EmrEtlRunner, first make sure that your server has **all** of the following installed:
 
 1. **Ruby** - please see the [Ruby Download Instructions] [ruby-install]
 2. **RubyGems** - please see the [RubyGems Installation Instructions] [rubygems-install]
 3. **Nokogiri** - please see the [Installing Nokogiri Guide] [nokogiri-install]
 
-You will also need a EC2 key setup in your Amazon EMR account. For details on how to
-do this, please see the section **Configuring the client** in the [[Setting up EMR]]
-wiki page. Make sure that you setup the EC2 key pair inside the region in which you
-will be running your ETL jobs.
+#### EC2 key
+
+You will also need a EC2 key setup in your Amazon EMR account.
+
+For details on how to do this, please see the section **Configuring the client** in the
+[[Setting up EMR]] wiki page. Make sure that you setup the EC2 key pair inside the region
+in which you will be running your ETL jobs.
+
+<a name="s3-buckets"/>
+#### S3 buckets
+
+EmrEtlRunner moves the SnowPlow event data through four distinct buckets during
+the ETL process. These buckets are as follows:
+
+1. The **in** bucket contains the raw SnowPlow event logs to process
+2. The **processing** bucket is where EmrEtlRunner moves the raw event
+   logs for processing
+3. The **out** bucket is where EmrEtlRunner stores the processed
+   SnowPlow-format event files
+4. The **archive** bucket is where EmrEtlRunner moves the raw SnowPlow
+   event logs after successful processing
+
+You will have already setup the **in** bucket when you were configuring your SnowPlow
+collector. You will need to create the other three buckets - preferably in the same
+AWS region as your **in** bucket. Take a note of their names as you will need to use
+these buckets shortly.
 
 Done? Right, now we can install EmrEtlRunner.
 
@@ -87,6 +111,7 @@ file template available in the SnowPlow GitHub repository at
   :access_key_id: 'ADD HERE'
   :secret_access_key: 'ADD HERE'
 :s3:
+  :region: 'ADD HERE'
   :buckets:
     # Update assets if you want to host the serde and HiveQL yourself
     :assets: 's3://snowplow-emr-assets'
@@ -120,6 +145,10 @@ key and secret here.
 
 #### s3
 
+The `region` variable should hold the AWS region in which your data buckets
+(`in`, `processing`, `out`, `archive`) reside, e.g. "us-east-1" or
+"eu-west-1".
+
 Within the `s3` section, the `buckets` variables are as follows:
 
 * `assets` holds the ETL job's static assets (HiveQL script plus Hive
@@ -128,13 +157,14 @@ Within the `s3` section, the `buckets` variables are as follows:
   with your own private bucket containing the assets
 * `log` is the bucket in which Amazon EMR will record processing
   information for this job run, including logging any errors  
-* `in` is the bucket containing the raw SnowPlow event logs to process
-* `processing` is the bucket where the raw event logs will be moved to
-  for processing
-* `out` is the bucket where the processed SnowPlow-format event files
-  will be stored
-* `archive` is the bucket to move the raw SnowPlow event logs to after
-  successful processing
+* `in` is where you specify your **in** bucket (see the
+  [S3 Buckets](#s3-buckets) section above for details)
+* `processing` is where you specify your **processing** bucket (see
+  the [S3 Buckets](#s3-buckets) section above for details)
+* `out` is where you specify your **out** bucket (see the
+  [S3 Buckets](#s3-buckets) section above for details)
+* `archive` is where you specify your **archive** bucket (see the
+  [S3 Buckets](#s3-buckets) section above for details)
 
 Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
