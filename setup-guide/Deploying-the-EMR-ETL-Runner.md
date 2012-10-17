@@ -276,6 +276,14 @@ dates as well as the `--config` option, like so:
 This will run EmrEtlRunner for the period 20 June 2012 to 24 June 2012
 inclusive.
 
+#### Warning: maintain chronological order
+
+When working with file-based event logging, it is easy to run into
+boundary issues, where a file with a 2012-12-12 timestamp includes
+a few events from the end of the previous day, 2012-12-11.
+
+To prevent these boundary issues from leading to events ...
+
 <a name="scheduling"/>
 ## Scheduling
 
