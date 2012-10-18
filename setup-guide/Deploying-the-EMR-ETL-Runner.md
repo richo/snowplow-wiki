@@ -285,19 +285,19 @@ inclusive.
 We strongly recommend that you:
 
 1. Schedule EmrEtlRunner for around 3-4am in whichever timezone is used
-   to timestamp your raw SnowPlow log files, _and:_
+   to timestamp your raw SnowPlow log files, **and:**
 2. Always operate EmrEtlRunner in forward chronological order - so for
    example **do not** run EmrEtlRunner for 2012-12-11 and then later run
    it for 2012-12-10 (the day before)
 
-Both of these strong recommendations are to avoid you running into **boundary
+Follow both of these recommendations to avoid running into any **boundary
 issues** - please read on for a detailed explanation.
 
 #### Schedule EmrEtlRunner for early morning
 
-When working with file-based event logging, it is easy to run into
-boundary issues, where a file with a 2012-12-12 timestamp includes a few
-events from the end of the previous day, 2012-12-11. If you are not
+When working with file-based event logging, it is easy to encounter
+boundary issues, where a file with e.g. a 2012-12-12 timestamp includes a
+few events from the end of the previous day, 2012-12-11. If you are not
 careful, you can easily end up with an ETL process that silently drops
 these 'orphan events'.
 
@@ -311,14 +311,14 @@ previous day have already been written to log files.
 
 #### Run in forward chronological order
 
-When EmrEtlRunner successfully processes the raw SnowPlow events for e.g.
-2012-12-11, it moves all the raw SnowPlow event logs with a 2012-12-11
-timestamp from your In Bucket into your Archive Bucket.
+When EmrEtlRunner successfully completes processing the raw SnowPlow events
+for e.g. 2012-12-11, it moves all the raw SnowPlow event logs with a
+2012-12-11 timestamp from your In Bucket into your Archive Bucket.
 
-If you then run EmrEtlRunner for 2012-12-10 (the day before), then it will
-miss any orphan events (e.g. from 23:59 on 2012-12-10) which were logged
-in files with 2012-12-11 timestamps - because those files have already
-been archived, and so are not re-processed.
+If you then run EmrEtlRunner for 2012-12-10 (the day before), it will miss
+any orphan events (e.g. from 23:59 on 2012-12-10) which were logged in
+files with 2012-12-11 timestamps - because those files have already been
+archived, and so are not re-processed.
 
 So, always operate EmrEtlRunner in forward chronological order, to avoid
 archiving orphan events before they can be processed.
