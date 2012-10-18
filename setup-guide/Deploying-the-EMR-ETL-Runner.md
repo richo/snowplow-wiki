@@ -12,6 +12,7 @@
  1. [Overview](#usage-overview)
  2. [Command-line options](#cli-options)
  3. [Running in each mode](#running)
+ 4. [Important usage warnings](#usage-warnings)
 4. [Scheduling](#scheduling)
  1. [Overview](#scheduling-overview)
  2. [cron](#cron)
@@ -276,13 +277,51 @@ dates as well as the `--config` option, like so:
 This will run EmrEtlRunner for the period 20 June 2012 to 24 June 2012
 inclusive.
 
-#### Warning: maintain chronological order
+<a name="usage-warnings"/>
+### Important usage warnings
+
+#### Strong recommendations
+
+We strongly recommend that you:
+
+1. Schedule EmrEtlRunner for around 3-4am in whichever timezone is used
+   to timestamp your raw SnowPlow log files, _and:_
+2. Always operate EmrEtlRunner in forward chronological order - so for
+   example **do not** run EmrEtlRunner for 2012-12-11 and then later run
+   it for 2012-12-10 (the day before)
+
+Both of these strong recommendations are to avoid you running into **boundary
+issues** - please read on for a detailed explanation.
+
+#### Scheduling EmrEtlRunner for early morning
 
 When working with file-based event logging, it is easy to run into
-boundary issues, where a file with a 2012-12-12 timestamp includes
-a few events from the end of the previous day, 2012-12-11.
+boundary issues, where a file with a 2012-12-12 timestamp includes a few
+events from the end of the previous day, 2012-12-11. If you are not
+careful, you can easily end up with an ETL process that silently drops
+those 'orphan events'.
 
-To prevent these boundary issues from leading to events ...
+We have written EmrEtlRunner so that, when it runs for e.g. 2012-12-11,
+it will also process any orphan events that it finds in the available
+raw SnowPlow logs for 2012-12-12 (the following day).
+
+This is why we strongly recommend scheduling EmrEtlRunner to run at 3-4am
+- when you can be 100% confident that any events from the end of the
+previous day have already been written to log files.
+
+#### Running in forward chronological order
+
+When EmrEtlRunner successfully processes the raw SnowPlow events for e.g.
+2012-12-11, it moves all the raw SnowPlow event logs with a 2012-12-11
+timestamp from the In Bucket into the Archive Bucket.
+
+If you then run EmrEtlRunner for 2012-12-10 (the day before), then it will
+miss any orphan events (e.g. from 23:59 on 2012-12-10) which were logged
+in files with 2012-12-11 timestamps - because those 2012-12-11 log files
+have all been archived, and so are not re-processed.
+
+So, always operate EmrEtlRunner in forward chronological order, to avoid
+archiving orphan events before they can be processed.
 
 <a name="scheduling"/>
 ## Scheduling
@@ -291,9 +330,11 @@ To prevent these boundary issues from leading to events ...
 ### Overview
 
 Once you have the ETL process working smoothly, you can schedule a daily task
-to automate the daily ETL process. We recommend running the job in the early
-morning  (say, 4am) when the full set of raw SnowPlow event logs for the day
-before have definitely been finalised.
+to automate the daily ETL process. As explained in the
+[Important usage warnings](#usage-warnings) above, we recommend running the job
+around 3-4am in whichever timezone is used to timestamp your raw SnowPlow log
+files. This way you can be sure that the full set of raw SnowPlow event logs
+for the day you are processing have definitely been finalised.
 
 To consider the different scheduling options in turn:
 
