@@ -293,32 +293,32 @@ We strongly recommend that you:
 Both of these strong recommendations are to avoid you running into **boundary
 issues** - please read on for a detailed explanation.
 
-#### Scheduling EmrEtlRunner for early morning
+#### Schedule EmrEtlRunner for early morning
 
 When working with file-based event logging, it is easy to run into
 boundary issues, where a file with a 2012-12-12 timestamp includes a few
 events from the end of the previous day, 2012-12-11. If you are not
 careful, you can easily end up with an ETL process that silently drops
-those 'orphan events'.
+these 'orphan events'.
 
 We have written EmrEtlRunner so that, when it runs for e.g. 2012-12-11,
 it will also process any orphan events that it finds in the available
 raw SnowPlow logs for 2012-12-12 (the following day).
 
-This is why we strongly recommend scheduling EmrEtlRunner to run at 3-4am
-- when you can be 100% confident that any events from the end of the
+This is why we strongly recommend scheduling EmrEtlRunner to run at 3-4am - 
+when you can be 100% confident that any events from the end of the
 previous day have already been written to log files.
 
-#### Running in forward chronological order
+#### Run in forward chronological order
 
 When EmrEtlRunner successfully processes the raw SnowPlow events for e.g.
 2012-12-11, it moves all the raw SnowPlow event logs with a 2012-12-11
-timestamp from the In Bucket into the Archive Bucket.
+timestamp from your In Bucket into your Archive Bucket.
 
 If you then run EmrEtlRunner for 2012-12-10 (the day before), then it will
 miss any orphan events (e.g. from 23:59 on 2012-12-10) which were logged
-in files with 2012-12-11 timestamps - because those 2012-12-11 log files
-have all been archived, and so are not re-processed.
+in files with 2012-12-11 timestamps - because those files have already
+been archived, and so are not re-processed.
 
 So, always operate EmrEtlRunner in forward chronological order, to avoid
 archiving orphan events before they can be processed.
