@@ -4,7 +4,7 @@
 [Copyright & legal](Copyright-and-legal)  
 [Contributors](Contributors)  
 
-**Get involved**
+**Get involved**  
 [[Talk-to-us]]  
 
 **Guide to contributing**  
