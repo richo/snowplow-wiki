@@ -1,4 +1,4 @@
-**Bigger Data, Together.** SnowPlow Analytics Ltd works with the open source analytics community to deliver SnowPlow, the world's most powerful 
+SnowPlow Analytics Ltd works with the open source analytics community to deliver SnowPlow, the world's most powerful 
 analytics platform. We are proud to be involved in developing, releasing and nurturing open source projects, helping to build and sustain communities - of analysts as well as coders - around them.
 
 Let's build the future of analytics together. To get involved, share your ideas, and collaborate with us, check out the links in the sidebar.
