@@ -5,7 +5,7 @@ Let's build the future of analytics together. To get involved, share your ideas,
 
 ## Tell the world
 
-Using SnowPlow in your company? Add your site to the list __coming soon__
+Using SnowPlow in your company? Add your site to the list _coming soon_
 
 ## Improve SnowPlow
 
