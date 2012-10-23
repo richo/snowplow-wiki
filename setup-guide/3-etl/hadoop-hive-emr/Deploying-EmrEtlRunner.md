@@ -162,8 +162,8 @@ Within the `s3` section, the `buckets` variables are as follows:
 
 * `assets` holds the ETL job's static assets (HiveQL script plus Hive
   deserializer). You can leave this as-is (pointing to SnowPlow
-  Analytics' own public bucket containing these assets) or replace this
-  with your own private bucket containing the assets
+  Analytics' [own public bucket containing these assets](Hosted-assets))
+  or replace this with your own private bucket containing the assets
 * `log` is the bucket in which Amazon EMR will record processing
   information for this job run, including logging any errors  
 * `in` is where you specify your In Bucket
