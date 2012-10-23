@@ -2,7 +2,7 @@ Although still a young platform, SnowPlow has already been deployed by various s
 
 _If you are using SnowPlow and want to be listed here, please email [alex@snowplowanalytics.com] [alex-email]._
 
-## SnowPlow: Production Use Cases
+## SnowPlow: Use Cases
 
 | **Company**           | **Use Case**                                                                               |
 |----------------------:|:-------------------------------------------------------------------------------------------|
