@@ -1,12 +1,12 @@
 **PROJECT & COMMUNITY** 
 
-**The open-source project**  
-[Copyright & legal](Copyright-and-legal)  
-[Contributors](Contributors)  
-
 **Get involved**  
 [[Talk to us]]  
-[[Our users]]
+_Guide to contributing_  
 
-**Guide to contributing**  
-_Section coming soon_  
+**Our community**
+[[Contributors]]  
+[[Our users]]  
+
+**About the project**  
+[Copyright & legal](Copyright-and-legal)  
