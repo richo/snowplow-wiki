@@ -8,7 +8,7 @@
 
 **3. ETL**  
 \> [[Setting up EMR]]  
-[Hive-based ETL on EMR](Deploying-EmrEtlRunner)
+[Hive-based ETL on Amazon EMR](Deploying-EmrEtlRunner)
 
 **4. Storage**  
 Hive
