@@ -9,7 +9,7 @@ JavaScript tracker
 **2. Collectors**  
 [CloudFront collector](Self-hosting the tracking pixel)
 
-**3. ETL**
+**3. ETL**  
 \> [[Setting up EMR]]  
 [Hive-based ETL on EMR](Deploying-EmrEtlRunner)
 
