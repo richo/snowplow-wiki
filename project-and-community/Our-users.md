@@ -2,9 +2,9 @@ Although still a young platform, SnowPlow has already been deployed by various s
 
 _If you are using SnowPlow and want to be listed here, please email [alex@snowplowanalytics.com] [alex-email]._
 
-## SnowPlow: Use Cases
+## Use Cases
 
-| **Company_Name**           | **Use Case**                                                                               |
+| **Company_Name**           | **SnowPlow Use Case**                                                                               |
 |---------------------------:|:-------------------------------------------------------------------------------------------|
 | ![qwaya-logo] [qwaya-logo] | [Qwaya] [qwaya-site] is a next-generation Facebook ads tool, combining ease of use with powerful features such as bulk ad creation and rule based campaign management. SnowPlow is a core part of Qwaya conversion tracking, critical for tuning campaign performance. |
 | ![pbz-logo] [pbz-logo]     | [Psychic Bazaar] [pbz-site] is an online retailer in the mind, body & spirit market. They have installed SnowPlow alongside Google Analytics, using SnowPlow to warehouse their clickstream data, perform customer- and product-level analyses and build custom user cohorts. |
