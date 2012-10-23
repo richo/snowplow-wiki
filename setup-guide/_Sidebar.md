@@ -1,24 +1,28 @@
-**SNOWPLOW SETUP GUIDE**
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
 
-**Introduction**  
-[[SnowPlow setup guide]]  
+**1. Trackers**  
+JavaScript tracker
+> [[Integrating SnowPlow into your website]] 
+> [[Self-hosting snowplow.js|Self-hosting-snowplow-js]]  
+> [[Tracking your marketing campaigns]]  
 
-**Self-hosting on CloudFront**  
-[[Self-hosting the tracking pixel]]  
-[[Self-hosting snowplow.js|Self-hosting-snowplow-js]]  
+**2. Collectors**
+[CloudFront collector](Self-hosting the tracking pixel)
 
-**Implementing JavaScript tracking**  
-[[Integrating SnowPlow into your website]]  
-[[Tracking your marketing campaigns]]  
+**3. ETL**
+> [[Setting up EMR]]  
+[Hive-based ETL on EMR](Deploying-EmrEtlRunner)
 
-**Amazon EMR and CLI tools**  
-[[Setting up EMR]]  
+**4. Storage**
+Hive
+
+**5. Analytics**
 [[Querying the data using Hive]]  
-
-**Optimizing the data structure for query performance**  
 [[Migrating data to optimized format for Hive]]  
  
-**Advanced options**  
+**Miscellaneous**  
 [[Modifying snowplow.js|Modifying-snowplow-js]]  
 [[Ad impression tracking]]  
-[[Mobile app tracking]]
+[[Mobile app tracking]]  
+
+[[Hosted resources]]  
