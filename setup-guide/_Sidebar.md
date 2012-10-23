@@ -17,11 +17,7 @@ JavaScript tracker
 Hive
 
 **5. Analytics**  
-[[Querying the data using Hive]]  
-[[Migrating data to optimized format for Hive]]  
- 
-**Common to all**  
-[[Modifying snowplow.js|Modifying-snowplow-js]]  
-[[Ad impression tracking]]  
+[Analysis using Hive](Querying the data using Hive)  
 
+**Common to all**  
 [[Hosted resources]]  
