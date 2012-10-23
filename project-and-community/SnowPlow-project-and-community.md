@@ -1,10 +1,10 @@
-The SnowPlow team works with the open source analytics community to deliver SnowPlow, the world's most powerful analytics platform. We are proud to be involved in developing, releasing and nurturing open source projects, helping to build and sustain communities (of analysts as well as coders) around them.
+The SnowPlow team works with the open source community to deliver SnowPlow, the world's most powerful analytics platform. We are proud to be involved in developing, releasing and nurturing open source projects, helping to build and sustain communities (of analysts as well as coders) around them.
 
 Let's build the future of analytics together. To get involved, share your ideas, and collaborate with us, check out the links in the sidebar.
 
 ## Tell the world
 
-Using SnowPlow in your company? Add your site [to the list](Our-production-users)
+Using SnowPlow in your company? Add your site [to our list](Our-production-users)!
 
 ## Improve SnowPlow
 
