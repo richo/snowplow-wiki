@@ -1,4 +1,4 @@
-To simplify setting up and running SnowPlow, the SnowPlow Analytics team provide public hosting for some of the sub-components. These hosted assets are publically available through Amazon Web Services (CloudFront and S3), and using them is free for SnowPlow community members.
+To simplify setting up and running SnowPlow, the SnowPlow Analytics team provide public hosting for some of the SnowPlow sub-components. These hosted assets are publically available through Amazon Web Services (CloudFront and S3), and using them is free for SnowPlow community members.
 
 As we release new versions of these assets, we will leave old versions unchanged on their existing URLs - so you won't have to upgrade your own SnowPlow processes unless you want to.
 
