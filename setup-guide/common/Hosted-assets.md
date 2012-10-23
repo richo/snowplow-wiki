@@ -2,7 +2,7 @@ To simplify setting up and running SnowPlow, the SnowPlow Analytics team provide
 
 As we release new versions of these assets, we will leave old versions unchanged on their existing URLs - so you won't have to upgrade your own SnowPlow processes unless you want to.
 
-**While SnowPlow Analytics Ltd will make every reasonable effort to maintain these hosted assets, we will not be liable for any failure to provide this service. All of the hosted assets listed below are freely available via [our GitHub repository] [snowplow-repo] and you are encouraged to host them yourselves.** 
+**While SnowPlow Analytics Ltd will make every reasonable effort to host these assets, we will not be liable for any failure to provide this service. All of the hosted assets listed below are freely available via [our GitHub repository] [snowplow-repo] and you are encouraged to host them yourselves.** 
 
 The **current versions** of the assets hosted by SnowPlow Analytics are as follows:
 
@@ -26,7 +26,13 @@ No hosted assets currently.
 
 The Hive ETL process uses a HiveQL file and a Hive deserializer. These are both made available in a public Amazon S3 bucket, for SnowPlowers who are running their Hive ETL process on Amazon EMR:
 
-    xxx
+#### HiveQL script
+
+    s3://snowplow-emr-assets/hiveql/hive-rolling-etl-0.4.10.q
+
+#### Hive deserializer
+
+    s3://snowplow-emr-assets/serdes/snowplow-log-deserializers-0.4.9.jar
 
 ## 4. Storage
 
