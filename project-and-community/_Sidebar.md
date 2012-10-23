@@ -1,10 +1,10 @@
-**PROJECT & COMMUNITY** 
+**PROJECT & COMMUNITY** [Home](SnowPlow-project-and-community) 
 
 **Get involved**  
 [[Talk to us]]  
-_Guide to contributing_  
+_Guide to contributing coming soon_  
 
-**Our community**
+**Our community**  
 [[Contributors]]  
 [[Our users]]  
 
