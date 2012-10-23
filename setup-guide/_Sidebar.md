@@ -17,4 +17,4 @@ Hive
 [Analysis using Hive](Querying the data using Hive)  
 
 **Common to all**  
-[[Hosted resources]]  
+[[Hosted assets]]  
