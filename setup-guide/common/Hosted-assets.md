@@ -1,8 +1,10 @@
-To simplify setting up and running SnowPlow, the SnowPlow Analytics team provide public hosting for some of the open-source components. These hosted assets are publically available through Amazon Web Services (CloudFront and S3), and using them is free for SnowPlow community members.
+To simplify setting up and running SnowPlow, the SnowPlow Analytics team provide public hosting for some of the sub-components. These hosted assets are publically available through Amazon Web Services (CloudFront and S3), and using them is free for SnowPlow community members.
 
-**While SnowPlow Analytics Ltd will make every reasonable effort to maintain this hosted assets service, we will not be liable for any failure to provide this service. All of these hosted assets are freely available via [our GitHub repository] [snowplow-repo] and you are encouraged to host them yourselves.** 
+As we release new versions of these assets, we will leave old versions unchanged on their existing URLs - so you won't have to upgrade your own SnowPlow processes unless you want to.
 
-The hosted assets are as follows:
+**While SnowPlow Analytics Ltd will make every reasonable effort to maintain these hosted assets, we will not be liable for any failure to provide this service. All of the hosted assets listed below are freely available via [our GitHub repository] [snowplow-repo] and you are encouraged to host them yourselves.** 
+
+The **current versions** of the assets hosted by SnowPlow Analytics are as follows:
 
 ## 1. Trackers
 
@@ -10,7 +12,13 @@ The hosted assets are as follows:
 
 The minified JavaScript tracker is hosted on CloudFront:
 
-    xxx
+    http(s)://d1fc8wv8zag5ca.cloudfront.net/0.7.0/sp.js
+
+**We will be updating this URL structure when we release the next version of the tracker.**
+
+## 2. Collectors
+
+No hosted assets currently.
 
 ## 3. ETL
 
@@ -20,6 +28,16 @@ The Hive ETL process uses a HiveQL file and a Hive deserializer. These are both 
 
     xxx
 
+## 4. Storage
+
+No hosted assets currently.
+
+## 5. Analytics
+
+No hosted assets currently.
+
 ## See also
 
 As well as these hosted assets for running SnowPlow, the SnowPlow Analytics team also make code components and libraries available through Ruby and Java artifact repositories. Please see the [[Artifact repositories]] wiki page for more information.
+
+[snowplow-repo]: https://github.com/snowplow/snowplow
