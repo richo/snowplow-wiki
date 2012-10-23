@@ -1,10 +1,7 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
 
 **1. Trackers**  
-JavaScript tracker  
-\> [[Integrating SnowPlow into your website]]  
-\> [[Self-hosting snowplow.js|Self-hosting-snowplow-js]]  
-\> [[Tracking your marketing campaigns]]  
+[JavaScript tracker](Integrating SnowPlow into your website)  
 
 **2. Collectors**  
 [CloudFront collector](Self-hosting the tracking pixel)
