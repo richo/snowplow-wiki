@@ -12,7 +12,6 @@
  1. [Overview](#usage-overview)
  2. [Command-line options](#cli-options)
  3. [Running in each mode](#running)
- 4. [Important usage warnings](#usage-warnings)
 4. [Scheduling](#scheduling)
  1. [Overview](#scheduling-overview)
  2. [cron](#cron)
@@ -221,15 +220,15 @@ the EmrEtlRunner application itself.
 
 There are two usage modes for EmrEtlRunner:
 
-1. **Daily mode** where EmrEtlRunner is run daily to process the last 24
-   hours worth of raw SnowPlow event logs ready
-2. **Catchup mode** where EmrEtlRunner is run across a 'datespan' of
-   multiple days to bring processing of the raw SnowPlow event logs
-   up-to-date 
+1. **Rolling mode** where EmrEtlRunner processes whatever raw SnowPlow
+   event logs it finds in the In Bucket
+2. **Timespan mode** where EmrEtlRunner only processes those raw
+   SnowPlow event logs whose timestamp is within a timespan specified
+   on the command-line
 
-In particular, catchup mode is useful when running SnowPlow::Etl for the 
-first time, or when something has gone wrong with daily mode and a day's
-processing needs to be re-run.
+Timespan mode can be useful if you have a large backlog of raw SnowPlow
+event logs and you want to start by processing just a small subset of
+those logs.
 
 <a name="cli-options"/>
 ### Command-line options
@@ -243,12 +242,14 @@ Note that the `bundle exec` command will only work when you are inside the
 
 The command-line options for EmrEtlRunner look like this:
 
-    Usage: snowplow-etl [options]
+    Usage: snowplow-emr-etl-runner [options]
 
     Specific options:
         -c, --config CONFIG              configuration file
-        -s, --start YYYY-MM-DD           start date (defaults to yesterday)
-        -e, --end YYYY-MM-DD             end date (defaults to yesterday)
+        -s, --start YYYY-MM-DD           optional start date *
+        -e, --end YYYY-MM-DD             optional end date *
+
+    * Restricts the raw event logs processed by SnowPlow based on their timestamp
 
     Common options:
         -h, --help                       Show this message
@@ -257,71 +258,36 @@ The command-line options for EmrEtlRunner look like this:
 <a name="running"/>
 ### Running in each mode
 
-#### Daily mode
+#### Rolling mode
 
-Invoking EmrEtlRunner with just the `--config` option puts it into daily
-mode, processing raw SnowPlow event logs from **yesterday** only:
+Invoking EmrEtlRunner with just the `--config` option puts it into rolling
+mode, processing all the raw SnowPlow event logs it can find in your In
+Bucket:
 
     $ bundle exec bundle exec snowplow-emr-etl-runner --config my-config.yml
 
-#### Catchup mode
+#### Timespan mode
 
-To run EmrEtlRunner in catchup mode, you need to specify the start and end
-dates as well as the `--config` option, like so:
+To run EmrEtlRunner in timespan mode, you need to specify the start and/or
+end dates as well as the `--config` option, like so:
 
     $ bundle exec bundle exec snowplow-emr-etl-runner \
       --config my-config.yml \
       --start 2012-06-20 \
       --end 2012-06-24 
 
-This will run EmrEtlRunner for the period 20 June 2012 to 24 June 2012
-inclusive.
+This will run EmrEtlRunner on logs which have timestamps in the period 20
+June 2012 to 24 June 2012 inclusive.
 
-<a name="usage-warnings"/>
-### Important usage warnings
+Note that you do not have to specify both the start and end dates:
 
-#### Strong recommendations
+1. Only specify the start date and the timespan will run from your start
+   date up to today, inclusive
+2. Only specify the end date and the timespan will run from the beginning
+   of time up to your end date, inclusive
 
-We strongly recommend that you:
-
-1. Schedule EmrEtlRunner for around 3-4am in whichever timezone is used
-   to timestamp your raw SnowPlow log files, **and:**
-2. Always operate EmrEtlRunner in forward chronological order - so for
-   example **do not** run EmrEtlRunner for 2012-12-11 and then later run
-   it for 2012-12-10 (the day before)
-
-Follow both of these recommendations to avoid running into any **boundary
-issues** - please read on for a detailed explanation.
-
-#### Schedule EmrEtlRunner for early morning
-
-When working with file-based event logging, it is easy to encounter
-boundary issues, where a file with e.g. a 2012-12-12 timestamp includes a
-few events from the end of the previous day, 2012-12-11. If you are not
-careful, you can easily end up with an ETL process that silently drops
-these 'orphan events'.
-
-We have written EmrEtlRunner so that, when it runs for e.g. 2012-12-11,
-it will also process any orphan events that it finds in the available
-raw SnowPlow logs for 2012-12-12 (the following day).
-
-This is why we strongly recommend scheduling EmrEtlRunner to run at 3-4am - 
-when you can be 100% confident that any events from the end of the
-previous day have already been written to log files.
-
-#### Run in forward chronological order
-
-When EmrEtlRunner successfully completes processing the raw SnowPlow events
-for e.g. 2012-12-11, it moves all the raw SnowPlow event logs with a
-2012-12-11 timestamp from your In Bucket into your Archive Bucket.
-
-If you then run EmrEtlRunner for 2012-12-10 (the day before), it will miss
-any orphan events (e.g. from 23:59 on 2012-12-10) which were logged in
-files with 2012-12-11 timestamps - because those files have already been
-archived, and so are not re-processed.
-
-So, always operate EmrEtlRunner in forward chronological order, to avoid
-archiving orphan events before they can be processed.
+If your raw SnowPlow logs are generated by the Amazon CloudFront collector,
+please note that CloudFront timestamps in **UTC**.
 
 <a name="scheduling"/>
 ## Scheduling
@@ -329,15 +295,12 @@ archiving orphan events before they can be processed.
 <a name="scheduling-overview"/>
 ### Overview
 
-Once you have the ETL process working smoothly, you can schedule a daily task
-to automate the daily ETL process. As explained in the
-[Important usage warnings](#usage-warnings) above, we recommend running the job
-around 3-4am in whichever timezone is used to timestamp your raw SnowPlow log
-files. This way you can be sure that the full set of raw SnowPlow event logs
-for the day you are processing have definitely been finalised.
+Once you have the ETL process working smoothly, you can schedule a daily
+(or more frequent) task to automate the daily ETL process.
 
-If your raw SnowPlow logs are generated by the Amazon CloudFront collector,
-please note that they are timestamped in **UTC**.
+We run our daily ETL jobs at 3am UTC, so that we are sure that we have
+processed all of the events from the day before (CloudFront logs can
+take some time to arrive).
 
 To consider your different scheduling options in turn:
 
