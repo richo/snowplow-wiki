@@ -14,7 +14,7 @@ In order to evaluate, and if appropriate enter into and complete, one or more bu
 
 4. Confidential Information does not include information that: (a) was known to Receiver without restriction before receipt from Discloser; (b) is publicly available through no fault of Receiver; (c) is lawfully received by Receiver from a third party without a duty of confidentiality; or (d) is independently developed by Receiver. A party may disclose Confidential Information when compelled to do so by law provided that it gives reasonable prior notice to the other party, unless a court orders that such notice is forbidden.
 
-5. Either party may terminate this NDA on thirty days prior written notice, but this NDA’s provisions will still survive in respect of Confidential Information disclosed before termination.
+5. Either party may terminate this NDA on thirty days' prior written notice, but this NDA’s provisions will still survive in respect of Confidential Information disclosed before termination.
 
 6. Unless the parties otherwise agree in writing, Receiver’s duty to protect Confidential Information expires five years from disclosure.
 
