@@ -39,11 +39,11 @@ A party may disclose Confidential Information when compelled to do so by law pro
 
   
 Signed for and on behalf of `COMPANY_NAME` by:  
-  
-  
-  
-  
-___________________
+>
+>
+>
+>
+>__________________
   
 Print name:  
   
