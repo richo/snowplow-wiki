@@ -10,4 +10,3 @@ _Guide to contributing coming soon_
 
 **About the project**  
 [Copyright & legal](Copyright-and-legal)  
-[[Mutual NDA]]  
