@@ -4,7 +4,7 @@ As we release new versions of these assets, we will leave old versions unchanged
 
 **While SnowPlow Analytics Ltd will make every reasonable effort to host these assets, we will not be liable for any failure to provide this service. All of the hosted assets listed below are freely available via [our GitHub repository] [snowplow-repo] and you are encouraged to host them yourselves.** 
 
-The **current versions** of the assets hosted by SnowPlow Analytics are as follows:
+The **current versions** of the assets hosted by the SnowPlow Analytics team are as follows:
 
 ## 1. Trackers
 
@@ -14,7 +14,7 @@ The minified JavaScript tracker is hosted on CloudFront:
 
     http(s)://d1fc8wv8zag5ca.cloudfront.net/0.7.0/sp.js
 
-**We will be updating this URL structure when we release the next version of the tracker.**
+**We will be updating this URL structure for the next version of the tracker.**
 
 ## 2. Collectors
 
