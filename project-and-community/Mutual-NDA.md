@@ -1,6 +1,6 @@
 Sometimes we need to sign an NDA with potential partners and
 customers. This page contains the standard SnowPlow Analytics
-Ltd NDA.
+Ltd mutual NDA.
 
 ## `COMPANY_NAME` – SnowPlow Analytics Ltd Mutual Non-Disclosure Agreement (NDA)
 
