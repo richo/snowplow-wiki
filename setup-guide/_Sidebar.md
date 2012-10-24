@@ -7,14 +7,14 @@
 [CloudFront collector](Self-hosting the tracking pixel)
 
 **3. ETL**  
-\> [[Setting up EMR]]  
 [Hive-based ETL on Amazon EMR](Deploying-EmrEtlRunner)
 
 **4. Storage**  
-Hive
+[[Hive storage setup]]
 
 **5. Analytics**  
 [Analysis using Hive](Querying the data using Hive)  
 
-**Common to all**  
+**Common**  
+[[Setting up EMR]]  
 [[Hosted assets]]  
