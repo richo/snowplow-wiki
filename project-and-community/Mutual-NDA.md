@@ -35,7 +35,7 @@ A party may disclose Confidential Information when compelled to do so by law pro
 
 10. This NDA is the parties’ entire agreement on this topic, superseding any other agreements. Any amendments must be in writing. Failure to enforce any of the provisions of this NDA will not constitute a waiver.
 
-11. This NDA and all disputes and claims arising out of or in connection with it are governed by English law.   the sole exception of any application for injunctive relief, the parties irrevocably submit to the exclusive jurisdiction of the English courts.  
+11. This NDA and all disputes and claims arising out of or in connection with it are governed by English law.   the sole exception of any application for injunctive relief, the parties irrevocably submit to the exclusive jurisdiction of the English courts.
   
 Signed for and on behalf of `COMPANY_NAME` by:
   
@@ -44,8 +44,9 @@ Signed for and on behalf of `COMPANY_NAME` by:
   
 ___________________
   
-Print name:
-Date:
+Print name:  
+  
+Date:  
   
   
 Signed for and on behalf of SnowPlow Analytics Ltd by:
@@ -54,5 +55,6 @@ Signed for and on behalf of SnowPlow Analytics Ltd by:
   
 ___________________
   
-Print name:
-Date:
+Print name:  
+
+Date:  
