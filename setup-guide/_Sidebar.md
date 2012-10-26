@@ -5,6 +5,7 @@
 
 **2. Collectors**  
 [CloudFront collector](Self-hosting the tracking pixel)
+[SnowCannon node.js collector](snowcannon setup guide)
 
 **3. ETL**  
 [Hive-based ETL on Amazon EMR](Deploying-EmrEtlRunner)
