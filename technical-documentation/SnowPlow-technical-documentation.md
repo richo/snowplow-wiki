@@ -14,9 +14,9 @@ The technical documentation is split into 5 sections, reflecting the five compon
 [ETL](etl)
 
 ## 4. Storage
-[Overall SnowPlow data structure](data structure) (platform independent)
-[S3 / hive](s3-hive)
-[Infobright](infobright)
+[Overall SnowPlow data structure](data structure) (platform independent)  
+[S3 / hive](s3-hive)  
+[Infobright](infobright)  
 
 ## 5. Analytics
 [Analytics](analytics documentation)
