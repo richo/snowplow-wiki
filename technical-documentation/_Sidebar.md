@@ -11,8 +11,8 @@
 
 **4. Storage**  
 [Overall SnowPlow data structure](canonical-data-structure)  
-[S3 / hive](s3-hive)  
-[Infobright](infobright)  
+[S3 / hive](s3-apache-hive-storage)  
+[Infobright](infobright-storage)  
 
 **5. Analytics**  
 [Analysis using Hive](Querying the data using Hive)  

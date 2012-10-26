@@ -15,8 +15,8 @@ The technical documentation is split into 5 sections, reflecting the five compon
 
 ## 4. Storage
 [Overall SnowPlow data structure](canonical-data-structure) (platform independent)  
-[S3 / hive](s3-hive)  
-[Infobright](infobright)  
+[S3 / hive](s3-apache-hive-storage)  
+[Infobright](infobright-storage)  
 
 ## 5. Analytics
 [Analytics](analytics documentation)
