@@ -4,7 +4,7 @@
 [JavaScript tracker](Integrating SnowPlow into your website)  
 
 **2. Collectors**  
-[CloudFront collector](Self-hosting the tracking pixel)
+[CloudFront collector](Self-hosting the tracking pixel)  
 [SnowCannon node.js collector](snowcannon setup guide)
 
 **3. ETL**  
