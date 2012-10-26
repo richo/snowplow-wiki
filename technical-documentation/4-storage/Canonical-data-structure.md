@@ -18,6 +18,8 @@ The fields recorded in the *SnowPlow events table* today:
 
 | **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | **DESCRIPTION**            |
 |:---------------------|:---------------|:------------------|:---------------------------|
+| **App**              |                |                   | Data related to the specific website / application SnowPlow is tracking behaviour on |
+| `app_id`             | STRING         | Yes               | Unique identifier for the website or app (useful when SnowPlow is run across several websites / applications) |
 | **Date/time**        |                |                   | _The date and time of this page view or event_ |
 | `dt`                 | STRING         | No                | Date                       |
 | `tm`                 | STRING         | No                | Time                       |
@@ -62,6 +64,7 @@ The fields recorded in the *SnowPlow events table* today:
 | `dvce_screenwidth`   | INT            | Yes               | Screenwidth in pixels      |
 | `dvce_screenheight`  | INT            | Yes               | Screenheight in pixels     |
 
+
 <a name="future" />
 ## Future SnowPlow data structure
 
@@ -69,6 +72,8 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 
 | **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | Implemented?  | **DESCRIPTION**            |
 |:---------------------|:---------------|:------------------|:--------------|:---------------------------|
+| **App**              |                |                   |               | Data related to the specific website / application SnowPlow is tracking behaviour on |
+| `app_id`             | STRING         | Yes               |               | Unique identifier for the website or app (useful when SnowPlow is run across several websites / applications) |
 | **Date/time**        |                |                   |               | _The date and time of this page view or event_ |
 | `dt`                 | STRING         | No                | Yes           | Date                       |
 | `tm`                 | STRING         | No                | Yes           | Time                       |
