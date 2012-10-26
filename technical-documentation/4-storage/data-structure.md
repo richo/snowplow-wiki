@@ -1,0 +1,1 @@
+# Overall SnowPlow data structure
