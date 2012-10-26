@@ -1,9 +1,17 @@
-# Canonical data structure
+# Canonical data structure  
 
 * **Single table** SnowPlow data is stored in a single, "fat" (many columns) table. We call this the *SnowPlow events table*
 * **Each line represents one event**. Each line in the table represents a single *event*, be that a page view, add to basket, play video etc, facebook-like etc.
 * **Immutable log**. The SnowPlow data table is designed to be immutable: the data in each line should not change over time. Data points that we would expect to change over time (e.g. what cohort a particular user belongs to, how we classify a particular visitor) can be derived from SnowPlow data. However, our recommendation is that these derived fields should be defined and calculated at analysis time, stored in a separate table and joined to the *SnowPlow events table* when performing any analysis
 
+### Contents
+
+1. [Current SnowPlow data structure](#current)
+2. [Future SnowPlow data structure](#future)
+3. [S3 / Hive storage](s3-hive-storage)
+4. [Infobright storage](infobright-storage)
+
+<a name="current" />
 ## Current SnowPlow data structure
 
 The fields recorded in the *SnowPlow events table* today:
@@ -54,11 +62,12 @@ The fields recorded in the *SnowPlow events table* today:
 | `dvce_screenwidth`   | INT            | Yes               | Screenwidth in pixels      |
 | `dvce_screenheight`  | INT            | Yes               | Screenheight in pixels     |
 
+<a name="future" />
 ## Future SnowPlow data structure
 
 We are building out the **SnowPlow events table** to incorporate new fields in the near future. A complete list of all the fields (current and intended) is given below:
 
-| **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | Implemented   | **DESCRIPTION**            |
+| **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | Implemented?  | **DESCRIPTION**            |
 |:---------------------|:---------------|:------------------|:--------------|:---------------------------|
 | **Date/time**        |                |                   |               | _The date and time of this page view or event_ |
 | `dt`                 | STRING         | No                | Yes           | Date                       |
