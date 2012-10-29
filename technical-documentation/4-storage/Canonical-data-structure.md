@@ -77,7 +77,8 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | **Date/time**        |                |                   |               | _The date and time of this page view or event_ |
 | `dt`                 | STRING         | No                | Yes           | Date                       |
 | `tm`                 | STRING         | No                | Yes           | Time                       |
-| **Transaction**      |                |                   |               | _Identifying this logging event_ |
+| **Event**            |                |                   |               | _Identifying this logging event_ |
+| `event_name`         | STRING         | No                | No            | Event name |
 | `txn_id`             | STRING         | No                | Yes           | A unique event ID. If two or more records have the same txn_id, one is a duplicate record |
 | **User and visit**   |                |                   | Yes           | _Identifying the web user and this specific visit_ |
 | `user_id`            | STRING         | No                | Yes           | A unique ID assigned to each browser and stored on the SnowPlow cookie. |
@@ -96,7 +97,7 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | `mkt_content`        | STRING         | Yes               | Yes           | The content of the ad, or a reference to the creative ID. Used e.g. to compare the results within a campaign between different creatives. |
 | `mkt_campaign`       | STRING         | Yes               | Yes           | The campaign name. A single campaign may involve ads on multiple sources / mediums, so `mkt_campaign` is often a way of grouping them together into a single marketing initiative |
 | `mkt_referrerurl     | STRING         | Yes               | No            | URL of referrer. Same as `page_referrer` but only set where `page_referrer` is not the same domain as the website |
-| **Event**            |                |                   |               | _If this is an event being logged, its details_ |
+| ** Custom event fields **             |                   |               |                                                 | _If this is an event being logged, its details_ | 
 | `ev_category`        | STRING         | Yes               | Yes           | The category of event e.g. 'ecomm', 'media' |
 | `ev_action`          | STRING         | Yes               | Yes           | The action performed e.g. 'play-video', 'add-to-basket' |
 | `ev_label`           | STRING         | Yes               | Yes           | A label associated with the event / action. This is often set to the *object* and action is performed *on* e.g. the product_id of the item added-to-basket, or the ID of the video played |
@@ -139,3 +140,45 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | `geo_postcode`       | STRING         | Yes               | No            | Visitor postcode           |
 | `geo_latitude`       | STRING         | Yes               | No            | Visitor location latitude  |
 | `geo_longitude`      | STRING         | Yes               | No            | Visitor location longitude |
+| **Custom variables   |                |                   |               | _Customer variables_       |
+| `cv_user1`           | STRING         | No                | No            | Custom variable with scope set at the `user_id` level. (Ie applies to this user over his / her lifetime ) |
+| `cv_user2`           | STRING         | No                | No            | _As above_ |
+| `cv_user3`           | STRING         | No                | No            | _As above_ |
+| `cv_user4`           | STRING         | No                | No            | _As above_ |
+| `cv_user5`           | STRING         | No                | No            | _As above_ |
+| `cv_user6`           | STRING         | No                | No            | _As above_ |
+| `cv_user7`           | STRING         | No                | No            | _As above_ |
+| `cv_user8`           | STRING         | No                | No            | _As above_ |
+| `cv_user9`           | STRING         | No                | No            | _As above_ |
+| `cv_user10`          | STRING         | No                | No            | _As above_ |
+| `cv_session1`        | STRING         | No                | No            | Custom variable with scope set at the session (e.g. `visit_id`) level. (Ie applies to this particular user engaged in this particular workflow.) | 
+| `cv_session2`        | STRING         | No                | No            | _As above_ |
+| `cv_session3`        | STRING         | No                | No            | _As above_ |
+| `cv_session4`        | STRING         | No                | No            | _As above_ |
+| `cv_session5`        | STRING         | No                | No            | _As above_ |
+| `cv_session6`        | STRING         | No                | No            | _As above_ |
+| `cv_session7`        | STRING         | No                | No            | _As above_ |
+| `cv_session8`        | STRING         | No                | No            | _As above_ |
+| `cv_session9`        | STRING         | No                | No            | _As above_ |
+| `cv_session10`       | STRING         | No                | No            | _As above_ |
+| `cv_event1`          | STRING         | No                | No            | Custom variable with scope set to the event level |
+| `cv_event2`          | STRING         | No                | No            | _As above_ |
+| `cv_event3`          | STRING         | No                | No            | _As above_ |
+| `cv_event4`          | STRING         | No                | No            | _As above_ |
+| `cv_event5`          | STRING         | No                | No            | _As above_ |
+| `cv_event6`          | STRING         | No                | No            | _As above_ |
+| `cv_event7`          | STRING         | No                | No            | _As above_ |
+| `cv_event8`          | STRING         | No                | No            | _As above_ |
+| `cv_event9`          | STRING         | No                | No            | _As above_ |
+| `cv_event10`         | STRING         | No                | No            | _As above_ |
+| `cv_context1`        | STRING         | No                | No            | Custom variable with scope set to this particular context e.g. page, screen, widget... |
+| `cv_context2`        | STRING         | No                | No            | _As above_ |
+| `cv_context3`        | STRING         | No                | No            | _As above_ |
+| `cv_context4`        | STRING         | No                | No            | _As above_ |
+| `cv_context5`        | STRING         | No                | No            | _As above_ |
+| `cv_context6`        | STRING         | No                | No            | _As above_ |
+| `cv_context7`        | STRING         | No                | No            | _As above_ |
+| `cv_context8`        | STRING         | No                | No            | _As above_ |
+| `cv_context9`        | STRING         | No                | No            | _As above_ |
+| `cv_context10`       | STRING         | No                | No            | _As above_ |
+| `cv_json`            | STRING         | No                | No            | Field that can be used to stuff any sort of custom event JSON if desired |
