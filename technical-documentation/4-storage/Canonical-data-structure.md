@@ -8,7 +8,7 @@
 
 1. [Current SnowPlow data structure](#current)
 2. [Future SnowPlow data structure](#future)
-3. [S3 / Hive storage](s3-hive-storage)
+3. [S3 / Hive storage](s3-apache-hive-storage)
 4. [Infobright storage](infobright-storage)
 
 <a name="current" />
@@ -45,6 +45,21 @@ The fields recorded in the *SnowPlow events table* today:
 | `ev_label`           | STRING         | Yes               | A label associated with the event / action. This is often set to the *object* and action is performed *on* e.g. the product_id of the item added-to-basket, or the ID of the video played |
 | `ev_property`        | STRING         | Yes               | A property associated with the event / action. This might be the number of seconds into a video play starts, or the quantity of an item added to basket |
 | `ev_value`           | STRING         | Yes               | A value associated with with the action e.g. the value of the items added to basket |
+| **Ecommerce**        |                |                   | _Ecomm transaction tracking_        |
+| `tr_order-id`        | STRING         | Yes               | Unique ID for the transaction |
+| `tr_affiliation      | STRING         | Yes               |                               |
+| `tr_total`           | DECIMAL        | Yes               | Total transaction value |
+| `tr_tax`             | DECIMAL        | Yes               | Total sales tax |
+| `tr_shipping`        | DECIMAL        | Yes               | Total shipping charged |
+| `tr_city`            | STRING         | Yes               | Buyer city location |
+| `tr_state`           | STRING         | Yes               | Buyer state location |
+| `tr_country`         | STRING         | Yes               | Buyer country location |
+| `ti_orderid`         | STRING         | Yes               | Unique ID for the transaction, same as `tr_orderid` |
+| `ti_sku`             | STRING         | Yes               | Item SKU |
+| `ti_name`            | STRING         | Yes               | Item name |
+| `ti_category`        | STRING         | Yes               | Category of item |
+| `ti_price`           | DECIMAL        | Yes               | Item price |
+| `ti_quantity`        | INT            | Yes               | Quantity of item purchased |
 | **Browser**          |                |                   | _Information about the web browser_ |
 | `br_name`            | STRING         | Yes               | Browser name e.g. Internet Explorer |
 | `br_family`          | STRING         | Yes               | Browser family e.g. Chrome          |
@@ -108,6 +123,21 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | `social_action`      | STRING         | Yes               | No            | Action that user performed e.g. `like` |
 | 'social_target'      | STRING         | Yes               | No            | The social object that the action was performed on e.g. the video that was 'liked' |
 | `social_pagepath`    | STRING         | Yes               | No            | The page URL the action was committed on |
+| **Ecommerce**        |                |                   | _Ecomm transaction tracking_        |
+| `tr_order-id`        | STRING         | Yes               | Unique ID for the transaction |
+| `tr_affiliation      | STRING         | Yes               |                               |
+| `tr_total`           | DECIMAL        | Yes               | Total transaction value |
+| `tr_tax`             | DECIMAL        | Yes               | Total sales tax |
+| `tr_shipping`        | DECIMAL        | Yes               | Total shipping charged |
+| `tr_city`            | STRING         | Yes               | Buyer city location |
+| `tr_state`           | STRING         | Yes               | Buyer state location |
+| `tr_country`         | STRING         | Yes               | Buyer country location |
+| `ti_orderid`         | STRING         | Yes               | Unique ID for the transaction, same as `tr_orderid` |
+| `ti_sku`             | STRING         | Yes               | Item SKU |
+| `ti_name`            | STRING         | Yes               | Item name |
+| `ti_category`        | STRING         | Yes               | Category of item |
+| `ti_price`           | DECIMAL        | Yes               | Item price |
+| `ti_quantity`        | INT            | Yes               | Quantity of item purchased |
 | **Browser**          |                |                   |               | _Information about the web browser_ |
 | `br_name`            | STRING         | Yes               | Yes           | Browser name e.g. Internet Explorer 9 |
 | `br_family`          | STRING         | Yes               | Yes           | Browser family e.g. Chrome          |
