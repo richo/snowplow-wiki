@@ -97,8 +97,9 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | `event_name`         | STRING         | No                | No            | Event name |
 | `txn_id`             | STRING         | No                | Yes           | A unique event ID. If two or more records have the same txn_id, one is a duplicate record |
 | **SnowPlow version** |                |                   |               | _Data related to the version of SnowPlow (and subsystems) used to capture and store the data |
-| `v_tracker`          | STRING         | Yes               | No            | Tracker ID and version |
-| `v_collector`        | STRING         | Yes               | No            | Collector ID and version |
+| `v_tracker`          | STRING         | Yes               | No            | Name and version of tracker used |
+| `v_collector`        | STRING         | Yes               | No            | Name and version of collector used |
+| `v_etl`        | STRING         | Yes               | No            | Name and version of ETL process used |
 | **User and visit**   |                |                   | Yes           | _Identifying the web user and this specific visit_ |
 | `user_id`            | STRING         | No                | Yes           | A unique ID assigned to each browser and stored on the SnowPlow cookie. |
 | `user_ipaddress`     | STRING         | No                | Yes           | Visitor IP Address         |
