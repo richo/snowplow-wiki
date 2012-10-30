@@ -38,7 +38,7 @@ And then execute:
 
 Just one currently:
 
-1. [Scala Util] [scala-util-maven] - reusable Scala code from SnowPlow Analytics [GitHub repo] [scala-util-github])
+1. [Scala Util] [scala-util-maven] - reusable Scala code from SnowPlow Analytics ([GitHub repo] [scala-util-github])
 
 ### Using in your project
 
@@ -60,7 +60,7 @@ Add this into your `project.clj` for Leiningen:
 
 #### Java
 
-Following code can be merged into your HOME/.m2/settings.xml to be able to use this repository:
+Following code can be merged into your `HOME/.m2/settings.xml` to be able to use this repository:
 
 ```xml
 <settings>
@@ -87,7 +87,9 @@ Following code can be merged into your HOME/.m2/settings.xml to be able to use t
 
 ## See also
 
-As well as these repositories for SnowPlow code components and libraries, the SnowPlow Analytics team also provide public hosting for some of the SnowPlow sub-components. Please see the [[Hosted assets]] wiki page for more information.
+As well as these repositories for SnowPlow code components and libraries, the SnowPlow Analytics team also provide public hosting for some of the SnowPlow sub-components.
+
+Please see the [[Hosted assets]] wiki page for more information.
 
 [rubygems]: https://rubygems.org/
 [maven-snplow]: http://maven.snplow.com/

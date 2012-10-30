@@ -44,6 +44,8 @@ No hosted assets currently.
 
 ## See also
 
-As well as these hosted assets for running SnowPlow, the SnowPlow Analytics team also make code components and libraries available through Ruby and Java artifact repositories. Please see the [[Artifact repositories]] wiki page for more information.
+As well as these hosted assets for running SnowPlow, the SnowPlow Analytics team also make code components and libraries available through Ruby and Java artifact repositories.
+
+Please see the [[Artifact repositories]] wiki page for more information.
 
 [snowplow-repo]: https://github.com/snowplow/snowplow
