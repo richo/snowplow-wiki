@@ -38,9 +38,25 @@ And then execute:
 
 Just one currently:
 
-1. [Scala Util] [scala-util-rubygems] - reusable Scala code from SnowPlow Analytics 
+1. [Scala Util] [scala-util-maven] - reusable Scala code from SnowPlow Analytics [GitHub repo] [scala-util-github])
 
 ### Using in your project
+
+#### Scala
+
+Add this repository to your SBT config:
+
+```scala
+val snowplow = "SnowPlow Analytics Maven repo" at "http://maven.snplow.com/releases/"
+```
+
+#### Clojure
+
+Add this into your `project.clj` for Leiningen:
+
+```clojure
+:repositories [["SnowPlow Analytics Maven repo" "http://maven.snplow.com/releases/"] 
+```
 
 #### Java
 
@@ -67,22 +83,6 @@ Following code can be merged into your HOME/.m2/settings.xml to be able to use t
     </profile>
   </profiles>
 </settings>
-```
-
-#### Scala
-
-Add this repository to your SBT config:
-
-```scala
-val snowplow = "SnowPlow Analytics Maven repo" at "http://maven.snplow.com/releases/"
-```
-
-#### Clojure
-
-Add this into your `project.clj` for Leiningen:
-
-```clojure
-:repositories [["SnowPlow Analytics Maven repo" "http://maven.snplow.com/releases/"] 
 ```
 
 ## See also
