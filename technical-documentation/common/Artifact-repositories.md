@@ -15,7 +15,7 @@ RubyGems.org is the Ruby community's gem hosting service. You can find all of ou
 
 Current libraries are:
 
-1. [Attlib] [attlib-rubygems] - our library for extracting search marketing attribution data from referrer URLs ([GitHub repo] [attlib-github])
+1. [Attlib] [attlib-rubygems] - extracts search marketing attribution data from referrer URLs ([GitHub repo] [attlib-github])
 2. [Infobright Loader] [irl-rubygems] - our data loader for Infobright ([GitHub repo] [irl-github])
 
 ### Using in your project
