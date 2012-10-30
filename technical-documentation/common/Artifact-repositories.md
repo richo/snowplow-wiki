@@ -55,7 +55,8 @@ val snowplow = "SnowPlow Analytics Maven repo" at "http://maven.snplow.com/relea
 Add this into your `project.clj` for Leiningen:
 
 ```clojure
-:repositories [["SnowPlow Analytics Maven repo" "http://maven.snplow.com/releases/"] 
+:repositories [["SnowPlow Analytics Maven repo" "http://maven.snplow.com/releases/"]
+               ...]
 ```
 
 #### Java
