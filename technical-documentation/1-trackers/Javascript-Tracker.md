@@ -9,16 +9,16 @@
 6. [Campaign tracking](#campaign)  
 
 <a name="overview" />
-### Overview
+## Overview
 
-The [SnowPlow Javascript tracker](https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/) works in much the same way as Javascript trackers for other major web analytics solutions including Google Analytics and Omniture.
+The [SnowPlow Javascript tracker](https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/) works in much the same way as Javascript trackers for other major web analytics solutions including Google Analytics and Omniture. In fact, we have tried to 
 
 Tracking is done by inserting Javascript tags onto pages. These tags run functions defined in [snowplow.js](https://github.com/snowplow/snowplow/blob/master/1-trackers/javascript-tracker/js/snowplow.js), that trigger GET requests of the SnowPlow pixel. The Javascript functions append data points to be passed into SnowPlow onto the query string for the GET requests. These then get logged by the SnowPlow [collector](collectors). For a full list of data points that can be passed into SnowPlow in this way, please refer to the [SnowPlow tracker protocol](snowplow-tracker-protocol) documentation.
 
 The Javascript tracker supports both syncronous and asyncronous tags. We recommend the asyncronous tags in nearly all instances, as these do not slow down page load times. Both methods are documented below.
 
 <a name="page" />
-### Pageview tracking
+## Pageview tracking
 
 Pageview tracking is executed using the `trackPageView` function call. This is included in part of the core SnowPlow tag, added to the <head> section of the website(s) on which SnowPlow is implemented.
 
@@ -26,21 +26,23 @@ Pageview tracking is executed using the `trackPageView` function call. This is i
 
 By inserting the following code into the <head> section of the each web page, views of those pages will be tracked in an 'async' manner:
 
-	<!-- SnowPlow starts plowing -->
-	<script type="text/javascript">
-	var _snaq = _snaq || [];
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var _snaq = _snaq || [];
 
-	_snaq.push(['setAccount', '{{ACCOUNT}}']);
-	_snaq.push(['trackPageView']);
-	_snaq.push(['enableLinkTracking']);
+_snaq.push(['setAccount', '{{ACCOUNT}}']);
+_snaq.push(['trackPageView']);
+_snaq.push(['enableLinkTracking']);
 
-	(function() {
-	var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
-	sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
-	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
-	})();
-	 </script>
-	<!-- SnowPlow stops plowing -->
+(function() {
+var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+})();
+ </script>
+<!-- SnowPlow stops plowing -->
+```
 
 
 Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are [hosting the SnowPlow Cloudfront collector yourself](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting).
@@ -49,26 +51,28 @@ Note: you will need to update the {{ACCOUNT}} field with an account ID provided 
 
 By inserting the following code into the <head> section of each web page, views of those pages will be tracked in a 'sync' manner:
 
-	<!-- SnowPlow starts plowing -->
-	<script type="text/javascript">
-	var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
-	document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-	try {
-	var snowplowTracker = SnowPlow.getTracker('{{ACCOUNT}}');
-	snowplowTracker.trackPageView();
-	snowplowTracker.enableLinkTracking();
-	} catch ( err ) {}
-	</script>
-	<!-- SnowPlow stops plowing -->
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var snowplowTracker = SnowPlow.getTracker('{{ACCOUNT}}');
+snowplowTracker.trackPageView();
+snowplowTracker.enableLinkTracking();
+} catch ( err ) {}
+</script>
+<!-- SnowPlow stops plowing -->
+```
 
 Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are [hosting the SnowPlow Cloudfront collector yourself](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting).
 
 [Back to top](#top)
 
 <a name="events" />
-### Event tracking
+## Event tracking
 
 #### Philosophy
 
@@ -97,11 +101,15 @@ The concept of event tracking is at the heart of SnowPlow. In the 'classical' mo
 
 The async specification for the `trackEvent` method is:
 
-	_snaq.push(['trackEvent', 'category','action','object','property','value'])
+```javascript
+_snaq.push(['trackEvent', 'category','action','object','property','value'])
+```
 
 An example of tracking a user listening to a music mix:
 
-	_snaq.push(['trackEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', , '0.0'])
+```javascript
+_snaq.push(['trackEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', , '0.0'])
+```
 
 Note that in the above example no value is set for the `event property`.
 
@@ -109,9 +117,161 @@ Note that in the above example no value is set for the `event property`.
 
 The sync specification for the `trackEvent` method is:
 
-	trackEvent('category','action','object','property','value')
+```javascript
+trackEvent('category','action','object','property','value')
+```
 
 An example of tracking a user adding an item to basket:
 
-	trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
+```javascript
+trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
+```
 
+## Ecommerce tracking
+
+Whilst it is possible to track all ecommerce events using SnowPlow's generic [event tracking](#events) (described [above](#events), it is also possible to track online transactions using dedicated Ecommerce Tracking, described here. Tracking purchase events using the Ecommerce Tracking is a 3 step process:
+
+1. **Create a transaction object**. Use `addTrans()` method to initialize a transaction object. This will be the object that is loaded with all the data relevant to the specific transaction that is being tracked including all the items in the order, the prices of the items, the price of shipping and the `order_id`.
+2. **Add items to the transaction.** Use the `addItem()` method to add data about each individual item to the transaction object.
+3. **Submit the transaction to SnowPlow** using the trackTrans() method, once all the relevant data has been loaded into the object.
+
+#### Anatomy of ecommerce tracking
+
+**The addTrans() method**
+
+| **Parameter**                  | **Required?** | **Example value** | 
+|:-------------------------------|:--------------|:------------------|
+| `order ID`                     | Yes           | '1234'            |
+| `affiliation or store name`    | No            | 'Womens Apparel'  |
+| `total spend`                  | Yes           | '19.99'           |
+| `shipping cost`                | No            | '2.99'            |
+| `city`                         | No            | 'San Jose'        | 
+| `state or province`            | No            | 'California'      |
+| `country`                      | No            | 'USA'             |
+
+**The addItem() method**
+
+| **Parameter**                  | **Required?**                                     | **Example value** |
+|:-------------------------------|:--------------------------------------------------|:------------------|
+| `order ID`                     | Yes (in order to associate item with transaction) | '1234'            |
+| `SKU / product code`           | Yes                                               | 'pbz0001234'      |
+| `product name`                 | No, but advisable (to make interpreting SKU easier) | 'Black Tarot'   |
+| `category or variation`        | No                                                | 'Large'           |
+| `unit price`                   | Yes                                               | '9.99'            |
+| `quantity`                     | Yes                                               | '1'               |
+
+**The trackTrans() method**
+
+This method is called without any parameters. It pings the SnowPlow Collector with the data added to the transaction object created using the `addTrans()` and `addItem()` method calls above.
+
+### Example ecommerce tracking code
+
+#### Async example
+
+Note how similar the SnowPlow Ecommerce tracking is to the [Google equivalent](https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingEcommerce). This should make adding SnowPlow tracking alongside Google Analytics tracking very straightforward.
+
+```html
+<html>
+<head>
+<title>Receipt for your clothing purchase from Acme Clothing</title>
+<script type="text/javascript">
+
+  var _snaq = _snaq || [];
+  _snaq.push(['setAccount', 'UA-XXXXX-X']);
+  _snaq.push(['trackPageview']);
+  _snaq.push(['addTrans',
+    '1234',           // order ID - required
+    'Acme Clothing',  // affiliation or store name
+    '11.99',          // total - required
+    '1.29',           // tax
+    '5',              // shipping
+    'San Jose',       // city
+    'California',     // state or province
+    'USA'             // country
+  ]);
+
+   // add item might be called for every item in the shopping cart
+   // where your ecommerce engine loops through each item in the cart and
+   // prints out _addItem for each
+  _snaq.push(['addItem',
+    '1234',           // order ID - required
+    'DD44',           // SKU/code - required
+    'T-Shirt',        // product name
+    'Green Medium',   // category or variation
+    '11.99',          // unit price - required
+    '1'               // quantity - required
+  ]);
+
+  // trackTrans sends the transaction to SnowPlow tracking servers.
+  // Must be called last to commit the transaction.
+  _snaq.push(['trackTrans']); //submits transaction to the Analytics servers
+
+  (function() {
+    var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+    sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+  })();
+
+</script>
+</head>
+<body>
+
+  Thank you for your order.  You will receive an email containing all your order details.
+
+</body>
+</html>
+````
+
+#### Sync example
+
+Again, note how similar the SnowPlow Ecommerce tracking is to the [Google equivalent](https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingEcommerce). This should make adding SnowPlow tracking alongside Google Analytics tracking very straightforward.
+
+```html
+<html>
+<head>
+<title>Receipt for your clothing purchase from Acme Clothing</title>
+</head>
+
+<body>
+
+  Thank you for your order.  You will receive an email containing all your order details.
+
+
+<script type="text/javascript">
+  var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+  document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try{
+  var snowplowTracker = SnowPlow.getTracker('{{ACCOUNT}}');
+  snowplowTracker.trackPageView();
+  snowplowTracker.addTrans(
+      "1234",            // order ID - required
+      "Womens Apparel",  // affiliation or store name
+      "11.99",           // total - required
+      "1.29",            // tax
+      "15.00",           // shipping
+      "San Jose",        // city
+      "California",      // state or province
+      "USA"              // country
+    );
+
+
+   // add item might be called for every item in the shopping cart
+   // where your ecommerce engine loops through each item in the cart and
+   // prints out _addItem for each 
+   snowplowTracker.addItem(
+      "1234",           // order ID - necessary to associate item with transaction
+      "DD44",           // SKU/code - required
+      "T-Shirt",        // product name
+      "Olive Medium",   // category or variation
+      "11.99",          // unit price - required
+      "1"               // quantity - required
+   );
+
+   snowplowTracker.trackTrans(); //submits transaction to the Analytics servers
+} catch(err) {}
+</script>
+</body>
+</html>
+```
