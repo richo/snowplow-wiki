@@ -16,3 +16,6 @@
 
 **5. Analytics**  
 [Analysis using Hive](Querying the data using Hive)  
+
+**Common**  
+[[Artifact repositories]]  
