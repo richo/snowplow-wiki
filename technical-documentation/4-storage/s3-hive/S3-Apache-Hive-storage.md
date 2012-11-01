@@ -139,6 +139,7 @@ Note: whenever new fields are added to the Hive table, they are always added to 
 	click_sourceid string,
 	domain string,
 	connection_type string,
+	event_name string,
 	cv_user1 string,
 	cv_user2 string,
 	cv_user3 string,

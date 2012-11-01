@@ -10,7 +10,7 @@
 [ETL](etl)  
 
 **4. Storage**  
-[Overall SnowPlow data structure](canonical-data-structure)  
+[Canonical SnowPlow data structure](canonical-data-structure)  
 [S3 / hive](s3-apache-hive-storage)  
 [Infobright](infobright-storage)  
 
