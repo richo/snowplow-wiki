@@ -6,7 +6,7 @@ The technical documentation is split into 5 sections, reflecting the five compon
 
 ## 1. Trackers
 [Trackers overview](trackers)  
-[Javascript tracker (SnowPlow.js)](snowplow.js)  
+[Javascript tracker (SnowPlow.js)](javascript-tracker)  
 [iOS tracker](ios-tracker)  
 [SnowPlow tracker protocol](tracker-protocol)  
 
