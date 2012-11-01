@@ -5,10 +5,10 @@ The technical documentation is split into 5 sections, reflecting the five compon
 ![architecture] [conceptual-architecture]
 
 ## 1. Trackers
-[Trackers overview](trackers)
-[Javascript tracker (SnowPlow.js)](snowplow-js)
-[iOS tracker](ios-tracker)
-[SnowPlow tracker protocol](tracker-protocol)
+[Trackers overview](trackers)  
+[Javascript tracker (SnowPlow.js)](snowplow-js)  
+[iOS tracker](ios-tracker)  
+[SnowPlow tracker protocol](tracker-protocol)  
 
 ## 2. Collectors
 [Collectors](collectors)
