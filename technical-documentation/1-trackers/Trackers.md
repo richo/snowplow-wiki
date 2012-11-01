@@ -1,4 +1,4 @@
-![snowplow-architecture-trackers] (/images/1-trackers.png)
+[[/images/1-trackers.png]] 
 
 ## Overview
 
