@@ -143,6 +143,8 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | `ti_category`        | STRING         | Yes               | Category of item |
 | `ti_price`           | DECIMAL        | Yes               | Item price |
 | `ti_quantity`        | INT            | Yes               | Quantity of item purchased |
+| **UserAgent**        |                |                   |               |  |
+| `useragent`          | STRING         | No                | No            | User agent string from where browser / OS / device data is derived |
 | **Browser**          |                |                   |               | _Information about the web browser_ |
 | `br_name`            | STRING         | Yes               | Yes           | Browser name e.g. Internet Explorer 9 |
 | `br_family`          | STRING         | Yes               | Yes           | Browser family e.g. Chrome          |

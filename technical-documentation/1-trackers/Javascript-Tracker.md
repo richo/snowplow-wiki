@@ -6,7 +6,8 @@
 3. [Event tracking](#events)  
 4. [Ecommerce tracking](#ecommerce)  
 5. [Social tracking](#social)
-6. [Campaign tracking](#campaign)  
+6. [Campaign tracking](#campaign) 
+7. [Error tracking](#error) 
 
 <a name="overview" />
 ## 1. Overview
@@ -281,6 +282,8 @@ try{
 <a name="social" />
 ## 5. Social tracking
 
+**THIS IS 
+
 Social tracking can be used to track users interacting with Facebook, Twitter and Google+ buttons and widgets.
 
 #### Anatomy of the `trackSocial` method
@@ -363,6 +366,10 @@ FB.Event.subscribe('message.send', function(targetUrl) {
   _snaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
 });
 ```
+
+#### Tracking Twitter tweets
+
+
 
 <a name="campaign" />
 ## 6. Campaign tracking
