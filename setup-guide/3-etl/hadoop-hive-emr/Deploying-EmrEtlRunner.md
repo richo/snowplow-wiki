@@ -139,10 +139,15 @@ file template available in the SnowPlow GitHub repository at
     :instance_count: 2
     :master_instance_type: m1.small
     :slave_instance_type: m1.small
+:etl:
+  :collector_format: cloudfront # No other formats supported yet
+  :continue_on_unexpected_error: false # You can switch to 'true' if you really don't want the serde throwing exceptions
+  :storage_format: non-hive # Or switch to 'hive' if you're only using Hive for analysis
 # Can bump the below as SnowPlow releases new versions
 :snowplow:
   :serde_version: 0.4.9
-  :hiveql_version: 0.4.10
+  :hive_hiveql_version: 0.5.0
+  :non_hive_hiveql_version: 0.0.1
 ```
 
 To take each section in turn:
@@ -204,12 +209,22 @@ defaults can typically be left as-is, but you will need to set:
 Make sure that placement and the EC2 key you specify both belong to the
 same region, or else EMR won't be able to find the key.
 
+#### etl
+
+This section is where we configure exactly how we want our ETL process to operate:
+
+1. `collector_format`, what format is our collector saving data in? Currently the only supported format is "cloudfront", for the format saved by our CloudFront collector
+2. `continue_on_unexpected_error`, continue processing even on unexpected row-level errors, e.g. an input file not matching the expected CloudFront format. Off ("false") by default
+3. `storage_format`, can be "hive" or "non-hive". We discuss this further below
+
+`storage_format` is an important setting. If you choose "hive", then the SnowPlow event format outputted by EmrEtlRunner will be optimised to only work with Hive - you will **not** be able to load those event files into other database systems, such as Infobright (or eventually, Postgres, Google BigQuery, SkyDB et al). We believe that most people will want to load their SnowPlow events into other systems, so the default setting here is "non-hive".
+
 #### snowplow
 
 This section allows you to update the versions of the Hive deserializer
-(`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. These
-variables let you upgrade the ETL process without having to update
-the EmrEtlRunner application itself.
+(`serde`) and HiveQL scripts (`hive_hiveql` and `non_hive_hiveql`) run
+by EmrEtlRunner. These variables let you upgrade the ETL process without
+having to update the EmrEtlRunner application itself.
 
 <a name="usage"/>
 ## Usage
