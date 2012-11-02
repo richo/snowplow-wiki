@@ -7,10 +7,15 @@
 [SnowPlow Tracker Protocol](snowplow-tracker-protocol)  
 
 **2. Collectors**  
-[Collectors](collectors)  
+[Collectors overview](collectors)
+[Cloudfront collector](cloudfront)
+[SnowCannon (node.js)](snowcannon)
+[Clojure collector (Elastic Beanstalk)](clojure) 
 
 **3. ETL**  
-[ETL](etl)  
+[ETL overview](etl)
+[Hive ETL](hive-etl)
+[Scalding / Cascading ETL](scaldingetl)
 
 **4. Storage**  
 [Canonical SnowPlow data structure](canonical-data-structure)  
@@ -18,6 +23,7 @@
 [Infobright](infobright-storage)  
 
 **5. Analytics**  
+[Analytics overview](analytics documentation)
 [Analysis using Hive](Querying the data using Hive)  
 
 **Common**  
