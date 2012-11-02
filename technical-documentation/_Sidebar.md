@@ -7,10 +7,10 @@
 [SnowPlow Tracker Protocol](snowplow-tracker-protocol)  
 
 **2. Collectors**  
-[Collectors overview](collectors)
-[Cloudfront collector](cloudfront)
-[SnowCannon (node.js)](snowcannon)
-[Clojure collector (Elastic Beanstalk)](clojure) 
+[Collectors overview](collectors)  
+[Cloudfront collector](cloudfront)  
+[SnowCannon (node.js)](snowcannon)  
+[Clojure collector (Elastic Beanstalk)](clojure)   
 
 **3. ETL**  
 [ETL overview](etl)

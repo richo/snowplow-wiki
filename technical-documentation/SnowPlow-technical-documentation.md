@@ -11,15 +11,15 @@ The technical documentation is split into 5 sections, reflecting the five compon
 [SnowPlow tracker protocol](tracker-protocol)  
 
 ## 2. Collectors
-[Collectors overview](collectors)
-[Cloudfront collector](cloudfront)
-[SnowCannon (node.js)](snowcannon)
-[Clojure collector (Elastic Beanstalk)](clojure)
+[Collectors overview](collectors)  
+[Cloudfront collector](cloudfront)  
+[SnowCannon (node.js)](snowcannon)  
+[Clojure collector (Elastic Beanstalk)](clojure)  
 
 ## 3. ETL
-[ETL overview](etl)
-[Hive ETL](hive)
-[Scalding / Cascading ETL](scalding)
+[ETL overview](etl)  
+[Hive ETL](hive)  
+[Scalding / Cascading ETL](scalding)  
 
 ## 4. Storage
 [Canonical SnowPlow data structure](canonical-data-structure) (platform independent)  
