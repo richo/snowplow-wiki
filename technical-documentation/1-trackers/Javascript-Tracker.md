@@ -454,6 +454,7 @@ SnowPlow uses the same query parameters used by Google Analytics. Because of thi
 
 The parameters are descibed in the [Google Analytics help page] [gahelppage]. Google also provides a [urlbuilder] [gaurlbuilder] which can be used to construct the URL incl. query parameters to use in your campaigns.
 
-7. [Error tracking](#error) 
+<a name="error" />
+## 7. Error tracking 
 
 COMING SOON
