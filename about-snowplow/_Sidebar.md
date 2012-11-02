@@ -3,7 +3,7 @@
 **Introduction**  
 [SnowPlow overview](SnowPlow-overview)  
 [[Technical architecture|Technical-architecture]]  
-[Technical FAQ](Technical-FAQ)  
+[[Developer FAQ]]  
 [Roadmap](Product-roadmap)  
 
 **External resources**  
