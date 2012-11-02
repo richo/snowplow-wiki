@@ -146,7 +146,8 @@ file template available in the SnowPlow GitHub repository at
 # Can bump the below as SnowPlow releases new versions
 :snowplow:
   :serde_version: 0.4.9
-  :hiveql_version: 0.4.10
+  :hive_hiveql_version: 0.5.0
+  :non_hive_hiveql_version: 0.0.1
 ```
 
 To take each section in turn:
@@ -221,9 +222,9 @@ This section is where we configure exactly how we want our ETL process to operat
 #### snowplow
 
 This section allows you to update the versions of the Hive deserializer
-(`serde`) and HiveQL script (`hiveql`) run by EmrEtlRunner. These
-variables let you upgrade the ETL process without having to update
-the EmrEtlRunner application itself.
+(`serde`) and HiveQL scripts (`hive_hiveql` and `non_hive_hiveql`) run
+by EmrEtlRunner. These variables let you upgrade the ETL process without
+having to update the EmrEtlRunner application itself.
 
 <a name="usage"/>
 ## Usage
