@@ -1,5 +1,3 @@
-## Frequently Asked Questions
-
 1. [Is SnowPlow real-time?](#rt)
 2. [Does SnowPlow have a graphical user interface to enable me to analyse and visualise web analytics data?](#gui)
 3. [What's next on the roadmap?](#roadmap)
