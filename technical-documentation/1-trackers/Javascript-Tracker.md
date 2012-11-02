@@ -282,7 +282,7 @@ try{
 <a name="social" />
 ## 5. Social tracking
 
-**THIS IS 
+**THIS FUNCTIONALITY IS STILL IN DEVELOPMENT**
 
 Social tracking can be used to track users interacting with Facebook, Twitter and Google+ buttons and widgets.
 
@@ -291,7 +291,7 @@ Social tracking can be used to track users interacting with Facebook, Twitter an
 Social tracking uses the `trackSocial` method, which takes four parameters: 
 
 | **Parameter** | **Description** | **Required?** | **Example value**     | 
-|:--------------|-----------------|:--------------|:----------------------|
+|:--------------|:----------------|:--------------|:----------------------|
 | `network`     | Social network  | Yes           | 'facebook', 'twitter' |
 | `socialAction`| Social action performed | Yes           | 'like', 'retweet'     |
 | `opt_target`  | Object social action is performed on e.g. page ID, product ID | No            | '19.99'               |
@@ -369,8 +369,91 @@ FB.Event.subscribe('message.send', function(targetUrl) {
 
 #### Tracking Twitter tweets
 
+When you insert a Twitter button onto your website, the Twitter button code creates a `twttr` object:
+
+```html
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en">Tweet</a>
+  <script type="text/javascript" charset="utf-8">
+    window.twttr = (function (d,s,id) {
+      var t, js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return; js=d.createElement(s); js.id=id;
+      js.src="//platform.twitter.com/widgets.js"; fjs.parentNode.insertBefore(js, fjs);
+      return window.twttr || (t = { _e: [], ready: function(f){ t._e.push(f) } });
+    }(document, "script", "twitter-wjs"));
+  </script>
+```
+
+To track Tweet Button events, you need to create a function that calls the `trackSocial` method with the relevant parameters, and bind it to the `twttr` object as an event binding:
+
+```javascript
+function trackTwitter(intent_event) {
+    if (intent_event) {
+      var opt_pagePath;
+      if (intent_event.target && intent_event.target.nodeName == 'IFRAME') {
+            opt_target = extractParamFromUri(intent_event.target.src, 'url');
+      }
+      _snaq.push(['_trackSocial', 'twitter', 'tweet', opt_pagePath]);
+    }
+  }
+
+  //Wrap event bindings - Wait for async js to load
+  twttr.ready(function (twttr) {
+    //event bindings
+    twttr.events.bind('tweet', trackTwitter);
+  });
+```
+
+#### Gracking Google +1s
+
+TO WRITE
 
 
 <a name="campaign" />
 ## 6. Campaign tracking
 
+#### Overview of the process by which traffic sources are ascribed to visits
+
+Campaign tracking is used to identify the source of traffic coming to a website.
+
+At the highest level, we can distinguish **paid** traffic (that derives from ad spend) with **non paid** traffic: visitors who come to the website by entering the URL directly, clicking on a link from a referrer site or clicking on an organic link returned in a search results, for example.
+
+In order to identify **paid** traffic, SnowPlow users need to set five query parameters on the links used in ads. SnowPlow checks for the presence of these query parameters on the web pages that users load: if it finds them, it knows that that user came from a paid source, and stores the values of those parameters so that it is possible to identify the paid source of traffic exactly.
+
+If the query parameters are not present, SnowPlow reasons that the user is from a **non paid** source of traffic. It then checks the page referrer (the url of the web page the user was on before visiting our website), and uses that to deduce the source of traffic:
+
+1. If the URL is identified as a search engine, the traffic medium is set to "organic" and SnowPlow tries to derive the search engine name from the referrer URL domain and the keywords from the  query string.
+2. If the URL is a non-search 3rd party website, the medium is set to "referrer". SnowPlow derives the source from the referrer URL domain.
+
+#### Identifying paid sources
+
+Your different ad campaigns (PPC campaigns, display ads, email marketing messages, Facebook campaigns etc.) will include one or more links to your website e.g.:
+
+'''html
+<a href="http://mysite.com/myproduct.html">Visit website</a>
+'''
+
+We want to be able to identify people who've clicked on ads e.g. in a marketing email as having come to the site having clicked on a link in that particular marketing email. To do that, we modify the link in the marketing email with query parameters, like so:
+
+```html
+<a href="http://mysite.com/myproduct.html?utm_source=newsletter-october&utm_medium=email&utm_campaign=cn0201">Visit website</a>
+```
+
+For the prospective customer clicking on the link, adding the query parameters does not change the user experience. (The user is still directed to the webpage at http://mysite.com/myproduct.html.) But SnowPlow then has access to the fields given in the query string, and uses them to identify this user as originating from the October Newsletter, an email marketing campaign with campaign id = cn0201.
+
+#### Anatomy of the query parameters
+
+SnowPlow uses the same query parameters used by Google Analytics. Because of this, SnowPlow users who are also using GA do not need to do any additional work to make their campaigns trackable in SnowPlow as well as GA. Those parameters are:
+
+| **Parameter**        | **Name**              | **Description**                                     |
+|:--------------------:|:---------------------:|:---------------------------------------------------:|
+| `utm_source`         | Campaign source       | Identify the advertiser driving traffic to your site e.g. Google, Facebook, autumn-newsletter etc.  |
+| `utm_medium`         | Campaign medium       | The advertising / marketing medium e.g. cpc, banner, email newsletter, in-app ad, cpa |
+| `utm_campaign`       | Campaign id           | A unique campaign id. This can be a descriptive name or a number / string that is then looked up against a campaign table as part of the analysis |
+| `utm_term  `         | Campaign term(s)      | Used for search marketing in particular, this field is used to identify the search terms that triggered the ad being displayed in the search results. |
+| `utm_content`        | Campaign content      | Used either to differentiate similar content or two links in the same ad. (So that it is possible to identify which is generating more traffic.) |
+
+The parameters are descibed in the [Google Analytics help page] [gahelppage]. Google also provides a [urlbuilder] [gaurlbuilder] which can be used to construct the URL incl. query parameters to use in your campaigns.
+
+7. [Error tracking](#error) 
+
+COMING SOON
