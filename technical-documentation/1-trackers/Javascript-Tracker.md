@@ -9,22 +9,22 @@
 6. [Campaign tracking](#campaign)  
 
 <a name="overview" />
-## Overview
+## 1. Overview
 
-The [SnowPlow Javascript tracker](https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/) works in much the same way as Javascript trackers for other major web analytics solutions including Google Analytics and Omniture. In fact, we have tried to 
+The [SnowPlow Javascript tracker](https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/) works in much the same way as Javascript trackers for other major web analytics solutions including Google Analytics and Omniture. We have tried, as far as possible, to keep the API very close to that used by Google Analytics, so that users who have implemented Google Analytics Javascript tags have no difficulty also implementing the SnowPlow Javascript tags.
 
 Tracking is done by inserting Javascript tags onto pages. These tags run functions defined in [snowplow.js](https://github.com/snowplow/snowplow/blob/master/1-trackers/javascript-tracker/js/snowplow.js), that trigger GET requests of the SnowPlow pixel. The Javascript functions append data points to be passed into SnowPlow onto the query string for the GET requests. These then get logged by the SnowPlow [collector](collectors). For a full list of data points that can be passed into SnowPlow in this way, please refer to the [SnowPlow tracker protocol](snowplow-tracker-protocol) documentation.
 
 The Javascript tracker supports both syncronous and asyncronous tags. We recommend the asyncronous tags in nearly all instances, as these do not slow down page load times. Both methods are documented below.
 
 <a name="page" />
-## Pageview tracking
+## 2. Pageview tracking
 
 Pageview tracking is executed using the `trackPageView` function call. This is included in part of the core SnowPlow tag, added to the <head> section of the website(s) on which SnowPlow is implemented.
 
 #### Asyncronous implementation
 
-By inserting the following code into the <head> section of the each web page, views of those pages will be tracked in an 'async' manner:
+By inserting the following code into the `<head>` section of the each web page, views of those pages will be tracked in an 'async' manner:
 
 ```html
 <!-- SnowPlow starts plowing -->
@@ -45,11 +45,11 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 ```
 
 
-Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are [hosting the SnowPlow Cloudfront collector yourself](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting).
+Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are hosting the SnowPlow Cloudfront collector yourself. Please refer to the [setup guide](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting) for more details.
 
-#### Syndcronous implementation
+#### Syncronous implementation
 
-By inserting the following code into the <head> section of each web page, views of those pages will be tracked in a 'sync' manner:
+By inserting the following code into the `<head>` section of each web page, views of those pages will be tracked in a 'sync' manner:
 
 ```html
 <!-- SnowPlow starts plowing -->
@@ -67,16 +67,16 @@ snowplowTracker.enableLinkTracking();
 <!-- SnowPlow stops plowing -->
 ```
 
-Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are [hosting the SnowPlow Cloudfront collector yourself](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting).
+Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are hosting the SnowPlow Cloudfront collector yourself. Please refer to the [setup guide](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting) for more details.
 
 [Back to top](#top)
 
 <a name="events" />
-## Event tracking
+## 3. Event tracking
 
 #### Philosophy
 
-The concept of event tracking is at the heart of SnowPlow. In the 'classical' model of web analytics, sensible analyses are agreed in advance, then formalised by being integrated into the site (e.g. by tracking goals and conversion funnels) and finally analysed. SnowPlow views this approach as 'premature analysis', and encourages logging plenty of intent-agnostic events and then figuring out what they mean later. In general, we believe that any on-page event that would not be captured by trackPageView (e.g. all AJAX events) are captured using the event tracking.
+The concept of event tracking is at the heart of SnowPlow. In the 'classical' model of web analytics, sensible analyses are agreed in advance, then formalised by being integrated into the site (e.g. by tracking goals and conversion funnels) and finally analysed. SnowPlow views this approach as out-dated: in the current era of cheap storage and growing computer power, we believe companies should log **all** identificable user events, and then figure out afterwards how to use that data to drive insight. We recommend that any on-page event that would not be captured by trackPageView (i.e. all AJAX events) are captured using Event tracking.
 
 #### Examples of events that you might want to track
 
@@ -127,7 +127,8 @@ An example of tracking a user adding an item to basket:
 trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
 ```
 
-## Ecommerce tracking
+<a name="ecommerce" />
+## 4. Ecommerce tracking
 
 Whilst it is possible to track all ecommerce events using SnowPlow's generic [event tracking](#events) (described [above](#events), it is also possible to track online transactions using dedicated Ecommerce Tracking, described here. Tracking purchase events using the Ecommerce Tracking is a 3 step process:
 
@@ -220,7 +221,8 @@ Note how similar the SnowPlow Ecommerce tracking is to the [Google equivalent](h
 
 </body>
 </html>
-````
+```
+
 
 #### Sync example
 
@@ -275,3 +277,93 @@ try{
 </body>
 </html>
 ```
+
+<a name="social" />
+## 5. Social tracking
+
+Social tracking can be used to track users interacting with Facebook, Twitter and Google+ buttons and widgets.
+
+#### Anatomy of the `trackSocial` method
+
+Social tracking uses the `trackSocial` method, which takes four parameters: 
+
+| **Parameter** | **Description** |                | **Required?** | **Example value**     | 
+|:--------------|-----------------|:--------------|:----------------------|
+| `network`     | Social network  | Yes           | 'facebook', 'twitter' |
+| `socialAction`| Social action performed | Yes           | 'like', 'retweet'     |
+| `opt_target`  | Object social action is performed on e.g. page ID, product ID | No            | '19.99'               |
+| `opt_pagePath`| Page path of URL on which social action was carried out | No            | '2.99'                |
+
+#### `trackSocial` syntax
+
+The method is executed in an async manner as:
+
+```javascript
+_snaq.push('trackSocial', network, socialAction, opt_target, opt_pagePath)
+```
+
+For example:
+
+```javascript
+_snaq.push('trackSocial', 'facebook', 'like', 'pbz00123', '/products/tarot/123-original-rider-waite')
+```
+
+Or if the optional parameters were left off:
+
+```javascript
+_snaq.push('trackSocial', 'facebook', 'like', '', '')
+```
+
+And in a sync manner as:
+
+```javascript
+trackSocial(network, socialAction, opt_target, opt_pagePath)
+```
+
+For example:
+
+```javascript
+trackSocial('facebook', 'like', 'pbz00123', '/products/tarot/123-original-rider-waite')
+```
+
+Or if the optional parameters were left off:
+
+```javascript
+trackSocial('facebook', 'like', '', '')
+```
+
+#### Calling the `trackSocial` method
+
+The widgets provided by each social network (Google+, Facebook, Twitter) each have their own set of Javascript events associated with different user actions. Therefore, the details of how to implement Social tracking vary for each of them. In all cases, however, the key is to trigger the call to `trackSocial` when the specific social action (e.g. 'like' or 'retweet') has been completed.
+
+#### Tracking Facebook actions
+
+Social actions in Facebook can be tracked by subscribing to Facebook's `edge.create` events, that fire when a social action (e.g. a _like_ or a _share_) have been completed.
+
+**Recording _likes_**
+
+```javascript
+FB.Event.subscribe('edge.create', function(targetUrl) {
+  _snaq.push(['_trackSocial', 'facebook', 'like', targetUrl]);
+});
+```
+
+**Recording _unlikes_**
+
+```javascript
+FB.Event.subscribe('edge.remove', function(targetUrl) {
+  _snaq.push(['_trackSocial', 'facebook', 'unlike', targetUrl]);
+});
+```
+
+**Recording _shares_**
+
+```javascript
+FB.Event.subscribe('message.send', function(targetUrl) {
+  _snaq.push(['_trackSocial', 'facebook', 'send', targetUrl]);
+});
+```
+
+<a name="campaign" />
+## 6. Campaign tracking
+
