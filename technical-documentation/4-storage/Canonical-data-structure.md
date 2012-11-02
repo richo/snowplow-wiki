@@ -87,7 +87,7 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 
 | **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | Implemented?  | **DESCRIPTION**            |
 |:---------------------|:---------------|:------------------|:--------------|:---------------------------|
-| **App**              |                |                   |               | Data related to the specific website / application SnowPlow is tracking behaviour on |
+| **App**              |                |                   |               | _Data related to the specific website / application SnowPlow is tracking behaviour on_ |
 | `app_id`             | STRING         | Yes               |               | Unique identifier for the website or app (useful when SnowPlow is run across several websites / applications) |
 | `platform`           | STRING         | Yes               | No            | The general type of platform the app is on e.g. "web", "mobile" |
 | **Date/time**        |                |                   |               | _The date and time of this page view or event_ |

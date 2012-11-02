@@ -290,7 +290,7 @@ Social tracking can be used to track users interacting with Facebook, Twitter an
 
 Social tracking uses the `trackSocial` method, which takes four parameters: 
 
-| **Parameter** | **Description** |                | **Required?** | **Example value**     | 
+| **Parameter** | **Description** | **Required?** | **Example value**     | 
 |:--------------|-----------------|:--------------|:----------------------|
 | `network`     | Social network  | Yes           | 'facebook', 'twitter' |
 | `socialAction`| Social action performed | Yes           | 'like', 'retweet'     |
