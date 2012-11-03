@@ -145,7 +145,7 @@ file template available in the SnowPlow GitHub repository at
   :storage_format: non-hive # Or switch to 'hive' if you're only using Hive for analysis
 # Can bump the below as SnowPlow releases new versions
 :snowplow:
-  :serde_version: 0.4.9
+  :serde_version: 0.5.0
   :hive_hiveql_version: 0.5.0
   :non_hive_hiveql_version: 0.0.1
 ```
