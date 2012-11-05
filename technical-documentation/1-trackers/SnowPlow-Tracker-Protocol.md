@@ -34,10 +34,10 @@ SnowPlow has been architected to be as easy as possible for developers to create
 | `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
 | `tid`         | `txn_id`         | Transaction ID: Unique identifier for this specific event | `508780` |
-| `e`           | `event`          | The type of event             | `pv` (pageview), `d` (download), `s` (social), `e` (ecomm), `c` (custom) |
-| `aid`         | `app_id`         | Unique identifier for website / app | `1`, `company-site`, `angry-birds-androis` |
+| `e`           | `event`          | The type of event             | `pv` (pageview),  `d` (download),  `s` (social),  `e` (ecomm),  `c` (custom) |
+| `aid`         | `app_id`         | Unique identifier for website / app | `1`, `company-site`, `angry-birds-android` |
 | `tstamp`      | `timestamp`      | Date / time when the event being logged took place. This is not useful for web tracking (when the events are `GET` requests are made by the Javascript tracker in realtime), in useful in mobile application tracking, where a batch of requests may be made after the events being tracked have already occured, to optimize connectivity |
-| `tv`          | `tracker_version`| Tracker ID incl. version number. Should make it clear from which tracker the data was generated | `js-0.5.2`, `iOS-0.0.3` |
+| `tv`          | `tracker_version`| Tracker ID incl. version number. Should make it clear from which tracker the data was generated | `js-0.5.2`,  `iOS-0.0.3` |
 
 Back to [common event types](#common)
 
@@ -147,6 +147,8 @@ Back to [common event types](#common)
 <a name="social" />
 ### 2.5. Social tracking
 
+**Note!** This has not been implemented yet. (On the ETL and storage side.)
+
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
@@ -176,6 +178,81 @@ Back to [common event types](#common)
 <a name="allparams" />
 ## 3. Complete list of field names and parameters
 
+1. [Application parameters](#appid)
+2. [Date / time parameter](#timestamp)
+3. []
+
+5. [User related parameters](#user)
+
+<a name="appid" />
+### 3.1 Application parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `aid`         | `app_id`         | Unique identifier for website / application    | Yes | `angry-birds-android` |
+| `pl`          | `platform`       | The platform the app runs on  | No               | `ios`, `web`, `win-8`     |
+
+The application ID parameter is used to distinguish data from different website and applications.
+
+As a SnowPlow user, you can define application IDs for each of your different ditial products and track behaviour of your users across all of them using the same SnowPlow instance by setting the `app_id` in your tracker of choice.
+
+**Potential platform values**: (to finalise and complete...)
+
+| **Platform**                 | **`pl` value** |
+|:-----------------------------|:---------------|
+| Web                          | `w`            | 
+| iOS                          | `iOS`          |
+| Android                      | `a`            |
+| Windows                      | `win`          |
+| Blackberry                   | `b`            |
+| ...                          |                |
+
+Back to [complete list of parameters](#allparams).
+
+<a name="timestamp" />
+### 3.2 Date / time parameter
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `tstamp`      | `dt` and `tm`    | Timestamp when event occurred | Yes              |                           |
+
+For some trackers e.g. the [Javascript tracker](javascript-tracker), tracking happens in real-time: so when an event occurs on a website being tracked, a SnowPlow event is fired almost simultaneously to record the event. For this type of setup, there is no need to explicitly track the timestamp for the event, as this can be inferred from the timestamp recorded on the collector log. (I.e. when the event fired was received by the collector.)
+
+For some trackers e.g. those that work on mobile platforms, it may not be optimal to fire tracking events as the events occur in real time: it may make more sense to store them locally and fire them the there is bandwidth available, for example. In these cases we cannot rely on the collector for the timestamp data because the collector may only receive the data some time after the event occured. In these situations we need to store the timestamp for each event when it occurs, and communicate that data to the collector using the `tstamp` parameter.
+
+Back to [complete list of parameters](#allparams).
+
+<a name="event" />
+### 3.3 Event / transaction parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `e`           | `event`          | Event type                    | No               | e, p, s (see table below) |
+| `tid`         | `txn_id`         | Unique transaction / event ID | Yes              | 508780                    |
+
+**Potential `event` values**
+
+| **Event type**            | **`e` value** |
+|:--------------------------|:--------------|
+| Pageview                  | p             |
 
 
-[events-table]: https://github.com/snowplow/snowplow/wiki/canonical-data-structure
+
+
+
+<a name="user" />
+### 3.5 User related parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `uid`         | `user_id`        | Unique identifier for user    | Yes              | `aeb1691c5a0ee5a6`        |
+| `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | Yes       | `1`, `2`...|
+
+We recommend **always** setting the `uid` / `user_id` parameter: as this is the cornerstone of all customer-centric analytics.
+
+In contrast, setting `vid` / `visit_id` is optional. It is possible to define when sessions begin and end client-side, in the tracker. But it is equally possible to define session start and stop times at the ETL or analytics phase, in which case it need not be set in the tracker at all. Note: Google Analytics defines sessions server side.
+
+Back to [complete list of parameters](#allparams).
+
+
+

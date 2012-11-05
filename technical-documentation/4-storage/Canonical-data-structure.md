@@ -88,13 +88,13 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | **FIELD**            | **DATATYPE**   | **CAN BE EMPTY?** | Implemented?  | **DESCRIPTION**            |
 |:---------------------|:---------------|:------------------|:--------------|:---------------------------|
 | **App**              |                |                   |               | _Data related to the specific website / application SnowPlow is tracking behaviour on_ |
-| `app_id`             | STRING         | Yes               |               | Unique identifier for the website or app (useful when SnowPlow is run across several websites / applications) |
+| `app_id`             | STRING         | Yes               | Yes           | Unique identifier for the website or app (useful when SnowPlow is run across several websites / applications) |
 | `platform`           | STRING         | Yes               | No            | The general type of platform the app is on e.g. "web", "mobile" |
 | **Date/time**        |                |                   |               | _The date and time of this page view or event_ |
 | `dt`                 | STRING         | No                | Yes           | Date                       |
 | `tm`                 | STRING         | No                | Yes           | Time                       |
 | **Event**            |                |                   |               | _Identifying this logging event_ |
-| `event_name`         | STRING         | No                | No            | Event name |
+| `event`         | STRING         | No                | No            | Event name |
 | `txn_id`             | STRING         | No                | Yes           | A unique event ID. If two or more records have the same txn_id, one is a duplicate record |
 | **SnowPlow version** |                |                   |               | _Data related to the version of SnowPlow (and subsystems) used to capture and store the data |
 | `v_tracker`          | STRING         | Yes               | No            | Name and version of tracker used |
