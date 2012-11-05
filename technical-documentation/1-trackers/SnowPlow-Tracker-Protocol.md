@@ -30,13 +30,13 @@ SnowPlow has been architected to be as easy as possible for developers to create
 ### 1. Pageview tracking
 
 
-uid=aeb1691c5a0ee5a6        // User ID
-vid=2                       // Visit ID (i.e. session 
-tid=508780					// Transaction ID
-page=Tarot%20cards%20-%20Psychic%20Bazaar       // Name of the page (URL encoded)
-url=http://www.psychicbazaar.com/2-tarot-cards  // Page URL
-number for this `user_id`)
-refr=http://www.psychicbazaar.com               // Referrer URL
+	uid=aeb1691c5a0ee5a6        // User ID
+	vid=2                       // Visit ID (i.e. session 
+	tid=508780					// Transaction ID
+	page=Tarot%20cards%20-%20Psychic%20Bazaar       // Name of the page (URL encoded)
+	url=http://www.psychicbazaar.com/2-tarot-cards  // Page URL
+	number for this `user_id`)
+	refr=http://www.psychicbazaar.com               // Referrer URL
 
 
 Back to [common hit types](#common)
