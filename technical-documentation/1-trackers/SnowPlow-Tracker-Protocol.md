@@ -24,8 +24,7 @@ SnowPlow has been architected to be as easy as possible for developers to create
 3. [Custom event tracking](#event)
 4. [Ecomm tracking](#ecomm)
 5. [Social tracking](#social)
-6. [Campaign tracking](#campaign)
-7. [Error tracking](#error)
+6. [Error tracking](#error)
 
 <a name="common-params" />
 ### 2.1. Common parameters
@@ -49,6 +48,9 @@ Back to [common event types](#common)
 uid=aeb1691c5a0ee5a6    // User ID
 &vid=2                  // Visit ID (i.e. session number for this user_id)
 &tid=508780				// Transaction ID
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
+
 &e=pv                   // event = page view
 &url= http://test.psybazaar.com/2-tarot-cards    // Page URL
 &page=Tarot%20cards                              // Page title
@@ -60,45 +62,110 @@ Back to [common event types](#common)
 <a name="event" />
 ### 2.3. Custom event tracking
 
-Add to basket example:
+_Add-to-basket_ example:
 
 ```javascript
-uid=aeb1691c5a0ee5a6    // User ID
-&vid=2                  // Visit ID (i.e. session number for this user_id)
-&tid=508780				// Transaction ID
-&e=c                    // event = custom
-&ev_ca=ecomm            // event_category = ecomm
-&ev_ac=add-to-basket    // event_action = add-to-basket
-&ev_la=178              // event_label = 178 (product_id of item added to basket)
-&ev_pr=1                // event_property = 1 (quantity of item added to basket)
-&ev_va=14.99            // event_value = 14.99 (price of item added to basket)
+uid=aeb1691c5a0ee5a6    // User ID  
+&vid=2                  // Visit ID (i.e. session number for this user_id)  
+&tid=508780				// Transaction ID  
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
+
+&e=c                    // event = custom  
+&ev_ca=ecomm            // event_category = ecomm  
+&ev_ac=add-to-basket    // event_action = add-to-basket  
+&ev_la=178              // event_label = 178 (product_id of item added to basket)  
+&ev_pr=1                // event_property = 1 (quantity of item added to basket)  
+&ev_va=14.99            // event_value = 14.99 (price of item added to basket)  
 
 ```
+
+_Watch-video-clip_ example:
+
+```javascript
+uid=aeb1691c5a0ee5a6    // User ID  
+&vid=2                  // Visit ID (i.e. session number for this user_id)  
+&tid=508780				// Transaction ID  
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
+
+&e=c                    // event = custom  
+&ev_ca=video            // event_category = video  
+&ev_ac=play             // event_action = play  
+&ev_la=291              // event_label = 291 (video_id of video played)  
+&ev_pr=13.2             // event_property = 13.2 (number of seconds into video that clip starts playing)  
+&ev_va=0.0025           // event_value = 0.0025 (ad revenue associated with view)  
+
+```
+
 
 Back to [common event types](#common)
 
 <a name="ecomm" />
 ### 2.4. Ecommerce tracking 
 
-TO WRITE
+To track an ecommerce transaction, fire a `transaction` event to register the transaction, and then fire `item` events to log specific data about the items that were part of that transaction. the `order_id`, (captured using the `ti` parameter) is used to link the transaction-level and item-level data at analysis time.
+
+Transaction event example:
+
+```javascript
+uid=aeb1691c5a0ee5a6    // User ID  
+&vid=2                  // Visit ID (i.e. session number for this user_id)  
+&tid=508780				// Transaction ID  
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
+
+&e=e             // Ecomm event type.
+&ti=12345        // Order ID
+&ta=westernWear  // Transaction affiliation
+&tr=50.00        // Transaction revenue
+&ts=32.00        // Transaction shipping
+&tt=12.00        // Transaction tax
+```
+
+Item hit example:
+
+```javascript
+uid=aeb1691c5a0ee5a6    // User ID  
+&vid=2                  // Visit ID (i.e. session number for this user_id)  
+&tid=508780				// Transaction ID  
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
+
+&t=item          // Item hit type
+&ti=12345        // Order ID
+&ip=300          // Item price
+&iq=2            // Item quantity
+&ic=u3eqds43     // Item code / SKU
+&ip=300          // Item price
+&in=sofa         // Item name
+&ic=furniture    // Item category
+```
 
 Back to [common event types](#common)
 
 <a name="social" />
 ### 2.5. Social tracking
 
-TO WRITE
+```javascript
+uid=aeb1691c5a0ee5a6    // User ID  
+&vid=2                  // Visit ID (i.e. session number for this user_id)  
+&tid=508780				// Transaction ID  
+&aid=1                  // App ID
+&tv=js-0.5.2            // Tracker version
 
-Back to [common event types](#common)
+&e=s            // Social event type
+&sa=like        // Social Action
+&sn=facebook    // Social Network
+&st=/home       // Social Target
+```
 
-<a name="campaign" />
-### 2.6. Campaign tracking
 TO WRITE
 
 Back to [common event types](#common)
 
 <a name="error" />
-### 2.7 Error tracking
+### 2.6 Error tracking
 
 TO WRITE
 
