@@ -10,6 +10,7 @@ Thanks to the following people who have contributed patches, new code or given u
 * [Simon Andersson](https://github.com/ramn) @ [Qwaya] [qwaya] (JavaScript tracker and Hive deserializer improvements)
 * [Michael Tibben](https://github.com/mtibben) @ [99designs] [99designs] (EmrEtlRunner and HiveQL and Hive deserializer improvements)
 * [Lars Yencken](https://github.com/larsyencken) @ [99designs] [99designs] (ETL design)
+* [Tom Erik Støwer](https://github.com/testower) (EmrEtlRunner bug fixes)
 
 Original concept for SnowPlow inspired by [Radek Maciaszek](https://github.com/rathko).
 
