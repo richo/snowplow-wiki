@@ -21,7 +21,7 @@ SnowPlow has been architected to be as easy as possible for developers to create
 
 1. [Common parameters used in (nearly) all tracking](#common-params)
 2. [Pageview tracking](#pageview)
-3. [Event tracking](#event)
+3. [Custom event tracking](#event)
 4. [Ecomm tracking](#ecomm)
 5. [Social tracking](#social)
 6. [Campaign tracking](#campaign)
@@ -56,7 +56,7 @@ uid=aeb1691c5a0ee5a6                             // User ID
 Back to [common event types](#common)
 
 <a name="event" />
-### 2.3. Event tracking
+### 2.3. Custom event tracking
 
 TO WRITE
 
