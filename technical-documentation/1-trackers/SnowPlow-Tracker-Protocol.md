@@ -35,25 +35,23 @@ SnowPlow has been architected to be as easy as possible for developers to create
 | `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
 | `tid`         | `txn_id`         | Transaction ID: Unique identifier for this specific event | `508780` |
-| `e`           | `event`          | The type of event             | `Pageview`, `Download`, `Social`, `Ecomm`, `Custom` |
+| `e`           | `event`          | The type of event             | `pv` (pageview), `d` (download), `s` (social), `e` (ecomm), `c` (custom) |
 | `aid`         | `app_id`         | Unique identifier for website / app | `1`, `company-site`, `angry-birds-androis` |
 | `tstamp`      | `timestamp`      | Date / time when the event being logged took place. This is not useful for web tracking (when the events are `GET` requests are made by the Javascript tracker in realtime), in useful in mobile application tracking, where a batch of requests may be made after the events being tracked have already occured, to optimize connectivity |
 | `tv`          | `tracker_version`| Tracker ID incl. version number. Should make it clear from which tracker the data was generated | `js-0.5.2`, `iOS-0.0.3` |
 
-
-```javascript
-uid=aeb1691c5a0ee5a6   // User ID
-&vid=1                 // Visit ID (session number for this user_id)
-```
+Back to [common event types](#common)
 
 <a name="pageview" />
 ### 2.2. Pageview tracking
 
 ```javascript
-uid=aeb1691c5a0ee5a6                             // User ID
-&vid=2                                           // Visit ID (i.e. session number for this user_id)
-&tid=508780					                     // Transaction ID
-&page=Tarot%20cards%20                           // Page title (URL encoded&url=http://www.psychicbazaar.com/2-tarot-cards  // Page URL
+uid=aeb1691c5a0ee5a6    // User ID
+&vid=2                  // Visit ID (i.e. session number for this user_id)
+&tid=508780				// Transaction ID
+&e=pv                   // event = page view
+&url= http://test.psybazaar.com/2-tarot-cards    // Page URL
+&page=Tarot%20cards                              // Page title
 &refr=http://www.psychicbazaar.com               // Referrer URL
 ```
 
@@ -62,7 +60,20 @@ Back to [common event types](#common)
 <a name="event" />
 ### 2.3. Custom event tracking
 
-TO WRITE
+Add to basket example:
+
+```javascript
+uid=aeb1691c5a0ee5a6    // User ID
+&vid=2                  // Visit ID (i.e. session number for this user_id)
+&tid=508780				// Transaction ID
+&e=c                    // event = custom
+&ev_ca=ecomm            // event_category = ecomm
+&ev_ac=add-to-basket    // event_action = add-to-basket
+&ev_la=178              // event_label = 178 (product_id of item added to basket)
+&ev_pr=1                // event_property = 1 (quantity of item added to basket)
+&ev_va=14.99            // event_value = 14.99 (price of item added to basket)
+
+```
 
 Back to [common event types](#common)
 
@@ -75,6 +86,7 @@ Back to [common event types](#common)
 
 <a name="social" />
 ### 2.5. Social tracking
+
 TO WRITE
 
 Back to [common event types](#common)
