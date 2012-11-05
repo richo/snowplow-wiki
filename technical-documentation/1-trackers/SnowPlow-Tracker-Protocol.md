@@ -1,7 +1,7 @@
 <a name="top" />
 
 1. [Overview](#overview)
-2. [Sending common hit types](#common)
+2. [Sending common event types](#common)
 3. [Complete list of field names and parameters](#allparams)
 
 
@@ -17,58 +17,76 @@ SnowPlow has been architected to be as easy as possible for developers to create
 [Back to top](#top)
 
 <a name="common" />
-## 2. Sending common hit types
+## 2. Sending common event types
 
-1. [Pageview tracking](#pageview)
-2. [Event tracking](#event)
-3. [Ecomm tracking](#ecomm)
-4. [Social tracking](#social)
-5. [Campaign tracking](#campaign)
-6. [Error tracking](#error)
+1. [Common parameters used in (nearly) all tracking](#common-params)
+2. [Pageview tracking](#pageview)
+3. [Event tracking](#event)
+4. [Ecomm tracking](#ecomm)
+5. [Social tracking](#social)
+6. [Campaign tracking](#campaign)
+7. [Error tracking](#error)
+
+<a name="common-params" />
+### 2.1. Common parameters
+
+| **Parameter** | **Name**         | **Description**               | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:--------------------------|
+| `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
+| `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
+| `tid`         | `txn_id` (transaction ID) | Unique identifier for this specific event | `508780` |
+
+
+```javascript
+uid=aeb1691c5a0ee5a6   // User ID
+&vid=1                 // Visit ID (session number for this user_id)
+```
 
 <a name="pageview" />
-### 1. Pageview tracking
+### 2.2. Pageview tracking
 
+```javascript
+uid=aeb1691c5a0ee5a6                             // User ID
+&vid=2                                           // Visit ID (i.e. session number for this user_id)
+&tid=508780					                     // Transaction ID
+&page=Tarot%20cards%20                           // Page title (URL encoded&url=http://www.psychicbazaar.com/2-tarot-cards  // Page URL
+&refr=http://www.psychicbazaar.com               // Referrer URL
+```
 
-	uid=aeb1691c5a0ee5a6        // User ID
-	vid=2                       // Visit ID (i.e. session 
-	tid=508780					// Transaction ID
-	page=Tarot%20cards%20-%20Psychic%20Bazaar       // Name of the page (URL encoded)
-	url=http://www.psychicbazaar.com/2-tarot-cards  // Page URL
-	number for this `user_id`)
-	refr=http://www.psychicbazaar.com               // Referrer URL
-
-
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 <a name="event" />
-### 2. Event tracking
+### 2.3. Event tracking
 
 TO WRITE
 
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 <a name="ecomm" />
-### 3. Ecommerce tracking 
+### 2.4. Ecommerce tracking 
 
 TO WRITE
 
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 <a name="social" />
+### 2.5. Social tracking
 TO WRITE
 
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 <a name="campaign" />
+### 2.6. Campaign tracking
 TO WRITE
 
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 <a name="error" />
+### 2.7 Error tracking
+
 TO WRITE
 
-Back to [common hit types](#common)
+Back to [common event types](#common)
 
 [Back to top](#top)
 
