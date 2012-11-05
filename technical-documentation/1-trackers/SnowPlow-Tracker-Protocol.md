@@ -34,7 +34,11 @@ SnowPlow has been architected to be as easy as possible for developers to create
 |:--------------|:-----------------|:------------------------------|:--------------------------|
 | `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
-| `tid`         | `txn_id` (transaction ID) | Unique identifier for this specific event | `508780` |
+| `tid`         | `txn_id`         | Transaction ID: Unique identifier for this specific event | `508780` |
+| `e`           | `event`          | The type of event             | `Pageview`, `Download`, `Social`, `Ecomm`, `Custom` |
+| `aid`         | `app_id`         | Unique identifier for website / app | `1`, `company-site`, `angry-birds-androis` |
+| `tstamp`      | `timestamp`      | Date / time when the event being logged took place. This is not useful for web tracking (when the events are `GET` requests are made by the Javascript tracker in realtime), in useful in mobile application tracking, where a batch of requests may be made after the events being tracked have already occured, to optimize connectivity |
+| `tv`          | `tracker_version`| Tracker ID incl. version number. Should make it clear from which tracker the data was generated | `js-0.5.2`, `iOS-0.0.3` |
 
 
 ```javascript
