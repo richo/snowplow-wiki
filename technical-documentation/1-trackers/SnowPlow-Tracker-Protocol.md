@@ -34,7 +34,7 @@ SnowPlow has been architected to be as easy as possible for developers to create
 | `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
 | `tid`         | `txn_id`         | Transaction ID: Unique identifier for this specific event | `508780` |
-| `e`           | `event`          | The type of event             | `pv` (pageview),  `d` (download),  `s` (social),  `e` (ecomm),  `c` (custom) |
+| `e`           | `event`          | The type of event             | `pv`, `d`, `s`,  `e`,`c` (see [reference](#event2)) |
 | `aid`         | `app_id`         | Unique identifier for website / app | `1`, `company-site`, `angry-birds-android` |
 | `tstamp`      | `timestamp`      | Date / time when the event being logged took place. This is not useful for web tracking (when the events are `GET` requests are made by the Javascript tracker in realtime), in useful in mobile application tracking, where a batch of requests may be made after the events being tracked have already occured, to optimize connectivity |
 | `tv`          | `tracker_version`| Tracker ID incl. version number. Should make it clear from which tracker the data was generated | `js-0.5.2`,  `iOS-0.0.3` |
@@ -115,7 +115,7 @@ uid=aeb1691c5a0ee5a6    // User ID
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
-&e=e             // Ecomm event type.
+&e=ec            // Ecomm event type.
 &ti=12345        // Order ID
 &ta=westernWear  // Transaction affiliation
 &tr=50.00        // Transaction revenue
@@ -178,11 +178,12 @@ Back to [common event types](#common)
 <a name="allparams" />
 ## 3. Complete list of field names and parameters
 
-1. [Application parameters](#appid)
-2. [Date / time parameter](#timestamp)
-3. []
-
-5. [User related parameters](#user)
+1. [Application parameters](#appid)  
+2. [Date / time parameter](#timestamp)  
+3. [Event / transaction parameters](#event2)  
+4. [SnowPlow tracker version](#version)  
+5. [User related parameters](#user)  
+6. [Page level parameters](#page)  
 
 <a name="appid" />
 ### 3.1 Application parameters
@@ -222,22 +223,38 @@ For some trackers e.g. those that work on mobile platforms, it may not be optima
 
 Back to [complete list of parameters](#allparams).
 
-<a name="event" />
+<a name="event2" />
 ### 3.3 Event / transaction parameters
 
 | **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
 |:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
-| `e`           | `event`          | Event type                    | No               | e, p, s (see table below) |
+| `e`           | `event`          | Event type                    | No               | (See table below)         |
 | `tid`         | `txn_id`         | Unique transaction / event ID | Yes              | 508780                    |
 
 **Potential `event` values**
 
 | **Event type**            | **`e` value** |
 |:--------------------------|:--------------|
-| Pageview                  | p             |
+| Pageview                  | `pv`          |
+| Download                  | `d`           |
+| Social                    | `s`           |
+| Ecommerce                 | `ec`          |
+| Ecommerce item            | `eci`         |
+| Error                     | `er`          |
 
 
+Back to [complete list of parameters](#allparams).
 
+<a name="version" />
+### 3.4 SnowPlow Tracker Version
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `tv`          | `v_tracker`      | Identifier for SnowPlow tracker | No             | `js-0.5.1`                |
+
+For deployments where multiple trackers are used (e.g. to track user behaviour across many platforms), it is useful to be able to distinguish data generated from each tracker. It can also be useful when tracker versions are updated, so that it is easier to see if an update in tracker accounts for a feature of the data at analysis time.
+
+Back to [complete list of parameters](#allparams).
 
 
 <a name="user" />
@@ -247,10 +264,27 @@ Back to [complete list of parameters](#allparams).
 |:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
 | `uid`         | `user_id`        | Unique identifier for user    | Yes              | `aeb1691c5a0ee5a6`        |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | Yes       | `1`, `2`...|
+| `ctype`       | `connection_type`| Type of connection            | No               |                           |
 
 We recommend **always** setting the `uid` / `user_id` parameter: as this is the cornerstone of all customer-centric analytics.
 
 In contrast, setting `vid` / `visit_id` is optional. It is possible to define when sessions begin and end client-side, in the tracker. But it is equally possible to define session start and stop times at the ETL or analytics phase, in which case it need not be set in the tracker at all. Note: Google Analytics defines sessions server side.
+
+Back to [complete list of parameters](#allparams).
+
+
+<a name="page" />
+### 3.6 Page-level parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `url`         | `page_url`       | Page URL                      | Yes              | `http%3A%2F%2Ftest.psybazaar.com%2F2-tarot-cards` |
+| `page`        | `page_title`     | Page title                    | Yes              | `Tarot%20cards  `         |
+| `refr`        | `page_referrer`  | Unique identifier for user    | Yes              | `http%3A%2F%2Ftest.psybazaar.com%2F` |
+
+For website tracking, page-level parameters are essential for pageview events. However, they may also be set on other events (e.g. add-to-baskets, or social interactions) so that an analyst can explore to what extent those actions are more prevalant on some pages than others.
+
+These fields do not make sense in a mobile application or other non-web environment.
 
 Back to [complete list of parameters](#allparams).
 
