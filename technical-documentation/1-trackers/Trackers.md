@@ -8,7 +8,7 @@
 
 [Javascript tracker (snowplow.js)](snowplow-js)  
 [iOS tracker](ios)  
-[SnowPlow Tracker Protocol](tracker-protocol)  
+[SnowPlow Tracker Protocol](snowplow-tracker-protocol) 
 
 
 
