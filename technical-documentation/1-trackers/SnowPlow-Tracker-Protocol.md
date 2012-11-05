@@ -47,14 +47,14 @@ Back to [common event types](#common)
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID
 &vid=2                  // Visit ID (i.e. session number for this user_id)
-&tid=508780				// Transaction ID
+&tid=508780             // Transaction ID
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
 &e=pv                   // event = page view
-&url= http://test.psybazaar.com/2-tarot-cards    // Page URL
-&page=Tarot%20cards                              // Page title
-&refr=http://www.psychicbazaar.com               // Referrer URL
+&url=http%3A%2F%2Ftest.psybazaar.com%2F2-tarot-cards    // Page URL
+&page=Tarot%20cards                                     // Page title
+&refr=http%3A%2F%2Ftest.psybazaar.com%2F                // Referrer URL
 ```
 
 Back to [common event types](#common)
@@ -67,7 +67,7 @@ _Add-to-basket_ example:
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
-&tid=508780				// Transaction ID  
+&tid=508780             // Transaction ID  
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
@@ -85,7 +85,7 @@ _Watch-video-clip_ example:
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
-&tid=508780				// Transaction ID  
+&tid=508780             // Transaction ID  
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
@@ -111,7 +111,7 @@ Transaction event example:
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
-&tid=508780				// Transaction ID  
+&tid=508780             // Transaction ID  
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
@@ -128,11 +128,11 @@ Item hit example:
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
-&tid=508780				// Transaction ID  
+&tid=508780             // Transaction ID  
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
-&t=item          // Item hit type
+&e=ei            // Ecomm item event type
 &ti=12345        // Order ID
 &ip=300          // Item price
 &iq=2            // Item quantity
@@ -150,7 +150,7 @@ Back to [common event types](#common)
 ```javascript
 uid=aeb1691c5a0ee5a6    // User ID  
 &vid=2                  // Visit ID (i.e. session number for this user_id)  
-&tid=508780				// Transaction ID  
+&tid=508780             // Transaction ID  
 &aid=1                  // App ID
 &tv=js-0.5.2            // Tracker version
 
