@@ -49,9 +49,9 @@ The notes above also hold true for this bucket: don't enable logging, and expect
 
 ### 3. Upload a tracking pixel
 
-You can obtain a 1x1 transparent tracking pixel by right-clicking [this image file] [pixel-] and selecting **Save Link As...**, or if you prefer run:
+You can obtain a 1x1 transparent tracking pixel by right-clicking [this image file] [pixel] and selecting **Save Link As...**, or if you prefer run:
 
-    $ wget https://github.com/snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png 	
+    $ wget https://github.com/snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/ice.png	
 
 Now you're ready to upload the pixel into S3. Within the S3 pane, hit **Upload** and browse to your tracking pixel:
 
@@ -136,7 +136,7 @@ If you prefer, the **SnowPlow Analytics** team maintains a publically available 
 Now [[setup the hosting of snowplow.js|Self-hosting-snowplow-js]]
 
 [aws]: http://aws.amazon.com/
-[pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront/static/ice.png
+[pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/ice.png
 [pixel-bucket]: setup-guide/images/02_pixel_bucket.png
 [log-bucket]: setup-guide/images/02_log_bucket.png
 [pixel-select]: setup-guide/images/02_pixel_select.png
