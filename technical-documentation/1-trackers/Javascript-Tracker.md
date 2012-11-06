@@ -7,7 +7,8 @@
 4. [Ecommerce tracking](#ecommerce)  
 5. [Social tracking](#social)
 6. [Campaign tracking](#campaign) 
-7. [Error tracking](#error) 
+7. [Error tracking](#error)
+8. [Setting the application ID](#appid) 
 
 <a name="overview" />
 ## 1. Overview
@@ -45,8 +46,15 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-
 Note: you will need to update the {{ACCOUNT}} field with an account ID provided by the SnowPlow team (if the SnowPlow team is hosting SnowPlow for you), or the self-generated account ID if you are hosting the SnowPlow Cloudfront collector yourself. Please refer to the [setup guide](https://github.com/snowplow/snowplow/wiki/Integrating-SnowPlow-into-your-website#wiki-self-hosting) for more details.
+
+In the event that you want to manually trigger a Pageview (e.g. for an AJAX event that does not actually trigger a new page view), you can do so by calling the `trackPageView` function directly i.e.
+
+```javascript
+_snaq.push['trackPageView']
+```
+
+and bind the to the event you want to trigger it.
 
 #### Syncronous implementation
 
@@ -458,3 +466,19 @@ The parameters are descibed in the [Google Analytics help page] [gahelppage]. Go
 ## 7. Error tracking 
 
 COMING SOON
+
+## 8. Setting the application ID
+
+The application ID field (aka `app_id`) is useful for SnowPlow uses distinguishing between data from different digital applications, be they websites, mobile apps or other types of software application with SnowPlow tracking installed.
+
+To set the `app_id`, use the `setSiteId` function. This takes only one argument: the application ID you want to set. The async implementation is:
+
+```javascript
+_snaq.push(['setSiteId', 'my_application_id_here']);
+```
+
+The sync implementation is simply:
+
+```javascript
+setSiteId('my_application_id')
+```

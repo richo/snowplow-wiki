@@ -14,6 +14,8 @@ The SnowPlow Tracker Protocol is the list of all the parameters that SnowPlow tr
 
 SnowPlow has been architected to be as easy as possible for developers to create their own alternative subsystems. This documentation should be used by anyone who would like to build their own tracker: by utilising the parameters documented here, the author of a new tracker can be confident that his / her tracker will work with the rest of the SnowPlow stack, and be confident where the values associated with each parameter on every call will be available to query in SnowPlow, whether that's in Hive or Infobright or another database.
 
+Please note that the end point where the `GET` or `POST` request should be made depends on which [collector](collectors) is used. Refer to the [collectors](collectors) documentation for more information.
+
 [Back to top](#top)
 
 <a name="common" />
