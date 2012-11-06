@@ -304,7 +304,7 @@ Back to [complete list of parameters](#allparams).
 
 Custom event tracking is at the heart of the SnowPlow approach to 'track everything'. We recommend tracking all events that are not tracked as part of pageviews as custom events. For people using SnowPlow to track web behaviour, that means all AJAX events. 
 
-Our hope is that the above fields are enough in most cases to capture all the relevant data points associated with a specific event. In the event that they are not, we plan to extend SnowPlow shortly to include 10 custom variables that can be associated with specific events, and an 11th that can be stuffed with an JSON, if there is a need to pass more structured data into SnowPlow for the events that the 5 fields above and the 10 custom variables can hold.
+Our hope is that the above fields are enough in most cases to capture all the relevant data points associated with a specific event. In the event that they are not, we plan to extend SnowPlow shortly to include 10 [custom variables](#custom_variables) that can be associated with specific events, and an 11th that can be stuffed with an JSON, if there is a need to pass more structured data into SnowPlow for the events that the 5 fields above and the 10 custom variables can hold.
 
 Back to [complete list of parameters](#allparams).
 
@@ -341,3 +341,39 @@ Note: these have not been implemented yet. However, the planned implementation i
 Ecommerce tracking has been implemented in a way that closely models Ecommerce tracking in Google Analytics.
 
 Back to [complete list of parameters](#allparams).
+
+<a name="custom_variables" />
+### 3.10 Custom variables
+
+In situations where you want to pass data into SnowPlow that can not be accommodated in the above parameters / fields, SnowPlow provides 41 custom variables fields that can be populated with data that you want to pass in. There are four main types of custom variable, each defined by different scope:
+
+**`cv_user` fields (`cvu` parameters)**
+
+`cv_user` custom variables are used to store data associated with this particular user. These variables are perfect for storing data points like name, email address, date of birth, membership type etc., that you are likely to reference with respect to the user in future.
+
+**`cv_session` fields (`cvs` parameters)**
+
+`cv_session` are custom variables that are used to store data associated with this particular session. These variables are useful e.g. to game state for a mobile game.
+
+**`cv_event` fields (`cve` parameters)** 
+
+`cv_event` are custom variables that are used to store data associated with a particular event. They can often be used as additional locations to store data associated with custom events that cannot be accommodated in the five standard [custom event fields / parameters](#event2).
+
+**`cv_context` fields (`cvc` parameters)**
+
+`cv_context` are custom variables that are used to associate data related to the context an action of event takes place in. These variables can be used to differentiate two versions of a particular web page that is being A/B tested, for example.
+
+**`cv_json` field (`cvj` parameter)**
+
+In the event that you want to pass data associated with an action, event, context, session, user or anything else, that is not easily accommodated in any of the other fields / parameters, you can stuff them into a JSON and pass them into SnowPlow to be stored in the `cv_json` field.
+
+| **Parameters**         | **Maps to**                     | **Implemented?** |
+|:-----------------------|:--------------------------------|:-----------------|
+| `cvu1` -> `cvu10`      | `cv_user1` -> `cv_user10`       | No               |
+| `cvs1` -> `cvs10`      | `cv_session1` -> `cv_session10` | No               |
+| `cve1` -> `cve10`      | `cv_event1` -> `cv_event10`     | No               |
+| `cvc1` -> `cvc10`      | `cv_context1` -> `cv_context10` | No               |
+
+Back to [complete list of parameters](#allparams).
+
+Back to [top](#top).
