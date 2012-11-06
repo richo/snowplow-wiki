@@ -262,12 +262,15 @@ The command-line options for EmrEtlRunner look like this:
         -c, --config CONFIG              configuration file
         -s, --start YYYY-MM-DD           optional start date *
         -e, --end YYYY-MM-DD             optional end date *
+        -s, --skip staging|emr           skip work step(s)
 
     * filters the raw event logs processed by EmrEtlRunner by their timestamp
 
     Common options:
         -h, --help                       Show this message
         -v, --version                    Show version
+
+A note on the `--skip` option: this skips the work steps **up to and including** the specified step. To give an example: `--skip emr` skips moving the raw logs to the Staging Bucket **and** skips running the ETL on EMR, i.e. it **only** performs the final archiving step.
 
 <a name="running"/>
 ### Running in each mode
