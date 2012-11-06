@@ -184,6 +184,9 @@ Back to [common event types](#common)
 4. [SnowPlow tracker version](#version)  
 5. [User related parameters](#user)  
 6. [Page level parameters](#page)  
+7. [Custom event tracking parameters](#events3)
+8. [Social parameters](#social2)
+9. [Ecommerce parameters](#ecomm3)
 
 <a name="appid" />
 ### 3.1 Application parameters
@@ -288,5 +291,53 @@ These fields do not make sense in a mobile application or other non-web environm
 
 Back to [complete list of parameters](#allparams).
 
+<a name="events3" />
+### 3.7 Custom event tracking parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `ev_ca`       | `ev_category`    | Category of event             | Yes              | `ecomm`, `media`          |
+| `ev_ac`       | `ev_action`      | The action performed          | Yes              | `add-to-basket`, `play-video` |
+| `ev_la`       | `ev_label`       | A label associated with the event. Often the object (e.g. `product_id`, `video_id` acted on | Yes | `pbz00123` |
+| `ev_pr`       | `ev_property`    | A property value associated with the action / event e.g. quantity of an item added to basket | `1`, `large` |
+| `ev_va`       | `ev_value`       | A value associatd with the action / event. This may be the monetary value associated with it e.g. the value of the item added to basket | '12.99' |
+
+Custom event tracking is at the heart of the SnowPlow approach to 'track everything'. We recommend tracking all events that are not tracked as part of pageviews as custom events. For people using SnowPlow to track web behaviour, that means all AJAX events. 
+
+Our hope is that the above fields are enough in most cases to capture all the relevant data points associated with a specific event. In the event that they are not, we plan to extend SnowPlow shortly to include 10 custom variables that can be associated with specific events, and an 11th that can be stuffed with an JSON, if there is a need to pass more structured data into SnowPlow for the events that the 5 fields above and the 10 custom variables can hold.
+
+Back to [complete list of parameters](#allparams).
+
+<a name="social2" />
+### 3.8 Social parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `sa`          | `social_action`  | Social action performed       | No               | `like`, `tweet`           |
+| `sn`          | `social_network` | Social network involved       | No               | `facebook`, `twitter`     |
+| `st`          | `social_target`  | Social action target e.g. object _liked_, article _tweeted_ | No | `like`, `tweet` |
+| `sp`          | `social_pagepath`| Page path action was performed on | No           |         |
+
+Note: these have not been implemented yet. However, the planned implementation is closely modelled on the Google Analytics Measurement Protocol for tracking social interactions.
 
 
+
+<a name="ecomm2" />
+### 3.9 Ecommerce parameters
+
+| **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
+|:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
+| `ti`          | `tr_orderid`     | Unique ID for transaction     | Yes              | `0015313`                 |
+| `ta`          | `tr_affiliation` | Store name or affiliation     | Yes              | `Member`                  |
+| `tr`          | `tr_total`       | Total value (revenue) of transaction | Yes       | `24.99`                   |
+| `ts`          | `tr_shipping`    | The shipping cost             | Yes              | `3.00`                    |
+| `tt`          | `tr_tax`         | The tax (VAT) total for the transaction | Yes    | `2.75`                    |
+| `ip`          | `ti_price`       | The price of the item         | Yes              | `12.99`                   |
+| `iq`          | `ti_quantity`    | The quantity of the item bought | Yes            | `1`                       |
+| `ic`          | `ti_sku`         | Item SKU or product code      | Yes              | `pbz00123`                |
+| `in`          | `ti_name`        | Item name                     | Yes              | `The Hezicos Tarot`       |
+| `ic`          | `ti_category`    | Item category                 | Yes              | `Tarot decks`             |
+
+Ecommerce tracking has been implemented in a way that closely models Ecommerce tracking in Google Analytics.
+
+Back to [complete list of parameters](#allparams).

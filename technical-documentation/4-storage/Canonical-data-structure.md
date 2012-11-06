@@ -47,7 +47,7 @@ The fields recorded in the *SnowPlow events table* today:
 | `ev_value`           | STRING         | Yes               | A value associated with with the action e.g. the value of the items added to basket |
 | **Ecommerce**        |                |                   | _Ecomm transaction tracking_        |
 | `tr_order-id`        | STRING         | Yes               | Unique ID for the transaction |
-| `tr_affiliation      | STRING         | Yes               |                               |
+| `tr_affiliation`     | STRING         | Yes               |                               |
 | `tr_total`           | DECIMAL        | Yes               | Total transaction value |
 | `tr_tax`             | DECIMAL        | Yes               | Total sales tax |
 | `tr_shipping`        | DECIMAL        | Yes               | Total shipping charged |
@@ -126,10 +126,10 @@ We are building out the **SnowPlow events table** to incorporate new fields in t
 | **Social event**     |                |                   |               | Fields for social event tracking    |
 | `social_network`     | STRING         | Yes               | No            | Social network that action relates to e.g. `Facebook`, `Twitter` |
 | `social_action`      | STRING         | Yes               | No            | Action that user performed e.g. `like` |
-| 'social_target'      | STRING         | Yes               | No            | The social object that the action was performed on e.g. the video that was 'liked' |
+| `social_target`      | STRING         | Yes               | No            | The social object that the action was performed on e.g. the video that was 'liked' |
 | `social_pagepath`    | STRING         | Yes               | No            | The page URL the action was committed on |
 | **Ecommerce**        |                |                   | _Ecomm transaction tracking_        |
-| `tr_order-id`        | STRING         | Yes               | Unique ID for the transaction |
+| `tr_orderid`        | STRING         | Yes               | Unique ID for the transaction |
 | `tr_affiliation      | STRING         | Yes               |                               |
 | `tr_total`           | DECIMAL        | Yes               | Total transaction value |
 | `tr_tax`             | DECIMAL        | Yes               | Total sales tax |
