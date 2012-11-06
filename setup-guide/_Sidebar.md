@@ -1,20 +1,30 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
 
 **1. Trackers**  
-[JavaScript tracker](Integrating SnowPlow into your website)  
+[Tracker setup: choosing a tracker](choosing-a-tracker)  
+[Javascript tracker setup](javascript-tracker-setup)  
+[iOS tracker setup](ios-tracker-setup)  
 
 **2. Collectors**  
-[CloudFront collector](Self-hosting the tracking pixel)  
-[SnowCannon node.js collector](snowcannon setup guide)
+[Collectors setup: choosing a collector](choosing-a-collector)  
+[Cloudfront collector setup](setting-up-the-cloudfront-collector)  
+[Clojure collector setup](setting-up-the-clojure-collector)  
+[SnowCannon (node.js) setup](snowcannon-setup-guide) 
 
 **3. ETL**  
-[Hive-based ETL on Amazon EMR](Deploying-EmrEtlRunner)
+[ETL setup: choosing an ETL module](choosing-an-etl-module)  
+[Hive ETL](deploying-the-hive-emr-runner)  
+[Scalding / Cascading ETL](scalding-etl-setup) 
 
-**4. Storage**  
+**4. Storage** 
+[Storage setup: choosing a storage option](choosing-a-storage-module)  
 [[Hive storage setup]]
+[Infobright setup](infobright-storage-setup) 
 
 **5. Analytics**  
+[Analytics setup](analytics-setup)
 [Analysis using Hive](Querying the data using Hive)  
+[Infobright based analytics](infobright-analytics-setup)
 
 **Common**  
 [[Setting up EMR]]  
