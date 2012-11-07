@@ -8,7 +8,7 @@ The exact integration steps required vary depending on whether you choose to use
 
 ## Before you get started...
 
-Before integrating 
+Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setAccount` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{ACCOUNT}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `ice.png`.)
 
 ## Table of Contents
 
@@ -45,13 +45,26 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the SnowPlow Analytics team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d3rkrsqld9gmqf`
+**Setting the {{ACCOUNT}} value** 
+
+You must update `{{ACCOUNT}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
+
+If you are using **asynchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
+
+```javascript
+_snaq.push(['setAccount', 'd1x5tduoxffdr7']);
+
+**Updating the reference to `sp.js`**
+
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). If you have elected to [self host SnowPlow.js](self-hosting-snowplow-js), you will need to update the `d1fc8wv8zag5ca` to point at the Cloudfront subdomain from which  you serve the `sp.js` file, rather than ours.
+
+**Understanding the tracking code**
 
 To explain a few things about this async tracking code:
 
 * This code works with both HTTPS (i.e. SSL-secured) and HTTP pages
 * The `trackPageView` command logs the page load 
-* The `enableLinkTracking` command ensures SnowPlow enables clicks and download tracking. If this is not required, it can be removed or commented out
+* The `enableLinkTracking` command ensures SnowPlow enables clicks and download tracking. Currently this has not been implemented
 
 ### Integrating event tracking
 
@@ -96,7 +109,19 @@ snowplowTracker.enableLinkTracking();
 <!-- SnowPlow stops plowing -->
 ```
 
-**Important:** You must update `{{ACCOUNT}}` with your specific account ID provided by the SnowPlow Analytics team, or your self-generated account ID as per [Changes for self-hosting](#self-hosting) below. It will look something like `d3rkrsqld9gmqf`
+**Setting the {{ACCOUNT}} value** 
+
+You must update `{{ACCOUNT}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
+
+If you are using **synchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
+
+```javascript
+var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
+```
+
+**Updating the reference to `sp.js`**
+
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). If you have elected to [self host SnowPlow.js](self-hosting-snowplow-js), you will need to update the `d1fc8wv8zag5ca` to point at the Cloudfront subdomain from which  you serve the `sp.js` file, rather than ours.
 
 To explain a few things about this synchronous tracking code:
 
