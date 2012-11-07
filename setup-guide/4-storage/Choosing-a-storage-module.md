@@ -7,8 +7,14 @@
 | [S3 / Apache Hive](s3-hive-storage-setup)      | Store your SnowPlow events data as flat files in Amazon S3. Use Apache Hive (developed at Facebook) to query that data directly. Scales horizontally. (To petabytes and beyond!) | Production-ready |
 | [Infobright](infobright-storage-setup)         | Open source columnar database. Crunch through terabytes of data fast. | Production-ready |
 
+## Databases on the SnowPlow roadmap
 
-## Considerations when choosing between an S3 or Infobright based storage for SnowPlow events data
+We plan to grow the number of storage modules available, to include:
+
+1. [PostgreSQL](http://www.postgresql.org/) (for companies without enormous volumes / web and application traffic)
+2. [SkyDB](http://skydb.io/) event database
+
+## Selection considerations 
 
 | **S3 / Apache Hive**                           | **Infobright**                                 | 
 |:-----------------------------------------------|:-----------------------------------------------|
@@ -21,9 +27,3 @@ In general, we recommend using Infobright for smaller volumes of data (up to Ter
 
 Note: if you start off with one storage solution e.g. Infobright, it is reasonably straightforward to migrate to another if need be.
 
-## Databases on the SnowPlow roadmap
-
-We plan to grow the number of storage modules available, to include:
-
-1. [PostgreSQL](http://www.postgresql.org/) (for companies without enormous volumes / web and application traffic)
-2. [SkyDB](http://skydb.io/) event database

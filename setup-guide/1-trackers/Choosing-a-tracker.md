@@ -10,7 +10,7 @@
 
 ## Trackers on the SnowPlow roadmap
 
-As well as the iOS tracker in development, Android and Windows 7 trackers are on our product roadmap. If you are interested in working with us to develop them, [[talk to us]] and refer to the [[SnowPlow Tracker Protocol]] for technical specifications.
+As well as the iOS tracker in development, Android and Windows trackers are on our product roadmap. If you are interested in working with us to develop them, [[talk to us]] and refer to the [[SnowPlow Tracker Protocol]] for technical specifications.
 
 
 ## Making a selection

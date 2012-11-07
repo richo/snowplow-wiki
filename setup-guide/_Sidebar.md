@@ -16,15 +16,15 @@
 [Hive ETL](deploying-the-hive-emr-runner)  
 [Scalding / Cascading ETL](scalding-etl-setup) 
 
-**4. Storage** 
+**4. Storage**  
 [Storage setup: choosing a storage option](choosing-a-storage-module)  
 [[Hive storage setup]]
 [Infobright setup](infobright-storage-setup) 
 
 **5. Analytics**  
-[Analytics setup](analytics-setup)
+[Analytics setup](analytics-setup)  
 [Analysis using Hive](Querying the data using Hive)  
-[Infobright based analytics](infobright-analytics-setup)
+[Infobright based analytics](infobright-analytics-setup)  
 
 **Common**  
 [[Setting up EMR]]  
