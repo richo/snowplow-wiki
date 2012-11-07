@@ -56,7 +56,7 @@ _snaq.push(['setAccount', 'd1x5tduoxffdr7']);
 
 The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team from our own Cloudfront subdomain](hosted-assets) (and provided free to the community). 
 
-If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the JavaScript code for SnowPlow in your website's `<head>` section.
+If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the tag above, swapping your own Cloudfront `{{SUBDOMAIN}}` (the one from which you serve `sp.js` in for ours:
 
 ```javascript
 sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
@@ -127,7 +127,7 @@ var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
 
 The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). 
 
-If you are using **synchronous tracking**, then update the corresponding line in your header script to look like this:
+If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the tag above, swapping your own Cloudfront `{{SUBDOMAIN}}` (the one from which you serve `sp.js` in for ours:
 
 ```javascript
 var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
@@ -163,7 +163,7 @@ Any problems? Please consult the [Testing and troubleshooting](#tt) section at t
 <a name="events"/>
 ## Tracking more than Pageviews. (Event tracking, ecommerce tracking, social tracking, campaign tracking.)
 
-The SnowPlow Javascript tracker supports a rich set of tracking functions including [event tracking](javascript-tracker#wiki-events), [ecommerce tracking](javascript-tracker#wiki-ecommerce) and [social tracking](javascript-tracker#ecommerce#wiki-social). For details of how to implement the above, refer to the [[Javascript tracker]] section of the [Technical Documentation](snowplow-technical-documentation).
+The SnowPlow Javascript tracker supports a rich set of tracking functions including [event tracking](javascript-tracker#wiki-events), [ecommerce tracking](javascript-tracker#wiki-ecommerce) and [social tracking](javascript-tracker#wiki-social). For details of how to implement the above, refer to the [[Javascript tracker]] section of the [Technical Documentation](snowplow-technical-documentation).
 
 <a name="testing"/>
 ## Testing
