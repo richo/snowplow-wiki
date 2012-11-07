@@ -15,8 +15,7 @@ Before you start integrating the Javascript tracking tags onto your website, we 
 1. [Asynchronous integration](#async)
 2. [Synchronous integration](#sync)
 3. [Event tracking](#events)
-4. [Changes for self-hosting](#self-hosting)
-5. [Testing](#testing)
+4. [Testing](#testing)
 
 Sections 1-3 assume for the sake of simplicity that you are using a hosted version of SnowPlow provided by **SnowPlow Analytics**. In section 4 we set out the adjustments that need to be made if you are self-hosting the CloudFront collector and/or the JavaScript tracker.
 
@@ -53,6 +52,7 @@ If you are using **asynchronous tracking** and your CloudFront distribution's UR
 
 ```javascript
 _snaq.push(['setAccount', 'd1x5tduoxffdr7']);
+```
 
 **Updating the reference to `sp.js`**
 
