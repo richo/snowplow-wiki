@@ -86,7 +86,7 @@ Here is an example of SnowPlow event tracking attached to a simple JavaScript ac
 </script>
 ```
 
-The five arguments to the event tracking command may be broadly familiar to you from Google Analytics - however there are some small differences, so please refer to the section [Event tracking](#events) below for more information.
+The five arguments to the event tracking command may be broadly familiar to you from Google Analytics - however there are some small differences, so please refer to the section [tracking more than page views](#events) below for more information.
 
 Any problems? Please consult the [Testing and troubleshooting](#tt) section at the bottom of this guide.
 
@@ -156,7 +156,7 @@ Here is an example of SnowPlow event tracking attached to a simple JavaScript ac
     }
 </script>
 ```
-The five arguments to the event tracking command may be broadly familiar to you from Google Analytics - however there are some small differences, so please refer to the section [Event tracking](#events) below for more information.
+The five arguments to the event tracking command may be broadly familiar to you from Google Analytics - however there are some small differences, so please refer to the section [tracking more than page views](#events) below for more information.
 
 Any problems? Please consult the [Testing and troubleshooting](#tt) section at the bottom of this guide.
 
@@ -172,7 +172,7 @@ _This section is common to both the synchronous and asynchronous integration app
 
 ### Checking snowplow.js is working
 
-You can 'kick the tyres' of `snowplow.js` with the example HTML pages available in:
+You can 'kick the tyres' of `snowplow.js` with the example HTML pages available in [https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/examples/web](https://github.com/snowplow/snowplow/tree/master/1-trackers/javascript-tracker/examples/web) 
 
     snowplow/tracker/examples
 

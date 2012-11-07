@@ -2,12 +2,12 @@
 
 ## Overview
 
-In addition to self-hosting the tracking pixel, we recommend self-hosting the SnowPlow tracking JavaScript, `snowplow.js`. Unlike the tracking pixel, this does not have an impact on where your SnowPlow data gets stored, but it does have some definite advantages over using a third-party-hosted JavaScript:
+We recommend self-hosting the SnowPlow tracking JavaScript, `snowplow.js` as it does have some definite advantages over using a third-party-hosted JavaScript:
 
 1. Hosting your own JavaScript allows you to use your own JavaScript minification and asset pipelining approach (e.g. bundling all JavaScripts into one minified JavaScript)
 2. As [Douglas Crockford] [crockford] put it about third-party JavaScripts: _"it is extremely unwise to load code from servers you do not control."_
 
-The alternative to self-hosting `snowplow.js` is to use the version hosted by **SnowPlow Analytics**, which is okay too. But if you want to self-host `snowplow.js`, please read on...
+The alternative to self-hosting `snowplow.js` is to use the version hosted by **SnowPlow Analytics**, which is okay too. (Details of all the assets including `sp.js` that we house on behalf of the community can be found [here](hosted-assets). But if you want to self-host `snowplow.js`, please read on...
 
 ## Contents
 
@@ -116,10 +116,6 @@ The guide above assumed that you were happy to take the already-minified `sp.js`
 The first option above is explored in more detail in the guide to [[Modifying snowplow.js|Modifying-snowplow-js]].
 
 The second option is out of the scope of the SnowPlow documentation but you should get some ideas as to how the minification should be handled from that same guide, [[Modifying snowplow.js|Modifying-snowplow-js]].
-
-## All done?
-
-Now [[add the SnowPlow javascript tracking tags to your site|Integrating-SnowPlow-into-your-website]]
 
 [aws]: http://aws.amazon.com/
 [yuic]: http://developer.yahoo.com/yui/compressor/
