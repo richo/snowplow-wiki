@@ -14,10 +14,8 @@ Before you start integrating the Javascript tracking tags onto your website, we 
 
 1. [Asynchronous integration](#async)
 2. [Synchronous integration](#sync)
-3. [Event tracking](#events)
+3. [Tracking more than Pageviews. (Event tracking, ecommerce tracking, social tracking, campaign tracking.)](#events)
 4. [Testing](#testing)
-
-Sections 1-3 assume for the sake of simplicity that you are using a hosted version of SnowPlow provided by **SnowPlow Analytics**. In section 4 we set out the adjustments that need to be made if you are self-hosting the CloudFront collector and/or the JavaScript tracker.
 
 <a name="async"/>
 ## Asynchronous integration
@@ -46,9 +44,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 
 **Setting the {{ACCOUNT}} value** 
 
-You must update `{{ACCOUNT}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
+You must update `{{ACCOUNT}}` with the Cloudfront subdomain details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
 
-If you are using **asynchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
+If your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
 
 ```javascript
 _snaq.push(['setAccount', 'd1x5tduoxffdr7']);
@@ -56,7 +54,13 @@ _snaq.push(['setAccount', 'd1x5tduoxffdr7']);
 
 **Updating the reference to `sp.js`**
 
-The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). If you have elected to [self host SnowPlow.js](self-hosting-snowplow-js), you will need to update the `d1fc8wv8zag5ca` to point at the Cloudfront subdomain from which  you serve the `sp.js` file, rather than ours.
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team from our own Cloudfront subdomain](hosted-assets) (and provided free to the community). 
+
+If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the JavaScript code for SnowPlow in your website's `<head>` section.
+
+```javascript
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+```
 
 **Understanding the tracking code**
 
@@ -113,7 +117,7 @@ snowplowTracker.enableLinkTracking();
 
 You must update `{{ACCOUNT}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
 
-If you are using **synchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
+If your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
 
 ```javascript
 var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
@@ -121,7 +125,15 @@ var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
 
 **Updating the reference to `sp.js`**
 
-The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). If you have elected to [self host SnowPlow.js](self-hosting-snowplow-js), you will need to update the `d1fc8wv8zag5ca` to point at the Cloudfront subdomain from which  you serve the `sp.js` file, rather than ours.
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). 
+
+If you are using **synchronous tracking**, then update the corresponding line in your header script to look like this:
+
+```javascript
+var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+```
+
+**Understanding the tracking code**
 
 To explain a few things about this synchronous tracking code:
 
@@ -149,101 +161,10 @@ The five arguments to the event tracking command may be broadly familiar to you 
 Any problems? Please consult the [Testing and troubleshooting](#tt) section at the bottom of this guide.
 
 <a name="events"/>
-## Event tracking
+## Tracking more than Pageviews. (Event tracking, ecommerce tracking, social tracking, campaign tracking.)
 
-_This section is common to both the synchronous and asynchronous integration approaches._
+The SnowPlow Javascript tracker supports a rich set of tracking functions including [event tracking](javascript-tracker#events), [ecommerce tracking](javascript-tracker#ecommerce) and [social tracking](javascript-tracker#ecommerce#social). For details of how to implement the above, refer to the [[Javascript tracker]] section of the [Technical Documentation](snowplow-technical-documentation).
 
-### Philosophy
-
-The concept of event tracking is at the heart of SnowPlow. In the 'classical' model of web analytics, sensible analyses are agreed in advance, then formalised by being integrated into the site (e.g. by tracking goals and conversion funnels) and finally analysed. SnowPlow views this approach as 'premature analysis', and encourages logging plenty of intent-agnostic events and then figuring out what they mean later.
-
-The Event tracking sections of the synchronous and asynchronous guides covers the technical integration of SnowPlow events; in the rest of this section we provide a practical guide to using event tracking effectively.
-
-### Anatomy of event tracking
-
-The SnowPlow concept of an event has five key attributes:
-
-| **Name**    | **Required?** | **Description**                                                                  |
-|------------:|:--------------|:---------------------------------------------------------------------------------|
-|  `Category` | Yes           | The name you supply for the group of objects you want to track                   |
-|    `Action` | Yes           | A string which defines the type of user interaction for the web object           |
-|    `Object` | No            | An optional string which identifies the specific object being actioned           |
-|  `Property` | No            | An optional string describing the object or the action performed on it           |
-|     `Value` | No            | An optional float to quantify or further describe the user action                |
-
-If you have setup event tracking with Google Analytics, these will seem familiar. Here are the differences between SnowPlow's approach and Google Analytics':
-
-* The SnowPlow `Object` field is the equivalent of `Label` in Google Analytics
-* The SnowPlow `Value` field takes a floating point number (e.g. '3.14') while the equivalent field in Google Analytics takes an integer 
-* SnowPlow has an additional `Property` field, which takes a string and can be used to further describe the object or the action performed on it
-* SnowPlow does not have a boolean field called `Non-interaction`
-
-### Examples
-
-#### Playing a music mix
-
-Here is an (asynchronous) example of tracking a user listening to a music mix:
-
-```javascript
-_snaq.push(['trackEvent', 'Mixes', 'Play', 'MrC/fabric-0503-mix', , '0.0']);
-```
-
-The explanation of each argument passed to `'trackEvent'` is as follows:
-
-| **Argument**          | **Attribute** | **Explanation**                                                         |
-|----------------------:|:--------------|:------------------------------------------------------------------------|
-| 'Mixes'               | `Category`    | This is a DJ mix on a music site                                        |
-| 'Play'                | `Action`      | We are tracking a mix being played                                      | 
-| 'MrC/fabric-0503-mix' | `Object`      | This uniquely identifies the mix being played                           |
-| `, ,` i.e. not set    | `Property`    | Not required                                                            |
-| '0.0'                 | `Value`       | A float specifying how far in seconds into the mix the playback started |
-
-##### Adding a product to basket
-
-Here is a (synchronous) example of tracking a user adding a product to their shopping basket:
-
-```javascript
-trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
-```
-
-The explanation of each argument passed to `trackEvent()` is as follows:
-
-| **Argument** | **Attribute** | **Explanation**                                                                                         |
-|-------------:|:--------------|:--------------------------------------------------------------------------------------------------------|
-| 'Checkout'   | `Category`    | This is the checkout flow on an ecommerce site                                                          |
-| 'Add'        | `Action`      | The user is adding a product to his or her shopping basket                                              | 
-| 'ASO01043'   | `Object`      | A SKU uniquely identifying the product added to basket                                                  |
-| 'blue:xxl'   | `Property`    | Describes the product (we're actually compressing two properties into one with a colon in-between them) |
-| '2.0'        | `Value`       | A float specifying how many units of the product the user is adding to basket                           |
-
-### Further reading
-
-For further examples and additional background on the concepts around web event tracking, we would encourage you to read Google Analytics's [Event Tracking Guide] [ga-event-guide], as there are many similarities between the two approaches. 
-
-<a name="self-hosting"/>
-## Changes for self-hosting
-
-_This section is common to both the synchronous and asynchronous integration approaches._
-
-### Self-hosted CloudFront collector
-
-If you are using your own tracking pixel (see the guide to [[Self-hosting the tracking pixel]]), you will need to tweak the JavaScript code given above.
-
-The secret is to realise that SnowPlow's `setAccount()` method in fact takes a CloudFront subdomain as its argument - so using your own CloudFront distribution is super-simple.
-
-If you are using **asynchronous tracking** and your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
-
-```javascript
-_snaq.push(['setAccount', 'd1x5tduoxffdr7']);
-```
-
-Whereas if you are using **synchronous tracking**, then update your header script to look like this:
-
-```javascript
-var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
-```
-
-Done! It's that easy.
 
 ### Self-hosted SnowPlow JavaScript file
 
