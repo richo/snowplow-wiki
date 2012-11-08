@@ -106,9 +106,9 @@ Check it worked okay:
 <a name="configuration"/>
 ### Configuration
 
-EmrEtlRunner requires a YAML format configuration file to run. There is a configuration
+StorageLoader requires a YAML format configuration file to run. There is a configuration
 file template available in the SnowPlow GitHub repository at 
-[`/3-etl/emr-etl-runner/config/config.yml`] [config-yml]. The template looks like this:
+[`/4-storage/storage-loader/config/config.yml`] [config-yml]. The template looks like this:
 
 ```yaml
 :aws:
@@ -117,32 +117,18 @@ file template available in the SnowPlow GitHub repository at
 :s3:
   :region: ADD HERE
   :buckets:
-    # Update assets if you want to host the serde and HiveQL yourself
-    :assets: s3://snowplow-emr-assets
-    :log: ADD HERE
     :in: ADD HERE
     :processing: ADD HERE
-    :out: ADD HERE WITH SUB-FOLDER
     :archive: ADD HERE
-:emr:
-  # Can bump the below as EMR upgrades Hadoop
-  :hadoop_version: 1.0.3
-  :placement: ADD HERE
-  :ec2_key_name: ADD HERE
-  # Adjust your Hive cluster below
-  :jobflow:
-    :instance_count: 2
-    :master_instance_type: m1.small
-    :slave_instance_type: m1.small
-:etl:
-  :collector_format: cloudfront # No other formats supported yet
-  :continue_on_unexpected_error: false # You can switch to 'true' if you really don't want the serde throwing exceptions
-  :storage_format: non-hive # Or switch to 'hive' if you're only using Hive for analysis
-# Can bump the below as SnowPlow releases new versions
-:snowplow:
-  :serde_version: 0.5.0
-  :hive_hiveql_version: 0.5.0
-  :non_hive_hiveql_version: 0.0.1
+:download:
+  :folder: ADD HERE # Where to store the downloaded files
+# Currently assumes we are loading only one target
+:storage:
+  :type: infobright # No other storage types supported yet
+  :database: ADD HERE # Name of database
+  :table:    ADD HERE # Name of the table to populate
+  :username: ADD HERE # Or leave blank to default to the user running the script
+  :password: ADD HERE # Or leave blank if no password
 ```
 
 To take each section in turn:
@@ -160,36 +146,22 @@ or "eu-west-1".
 
 Within the `s3` section, the `buckets` variables are as follows:
 
-* `assets` holds the ETL job's static assets (HiveQL script plus Hive
-  deserializer). You can leave this as-is (pointing to SnowPlow
-  Analytics' [own public bucket containing these assets](Hosted-assets))
-  or replace this with your own private bucket containing the assets
-* `log` is the bucket in which Amazon EMR will record processing
-  information for this job run, including logging any errors  
 * `in` is where you specify your In Bucket
 * `processing` is where you specify your Processing Bucket
-* `out` is where you specify your Out Bucket - **always include a
-  sub-folder on this variable (see below for why)**
 * `archive` is where you specify your Archive Bucket
 
 Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
 bucket as required, and a trailing slash is optional.
 
-**Important:** there is a bug in Hive on Amazon EMR where Hive dies if 
-you attempt to write data to the root of an S3 bucket. **Therefore
-always specify a sub-folder (e.g. `/events/`) for the `out` bucket
-variable.**
-
 The following are all valid bucket settings:
 
     :buckets:
-      :assets: s3://my-public-snowplow-assets
-      :in: s3n://my-cloudfront-logs/
+      :in: s3n://my-snowplow-data/events
       :processing: s3n://my-cloudfront-logs/processing
-      :out: s3n://my-snowplow-data/events
+      :archive: s3n://my-archived-snowplow-data/events
 
-Please note that all buckets must exist prior to running EmrEtlRunner.
+Please note that all buckets must exist prior to running StorageLoader.
 
 #### emr
 
@@ -357,8 +329,6 @@ If you get this working, please let us know!
 
 [storage-loader]: https://github.com/snowplow/snowplow/tree/master/4-storage/storage-loader
 
-
-
 [hive-etl]: https://github.com/snowplow/snowplow/tree/master/3-etl/hive-etl
 [trackers]: https://github.com/snowplow/snowplow/tree/master/1-trackers
 [collectors]: https://github.com/snowplow/snowplow/tree/master/2-collectors
@@ -369,7 +339,7 @@ If you get this working, please let us know!
 [nokogiri-install]: http://nokogiri.org/tutorials/installing_nokogiri.html
 [rubygems-install]: http://docs.rubygems.org/read/chapter/3
 
-[config-yml]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/config/config.yml
+[config-yml]: https://github.com/snowplow/snowplow/blob/master/4-storage/storage-loader/config/config.yml
 [bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh
 
 [cronic]: http://habilis.net/cronic/
