@@ -190,6 +190,6 @@ Note: whenever new fields are added to the Hive table, they are always added to 
 
 There are a variety of things that can be done to improve Hive querying performance on data in S3 and a number of these involve changing the way data is structured in Hive. We have not yet had the chance to test the impact of them to see if any are worthwhile. We welcome any feedback from community members into which are worth exploring / implementing:
 
-1. Changing the storage format of the files to e.g. to binary formats and/or columnar formats (e.g. RCFile) 
-2. Bucketing data by `user_id`
-3. Using [Qubole](http://www.qubole.com/) as an alternative to EMR
+1. Changing the storage format of the files to e.g. to binary formats and/or columnar formats (e.g. `RCFile`).  
+2. Bucketing data by `user_id`.
+3. Using [Qubole](http://www.qubole.com/) as an alternative to EMR.

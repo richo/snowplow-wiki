@@ -13,18 +13,18 @@
 [Clojure collector (Elastic Beanstalk)](clojure)   
 
 **3. ETL**  
-[ETL overview](etl)
+[ETL documentation](etl)
 [Hive ETL](hive-etl)
 [Scalding / Cascading ETL](scaldingetl)
 
 **4. Storage**  
+[[Storage documentation]]
 [Canonical SnowPlow data structure](canonical-data-structure)  
-[S3 / hive](s3-apache-hive-storage)  
+[S3 / Hive](s3-apache-hive-storage)  
 [Infobright](infobright-storage)  
 
 **5. Analytics**  
-[Analytics overview](analytics documentation)
-[Analysis using Hive](Querying the data using Hive)  
+[[Analytics documentation]]  
 
 **Common**  
 [[Artifact repositories]]  
