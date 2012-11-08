@@ -1,7 +1,5 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker) > [**Javascript tracker**](Javascript-tracker-setup)
 
-# Self-hosting snowplow.js
-
 ## Overview
 
 We recommend self-hosting the SnowPlow tracking JavaScript, `snowplow.js` as it does have some definite advantages over using a third-party-hosted JavaScript:

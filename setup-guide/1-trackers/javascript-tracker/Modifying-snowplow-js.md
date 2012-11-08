@@ -1,7 +1,5 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker) > [**Javascript tracker**](Javascript-tracker-setup)
 
-# Modifying snowplow.js
-
 ## Overview
 
 It may be necessary for you to make changes to `snowplow.js`. If you do, then you will also need to minify your updated `snowplow.js` prior to deploying it. This guide covers how to do this.
