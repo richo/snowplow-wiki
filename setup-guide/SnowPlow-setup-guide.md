@@ -31,10 +31,9 @@ Setting up SnowPlow involve/s setting up one of each of the five modules that ma
 [Infobright based analytics](infobright-analytics-setup)  
 
 ## Common elements  
-[[Setting up EMR]]  
 [[Hosted assets]]  
 
-## Approach to choosing which SnowPlow modules you want to use
+## Approach to selecting modules
 
 SnowPlow's loosely coupled architecture means there are a lot of different options when implementing SnowPlow.
 
