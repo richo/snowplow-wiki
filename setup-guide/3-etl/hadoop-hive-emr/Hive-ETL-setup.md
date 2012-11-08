@@ -1,12 +1,14 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module) > [**Hive ETL Setup**](hive-etl-setup)
 
+## Contents
+
 1. [When the Hive ETL module is an appropriate  module to use](#when)
 2. [Overview of how it works](#overview)
 3. [Setup instructions](#setup)
 
 
 <a name="when" />
-## When is the Hive ETL module an appropriate module to use
+## When is the Hive ETL module an appropriate module
 
 The Hive ETL module uses Apache Hive, on Amazon Elastic Mapreduce (EMR), to read the data stored by the [Cloudfront collector](setting-up-the-cloudfront-collector) and transform it into a format suitable either for:
 
@@ -32,4 +34,6 @@ To make it simpler to setup and run regularly, we've developed the [EMR ETL Runn
 
 ## Setup instructions
 
-Because the ETL process is wrapped in the [EMR ETL Runner](https://github.com/snowplow/snowplow/tree/master/3-etl/emr-etl-runner), all you need to do is set up the EMR ETL Runner. Instructions on how to do so can be found [here](deploying-the-emretlrunner).
+Because the ETL process is wrapped in the [EMR ETL Runner](https://github.com/snowplow/snowplow/tree/master/3-etl/emr-etl-runner), all you need to do is set up the EMR ETL Runner. Instructions on how to do so can be found [here](deploying-emretlrunner).
+
+[Learn how to deploy the EMR ETL Runner](deploying-emretlrunner)
