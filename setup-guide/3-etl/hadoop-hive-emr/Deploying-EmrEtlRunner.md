@@ -97,12 +97,12 @@ First, checkout the SnowPlow repository and navigate to the EmrEtlRunner root:
 Next install the application on your system:
 
     $ gem build snowplow-emr-etl-runner.gemspec
-    $ sudo gem install snowplow-emr-etl-runner-0.0.2.gem
+    $ sudo gem install snowplow-emr-etl-runner-0.0.4.gem
 
 Check it worked okay:
 
     $ snowplow-emr-etl-runner --version
-    snowplow-emr-etl-runner 0.0.2
+    snowplow-emr-etl-runner 0.0.4
 
 If you have any problems installing, it may be because of a missing dependency on the 
 Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help 
