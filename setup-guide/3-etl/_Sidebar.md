@@ -23,7 +23,7 @@
 
 **5. Analytics**  
 [Analytics setup](analytics-setup)  
-[Analysis using Hive](Querying the data using Hive)  
+[Analysis using Hive](hive analytics setup)  
 [Infobright based analytics](infobright-analytics-setup)  
 
 **Common**  
