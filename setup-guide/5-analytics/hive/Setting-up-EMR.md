@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > 
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Storage**](choosing-a-storage-module) > [**S3 / Hive storage setup**](s3-hive-storage-setup)
 
 # Setting up Amazon Elastic MapReduce
 

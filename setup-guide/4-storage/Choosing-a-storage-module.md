@@ -1,3 +1,5 @@
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Storage**](choosing-a-storage-module) 
+
 [[/images/4-storage.png]] 
 
 ## Available storage modules

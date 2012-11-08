@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**CHOOSING A TRACKER**](choosing-a-tracker) > [**JAVASCRIPT TRACKER SETUP**](javascript-tracker-setup)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**TRACKERS**](choosing-a-tracker) > [**Javascript Tracker Setup**](javascript-tracker-setup)
 
 1. [Javascript tracker setup overview](javascript-tracker-setup)
 2. [Integrating SnowPlow tags onto your website](integrating-javascript-tags-onto-your-website)  

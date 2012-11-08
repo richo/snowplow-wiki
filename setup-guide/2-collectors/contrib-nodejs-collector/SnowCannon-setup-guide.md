@@ -1,3 +1,5 @@
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Collectors**](choosing-a-collector) > [**SnowCannon setup**](snowcannon-setup-guide)
+
 ## Before You Begin
 
 ### Assumptions
