@@ -6,8 +6,12 @@
 
 Collectors receive data in the form of `GET` or `POST` requests from the trackers, and write the data to logs.
 
-## Collector documentation
+## General collector documentation
 
-1. [[Cloudfront Collector]]
-2. [Clojure collector](clojure)
-3. [[SnowCannon]] (node.js collector)
+* [[Collector logging formats]] incl. log structures
+
+## Collector-specific documentation
+
+* [[Cloudfront Collector]]
+* [Clojure collector](clojure)
+* [[SnowCannon]] (node.js collector)
