@@ -1,9 +1,9 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker)
 
-**1. Trackers**  
-[Tracker setup: choosing a tracker](choosing-a-tracker)  
-[Javascript tracker setup](javascript-tracker-setup)  
-[iOS tracker setup](ios-tracker-setup)  
+**1. TRACKERS**  
+[**Tracker setup: choosing a tracker**](choosing-a-tracker)  
+[**Javascript tracker setup**](javascript-tracker-setup)  
+[**iOS tracker setup**](ios-tracker-setup)  
 
 **2. Collectors**  
 [Collectors setup: choosing a collector](choosing-a-collector)  
@@ -28,4 +28,4 @@
 
 **Common**  
 [[Setting up EMR]]  
-[[Hosted assets]]  
+[[Hosted assets]] 

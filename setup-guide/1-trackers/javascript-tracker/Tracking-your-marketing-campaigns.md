@@ -1,3 +1,5 @@
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker) > [Javascript tracker](Javascript-tracker-setup)
+
 A very common requirement for web analytics platforms including SnowPlow is that they correctly identify traffic from different campaigns, so that it is possible to:
 
 1. Calculate the return on ad spend (ROAS) on those campaigns

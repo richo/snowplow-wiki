@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module)
 
 **1. Trackers**  
 [Tracker setup: choosing a tracker](choosing-a-tracker)  
@@ -12,13 +12,13 @@
 [SnowCannon (node.js) setup](snowcannon-setup-guide) 
 
 **3. ETL**  
-[ETL setup: choosing an ETL module](choosing-an-etl-module)  
-[Hive ETL](deploying-the-hive-emr-runner)  
-[Scalding / Cascading ETL](scalding-etl-setup) 
+[**ETL setup: choosing an ETL module**](choosing-an-etl-module)  
+[**Hive ETL**](deploying-the-hive-emr-runner)  
+[**Scalding / Cascading ETL**](scalding-etl-setup) 
 
 **4. Storage**  
 [Storage setup: choosing a storage option](choosing-a-storage-module)  
-[S3 / Hive storage setup](s3-hive-storage-setup) 
+[[Hive storage setup]]  
 [Infobright setup](infobright-storage-setup) 
 
 **5. Analytics**  
@@ -28,4 +28,4 @@
 
 **Common**  
 [[Setting up EMR]]  
-[[Hosted assets]]  
+[[Hosted assets]] 

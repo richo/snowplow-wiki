@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**4-Storage**](choosing-a-storage-module)
 
 **1. Trackers**  
 [Tracker setup: choosing a tracker](choosing-a-tracker)  
@@ -18,14 +18,14 @@
 
 **4. Storage**  
 [Storage setup: choosing a storage option](choosing-a-storage-module)  
-[S3 / Hive storage setup](s3-hive-storage-setup) 
+[S3 / Hive storage setup](s3-hive-storage-setup)  
 [Infobright setup](infobright-storage-setup) 
 
 **5. Analytics**  
-[Analytics setup](analytics-setup)  
-[Analysis using Hive](Querying the data using Hive)  
-[Infobright based analytics](infobright-analytics-setup)  
+[**Analytics setup**](analytics-setup)  
+[**Analysis using Hive**](Querying the data using Hive)  
+[**Infobright based analytics**](infobright-analytics-setup)  
 
 **Common**  
 [[Setting up EMR]]  
-[[Hosted assets]]  
+[[Hosted assets]] 
