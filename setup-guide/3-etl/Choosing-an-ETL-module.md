@@ -1,12 +1,12 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module) 
 
-[[/images/1-trackers.png]] 
+[[/images/3-etl.png]] 
 
 ## Available ETL modules
 
 | **Tracker**                                    | **Description**                                     | **Status**       |
 |:-----------------------------------------------|:----------------------------------------------------|:-----------------|
-| [Hive ETL](hive-etl-setup)                     | An ETL module that uses Hive on EMR to read data from the Cloudfront collector using a [custom SerDe], and write it into a clean, tab-delimited format in S3 suitable for querying in Hive or uploading to a database (e.g. Infobright). | Production-ready |
+| [Hive ETL](hive-etl-setup)                     | An ETL module that uses Hive on EMR to read data from the Cloudfront collector using a [custom SerDe](https://github.com/snowplow/snowplow/tree/master/3-etl/hive-etl/snowplow-log-deserializers), and write it into a clean, delimited format in S3 suitable for querying in Hive or uploading to a database (e.g. Infobright). | Production-ready |
 | [Scalding ETL](scalding-etl-setup)             | An alternative ETL module to the Hive module described above. It performs exactly the same function as the Hive module, but instead of using Hive on EMR, it uses Scalding, the Scala flavor of Cascading | Pre-alpha      |
 
 ## Note
