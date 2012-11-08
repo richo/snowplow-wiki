@@ -26,9 +26,9 @@ Setting up SnowPlow involve/s setting up one of each of the five modules that ma
 [Infobright setup](infobright-storage-setup)  
 
 ## 5. Analytics
-[Analytics setup](analytics-setup)
-[Hive based analytics](hive-analytics-setup)
-[Infobright based analytics](infobright-analytics-setup)
+[Analytics setup](analytics-setup)  
+[Hive based analytics](hive-analytics-setup)  
+[Infobright based analytics](infobright-analytics-setup)  
 
 ## Common elements  
 [[Setting up EMR]]  

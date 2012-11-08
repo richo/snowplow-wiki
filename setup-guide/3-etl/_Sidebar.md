@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Collectors**](choosing-a-collector)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module)
 
 **1. Trackers**  
 [Tracker setup: choosing a tracker](choosing-a-tracker)  

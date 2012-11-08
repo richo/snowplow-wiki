@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**4-Storage**](choosing-a-storage-module)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Storage**](choosing-a-storage-module)
 
 **1. Trackers**  
 [Tracker setup: choosing a tracker](choosing-a-tracker)  

@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**5-Analytics**](analytics-setup)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Analytics**](analytics-setup)
 
 **1. Trackers**  
 [Tracker setup: choosing a tracker](choosing-a-tracker)  
