@@ -42,9 +42,9 @@ This guide assumes that you have already:
 1. Successfully [setup EmrEtlRunner] [Deploying-EmrEtlRunner] to store SnowPlow events on Amazon S3
 2. Successfully [setup Infobright Community Edition (ICE)] [Infobright-storage-setup] ready to store those same SnowPlow events
 
-If you have not completed these two steps yet, then please follow the linked setup-guides.
+If you have not completed these two steps yet, then please follow the linked setup guides.
 
-This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) where you installed ICE, and will deploy StorageLoader to the same server.
+This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) on which you installed ICE, and will deploy StorageLoader to the same server.
 
 _ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented._
 
@@ -88,24 +88,20 @@ Done? Right, now we can install StorageLoader.
 <a name="installation"/>
 ### Installation
 
-First, checkout the SnowPlow repository and navigate to the EmrEtlRunner root:
+First, checkout the SnowPlow repository and navigate to the StorageLoader root:
 
     $ git clone git://github.com/snowplow/snowplow.git
-    $ cd snowplow/3-etl/emr-etl-runner
+    $ cd snowplow/4-storage-loader/emr-etl-runner
     
 Next install the application on your system:
 
-    $ gem build snowplow-emr-etl-runner.gemspec
-    $ sudo gem install snowplow-emr-etl-runner-0.0.2.gem
+    $ gem build snowplow-storage-loader.gemspec
+    $ sudo gem install snowplow-storage-loader-0.0.1.gem
 
 Check it worked okay:
 
-    $ snowplow-emr-etl-runner --version
-    snowplow-emr-etl-runner 0.0.2
-
-If you have any problems installing, it may be because of a missing dependency on the 
-Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help 
-installing Nokogiri in your system.
+    $ snowplow-snowplow-loader --version
+    snowplow-snowplow-loader 0.0.1
 
 <a name="configuration"/>
 ### Configuration

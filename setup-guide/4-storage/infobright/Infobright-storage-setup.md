@@ -181,10 +181,16 @@ Now that you've got ICE up and running, its time to setup a database for SnowPlo
 
 We've created a bash script to do the above for you: the script is called `setup.sh` and can be found in the [Infobright storage](https://github.com/snowplow/snowplow/tree/master/4-storage/infobright-storage) section of the [SnowPlow Github repo](https://github.com/snowplow/snowplow).
 
-Checkout the repository and run `setup.sh`, passing in your Infobright username and password i.e.:
+First, checkout the SnowPlow repository and navigate to the Infobright storage folder:
 
     $ git clone git@github.com:snowplow/snowplow.git
     $ cd snowplow/4-storage/infobright-storage
+
+Now run the `setup.sh` script, passing in your Infobright username and password i.e.:
+
     $ ./setup.sh {{username}} {{password}}
 
-The `setup.sh` script will run the two 'sql' files in the [sql](https://github.com/snowplow/snowplow) folder. The first, [setup_infobright.sql](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/setup_infobright.sql) creates the SnowPlow database and creates a table in it called `events`, where the SnowPlow event-level data will be stored. The second sql file [verify_infobright](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/verify_infobright.sql) simply checks for the presence of the SnowPlow database and events table in your Infobright installion.
+The `setup.sh` script will run the two 'sql' files in the [sql](https://github.com/snowplow/snowplow) folder:
+
+1. [setup_infobright.sql](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/setup_infobright.sql) creates the SnowPlow database and creates a table in it called `events`, where the SnowPlow event-level data will be stored
+2. [verify_infobright](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/verify_infobright.sql) simply checks for the presence of the SnowPlow database and events table in your Infobright installion.
