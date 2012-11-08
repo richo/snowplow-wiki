@@ -1,4 +1,6 @@
-# Storage in Infobright
+[**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](SnowPlow technical documentation) > [**Storage**](storage documentation)
+
+## Contents
 
 1. [Current table defition](#current)
 2. [Future table definition (incl. planned fields)](#future)

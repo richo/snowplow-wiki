@@ -1,4 +1,6 @@
-# Storage in Amazon S3 / Apache Hive
+[**HOME**](Home) > [**SNOWPLOW TECHNICAL DOCUMENTATION**](SnowPlow technical documentation) > [**Storage**](storage documentation)
+
+## Contents
 
 1. [Current table definition](#table-def)
 2. [Future table definition incl. all planned fields](#future-table-def)

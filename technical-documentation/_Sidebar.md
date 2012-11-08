@@ -14,7 +14,7 @@
 [Clojure collector (Elastic Beanstalk)](clojure)   
 
 **3. ETL**  
-[ETL documentation overview](etl)
+[ETL documentation overview](etl)  
 [Hive ETL](hive-etl)
 [Scalding / Cascading ETL](scaldingetl)
 
