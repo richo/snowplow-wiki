@@ -1,3 +1,5 @@
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Collectors**](choosing-a-collector) > [**Cloudfront collector setup**](setting-up-the-cloudfront-collector)
+
 ## Overview
 
 This guide assumes that you will be self-hosting the tracking pixel used by your SnowPlow implementation. Self-hosting the tracking pixel on your own Amazon S3 / Cloudfront account means that all your SnowPlow data will be stored on your own Amazon account.
