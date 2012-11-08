@@ -21,7 +21,7 @@
 [S3 / Hive storage setup](s3-hive-storage-setup)  
 [Infobright setup](infobright-storage-setup) 
 
-**5. Analytics**  
+**5. ETL**  
 [**Analytics setup**](analytics-setup)  
 [**Analysis using Hive**](Querying the data using Hive)  
 [**Infobright based analytics**](infobright-analytics-setup)  
