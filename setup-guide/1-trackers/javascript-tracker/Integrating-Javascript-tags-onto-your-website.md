@@ -1,7 +1,5 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker) > [**Javascript tracker**](Javascript-tracker-setup)
 
-# Integrating the Javascript tags onto your website
-
 ## Overview
 
 This guide takes you through the process for integrating SnowPlow's JavaScript tracker into your website or web app.

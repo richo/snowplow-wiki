@@ -153,7 +153,7 @@ And finally make sure that it survives reboot - you might not have to do this st
 	update-rc.d: using dependency based boot sequencing
 
 <a name="testing" />
-## Testing ICE
+## 4. Testing ICE
 
 You can test ICE using standard MySQL client tools, although note Infobright's non-standard port number:
 
