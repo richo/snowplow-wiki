@@ -32,4 +32,4 @@ To make it simpler to setup and run regularly, we've developed the [EMR ETL Runn
 
 ## Setup instructions
 
-Because the ETL process is wrapped in the [EMR ETL Runner](https://github.com/snowplow/snowplow/tree/master/3-etl/emr-etl-runner), all you need to do is set up the EMR ETL Runner. Instructions on how to do so can be found [here](deploying-the-emretlrunner)
+Because the ETL process is wrapped in the [EMR ETL Runner](https://github.com/snowplow/snowplow/tree/master/3-etl/emr-etl-runner), all you need to do is set up the EMR ETL Runner. Instructions on how to do so can be found [here](deploying-the-emretlrunner).
