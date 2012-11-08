@@ -15,7 +15,6 @@ Setting up SnowPlow involve/s setting up one of each of the five modules that ma
 [Clojure collector setup](setting-up-the-clojure-collector)  
 [SnowCannon (node.js) setup](snowcannon-setup-guide)  
 
-
 ## 3. ETL
 [ETL setup: choosing an ETL module](choosing-an-etl-module)  
 [Hive ETL](hive-etl-setup)  
@@ -68,6 +67,6 @@ SnowPlow makes extensive use of Amazon's cloud infrastructure. Many of the modul
 3. The [S3 / Hive storage](s3-hive-storage-setup), which runs on Amazon S3 and Elastic Mapreduce
 4. The [Hive based analytics](hive-analytics-setup), which runs on Amazon Elastic Mapreduce
 
-Setting up an account with AWS is a pre-requisite for running SnowPlow. This setup guide assumes you have an account and are familiar with the core Amazon services, especially S3.
+Setting up an account with AWS is a pre-requisite for running SnowPlow. This setup guide assumes you have an account and are familiar with the core Amazon Web Services especially S3.
 
 [conceptual-architecture]: about-snowplow/images/conceptual-architecture.png
