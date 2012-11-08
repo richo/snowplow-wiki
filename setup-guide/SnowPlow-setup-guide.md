@@ -56,4 +56,18 @@ In general, the most common SnowPlow setup involves:
 4. [S3 / Hive storage](s3-hive-storage-setup)
 5. Analytics using [Apache Hive](hive-analytics-setup)
 
+
+## Pre-requisites
+
+### Amazon Web Services
+
+SnowPlow makes extensive use of Amazon's cloud infrastructure. Many of the modules described are built around Amazon Web Services including:
+
+1. The [Cloudfront collector](setting-up-the-cloudfront-collector)
+2. The [Hive ETL](hive-etl-setup), which runs on Amazon Elastic Mapreduce
+3. The [S3 / Hive storage](s3-hive-storage-setup), which runs on Amazon S3 and Elastic Mapreduce
+4. The [Hive based analytics](hive-analytics-setup), which runs on Amazon Elastic Mapreduce
+
+Setting up an account with AWS is a pre-requisite for running SnowPlow. This setup guide assumes you have an account and are familiar with the core Amazon services, especially S3.
+
 [conceptual-architecture]: about-snowplow/images/conceptual-architecture.png

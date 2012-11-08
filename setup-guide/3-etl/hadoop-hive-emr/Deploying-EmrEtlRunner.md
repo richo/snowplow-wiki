@@ -1,7 +1,5 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module) > [**Hive ETL Setup**](hive-etl-setup)
 
-# Deploying the SnowPlow ETL runner for EMR
-
 ## Table of Contents
 
 1. [Introduction](#intro)
