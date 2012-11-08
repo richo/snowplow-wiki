@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module) > [**Hive ETL**](hive-etl-setup)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**ETL**](choosing-an-etl-module) > [**Hive ETL setup**](hive-etl-setup)
 
 1. [Hive ETL setup: an overview](javascript-tracker-setup)
 2. [Deploying the EmrEtlRunner](deploying-emretlrunner)  

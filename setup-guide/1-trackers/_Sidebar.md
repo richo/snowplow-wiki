@@ -27,5 +27,4 @@
 [Infobright based analytics](infobright-analytics-setup)  
 
 **Common**  
-[[Setting up EMR]]  
 [[Hosted assets]] 

@@ -1,3 +1,5 @@
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Analytics**](analytics-setup) > [**Hive analytics setup**](hive-analytics-setup)
+
 # Querying your SnowPlow web analytics data using Hive
 
 Many of the analyses we perform in SnowPlow use Hive. We tend to use Hive Interactive Sessions to develop queries and analyses. Once a set of queries has been developed in the interactive sessions, they can be stored as a text file in S3 and run as a batch process directly from the Elastic Mapreduce Command Line tools.
@@ -6,7 +8,7 @@ This part of the guide walks through the process of launching and running a Hive
 
 1. [Starting a job](#startingajob) i.e. firing up a set of instances to run Hive / Hadoop
 2. [SSHing in to the instances and launching Hive](#sshin)
-3. [Running Hive queries, including using the SnowPlow serde](#runninghivequeries)
+3. [Running Hive queries](#runninghivequeries)
 4. [Terminating the session](#terminatingthesession)
 
 Most of the analyses we perform are in Hive interactive sessions: because it is in these types of sessions that we can actively query data, explore results and develop more sophisticated analyses.
@@ -86,44 +88,92 @@ Now you can launch Hive by typing `Hive` at the command line:
 TO WRITE
 
 <a name="runninghivequeries"/>
-## Running Hive queries and using the SnowPlow serde
+## Running Hive queries
 
-SnowPlow data is stored in the log files generated every time the tags on your website call the SnowPlow pixel `ice.png`. The format of that data is proprietary: to access it in Hive you need to use the SnowPlow Log Deserializer, a JAR file that tells Hive how to take raw SnowPlow logs and parse them into fields that are directly accessible to the user in Hive.
+SnowPlow data is stored in a table called `events`. Before we can query it, we need to let Hive know about it (define it in Hive). We do so using the `CREATE EXTERNAL TABLE` statement:
 
-The deserializer can be downloaded directly from the [downloads](https://github.com/snowplow/snowplow/downloads) page of this repository.
+	CREATE EXTERNAL TABLE IF NOT EXISTS `events` (
+	tm string,
+	txn_id string,
+	user_id string,
+	user_ipaddress string,
+	visit_id int,
+	page_url string,
+	page_title string,
+	page_referrer string,
+	mkt_source string,
+	mkt_medium string,
+	mkt_term string,
+	mkt_content string,
+	mkt_campaign string,
+	ev_category string,
+	ev_action string,
+	ev_label string,
+	ev_property string,
+	ev_value string,
+	tr_orderid string,
+	tr_affiliation string,
+	tr_total string,
+	tr_tax string,
+	tr_shipping string,
+	tr_city string,
+	tr_state string,
+	tr_country string,
+	ti_orderid string,
+	ti_sku string,
+	ti_name string,
+	ti_category string,
+	ti_price string,
+	ti_quantity string,
+	br_name string,
+	br_family string,
+	br_version string,
+	br_type string,
+	br_renderengine string,
+	br_lang string,
+	br_features array<string>,
+	br_cookies boolean,
+	os_name string,
+	os_family string,
+	os_manufacturer string,
+	dvce_type string,
+	dvce_ismobile boolean,
+	dvce_screenwidth int,
+	dvce_screenheight int,
+	app_id string,
+	platform string,
+	event_name string,
+	v_tracker string,
+	v_collector string,
+	v_etl string
+	)
+	PARTITIONED BY (dt STRING)
+	LOCATION '${EVENTS_TABLE}' ;	
 
-Download the latest version (currently `snowplow-log-deserializers-0.4.9.jar`) and upload it to S3, via the web UI on [console.aws.amazon.com](https://console.aws.amazon.com/). Make a note of where you've saved it. (We save it in the same `static` folder we store `sp.js` and `ice.png`.)
+**Notes:**
 
-We need to add the JAR to the Hive session, so Hive can access the deserializer. This is done by executing the following command, in the Hive interface:
+1. Don't forget to include the trailing slash in the location address e.g. `LOCATION 's3://snowplow-hive-tables/events/'`. 
+2. The table is `EXTERNAL` because the data in it is not managed by Hive: it is stored in S3 (and only accessed by Hive). As a result, if you drop the table in Hive (`DROP TABLE snowplow_events_log`), the data will remain safely in S3, even if the table disappears from Hive. 
+3. You need to list every field in the statement, which is why it's so long. To save time, copy and paste the query to the command line :-)
 
-	ADD JAR s3://{{JARS-BUCKET-NAME-HERE}}/snowplow-log-deserializers-0.4.9.jar ;
+In general, SnowPlow users partition their data by date. We need to let Hive know that this table is partitioned, and to look to spot the partitions that already exist:
 
-![Add the SnowPlow deserializer JAR to Hive](setup-guide/images/04_hive-add-deserializer.png)
-
-Now in Hive we need to define create a table with the data stored in the SnowPlow logs, using the deserializer. Do this by entering the following query:
-
-	CREATE EXTERNAL TABLE snowplow_events_log
-	ROW FORMAT SERDE 'com.snowplowanalytics.snowplow.hadoop.hive.SnowPlowEventDeserializer'
-	LOCATION 's3://{{LOGS-BUCKET-NAME}}/' ;
-
-![Create SnowPlow events table](setup-guide/images/04_create-table-with-serde.png)
-
-Don't forget to include the trailing slash in the location address. The above query creates a new table. The table is `EXTERNAL` because the data in it is not managed by Hive: it is stored in S3 (and only accessed by Hive). As a result, if you drop the table in Hive (`DROP TABLE snowplow_events_log`), the data will remain safely in S3, even if the table disappears from Hive. (You can re-enter the above query to _bring it back_):
-
-The query instructs Hive to use the deserializer to translate the cloudfront logs into a format that Hive can read directly. It points Hive at the S3 bucket where the data is stored.
+	ALTER TABLE events RECOVER PARTITIONS;
 
 Now that the table has been created in Hive it is possible to query it:
 
 	SHOW TABLES ;
 
-Should return a list of tables: in this case our single `snowplow_events_logs` table.
+Should return a list of tables: in this case our single `events` table.
+
+We can now try running some simple queries. Remember: these will take some time from large data sets. (Especially if we're using the default cluster size - which is only two small EC2 instances.) To speed up query performance, limit the volume of data by specifying a data range e.g. `WHERE dt >='2012-09-01 AND dt<='2012-09-25'`.
 
 The following query will return the number of unique visitors by day:
 
 	SELECT 
 	dt,
 	COUNT(DISTINCT user_id) AS unique_visitors
-	FROM snowplow_events_log 
+	FROM events
 	GROUP BY dt ;
 
 To get the number of visits per day:
@@ -131,7 +181,7 @@ To get the number of visits per day:
 	SELECT 
 	dt,
 	COUNT(DISTINCT (CONCAT(user_id, visit_id))) AS visits
-	FROM snowplow_events_log
+	FROM events
 	GROUP BY dt ;
 
 Of course, in either of the above cases, we could aggregate our results by month (or any other time period) rather than by year:
@@ -141,7 +191,7 @@ Of course, in either of the above cases, we could aggregate our results by month
 	MONTH(dt) AS mnth,
 	COUNT(DISTINCT user_id) AS unique_visitors,
 	COUNT(DISTINCT (CONCAT(user_id, visit_id))) AS visits
-	FROM snowplow_events_log 
+	FROM events 
 	GROUP BY YEAR(dt), MONTH(dt) ;
 
 
@@ -150,7 +200,7 @@ We can look at the number of 'transactions' (incl. page views, add-to-baskets, a
 	SELECT 
 	user_id,
 	COUNT(txn_id)
-	FROM snowplow_log_events
+	FROM events
 	WHERE YEAR(dt) = 2012 AND MONTH(dt) = 5
 	GROUP BY user_id ;
 
@@ -163,7 +213,7 @@ The results of the queries can be copied and pasted directly into Excel or a tex
 	SELECT 
 	user_id,
 	COUNT(txn_id)
-	FROM snowplow_log_events
+	FROM events
 	WHERE YEAR(dt) = 2012 AND MONTH(dt) = 5
 	GROUP BY user_id ;
 
@@ -175,8 +225,6 @@ There are many ways of fetching the data from S3, either directly via the S3 web
 
 Interactive sessions have to be terminated manually. (Or else you risk running up high Amazon fees...) Sessions can either be terminated at the command-line, using the Ruby Client, or via the web UI.
 
-
-
 ### Terminating the session using the web UI
 
 TO WRITE
@@ -186,3 +234,7 @@ TO WRITE
 To terminate the sessions via the command line, simply exit the session (by typing `exit ;` to escape Hive, then `exit` again at the EC2 command line to end the SSH session.) You then use the EMR command line tools to terminate the session:
 
 	./elastic-mapreduce --terminate --jobflow {{JOBFLOW ID}}
+
+## Want to learn more?
+
+Consult the SnowPlow [Analytics Cookbook](http://snowplowanalytics.com/analytics/index.html) for more Hive recipes.

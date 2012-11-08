@@ -1,4 +1,4 @@
-[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Analytics**](analytics-setup) > [**Hive analytics**](Querying-the-data-using-Hive)
+[**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Analytics**](analytics-setup) > [**Hive analytics setup**](hive-analytics-setup)
 
 ## Table of Contents
 
@@ -228,4 +228,4 @@ And finally, let's try starting and ending a job:
     Terminated job flow j-284VOXKIH634U
 
 Obviously update the jobflow ID with yours. Excellent! Your EMR tool
-is now working. Next up, you can proceed to the guide to [[Querying the data using Hive]].
+is now working. Next up, you can proceed to the guide to [[running Hive using the command line tools]].
