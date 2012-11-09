@@ -27,7 +27,6 @@ The technical documentation reflects the SnowPlow architecture, with five loosel
 ### C. [Canonical SnowPlow event structure](canonical-data-structure)
 
 ## 4. Storage
-[Canonical SnowPlow data structure](canonical-data-structure) (platform independent)  
 [S3 / hive](s3-apache-hive-storage)  
 [Infobright](infobright-storage)  
 
