@@ -4,14 +4,14 @@ The technical documentation reflects the SnowPlow architecture, with five loosel
 
 ![architecture] [technical-architecture]
 
-### 1. Trackers
+## 1. Trackers
 [Trackers overview](trackers)  
 [Javascript tracker (SnowPlow.js)](javascript-tracker)  
 [iOS tracker](ios-tracker)  
 
 ### A. [SnowPlow tracker protocol](tracker-protocol)  
 
-### 2. Collectors
+## 2. Collectors
 [Collectors overview](collectors)  
 [Cloudfront collector](cloudfront)  
 [SnowCannon (node.js)](snowcannon)  
@@ -19,21 +19,21 @@ The technical documentation reflects the SnowPlow architecture, with five loosel
 
 ### B. [[Collector logging formats]]
 
-### 3. ETL
+## 3. ETL
 [ETL overview](etl)  
 [Hive ETL](hive)  
 [Scalding / Cascading ETL](scalding)  
 
 ### C. [Canonical SnowPlow event structure](canonical-data-structure)
 
-### 4. Storage
+## 4. Storage
 [Canonical SnowPlow data structure](canonical-data-structure) (platform independent)  
 [S3 / hive](s3-apache-hive-storage)  
 [Infobright](infobright-storage)  
 
 ### D. SnowPlow storage formats (to write)
 
-### 5. Analytics
+## 5. Analytics
 [Analytics overview](analytics documentation)
 
 
