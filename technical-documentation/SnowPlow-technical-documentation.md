@@ -1,8 +1,8 @@
 # SnowPlow Technical Documentation
 
-The technical documentation is split into 5 sections, reflecting the five components of SnowPlow's loosely coupled architecture:
+The technical documentation reflects the SnowPlow architecture, with five loosely-coupled sub-systems connected by four standardised data protocols/formats:
 
-![architecture] [conceptual-architecture]
+![architecture] [technical-architecture]
 
 ## 1. Trackers
 [Trackers overview](trackers)  
@@ -30,5 +30,4 @@ The technical documentation is split into 5 sections, reflecting the five compon
 [Analytics overview](analytics documentation)
 
 
-
-[conceptual-architecture]: about-snowplow/images/conceptual-architecture.png
+[technical-architecture]: technical-documentation/images/technical-architecture.png
