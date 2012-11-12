@@ -237,10 +237,11 @@ example, and then invoking StorageLoader like so:
 
 #### locate command missing
 
-StorageLoader depends on SnowPlow's [Infobright Ruby Loader] [irl]
-project, which in turn uses the `locate` shell command. If you get
-complaints that this is missing, in which case you can install it
-separately. Instructions for Debian/Ubuntu:
+StorageLoader depends on SnowPlow's [Infobright Ruby Loader] [irl],
+which in turn uses the `locate` shell command. If your shell complains
+that this is missing, in which case you can install it separately.
+
+To install and configure `locate` on Debian/Ubuntu:
 
     $ sudo apt-get install mlocate
     $ sudo updatedb
@@ -292,7 +293,8 @@ to 6am.
 ### Scheduling EmrEtlRunner and StorageLoader
 
 The shell script [`/4-storage/storage-loader/bin/snowplow-storage-loader.sh`] [combo-bash]
-runs EmrEtlRunner, immediately followed by StorageLoader - i.e. it chains them together.
+runs EmrEtlRunner, immediately followed by StorageLoader - i.e. it chains them together. At
+SnowPlow, this is the scheduling option we use.
 
 If you use this script, you can delete any separate cronjob for the EmrEtlRunner alone.
 
@@ -310,7 +312,7 @@ your cronjob like so:
     0 4   * * *   root    cronic /path/to/snowplow/4-storage/bin/snowplow-runner-and-loader.sh
 
 This will run the ETL job and then the database load daily at 4am, emailing any failures
-to you via cronic. At SnowPlow this is the scheduling option we use.
+to you via cronic.
 
 <a name="cron-alternatives"/>
 ### Alternatives to cron
