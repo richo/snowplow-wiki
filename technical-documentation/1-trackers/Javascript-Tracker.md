@@ -12,6 +12,7 @@
 6. [Campaign tracking](#campaign) 
 7. [Error tracking](#error)
 8. [Setting the application ID](#appid) 
+9. [Tracking ad impressions](#adimps)
 
 <a name="overview" />
 ## 1. Overview
@@ -21,6 +22,8 @@ The [SnowPlow Javascript tracker](https://github.com/snowplow/snowplow/tree/mast
 Tracking is done by inserting Javascript tags onto pages. These tags run functions defined in [snowplow.js](https://github.com/snowplow/snowplow/blob/master/1-trackers/javascript-tracker/js/snowplow.js), that trigger GET requests of the SnowPlow pixel. The Javascript functions append data points to be passed into SnowPlow onto the query string for the GET requests. These then get logged by the SnowPlow [collector](collectors). For a full list of data points that can be passed into SnowPlow in this way, please refer to the [SnowPlow tracker protocol](snowplow-tracker-protocol) documentation.
 
 The Javascript tracker supports both syncronous and asyncronous tags. We recommend the asyncronous tags in nearly all instances, as these do not slow down page load times. Both methods are documented below.
+
+[Back to top](#top)
 
 <a name="page" />
 ## 2. Pageview tracking
@@ -138,6 +141,8 @@ An example of tracking a user adding an item to basket:
 ```javascript
 trackEvent('Checkout', 'Add', 'ASO01043', 'blue:xxl', '2.0');
 ```
+
+[Back to top](#top)
 
 <a name="ecommerce" />
 ## 4. Ecommerce tracking
@@ -290,6 +295,8 @@ try{
 </html>
 ```
 
+[Back to top](#top)
+
 <a name="social" />
 ## 5. Social tracking
 
@@ -418,6 +425,7 @@ function trackTwitter(intent_event) {
 
 TO WRITE
 
+[Back to top](#top)
 
 <a name="campaign" />
 ## 6. Campaign tracking
@@ -465,6 +473,8 @@ SnowPlow uses the same query parameters used by Google Analytics. Because of thi
 
 The parameters are descibed in the [Google Analytics help page] [gahelppage]. Google also provides a [urlbuilder] [gaurlbuilder] which can be used to construct the URL incl. query parameters to use in your campaigns.
 
+[Back to top](#top)
+
 <a name="error" />
 ## 7. Error tracking 
 
@@ -485,3 +495,81 @@ The sync implementation is simply:
 ```javascript
 setSiteId('my_application_id')
 ```
+
+[Back to top](#top)
+
+
+<a name="adimps" />
+## 9. Tracking ad impressions
+
+SnowPlow can be used to track ad impressions, clicks and conversions. As a result, it is used by ad networks as a way to warehouse imp, click and conversion data.
+
+**Note**: although the Javascript tracker supports capture of impression, click and conversion events, the SnowPlow ETL current does not. As a result, SnowPlow today can be used to warehouse this data, but only bespoke analysis on the raw logs is supported. Building support for ad related data into the other parts of the SnowPlow stack is on our roadmap.
+
+<a name="adimps"/>
+### 9a. Tracking ad impressions
+
+#### Anatomy of a tracked impression
+
+Tracking ad impressions is handled by a dedicated SnowPlow JavaScript function, called `trackImpression()`. The arguments for impression tracking are as follows:
+
+| **Name**       | **Required?** | **Description**                                                                              |
+|---------------:|:--------------|:---------------------------------------------------------------------------------------------|
+|     `BannerID` | Yes           | Adserver identifier for the ad banner (creative) being displayed                             |
+|   `CampaignID` | No            | Adserver identifier for the ad campaign which the banner belongs to                          |
+| `AdvertiserID` | No            | Adserver identifier for the advertiser which the campaign belongs to                         |
+|       `UserID` | No            | Adserver identifier for the web user. Not to be confused with SnowPlow's own user identifier |
+
+You will want to set these arguments programmatically, across all of your ad zones/slots - for guidelines on how to achieve this with the [OpenX adserver] [openx], please see the following sub-sections.
+
+#### OpenX: Ad zone HTML append
+
+Assuming that you do not have access to the host website(s) to add the SnowPlow header script, you will need to add the SnowPlow header script and SnowPlow `trackImpression()` call as an append to each ad zone in your ad server.
+
+Here's what the zone append functionality looks like in the OpenX adserver (OnRamp edition): 
+
+![zoneappend] [zoneappend]
+
+You will need to populate the ad zone append field with SnowPlow tags for **every ad zone/unit** which you use to serve ads across your site or network. Read on for the SnowPlow HTML code to use for OpenX. 
+
+#### OpenX: SnowPlow impression tracking using magic macros
+
+Because OpenX has a feature called [magic macros] [magicmacros], it is relatively straightforward to pass the banner, campaign and user ID arguments into the call to `trackImpression()` (advertiser ID is not available through magic macros).
+
+The full HTML code to append, using asynchronous SnowPlow invocation, looks like this:
+
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var _snaq = _snaq || [];
+
+_snaq.push(['setAccount', 'patldfvsg0d8w']); // Update to your account ID or CloudFront distribution subdomain
+_snaq.push(['trackImpression', '{bannerid}', '{campaignid}', '', '{OAID}']); // OpenX magic macros. Leave this line as-is
+
+(function() {
+var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d107t3sdgumbla.cloudfront.net/sp.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+})();
+ </script>
+<!-- SnowPlow stops plowing -->
+```
+
+Once you have appended this code to all of your active ad zones, SnowPlow should be collecting all of your ad impression data into Amazon S3.
+
+<a name="clicksconvs"/>
+## Tracking ad clicks and conversions
+
+At the moment, SnowPlow does not have built-in functionality to handle ad clicks or conversions. It may be possible to integrate SnowPlow into your adserver for click and conversion tracking - please [contact us] [contactus] if you want to find out more.
+
+An alternative approach is to ask your adserver provider to warehouse this data for you, and upload it to your Amazon S3 account.
+
+
+[Back to top](#top)
+
+
+[openx]: http://www.openx.com/publisher/enterprise-ad-server
+[zoneappend]: /snowplow/snowplow/wiki/setup-guide/images/03a_zone_prepend_openx.png
+[magicmacros]: http://www.openx.com/docs/whitepapers/magic-macros
+[dmp]: http://www.adopsinsider.com/online-ad-measurement-tracking/data-management-platforms/what-are-data-management-platforms/ 
+[contactus]: mailto:snowplow-ads@keplarllp.com
