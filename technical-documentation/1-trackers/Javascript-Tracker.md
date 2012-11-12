@@ -558,7 +558,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 Once you have appended this code to all of your active ad zones, SnowPlow should be collecting all of your ad impression data into Amazon S3.
 
 <a name="clicksconvs"/>
-## Tracking ad clicks and conversions
+### 9b. Tracking ad clicks and conversions
 
 At the moment, SnowPlow does not have built-in functionality to handle ad clicks or conversions. It may be possible to integrate SnowPlow into your adserver for click and conversion tracking - please [contact us] [contactus] if you want to find out more.
 
