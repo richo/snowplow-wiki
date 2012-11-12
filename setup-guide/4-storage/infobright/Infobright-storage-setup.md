@@ -21,6 +21,7 @@
 * Unlike EMR, you do not have to 'pay' for every query. (The computing costs associated with running Infobright are fixed, although you will need to invest in more hardware as your data volumes and user numbers rise.)
 * SnowPlow data is well suited to analysis in Infobright and other columnar databases: our single fat events table processes especially efficiently in Infobright, because it is a columnar database, and because many of the fields contain fewer distinct values than total values.
 
+[Back to top](#top)
 
 <a name="install" />
 ## 2. Installing ICE
@@ -41,6 +42,8 @@ To install:
 	$ sudo -i
 	$ cd ~/downloads
 	$ dpkg -i infobright-4.0.7-0-x86_64-ice.deb
+
+[Back to top](#top)
 
 <a name="config" />
 ## 3. Configuring ICE
@@ -155,6 +158,8 @@ And finally make sure that it survives reboot - you might not have to do this st
 	$ sudo /usr/sbin/update-rc.d -f mysqld-ib defaults
 	update-rc.d: using dependency based boot sequencing
 
+[Back to top](#top)
+
 <a name="testing" />
 ## 4. Testing ICE
 
@@ -177,6 +182,8 @@ To test using the client that comes with ICE:
 
 Alternatively you can also test by running Navicat Lite or similar and logging into the database that way.
 
+[Back to top](#top)
+
 <a name="snowplow" />
 ## 5. Setting up the SnowPlow database and events table
 
@@ -198,7 +205,11 @@ The `setup.sh` script will run the two 'sql' files in the [sql](https://github.c
 1. [setup_infobright.sql](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/setup_infobright.sql) creates the SnowPlow database and creates a table in it called `events`, where the SnowPlow event-level data will be stored
 2. [verify_infobright](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/verify_infobright.sql) simply checks for the presence of the SnowPlow database and events table in your Infobright installion.
 
+[Back to top](#top)
+
 <a name="storageloader" />
 ## 6. Automating the loading of SnowPlow data into Infobright
 
 To make the regular uploading of SnowPlow data into Infobright from S3 easy, we've developed a [Storage Loader](StorageLoader setup). Instructions on setting this up can be found [here](StorageLoader setup).
+
+[Back to top](#top)
