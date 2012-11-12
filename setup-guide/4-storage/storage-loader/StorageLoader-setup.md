@@ -1,7 +1,5 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Storage**](Choosing-a-storage-module) > **StorageLoader Setup**
 
-# THIS GUIDE IS A WORK IN PROGRESS. PLEASE DO NOT FOLLOW IT - YET.
-
 ## Table of Contents
 
 1. [Introduction](#intro)
