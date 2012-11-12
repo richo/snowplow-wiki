@@ -42,6 +42,8 @@ This guide assumes that you have already:
 
 If you have not completed these two steps yet, then please follow the linked setup guides.
 
+Note that this guide assumes that you have configured EmrEtlRunner to output the **non-Hive** SnowPlow event format. The Hive SnowPlow event format will not work with Infobright.
+
 This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) on which you installed ICE, and will install StorageLoader on the same server.
 
 Please note that ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented.
