@@ -39,8 +39,8 @@ This guide will take you through installing and configuring StorageLoader on you
 
 This guide assumes that you have already:
 
-1. Successfully [setup EmrEtlRunner](Deploying-EmrEtlRunner) to process SnowPlow events and warehouse them on Amazon S3
-2. Successfully [setup Infobright Community Edition (ICE)](Infobright-storage-setup) ready to store those same SnowPlow events
+1. [Set up EmrEtlRunner](Deploying-EmrEtlRunner) to process SnowPlow events and warehouse them on Amazon S3
+2. [Set up Infobright Community Edition (ICE)](Infobright-storage-setup) ready to store those same SnowPlow events
 
 If you have not completed these two steps yet, then please follow the linked setup guides.
 
@@ -150,7 +150,7 @@ Each of the bucket variables must start with an S3 protocol - either
 `s3://` or `s3n://`. Each variable can include a sub-folder within the
 bucket as required, and a trailing slash is optional.
 
-The following are all valid bucket settings:
+The following are examples of valid bucket settings:
 
     :buckets:
       :in: s3n://my-snowplow-data/events/
@@ -164,9 +164,8 @@ This is where we configure the StorageLoader download operation, which
 downloads the SnowPlow event files from Amazon S3 to your local server, 
 ready for loading into your database.
 
-You will need to set the `folder` variable to a local directory path
-- please make sure that this path exists and is writable by
-StorageLoader.
+You will need to set the `folder` variable to a local directory path -
+please make sure that this path exists and is writable by StorageLoader.
 
 #### storage
 
@@ -222,7 +221,11 @@ The command-line options for StorageLoader look like this:
         -h, --help                       Show this message
         -v, --version                    Show version
 
-A note on the `--skip` option: this skips the work steps **up to and including** the specified step. To give an example: `--skip load` skips downloading the logs from the In Bucket **and** skips loading the files into your Infobright database, i.e. it **only** performs the final archiving step.
+A note on the `--skip` option: this skips the work steps **up to and
+including** the specified step. To give an example: `--skip load` skips
+downloading the logs from In Bucket **and** skips loading the files into
+your Infobright database, i.e. it **only** performs the final archiving
+step.
 
 <a name="running"/>
 ### Running
@@ -235,12 +238,12 @@ example, and then invoking StorageLoader like so:
 
 ### Troubleshooting
 
-#### Missing locate
+#### locate command missing
 
-StorageLoader depends on SnowPlow's [infobright-ruby-loader] [irl]
-project, which in turn uses the `locate` shell command. You may
-get complains that this is missing, in which case you can install
-it separately. Instructions for Debian/Ubuntu:
+StorageLoader depends on SnowPlow's [Infobright Ruby Loader] [irl]
+project, which in turn uses the `locate` shell command. If you get
+complaints that this is missing, in which case you can install it
+separately. Instructions for Debian/Ubuntu:
 
     $ sudo apt-get install mlocate
     $ sudo updatedb
