@@ -97,12 +97,12 @@ First, checkout the SnowPlow repository and navigate to the EmrEtlRunner root:
 Next install the application on your system:
 
     $ gem build snowplow-emr-etl-runner.gemspec
-    $ sudo gem install snowplow-emr-etl-runner-0.0.4.gem
+    $ sudo gem install snowplow-emr-etl-runner-0.0.5.gem
 
 Check it worked okay:
 
-    $ snowplow-emr-etl-runner --version
-    snowplow-emr-etl-runner 0.0.4
+    $ bundle exec snowplow-emr-etl-runner --version
+    snowplow-emr-etl-runner 0.0.5
 
 If you have any problems installing, it may be because of a missing dependency on the 
 Nokogiri library. See the [Installing Nokogiri] [nokogiri-install] guide for help 
@@ -252,7 +252,7 @@ Invoke EmrEtlRunner using Bundler's `bundle exec` syntax:
     $ bundle exec snowplow-emr-etl-runner
     
 Note that the `bundle exec` command will only work when you are inside the 
-`snowplow-etl` folder.
+`emr-etl-runner` folder.
 
 The command-line options for EmrEtlRunner look like this:
 
@@ -281,7 +281,7 @@ Invoking EmrEtlRunner with just the `--config` option puts it into rolling
 mode, processing all the raw SnowPlow event logs it can find in your In
 Bucket:
 
-    $ bundle exec bundle exec snowplow-emr-etl-runner --config my-config.yml
+    $ bundle exec snowplow-emr-etl-runner --config my-config.yml
 
 #### Timespan mode
 

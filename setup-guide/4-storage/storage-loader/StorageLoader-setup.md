@@ -23,7 +23,7 @@
 <a name="intro"/>
 ## Introduction
 
-Once you have your ETL process storing your SnowPlow events data as flat files in Amazon S3, you may also want to populate those same events into another storage option, such as [Infobright] [Infobright-storage-setup].
+Once you have your ETL process storing your SnowPlow events data as flat files in Amazon S3, you may also want to populate those same events into another storage option, such as [Infobright Community Edition] [ice].
 
 To make it easier to feed your SnowPlow event data into databases such as Infobright, we have written the [SnowPlow::StorageLoader] [storage-loader] Ruby application.
 
@@ -39,14 +39,18 @@ This guide will take you through installing and configuring StorageLoader on you
 
 This guide assumes that you have already:
 
-1. Successfully [setup EmrEtlRunner] [Deploying-EmrEtlRunner] to store SnowPlow events on Amazon S3
+1. Successfully [setup EmrEtlRunner] [Deploying-EmrEtlRunner] to process SnowPlow events and warehouse them on Amazon S3
 2. Successfully [setup Infobright Community Edition (ICE)] [Infobright-storage-setup] ready to store those same SnowPlow events
 
 If you have not completed these two steps yet, then please follow the linked setup guides.
 
-This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) on which you installed ICE, and will deploy StorageLoader to the same server.
+This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) on which you installed ICE, and will install StorageLoader on the same server.
 
-_ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented._
+### Untested alternatives
+
+Please note that ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented.
+
+Also, please note that in theory this StorageLoader should also work with [Infobright Enterprise Edition (IEE)] [iee] as well as ICE; however we have not yet tested this.
 
 <a name="dependencies"/>
 ### Dependencies
@@ -67,21 +71,15 @@ StorageLoader moves the SnowPlow event files through three distinct S3 buckets d
 the load process. These buckets are as follows:
 
 1. **In Bucket** - contains the SnowPlow event files to process
-2. **Processing Bucket** - where StorageLoader moves the event
-   files for loading
-3. **Archive Bucket** - where StorageLower moves the SnowPlow
+2. **Archive Bucket** - where StorageLower moves the SnowPlow
    event files after successful loading
 
-You will have already setup the Out Bucket when you were configuring EmrEtlRunner -
-the Out Bucket for EmrEtlRunner is the same as the In Bucket for StorageLoader.
+The In Bucket for StorageLoader is the same as the Out Bucket for the EmrEtlRunner -
+i.e. you will already have setup this bucket.
 
 We recommend creating a new bucket for the Archive Bucket - i.e. do **not** re-use
-EmrEtlRunner's own Archive Bucket. For the Processing Bucket, you can either create
-a new bucket, or re-use the EmrEtlRunner's bucket if you are **certain** that both
-processes will never accidentally run at the same time.
-
-So, create the required bucket(s) in the same AWS region as your In Bucket. Take
-a note of the buckets' names as you will need to use these buckets shortly.
+EmrEtlRunner's own Archive Bucket. Create the required Archive Bucket in the same
+AWS region as your In Bucket.
 
 Done? Right, now we can install StorageLoader.
 
@@ -91,7 +89,7 @@ Done? Right, now we can install StorageLoader.
 First, checkout the SnowPlow repository and navigate to the StorageLoader root:
 
     $ git clone git://github.com/snowplow/snowplow.git
-    $ cd snowplow/4-storage-loader/emr-etl-runner
+    $ cd snowplow/4-storage/storage-loader
     
 Next install the application on your system:
 
@@ -100,8 +98,8 @@ Next install the application on your system:
 
 Check it worked okay:
 
-    $ snowplow-snowplow-loader --version
-    snowplow-snowplow-loader 0.0.1
+    $ bundle exec snowplow-storage-loader --version
+    snowplow-storage-loader 0.0.1
 
 <a name="configuration"/>
 ### Configuration
@@ -118,7 +116,6 @@ file template available in the SnowPlow GitHub repository at
   :region: ADD HERE
   :buckets:
     :in: ADD HERE
-    :processing: ADD HERE
     :archive: ADD HERE
 :download:
   :folder: ADD HERE # Where to store the downloaded files
@@ -140,14 +137,13 @@ key and secret here.
 
 #### s3
 
-The `region` variable should hold the AWS region in which your four data
-buckets (In Bucket, Processing Bucket etc) are located, e.g. "us-east-1"
+The `region` variable should hold the AWS region in which your two data
+buckets (In Bucket and Archive Bucket) are located, e.g. "us-east-1"
 or "eu-west-1".
 
 Within the `s3` section, the `buckets` variables are as follows:
 
 * `in` is where you specify your In Bucket
-* `processing` is where you specify your Processing Bucket
 * `archive` is where you specify your Archive Bucket
 
 Each of the bucket variables must start with an S3 protocol - either
@@ -157,41 +153,42 @@ bucket as required, and a trailing slash is optional.
 The following are all valid bucket settings:
 
     :buckets:
-      :in: s3n://my-snowplow-data/events
-      :processing: s3n://my-cloudfront-logs/processing
-      :archive: s3n://my-archived-snowplow-data/events
+      :in: s3n://my-snowplow-data/events/
+      :archive: s3n://my-archived-snowplow-data
 
 Please note that all buckets must exist prior to running StorageLoader.
 
-#### emr
+#### download
 
-This is where we configure the operation of EMR. The variables with
-defaults can typically be left as-is, but you will need to set:
+This is where we configure the StorageLoader download operation, which
+downloads the SnowPlow event files from Amazon S3 to your local server, 
+ready for loading into your database.
 
-1. `placement`, which is the Amazon EC2 region and availability zone
-   in which the job should run, e.g. "us-east-1a" or "eu-west-1b"
-2. `ec2_key_name`, which is the name of the Amazon EC2 key that you
-   set up in the [Dependencies](#dependencies) above
+You will need to set the `folder` variable to a local directory path
+- please make sure that this path exists and is writable by
+StorageLoader.
 
-Make sure that placement and the EC2 key you specify both belong to the
-same region, or else EMR won't be able to find the key.
+#### storage
 
-#### etl
+In this section we configure exactly what database StorageLoader should
+load our SnowPlow events into. At the moment, StorageLoader supports
+only one load target, and this load target must be an Infobright
+Community Edition database.
 
-This section is where we configure exactly how we want our ETL process to operate:
+To take each variable in turn:
+1. `type`, what type of database are we loading into? Currently the
+   only supported format is "infobright"
+2. `database`, the name of the database to load
+3. `table`, the name of the database table which will store your
+   SnowPlow events. Must have been setup previously  
+4. `username`, the database user to load your SnowPlow events with.
+   You can leave this blank to default to the user running the script
+5. `password`, the password for the database user. Leave blank if there
+   is no password
 
-1. `collector_format`, what format is our collector saving data in? Currently the only supported format is "cloudfront", for the format saved by our CloudFront collector
-2. `continue_on_unexpected_error`, continue processing even on unexpected row-level errors, e.g. an input file not matching the expected CloudFront format. Off ("false") by default
-3. `storage_format`, can be "hive" or "non-hive". We discuss this further below
-
-`storage_format` is an important setting. If you choose "hive", then the SnowPlow event format outputted by EmrEtlRunner will be optimised to only work with Hive - you will **not** be able to load those event files into other database systems, such as Infobright (or eventually, Postgres, Google BigQuery, SkyDB et al). We believe that most people will want to load their SnowPlow events into other systems, so the default setting here is "non-hive".
-
-#### snowplow
-
-This section allows you to update the versions of the Hive deserializer
-(`serde`) and HiveQL scripts (`hive_hiveql` and `non_hive_hiveql`) run
-by EmrEtlRunner. These variables let you upgrade the ETL process without
-having to update the EmrEtlRunner application itself.
+Note that there is no way of specifying what server the target database
+is on - StorageLoader assumes that the database is on the server it is
+being run on.
 
 <a name="usage"/>
 ## Usage
@@ -199,79 +196,53 @@ having to update the EmrEtlRunner application itself.
 <a name="usage-overview"/>
 ### Overview
 
-There are two usage modes for EmrEtlRunner:
-
-1. **Rolling mode** where EmrEtlRunner processes whatever raw SnowPlow
-   event logs it finds in the In Bucket
-2. **Timespan mode** where EmrEtlRunner only processes those raw
-   SnowPlow event logs whose timestamp is within a timespan specified
-   on the command-line
-
-Timespan mode can be useful if you have a large backlog of raw SnowPlow
-event logs and you want to start by processing just a small subset of
-those logs.
+Running the StorageLoader is very straightforward - please review the
+command-line options in the next section. 
 
 <a name="cli-options"/>
 ### Command-line options
 
-Invoke EmrEtlRunner using Bundler's `bundle exec` syntax:
+Invoke StorageLoader using Bundler's `bundle exec` syntax:
 
-    $ bundle exec snowplow-emr-etl-runner
+    $ bundle exec snowplow-storage-loader
     
 Note that the `bundle exec` command will only work when you are inside the 
-`snowplow-etl` folder.
+`storage-loader` folder.
 
-The command-line options for EmrEtlRunner look like this:
+The command-line options for StorageLoader look like this:
 
-    Usage: snowplow-emr-etl-runner [options]
+    Usage: snowplow-storage-loader [options]
 
     Specific options:
         -c, --config CONFIG              configuration file
-        -s, --start YYYY-MM-DD           optional start date *
-        -e, --end YYYY-MM-DD             optional end date *
-        -s, --skip staging|emr           skip work step(s)
-
-    * filters the raw event logs processed by EmrEtlRunner by their timestamp
+        -s, --skip download|load         skip work step(s)
 
     Common options:
         -h, --help                       Show this message
         -v, --version                    Show version
 
-A note on the `--skip` option: this skips the work steps **up to and including** the specified step. To give an example: `--skip emr` skips moving the raw logs to the Staging Bucket **and** skips running the ETL on EMR, i.e. it **only** performs the final archiving step.
+A note on the `--skip` option: this skips the work steps **up to and including** the specified step. To give an example: `--skip load` skips downloading the logs from the In Bucket **and** skips loading the files into your Infobright database, i.e. it **only** performs the final archiving step.
 
 <a name="running"/>
-### Running in each mode
+### Running
 
-#### Rolling mode
+As per the above, running StorageLoader is a matter of populating
+your configuration file, let's call it `my-config.yml` for this
+example, and then invoking StorageLoader like so: 
 
-Invoking EmrEtlRunner with just the `--config` option puts it into rolling
-mode, processing all the raw SnowPlow event logs it can find in your In
-Bucket:
+    $ bundle exec snowplow-emr-etl-runner --config my-config.yml
 
-    $ bundle exec bundle exec snowplow-emr-etl-runner --config my-config.yml
+### Troubleshooting
 
-#### Timespan mode
+#### Missing locate
 
-To run EmrEtlRunner in timespan mode, you need to specify the `--start`
-and/or `--end` dates as well as the `--config` option, like so:
+StorageLoader depends on SnowPlow's [infobright-ruby-loader] [irl]
+project, which in turn uses the `locate` shell command. You may
+get complains that this is missing, in which case you can install
+it separately. Instructions for Debian/Ubuntu:
 
-    $ bundle exec bundle exec snowplow-emr-etl-runner \
-      --config my-config.yml \
-      --start 2012-06-20 \
-      --end 2012-06-24 
-
-This will run EmrEtlRunner on log files which have timestamps in the period
-20 June 2012 to 24 June 2012 inclusive.
-
-Note that you do not have to specify both the start and end dates:
-
-1. Specify `--start` only and the timespan will run from your start date
-   up to today, inclusive
-2. Specify `--end` only and the timespan will run from the beginning of
-   time up to your end date, inclusive
-
-If your raw SnowPlow logs are generated by the Amazon CloudFront collector,
-please note that CloudFront timestamps in **UTC**.
+    $ sudo apt-get install mlocate
+    $ sudo updatedb
 
 <a name="scheduling"/>
 ## Scheduling
@@ -328,6 +299,9 @@ script plus [Windows Task Scheduler] [windows-task-scheduler] instead of bash an
 If you get this working, please let us know!
 
 [storage-loader]: https://github.com/snowplow/snowplow/tree/master/4-storage/storage-loader
+
+[ice]: http://www.infobright.org/
+[iee]: http://www.infobright.com/Products/
 
 [hive-etl]: https://github.com/snowplow/snowplow/tree/master/3-etl/hive-etl
 [trackers]: https://github.com/snowplow/snowplow/tree/master/1-trackers
