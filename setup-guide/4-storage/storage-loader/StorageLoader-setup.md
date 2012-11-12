@@ -39,8 +39,8 @@ This guide will take you through installing and configuring StorageLoader on you
 
 This guide assumes that you have already:
 
-1. Successfully [setup EmrEtlRunner] [Deploying-EmrEtlRunner] to process SnowPlow events and warehouse them on Amazon S3
-2. Successfully [setup Infobright Community Edition (ICE)] [Infobright-storage-setup] ready to store those same SnowPlow events
+1. Successfully [setup EmrEtlRunner](Deploying-EmrEtlRunner) to process SnowPlow events and warehouse them on Amazon S3
+2. Successfully [setup Infobright Community Edition (ICE)](Infobright-storage-setup) ready to store those same SnowPlow events
 
 If you have not completed these two steps yet, then please follow the linked setup guides.
 
@@ -176,6 +176,7 @@ only one load target, and this load target must be an Infobright
 Community Edition database.
 
 To take each variable in turn:
+
 1. `type`, what type of database are we loading into? Currently the
    only supported format is "infobright"
 2. `database`, the name of the database to load
@@ -302,6 +303,7 @@ If you get this working, please let us know!
 
 [ice]: http://www.infobright.org/
 [iee]: http://www.infobright.com/Products/
+[irl]: https://github.com/snowplow/infobright-ruby-loader
 
 [hive-etl]: https://github.com/snowplow/snowplow/tree/master/3-etl/hive-etl
 [trackers]: https://github.com/snowplow/snowplow/tree/master/1-trackers
