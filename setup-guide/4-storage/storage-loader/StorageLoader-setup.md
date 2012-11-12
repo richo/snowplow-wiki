@@ -27,7 +27,7 @@ Once you have your ETL process storing your SnowPlow events data as flat files i
 
 To make it easier to feed your SnowPlow event data into databases such as Infobright, we have written the [SnowPlow::StorageLoader] [storage-loader] Ruby application.
 
-StorageLoader is a command-line tool which downloads your SnowPlow event files and load them into a local Infobright database.
+StorageLoader is a command-line tool which downloads your SnowPlow event files and loads them into a local Infobright database.
 
 This guide will take you through installing and configuring StorageLoader on your own server.
 
@@ -48,7 +48,7 @@ This guide assumes that you have administrator access to the Unix-based server (
 
 Please note that ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented.
 
-Also, note that, in theory, StorageLoader should work with [Infobright Enterprise Edition (IEE)] [iee] as well as ICE; however we have not yet tested or documented this.
+Also, note that, in theory, StorageLoader should work with [Infobright Enterprise Edition (IEE)] [iee] as well as ICE; however we have not yet tested this.
 
 <a name="dependencies"/>
 ### Dependencies
@@ -163,7 +163,8 @@ downloads the SnowPlow event files from Amazon S3 to your local server,
 ready for loading into your database.
 
 You will need to set the `folder` variable to a local directory path -
-please make sure that this path exists and is writable by StorageLoader.
+please make sure that this path exists, is writable by StorageLoader
+and is empty.
 
 #### storage
 
