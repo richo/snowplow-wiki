@@ -1,3 +1,5 @@
+<a name="top" />
+
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Storage**](choosing-a-storage-module) > [**Infobright**](infobright-storage-setup)
 
 ## Table of contents
@@ -7,6 +9,7 @@
 3. [Configuring ICE](#configure)
 4. [Testing ICE](#test)
 5. [Setting up the SnowPlow database and events table](#snowplow)
+6. [Automating the loading of SnowPlow data into Infobright](#storageloader)
 
 
 <a name="introduction" />
@@ -194,3 +197,8 @@ The `setup.sh` script will run the two 'sql' files in the [sql](https://github.c
 
 1. [setup_infobright.sql](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/setup_infobright.sql) creates the SnowPlow database and creates a table in it called `events`, where the SnowPlow event-level data will be stored
 2. [verify_infobright](https://github.com/snowplow/snowplow/blob/master/4-storage/infobright-storage/sql/verify_infobright.sql) simply checks for the presence of the SnowPlow database and events table in your Infobright installion.
+
+<a name="storageloader" />
+## 6. Automating the loading of SnowPlow data into Infobright
+
+To make the regular uploading of SnowPlow data into Infobright from S3 easy, we've developed a [Storage Loader](StorageLoader setup). Instructions on setting this up can be found [here](StorageLoader setup).
