@@ -326,18 +326,18 @@ To consider your different scheduling options in turn:
 
 The recommended way of scheduling the ETL process is as a daily cronjob using the 
 shell script available in the SnowPlow GitHub repository at 
-[`/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh`] [bash-script].
+[`/3-etl/emr-etl-runner/bin/snowplow-emr-etl-runner.sh`] [bash-script].
 
 You need to edit this script and update the two variables:
 
-    BUNDLE_GEMFILE=/path/to/snowplow/hive/snowplow-etl
-    ETL_CONFIGFILE=/path/to/your-etl-config.yml
+    RUNNER_PATH=/path/to/snowplow/3-etl/snowplow-emr-etl-runner
+    RUNNER_CONFIG=/path/to/your-config.yml
 
 Now, assuming you're using the excellent [cronic] [cronic] as a wrapper for 
 your cronjobs, and that both cronic and Bundler are on your path, you can 
 configure your cronjob like so:
 
-    0 4   * * *   root    cronic /path/to/emr-etl-runner/bin/snowplow-emr-etl.sh
+    0 4   * * *   root    cronic /path/to/snowplow/3-etl/bin/snowplow-emr-etl-runner.sh
 
 This will run the ETL job daily at 4am, emailing any failures to you via cronic.
 
@@ -372,7 +372,7 @@ If you get this working, please let us know!
 [rubygems-install]: http://docs.rubygems.org/read/chapter/3
 
 [config-yml]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/config/config.yml
-[bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh
+[bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl-runner.sh
 
 [cronic]: http://habilis.net/cronic/
 [jenkins]: http://jenkins-ci.org/

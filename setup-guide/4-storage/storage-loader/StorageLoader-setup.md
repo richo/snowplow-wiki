@@ -17,8 +17,8 @@
 4. [Scheduling](#scheduling)
  1. [Overview](#scheduling-overview)
  2. [cron](#cron)
- 3. [Jenkins](#jenkins)
- 4. [Windows Task Scheduler](#windows)
+ 3. 
+ 4. [Alternatives to cron](#cron-alternatives)
 
 <a name="intro"/>
 ## Introduction
@@ -255,50 +255,72 @@ separately. Instructions for Debian/Ubuntu:
 Once you have the load process working smoothly, you can schedule a daily
 (or more frequent) task to automate the storage process.
 
-We run our daily ETL jobs at 3am UTC, so that we are sure that we have
-processed all of the events from the day before (CloudFront logs can
-take some time to arrive).
+The standard way of scheduling the load process is as a daily cronjob. We
+provide two alternative shell scripts for you to use in your scheduling:
 
-To consider your different scheduling options in turn:
+1. [snowplow-storage-loader.sh] [loader-bash] - this script just runs the
+   StorageLoader
+2. [snowplow-runner-and-loader.sh] [combo-bash] - this script runs the
+   EmrEtlRunner immediately followed by the StorageLoader
 
-<a name="cron"/>
-### cron
+The second script is recommended assuming you want to run the StorageLoader
+immediately after EmrEtlRunner has completed its work.
 
-The recommended way of scheduling the ETL process is as a daily cronjob using the 
-shell script available in the SnowPlow GitHub repository at 
-[`/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh`] [bash-script].
+To consider each scheduling option in turn:
+
+<a name="storage-loader-cron"/>
+### Scheduling StorageLoader only
+
+The shell script [`/4-storage/storage-loader/bin/snowplow-storage-loader.sh`] [loader-bash]
+runs the StorageLoader app only.
 
 You need to edit this script and update the two variables:
 
-    BUNDLE_GEMFILE=/path/to/snowplow/hive/snowplow-etl
-    ETL_CONFIGFILE=/path/to/your-etl-config.yml
+    LOADER_PATH=/path/to/snowplow/4-storage/snowplow-storage-loader
+    LOADER_CONFIG=/path/to/your-loader-config.yml
 
 Now, assuming you're using the excellent [cronic] [cronic] as a wrapper for 
 your cronjobs, and that both cronic and Bundler are on your path, you can 
 configure your cronjob like so:
 
-    0 4   * * *   root    cronic /path/to/emr-etl-runner/bin/snowplow-emr-etl.sh
+    0 6   * * *   root    cronic /path/to/snowplow/4-storage/bin/snowplow-runner-and-loader.sh
 
-This will run the ETL job daily at 4am, emailing any failures to you via cronic.
+This will run the ETL job daily at 6am, emailing any failures to you via cronic. Please make
+sure that your SnowPlow events have been safely generated and stored in your In Bucket prior
+to 6am. 
 
-<a name="jenkins"/>
-### Jenkins
+<a name="runner-and-loader-cron"/>
+### Scheduling EmrEtlRunner and StorageLoader
 
-Some developers use the [Jenkins] [jenkins] continuous integration server (or
-[Hudson] [hudson], which is very similar) to schedule their Hadoop and Hive jobs.
+The shell script [`/4-storage/storage-loader/bin/snowplow-storage-loader.sh`] [combo-bash]
+runs EmrEtlRunner, immediately followed by StorageLoader - i.e. it chains them together.
 
-Describing how to do this is out of scope for this guide, but the blog post
-[Lowtech Monitoring with Jenkins] [jenkins-tutorial] is a great tutorial on using
-Jenkins for non-CI-related tasks, and could be easily adapted to schedule
-EmrEtlRunner.
+If you use this script, you can delete any separate cronjob for the EmrEtlRunner alone.
 
-<a name="windows"/>
-### Windows Task Scheduler
+You need to update this script and update the **four** variables at the top:
 
-For Windows servers, in theory it should be possible to use a Windows PowerShell
-script plus [Windows Task Scheduler] [windows-task-scheduler] instead of bash and cron. However, this has not been tested or documented.
+    RUNNER_PATH=/path/to/snowplow/3-etl/snowplow-emr-etl-runner
+    LOADER_PATH=/path/to/snowplow/4-storage/snowplow-storage-loader
 
-If you get this working, please let us know!
+    RUNNER_CONFIG=/path/to/your-runner-config.yml
+    LOADER_CONFIG=/path/to/your-loader-config.yml
+
+Using [cronic] [cronic] as a wrapper, and with cronic and Bundler on your path, configure
+your cronjob like so:
+
+    0 4   * * *   root    cronic /path/to/snowplow/4-storage/bin/snowplow-runner-and-loader.sh
+
+This will run the ETL job and then the database load daily at 4am, emailing any failures
+to you via cronic. At SnowPlow this is the scheduling option we use.
+
+<a name="cron-alternatives"/>
+### Alternatives to cron
+
+In place of cron, you could schedule StorageLoader using a continuous integration
+server such as [Jenkins] [jenkins], or potentially use the
+[Windows Task Scheduler] [windows-task-scheduler].
+
+These options are explored in a little more detail in the [[Deploying EmrEtlRunner]] guide.
 
 [storage-loader]: https://github.com/snowplow/snowplow/tree/master/4-storage/storage-loader
 
@@ -317,10 +339,10 @@ If you get this working, please let us know!
 [rubygems-install]: http://docs.rubygems.org/read/chapter/3
 
 [config-yml]: https://github.com/snowplow/snowplow/blob/master/4-storage/storage-loader/config/config.yml
-[bash-script]: https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/bin/snowplow-emr-etl.sh
+[loader-bash]: https://github.com/snowplow/snowplow/blob/master/4-storage/storage-loader/bin/snowplow-storage-loader.sh
+[combo-bash]: https://github.com/snowplow/snowplow/blob/master/4-storage/storage-loader/bin/snowplow-runner-and-loader.sh
 
 [cronic]: http://habilis.net/cronic/
 [jenkins]: http://jenkins-ci.org/
-[hudson]: http://hudson-ci.org/
 [jenkins-tutorial]: http://blog.lusis.org/blog/2012/01/23/lowtech-monitoring-with-jenkins/
 [windows-task-scheduler]: http://en.wikipedia.org/wiki/Windows_Task_Scheduler#Task_Scheduler_2.0
