@@ -13,7 +13,7 @@
 3. [Usage](#usage)
  1. [Overview](#usage-overview)
  2. [Command-line options](#cli-options)
- 3. [Running in each mode](#running)
+ 3. [Running](#running)
 4. [Scheduling](#scheduling)
  1. [Overview](#scheduling-overview)
  2. [cron](#cron)
@@ -46,11 +46,9 @@ If you have not completed these two steps yet, then please follow the linked set
 
 This guide assumes that you have administrator access to the Unix-based server (e.g. Ubuntu, OS X, Fedora) on which you installed ICE, and will install StorageLoader on the same server.
 
-### Untested alternatives
-
 Please note that ICE can be deployed onto a Windows-based server, and in theory StorageLoader could be installed on a Windows-based server too, using the Windows Task Scheduler instead of cron, but this has not been tested or documented.
 
-Also, please note that in theory this StorageLoader should also work with [Infobright Enterprise Edition (IEE)] [iee] as well as ICE; however we have not yet tested this.
+Also, note that, in theory, StorageLoader should work with [Infobright Enterprise Edition (IEE)] [iee] as well as ICE; however we have not yet tested or documented this.
 
 <a name="dependencies"/>
 ### Dependencies
@@ -254,8 +252,8 @@ separately. Instructions for Debian/Ubuntu:
 <a name="scheduling-overview"/>
 ### Overview
 
-Once you have the ETL process working smoothly, you can schedule a daily
-(or more frequent) task to automate the daily ETL process.
+Once you have the load process working smoothly, you can schedule a daily
+(or more frequent) task to automate the storage process.
 
 We run our daily ETL jobs at 3am UTC, so that we are sure that we have
 processed all of the events from the day before (CloudFront logs can
