@@ -16,8 +16,8 @@
  3. [Running](#running)
 4. [Scheduling](#scheduling)
  1. [Overview](#scheduling-overview)
- 2. [cron](#cron)
- 3. 
+ 2. [Scheduling StorageLoader only](#storage-loader-cron)
+ 3. [Scheduling EmrEtlRunner and StorageLoader](#runner-and-loader-cron)
  4. [Alternatives to cron](#cron-alternatives)
 
 <a name="intro"/>
