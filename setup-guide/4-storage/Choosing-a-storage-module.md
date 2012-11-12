@@ -16,7 +16,7 @@ We plan to grow the number of storage modules available, to include:
 
 1. [PostgreSQL](http://www.postgresql.org/) (for companies without enormous volumes / web and application traffic)
 2. [SkyDB](http://skydb.io/) event database
-
+3. [Google bigQuery](https://developers.google.com/bigquery/) (for fast analysis of massive data sets)
 
 ## Selection considerations 
 
@@ -30,4 +30,8 @@ We plan to grow the number of storage modules available, to include:
 In general, we recommend using Infobright for smaller volumes of data (up to Terabytes) and S3 / Hive for bigger volumes of data.
 
 Note: if you start off with one storage solution e.g. Infobright, it is reasonably straightforward to migrate to another if need be.
+
+## The SnowPlow Storage Loader
+
+To make it easier to automate the loading of data from Amazon S3 into the different databases that SnowPlow supports, we've built a [Storage Loader] (storageloader setup). Setup instructions can be found [here](storageloader setup). 
 
