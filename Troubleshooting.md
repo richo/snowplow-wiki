@@ -16,10 +16,10 @@ The recommended procedure for Ruby gems which are apps (not libraries) is to bun
 * https://github.com/snowplow/snowplow/blob/master/4-storage/storage-loader/Gemfile.lock
 * https://github.com/snowplow/snowplow/blob/master/3-etl/emr-etl-runner/Gemfile.lock
 
-The problem is if there is a clash between the Ruby gem dependencies specified in the app's `Gemfile.lock` and Ruby gems installed by other apps on your system. There is an 'ugly hack' fix, and a long-term solution:
+The problem is if there is a clash between the Ruby gem dependencies specified in the app's `Gemfile.lock` and Ruby gems installed by other apps on your system. There is an 'ugly hack' fix, and a proper solution:
 
 1. **'Ugly hack' fix:** edit the `Gemfile.lock` file and bump the dependency to the version already installed
-2. **Long-term solution:** - use [RVM (Ruby Version Manager)] [rvm] with a [project-specific rvmrc file] [rvmrc]
+2. **Proper solution:** use [RVM (Ruby Version Manager)] [rvm] with a [project-specific rvmrc file] [rvmrc]
 
 Documenting the rvmrc-based setup in our setup guide is on our todo-list.
 
