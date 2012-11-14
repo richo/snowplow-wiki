@@ -59,7 +59,12 @@ The standard S3 / Hive implementation of SnowPlow storage uses Apache Hive on EM
 	dvce_ismobile boolean,
 	dvce_screenwidth int,
 	dvce_screenheight int,
-	app_id string
+	app_id string,
+	platform string,
+	event_name string,
+	v_tracker string,
+	v_collector string,
+	v_etl string
 	)
 	PARTITIONED BY (dt STRING)
 	LOCATION '${EVENTS_TABLE}' ;
