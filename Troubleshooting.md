@@ -20,8 +20,10 @@ The problem is if there is a clash between the Ruby gem dependencies specified i
 
 1. **'Ugly hack' fix:** edit the `Gemfile.lock` file and bump the dependency to the version already installed
 2. **Proper solution:** use [RVM (Ruby Version Manager)] [rvm] with a [project-specific rvmrc file] [rvmrc]
+3. **Proper Solution, part 2:** Use [Bundler][bundler] to `bundle exec foo`, which after `bundle install`'ing will execute `foo` in the context specified in your Gemfile.lock.
 
 Documenting the rvmrc-based setup in our setup guide is on our todo-list.
 
 [rvm]: https://rvm.io/
 [rvmrc]: https://rvm.io/workflow/rvmrc/
+[bundler]: https://gembundler.com
