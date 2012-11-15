@@ -24,7 +24,7 @@ The technical documentation reflects the SnowPlow architecture, with five loosel
 [Hive ETL](hive)  
 [Scalding / Cascading ETL](scalding)  
 
-### C. [Canonical SnowPlow event structure](canonical-data-structure)
+### C. [Canonical SnowPlow event model](canonical-data-model)
 
 ## 4. Storage
 [S3 / hive](s3-apache-hive-storage)  
