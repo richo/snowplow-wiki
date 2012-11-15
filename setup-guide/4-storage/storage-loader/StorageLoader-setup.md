@@ -233,7 +233,7 @@ As per the above, running StorageLoader is a matter of populating
 your configuration file, let's call it `my-config.yml` for this
 example, and then invoking StorageLoader like so: 
 
-    $ bundle exec snowplow-emr-etl-runner --config my-config.yml
+    $ bundle exec snowplow-storage-loader --config my-config.yml
 
 ### Troubleshooting
 
