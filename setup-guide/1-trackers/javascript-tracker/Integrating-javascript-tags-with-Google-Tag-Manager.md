@@ -173,7 +173,62 @@ GTM comes pre-configured with three macros already: `event`, `referrer` and `url
 <a name="page" />
 ### 2.1 Integrating SnowPlow page tracking tags
 
-TO WRITE
+This is the simplest tag to integrate.
+
+First, click on the **Create tag** button on the top right of the GTM UI.
+
+[[/setup-guide/images/gtm/integrate-page-tracker-1.png]]
+
+Give the tag a suitable name e.g. "SnowPlow page tracker" and select **Custom HTML Tag** from the **Tag type** dropdown:
+
+[[/setup-guide/images/gtm/integrate-page-tracker-2.png]]
+
+Now paste in the standard SnowPlow page tracking code in the HTML box:
+
+[[/setup-guide/images/gtm/integrate-page-tracker-2.png]]
+
+The actual code you need to insert is:
+
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var _snaq = _snaq || [];
+
+_snaq.push(['setAccount', '{{ACCOUNT}}']);
+_snaq.push(['trackPageView']);
+
+(function() {
+var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+})();
+ </script>
+<!-- SnowPlow stops plowing -->
+```
+
+You will need to update the {{ACCOUNT}} with the Cloudfront subdomain details you created as part of the [collector setup](https://github.com/snowplow/snowplow/wiki/setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with an account ID to enter.) It will look something like d3rkrsqld9gmqf.
+
+If you are hosting your own SnowPlow JavaScript file (see the guide to [Self-hosting snowplow.js] (https://github.com/snowplow/snowplow/wiki/Self-hosting-snowplow-js)), then you need to update the tag above, swapping your own Cloudfront {{SUBDOMAIN}} (the one from which you serve sp.js in for ours:
+
+```javascript
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+```
+
+[[/setup-guide/images/gtm/integrate-page-tracker-3.png]]
+
+Once the tag is inserted, we need to instruct GTM to fire this tag on every page load. This is straightforward: click on the **+Add Rule to Fire Tag** button:
+
+[[/setup-guide/images/gtm/integrate-page-tracker-4.png]]
+
+Check the box next to **All pages**. This will ensure that the tag is fired for every page load. (If you had tags on e.g. `www.mysite.com` and `test.mysite.com`, you could create a new rule with a different URL regexp to only fire the tags on the production, rather than test site, and assign that rule to the tag.)
+
+[[/setup-guide/images/gtm/integrate-page-tracker-5.png]]
+
+Now you're done - click **Save**. The new tag should be listed in the container summary screen:
+
+[[/setup-guide/images/gtm/integrate-page-tracker-6.png]]
+
+Note: although set up, the tag wont fire until this update is **published**. We cover how to publish the configurations made above in [section 2.4 below](#2.4).
 
 <a name="events" />
 ### 2.2 Integrating SnowPlow event tracking tags
