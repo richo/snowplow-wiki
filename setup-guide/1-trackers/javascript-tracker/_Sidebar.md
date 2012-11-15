@@ -1,8 +1,8 @@
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**TRACKERS**](choosing-a-tracker) > [**Javascript tracker setup**](javascript-tracker-setup)
 
 1. [Javascript tracker setup overview](javascript-tracker-setup)
-2. [Integrating SnowPlow tags onto your website](integrating-javascript-tags-onto-your-website)  
-3. [Integrating SnowPlow tags onto your website with Google Tag manager](Integrating-javascript-tags-with-Google-Tag-Manager) - this guide should be used instead of (2) for anyone implementing GTM with SnowPlow, or anyone implementing SnowPlow who has already implemented GTM
+2. [Integrating SnowPlow tags directly onto your website](integrating-javascript-tags-onto-your-website)  
+3. [Integrating SnowPlow tags onto your website with Google Tag mMnager](Integrating-javascript-tags-with-Google-Tag-Manager)  
 3. [Hosting SnowPlow.js](self-hosting-snowplow-js)  
 4. [Setting up campaign tracking](tracking-your-marketing-campaigns)  
 5. [Modifying SnowPlow.js](modifying-snowplow-js)  

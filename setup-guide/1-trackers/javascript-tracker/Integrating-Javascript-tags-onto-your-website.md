@@ -14,10 +14,18 @@ Before you start integrating the Javascript tracking tags onto your website, we 
 
 The exact integration steps required vary depending on whether:
 
-1. You integrate SnowPlow tracking tags directly into your website, or through a tag management solution (like [Google Tag Manager] [gtm]). Our recommended approach is to use a Tag Manager, and implement this as part of a SnowPlow integration, if you have not already done so.
+1. You integrate SnowPlow tracking tags directly into your website, or through a tag management solution (like [Google Tag Manager] [gtm]). Our recommended approach is to use a tag management tool, and implement this as part of a SnowPlow integration, if you have not already done so.
 2. Whether or not you use the Javascript tracker in a asyncronous or syncronous manner.
 
-The following guide covers the process for integrating SnowPlow tracking tags directly onto your website. Since Google released [Google Tag Manager] [gtm], a free tag management tool, our recommendation is that companies who wish to integrate SnowPlow, and do not currently have a tag management solution installed, implement [Google Tag Manager] [gtm] at the same time as SnowPlow is implemented. A [separate guide](integrating-javascript-tags-with-gtm) is provided to walk you through the process of setting up Google Tag Manager and then setting up SnowPlow in it, and should be read as an alternative to the following instructions for anyone who uses, or wishes to use, Google Tag Manager.
+We recommend installing SnowPlow within a tag management solution because:
+
+1. If the tag management integration is done correctly, you should be able to build out your SnowPlow integration, including capturing more custom events and variables, without having to change your `html`.
+2. You will be able to upgrade your SnowPlow tags as new versions become available, again without changing the raw `html`.
+3. SnowPlow is often used alongside other web analytics programmes, which will have their own tracking tags. Implementing a tag management solution means that you can be sure that all the different web analytics tracking tags are fired at the same time, which should help to minimise discrepencies between them.
+
+The reasons listed above are all SnowPlow specific - there is a wealth of material online about the benefits of tag management solutions _in general_.
+
+The following guide covers the process for integrating SnowPlow tracking tags directly onto your website. A [separate guide](Integrating-javascript-tags-with-Google-Tag-Manager) is provided to walk you through the process of setting up Google Tag Manager and then setting up SnowPlow in it, and should be read as an alternative to the following instructions for anyone who uses, or wishes to use, Google Tag Manager.
 
 ## Table of Contents
 
