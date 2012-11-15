@@ -91,10 +91,14 @@ GTM might then pass these data points into SnowPlow as page level custom variabl
 
 We might equally want to record these data points on catalogue pages, where multiple products are listed. In this case, we could pass the three data points (`productSku`, `productName` and `productPrice`) in for each product as follows:
 
+```html
 <body>
 	<script type="text/javascript">
 		dataLayer = [{
-      		'products': 
+      		'products': [
+              {'productSku': 'pbz00123', 'productName': 'The Original Rider Waite Tarot cards', 'productPrice': '9.99' },
+              {'productSku': 'pbz00124', 'productName': 'Aleicester Crowley Thoth Tarot', 'productPrice': '12.99' },
+            ]
     	}];
 	</script>
 	 <!-- Google Tag Manager -->
@@ -102,6 +106,22 @@ We might equally want to record these data points on catalogue pages, where mult
   	<!-- End Google Tag Manager -->
 </body>
 ```
+
+We might use this data to perform an analysis of which product on catalogue pages are most likely to be clicked on, and whether that varies by user segment, for example. Analogous data points related to videos and listing the videos displayed on a selection page could be used by a Youtube-like site that wanted to analyse what drove users to select particular videos from a selection.
+
+In many cases, however, we want to capture data related to specific events that occur on a user's journey, like playing a video, for example. In these cases, we can use `dataLayer.push` function to add new data points to the layer when an AJAX event like watching a video occurs. For example, we might trigger the following with a video play:
+
+```javascript
+dataLayer.push(
+	'event': 'playVideo',
+	'videoId': 'vid-000-123',
+	'videoName': 'Skateboarding dog',
+	'videoAuthor': 'user-00121'
+	'videoFormat': 'hd'
+);
+```
+
+
 
 [Back to top](#top)
 
