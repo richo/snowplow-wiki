@@ -17,8 +17,8 @@
 
 **3. ETL**  
 [Overview](etl)  
-[Hive ETL](hive-etl)
-[Scalding / Cascading ETL](scaldingetl)
+[Hive ETL](hive-etl)  
+[Hadoop ETL](scaldingetl)
 
 **[C. Canonical SnowPlow event model](canonical-data-model)**  
 
