@@ -14,13 +14,14 @@ If you have already setup Google Tag Manager on your website, you can proceed di
 
 ### Overview
 
-There are five steps to setting up GTM to the point you can integrate SnowPlow (or any other web analytics tool) with GTM:
+There are six steps to setting up GTM to the point you can integrate SnowPlow (or any other web analytics tool) with GTM:
 
 1. [Create a Google Tag Manager account](#1.1)
 2. [Integrate the container tag on your website](#1.2)
 3. [Work out what data to pass to Google Tag Manager from your website, using the `dataLayer`](#1.3)
-4. [Integrate the dataLayer onto your website](#1.4)
-5. [Create Macros for the data objects in the `dataLayer` in in the GTM UI](#1.5)
+4. [Work out how to structure the data passed into `dataLayer`](#1.4)
+5. [Integrate the `dataLayer` onto your website](#1.5)
+6. [Create Macros for the variables stored in the `dataLayer` in in the GTM UI](#1.6)
 
 Typically, the steps people get wrong (or miss out alltogether) are steps 3-5. Getting them right is critical, however, because if you do not setup a robust mechanism for passing **all** the relevant data you want to report on in SnowPlow (or any other web analytics program) into GTM, then GTM will not be able to pass that data into SnowPlow, in turn. Designing and managing the data pipeline between your website and GTM is therefore critical.
 
@@ -45,7 +46,62 @@ Once you have created a container, Google will provide you with the actual conta
 The embed code needs to be inserted on your web pages immediately after the opening `<body>` tag.
 
 <a name="1.3" />
-### Work out what data to pass to Google Tag Manager from your website, using the `dataLayer`
+### 1.3 Work out what data to pass to Google Tag Manager from your website, using the `dataLayer`
+
+The [`dataLayer`] [datalayer] is a JSON that contains name value pairs of data points you wish to pass from your website into GTM. (And GTM can then, in turn, pass on to any tags that are managed in GTM, including SnowPlow tags.)
+
+Working out what data should be passed into the `dataLayer` is critical to ensuring that your GTM installation lasts. Getting it right, however, is not trivial. On the one hand, you need to be as comprehensive as possible: identifying every data point you might want to interrogate in your web analytics, and passing it in to avoid having to pester your web master to add it later, if you failed to include it in the initial GTM implementation.
+
+On the other hand, we don't want to swamp GTM with lots of data that is never used: either becauese it is not passed onto any of the tags GTM manages, or because those points are never used as part of SnowPlow analyses.
+
+In general, we recommend erring on the side of comprehensiveness: the cost of passing data into the `dataLayer` is small and SnowPlow is built to house as much data as you can throw at it. As a process, we recommend:
+
+1. Start off with the different objects that make up your product or service _universe_. If you're a video site, like Youtube, than videos will be the main object that make up your universe. But users, comments, likes and channels are all other objects that make up the Youtube experience. (Each one of these will be represented in the CMS behind Youtube.)
+2. For each different object, think about what the key data points are that are interesting. For example, a video on Youtube will have an `id`, a `name`, an `author` / `producer` etc.
+3. Now consider what actions / events happen on a user journey. Each will typically involve the user interacting with one or more objects e.g. a video on the site. If the user likes a video, comments on a video or uploads a video, it will involve creating a new object.
+4. We'd want each of those objects, with each of the associated data points, pushed to the `dataLayer`. It may not be necessary to push **all** the data points for each object to the `dataLayer`, because it may be possible to infer some from another. (For example, if we know the `id` of a video, we might be able to lookup the `author` from the CMS at a later stage.) But we want to pass enough data points in with each object to support any analysis, that we might want to perform, down the line, on that object.
+5. The list of objects, data points, and events on the user journeys, should be documented. Those documents will be used in the next step, working out how to [structure the data in the `dataLayer`](#1.4)
+
+<a name="1.4" />
+### 1.4 Work out how to structure the data passed into `dataLayer`
+
+Broadly speaking, there are two occasions we can pass data points into the `dataLayer`:
+
+1. When the page loads
+2. When an event occurs. (Which might not correspond to a page load because it is AJAX.) This might include _watching a video_, _adding an item to the shopping basket_, _submitting a purchase_, _logging in_.
+
+In general, if the data point is directly related to the webpage being loaded, it makes sense to push that data point into the data layer at page load time. For example, if on the product pages on an online shop, it would make sense to push key product details (`name`, `sku`, `price`, `category`) with the page load, by inserting the following code in the page **before** the container tags:
+
+```html
+<body>
+	<script type="text/javascript">
+		dataLayer = [{
+      		'productSku': 'pbz00123',
+      		'productName': 'The Original Rider Waite Tarot cards',
+      		'productPrice': '9.99'
+    	}];
+	</script>
+	 <!-- Google Tag Manager -->
+  	...
+  	<!-- End Google Tag Manager -->
+</body>
+```
+
+GTM might then pass these data points into SnowPlow as page level custom variables, for example.
+
+We might equally want to record these data points on catalogue pages, where multiple products are listed. In this case, we could pass the three data points (`productSku`, `productName` and `productPrice`) in for each product as follows:
+
+<body>
+	<script type="text/javascript">
+		dataLayer = [{
+      		'products': 
+    	}];
+	</script>
+	 <!-- Google Tag Manager -->
+  	...
+  	<!-- End Google Tag Manager -->
+</body>
+```
 
 [Back to top](#top)
 
@@ -53,3 +109,5 @@ The embed code needs to be inserted on your web pages immediately after the open
 ## 2. Integrating SnowPlow Javascript tracking tags with Google Tag Manager
 
 [Back to top](#top)
+
+[datalayer]: https://developers.google.com/tag-manager/reference
