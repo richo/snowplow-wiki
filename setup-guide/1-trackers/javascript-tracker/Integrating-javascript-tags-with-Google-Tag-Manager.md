@@ -188,7 +188,7 @@ Give the tag a suitable name e.g. "SnowPlow page tracker" and select **Custom HT
 
 Now paste in the standard SnowPlow page tracking code in the HTML box:
 
-[[/setup-guide/images/gtm/integrate-page-tracker-2.png]]
+[[/setup-guide/images/gtm/integrate-page-tracker-3.png]]
 
 The actual code you need to insert is:
 
@@ -217,19 +217,17 @@ If you are hosting your own SnowPlow JavaScript file (see the guide to [Self-hos
 sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
 ```
 
-[[/setup-guide/images/gtm/integrate-page-tracker-3.png]]
-
-Once the tag is inserted, we need to instruct GTM to fire this tag on every page load. This is straightforward: click on the **+Add Rule to Fire Tag** button:
-
 [[/setup-guide/images/gtm/integrate-page-tracker-4.png]]
 
-Check the box next to **All pages**. This will ensure that the tag is fired for every page load. (If you had tags on e.g. `www.mysite.com` and `test.mysite.com`, you could create a new rule with a different URL regexp to only fire the tags on the production, rather than test site, and assign that rule to the tag.)
+Once the tag is inserted, we need to instruct GTM to fire this tag on every page load. This is straightforward: click on the **+Add Rule to Fire Tag** button.
 
 [[/setup-guide/images/gtm/integrate-page-tracker-5.png]]
 
-Now you're done - click **Save**. The new tag should be listed in the container summary screen:
+Check the box next to **All pages**. This will ensure that the tag is fired for every page load. (If you had tags on e.g. `www.mysite.com` and `test.mysite.com`, you could create a new rule with a different URL regexp to only fire the tags on the production, rather than test site, and assign that rule to the tag.)
 
 [[/setup-guide/images/gtm/integrate-page-tracker-6.png]]
+
+Now you're done - click **Save**. The new tag should be listed in the container summary screen.
 
 Note: although set up, the tag wont fire until this update is **published**. We cover how to publish the configurations made above in [section 2.4 below](#2.4).
 
