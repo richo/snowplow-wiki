@@ -96,8 +96,11 @@ We might equally want to record these data points on catalogue pages, where mult
 	<script type="text/javascript">
 		dataLayer = [{
       		'products': [
-            	{'productSku': 'pbz00123', 'productName': 'The Original Rider Waite Tarot cards', 'productPrice': '9.99' },
-            	{'productSku': 'pbz00124', 'productName': 'Aleicester Crowley Thoth Tarot', 'productPrice': '12.99' },
+	            	{'productSku': 'pbz00123', 'productName': 'The Original Rider Waite Tarot cards', 'productPrice': '9.99' },
+	            	{'productSku': 'pbz00124', 'productName': 'Aleicester Crowley Thoth Tarot', 'productPrice': '12.99' },
+	            	{'productSku': ...},
+	            	{'productSku': ...},
+            		...
             ]
     	}];
 	</script>
