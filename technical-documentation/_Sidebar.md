@@ -20,7 +20,7 @@
 [Hive ETL](hive-etl)  
 [Hadoop ETL](scaldingetl)
 
-**[C. Canonical SnowPlow event model](canonical-data-model)**  
+**[C. Canonical SnowPlow event model](canonical-event-model)**  
 
 **4. Storage**  
 [Overview](storage documentation)  
