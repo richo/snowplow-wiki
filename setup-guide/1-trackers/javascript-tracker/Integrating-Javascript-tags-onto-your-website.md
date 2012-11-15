@@ -4,11 +4,20 @@
 
 This guide takes you through the process for integrating SnowPlow's JavaScript tracker into your website or web app.
 
-The exact integration steps required vary depending on whether you choose to use the JavaScript tracker in a synchronous or an asynchronous manner; each option is covered separately below.
-
 ## Before you get started...
 
+### Setup your collector before setting up the Javascript tracker
+
 Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setAccount` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{ACCOUNT}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `ice.png`.)
+
+### Decide how you want to implement the Javascript tracker
+
+The exact integration steps required vary depending on whether:
+
+1. You integrate SnowPlow tracking tags directly into your website, or through a tag management solution (like [Google Tag Manager] [gtm]). Our recommended approach is to use a Tag Manager, and implement this as part of a SnowPlow integration, if you have not already done so.
+2. Whether or not you use the Javascript tracker in a asyncronous or syncronous manner.
+
+The following guide covers the process for integrating SnowPlow tracking tags directly onto your website. Since Google released [Google Tag Manager] [gtm], a free tag management tool, our recommendation is that companies who wish to integrate SnowPlow, and do not currently have a tag management solution installed, implement [Google Tag Manager] [gtm] at the same time as SnowPlow is implemented. A [separate guide](integrating-javascript-tags-with-gtm) is provided to walk you through the process of setting up Google Tag Manager and then setting up SnowPlow in it, and should be read as an alternative to the following instructions for anyone who uses, or wishes to use, Google Tag Manager.
 
 ## Table of Contents
 
@@ -200,3 +209,4 @@ If you want SnowPlow to track inbound marketing campaigns you are running then [
 [firebug]: http://getfirebug.com/
 [network-pane]: setup-guide/images/01_network_pane.png
 [contact]: mailto:services@snowplowanalytics.com
+[gtm]: http://www.google.com/tagmanager/
