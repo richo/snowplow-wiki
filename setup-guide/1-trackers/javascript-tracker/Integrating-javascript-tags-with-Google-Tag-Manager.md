@@ -4,13 +4,13 @@
 
 This is divided into two sections:
 
-1. [Setting up Google Tag Manager](#setup-gtm)
+1. [Setting up Google Tag Manager](#setup-gtm) (GTM)
 2. [Integrating SnowPlow Javascript tracking tags with Google Tag Manager](#snowplow-setup)
 
 If you have already setup Google Tag Manager on your website, you can proceed directly to [section 2](#snowplow-setup). However, we recommend at least skimming the section on [setting up Google Tag Manager](#setup-gtm), as we've seen a number of companies implement this badly, with the end result that they cannot pass all the data they would like to SnowPlow tags for analysis later.
 
 <a name="setup-gtm" />
-## 1. Setting up Google Tag Manager
+## 1. Setting up Google Tag Manager (GTM)
 
 ### Overview
 
@@ -96,8 +96,8 @@ We might equally want to record these data points on catalogue pages, where mult
 	<script type="text/javascript">
 		dataLayer = [{
       		'products': [
-              {'productSku': 'pbz00123', 'productName': 'The Original Rider Waite Tarot cards', 'productPrice': '9.99' },
-              {'productSku': 'pbz00124', 'productName': 'Aleicester Crowley Thoth Tarot', 'productPrice': '12.99' },
+            	{'productSku': 'pbz00123', 'productName': 'The Original Rider Waite Tarot cards', 'productPrice': '9.99' },
+            	{'productSku': 'pbz00124', 'productName': 'Aleicester Crowley Thoth Tarot', 'productPrice': '12.99' },
             ]
     	}];
 	</script>
@@ -107,9 +107,9 @@ We might equally want to record these data points on catalogue pages, where mult
 </body>
 ```
 
-We might use this data to perform an analysis of which product on catalogue pages are most likely to be clicked on, and whether that varies by user segment, for example. Analogous data points related to videos and listing the videos displayed on a selection page could be used by a Youtube-like site that wanted to analyse what drove users to select particular videos from a selection.
+We could use this data to perform an analysis of which product on catalogue pages are most likely to be clicked on, and whether that varies by user segment, for example. Analogous data points related to videos and listing the videos displayed on a selection page could be used by a Youtube-like site that wanted to analyse what drove users to select particular videos from a selection.
 
-In many cases, however, we want to capture data related to specific events that occur on a user's journey, like playing a video, for example. In these cases, we can use `dataLayer.push` function to add new data points to the layer when an AJAX event like watching a video occurs. For example, we might trigger the following with a video play:
+In many cases, however, we will want to capture data related to specific events that occur on a user's journey, like playing a video, when those events occur. In these cases, we can use `dataLayer.push` function to add new data points to the layer when an AJAX event like watching a video occurs. For example, we might trigger the following with a video play:
 
 ```javascript
 dataLayer.push(
@@ -121,7 +121,21 @@ dataLayer.push(
 );
 ```
 
+Now that we know _what_ data we want to capture in the `dataLayer`, and _when_ we want to capture each data point (either at page load time or with each event), we are in a position to finalise the documentation for the webmaster that makes it clear what variables to set in the dataLayer, and when. This will be the basis for [integrating the `dataLayer` onto the website](#1.5) below:
 
+<a name="1.5" />
+### 1.5 Integrate the `dataLayer` onto your website
+
+Now that we've decided (and documented) what data to push to the `dataLayer`, and when, your webmaster should be in a position to integrate the `dataLayer` calls into your website.
+
+Note - although we've separated this step out from step 1.2 [integrating your container tag on your website](#1.2), in practice you'd want to carry out both these steps simultaneously.
+
+<a name="1.6" />
+### 1.6 Create Macros for the variables stored in the `dataLayer` in in the GTM UI
+
+Passing data into GTM via the `dataLayer` is great - but to get any value from that data, we need to be able to pass it on to the tags that GTM manages, including SnowPlow.
+
+Doing so is simple, if a little time consuming. For every top-level data field passed into GTM (e.g. `products`, `videoId` etc.), we need to create a `dataLayer` macro in GTM. The value of this macro will be set when the value is passed into the `dataLayer`, and we'll be able to pass the macros into any tags that are setup in GTM. (Instructions on how to do this for SnowPlow tags will be given in the section on [integrating SnowPlow] (#snowplow-setup) below.)
 
 [Back to top](#top)
 
