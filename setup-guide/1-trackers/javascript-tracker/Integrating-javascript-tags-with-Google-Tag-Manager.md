@@ -2,7 +2,7 @@
 
 [**HOME**](Home) > [**SNOWPLOW SETUP GUIDE**](SnowPlow setup guide) > [**Trackers**](choosing-a-tracker) > [**Javascript tracker**](Javascript-tracker-setup)
 
-This is divided into two sections:
+This setup guide is divided into two sections:
 
 1. [Setting up Google Tag Manager](#setup-gtm) (GTM)
 2. [Integrating SnowPlow Javascript tracking tags with Google Tag Manager](#snowplow-setup)
@@ -21,9 +21,9 @@ There are six steps to setting up GTM to the point you can integrate SnowPlow (o
 3. [Work out what data to pass to Google Tag Manager from your website, using the `dataLayer`](#1.3)
 4. [Work out how to structure the data passed into `dataLayer`](#1.4)
 5. [Integrate the `dataLayer` onto your website](#1.5)
-6. [Create Macros for the variables stored in the `dataLayer` in in the GTM UI](#1.6)
+6. [Create macros for the variables stored in the `dataLayer` in in the GTM UI](#1.6)
 
-Typically, the steps people get wrong (or miss out alltogether) are steps 3-5. Getting them right is critical, however, because if you do not setup a robust mechanism for passing **all** the relevant data you want to report on in SnowPlow (or any other web analytics program) into GTM, then GTM will not be able to pass that data into SnowPlow, in turn. Designing and managing the data pipeline between your website and GTM is therefore critical.
+Typically, the steps people get wrong (or miss out alltogether) are steps 3-6. Getting them right is critical, however, because if you do not setup a robust mechanism for passing **all** the relevant data you want to report on in SnowPlow (or any other web analytics program) into GTM, then GTM will not be able to pass that data into SnowPlow, in turn. Either you will need to go back to your webmaster to add additional lines to your HTML / Javascript to pass the missing data points later, or you'll be forced to perform analysis without them. Managing the data pipeline between your website(s) and GTM is key.
 
 <a name="1.1" />
 ### 1.1 Create a Google Tag Manager account
@@ -50,16 +50,16 @@ The embed code needs to be inserted on your web pages immediately after the open
 
 The [`dataLayer`] [datalayer] is a JSON that contains name value pairs of data points you wish to pass from your website into GTM. (And GTM can then, in turn, pass on to any tags that are managed in GTM, including SnowPlow tags.)
 
-Working out what data should be passed into the `dataLayer` is critical to ensuring that your GTM installation lasts. Getting it right, however, is not trivial. On the one hand, you need to be as comprehensive as possible: identifying every data point you might want to interrogate in your web analytics, and passing it in to avoid having to pester your web master to add it later, if you failed to include it in the initial GTM implementation.
+Working out what data should be passed into the `dataLayer` is critical to ensuring that your GTM installation lasts. Getting it right, however, is not trivial. On the one hand, you need to be as comprehensive as possible: you need to identfiy every data point you might want to interrogate in your web analytics and make sure it is passed into the `dataLayer`. Otherwise it will not be possible to pass it on to SnowPlow to use in analytics later.
 
-On the other hand, we don't want to swamp GTM with lots of data that is never used: either becauese it is not passed onto any of the tags GTM manages, or because those points are never used as part of SnowPlow analyses.
+On the other hand, you don't want to swamp GTM with lots of data that is never used: either becauese it is not passed onto any of the tags GTM manages, or because those points are never used as part of SnowPlow analyses.
 
 In general, we recommend erring on the side of comprehensiveness: the cost of passing data into the `dataLayer` is small and SnowPlow is built to house as much data as you can throw at it. As a process, we recommend:
 
 1. Start off with the different objects that make up your product or service _universe_. If you're a video site, like Youtube, than videos will be the main object that make up your universe. But users, comments, likes and channels are all other objects that make up the Youtube experience. (Each one of these will be represented in the CMS behind Youtube.)
 2. For each different object, think about what the key data points are that are interesting. For example, a video on Youtube will have an `id`, a `name`, an `author` / `producer` etc.
 3. Now consider what actions / events happen on a user journey. Each will typically involve the user interacting with one or more objects e.g. a video on the site. If the user likes a video, comments on a video or uploads a video, it will involve creating a new object.
-4. We'd want each of those objects, with each of the associated data points, pushed to the `dataLayer`. It may not be necessary to push **all** the data points for each object to the `dataLayer`, because it may be possible to infer some from another. (For example, if we know the `id` of a video, we might be able to lookup the `author` from the CMS at a later stage.) But we want to pass enough data points in with each object to support any analysis, that we might want to perform, down the line, on that object.
+4. In general, each of the objects identified above should be pushed to the `dataLayer`, with each of the associated data points. It may not be necessary to push **all** the associated data points for each object, because it may be possible to infer some from another. (For example, if we know the `id` of a video, we might be able to lookup the `author` from the CMS at a later stage.) But we want to pass enough data points in with each object to support any analysis, that we might want to perform, down the line, on that object.
 5. The list of objects, data points, and events on the user journeys, should be documented. Those documents will be used in the next step, working out how to [structure the data in the `dataLayer`](#1.4)
 
 <a name="1.4" />
@@ -109,7 +109,7 @@ We might equally want to record these data points on catalogue pages, where mult
 
 We could use this data to perform an analysis of which product on catalogue pages are most likely to be clicked on, and whether that varies by user segment, for example. Analogous data points related to videos and listing the videos displayed on a selection page could be used by a Youtube-like site that wanted to analyse what drove users to select particular videos from a selection.
 
-In many cases, however, we will want to capture data related to specific events that occur on a user's journey, like playing a video, when those events occur. In these cases, we can use `dataLayer.push` function to add new data points to the layer when an AJAX event like watching a video occurs. For example, we might trigger the following with a video play:
+In many cases, however, we will want to capture data related to specific events that occur on a user's journey, like playing a video, when those events occur, rather than when a page loads. In these cases, we can use `dataLayer.push` function to add new data points to the layer when an AJAX event like watching a video occurs. For example, we might trigger the following with a video play:
 
 ```javascript
 dataLayer.push(
@@ -131,11 +131,27 @@ Now that we've decided (and documented) what data to push to the `dataLayer`, an
 Note - although we've separated this step out from step 1.2 [integrating your container tag on your website](#1.2), in practice you'd want to carry out both these steps simultaneously.
 
 <a name="1.6" />
-### 1.6 Create Macros for the variables stored in the `dataLayer` in in the GTM UI
+### 1.6 Create macros for the variables stored in the `dataLayer` in in the GTM UI
 
 Passing data into GTM via the `dataLayer` is great - but to get any value from that data, we need to be able to pass it on to the tags that GTM manages, including SnowPlow.
 
 Doing so is simple, if a little time consuming. For every top-level data field passed into GTM (e.g. `products`, `videoId` etc.), we need to create a `dataLayer` macro in GTM. The value of this macro will be set when the value is passed into the `dataLayer`, and we'll be able to pass the macros into any tags that are setup in GTM. (Instructions on how to do this for SnowPlow tags will be given in the section on [integrating SnowPlow] (#snowplow-setup) below.)
+
+To create a new macro in GTM, click on the **Create Macro** button on the top right of the GTM screen (when you are logged into you account and container):
+
+[[/setup-guide/images/gtm/create-macro-1.png]]
+
+Give your macro an appropriate name. For simplicity, we always use the same name used in the `dataLayer`, although that is not a requirement. From the **Macro Type** dropdown, select **Data Layer Variable**. Then enter the name of the variable, exactly as used in the HTML / Javascript. (This is case sensitive.) 
+
+[[/setup-guide/images/gtm/create-macro-2.png]]
+
+Save the new macro. It will now be visible in the container setup:
+
+[[/setup-guide/images/gtm/create-macro-3.png]]
+
+#### Some notes on macros
+
+GTM comes pre-configured with three macros already: `event`, `referrer` and `url`. `event` is especially important. You can set GTM up to trigger the firing of tags when specific event types are pushed to the `dataLayer`. We use this to trigger both SnowPlow event tracking tags, and ecommerce tracking tags, as explained [below](#snowplow-setup).
 
 [Back to top](#top)
 
