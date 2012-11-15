@@ -27,4 +27,5 @@
 [Infobright based analytics](infobright-analytics-setup)  
 
 **Common**  
+[[Troubleshooting]]  
 [[Hosted assets]]  
