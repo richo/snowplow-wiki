@@ -121,7 +121,14 @@ dataLayer.push(
 );
 ```
 
-Now that we know _what_ data we want to capture in the `dataLayer`, and _when_ we want to capture each data point (either at page load time or with each event), we are in a position to finalise the documentation for the webmaster that makes it clear what variables to set in the dataLayer, and when. This will be the basis for [integrating the `dataLayer` onto the website](#1.5) below:
+Now that we know _what_ data we want to capture in the `dataLayer`, and _when_ we want to capture each data point (either at page load time or with each event), we are in a position to finalise the documentation for the webmaster that makes it clear what variables to set in the dataLayer, and when. This will be the basis for [integrating the `dataLayer` onto the website](#1.5) below.
+
+#### Note: GA suggestions for data points and field names in the `dataLayer`
+
+Google has a number of suggestions for what fields should be captured in the `dataLayer`, and how they should be labelled. Those can be found [here] [datalayer].
+
+For the most part, these are just _suggestions_. However, some of them are more that. For example, if you want to use either Google Analytics ecommerce tracking, or SnowPlow's own ecommerce tracking (which is closely modelled on Google's approach), you will need to set specific variables in your `dataLayer`. Instructions on how to do this is covered below in the specific section on [ecommerce tracking](#ecommerce).
+
 
 <a name="1.5" />
 ### 1.5 Integrate the `dataLayer` onto your website
@@ -157,6 +164,31 @@ GTM comes pre-configured with three macros already: `event`, `referrer` and `url
 
 <a name="snowplow-setup" />
 ## 2. Integrating SnowPlow Javascript tracking tags with Google Tag Manager
+
+1. [Integrating SnowPlow page tracking tags](#page)
+2. [Integrating SnowPlow event tracking tags](#events)
+3. [Integrating SnowPlow ecommerce tracking tags](#ecommerce)
+4. [Publishing changes to GTM](#publish)
+
+<a name="page" />
+### 2.1 Integrating SnowPlow page tracking tags
+
+TO WRITE
+
+<a name="events" />
+### 2.2 Integrating SnowPlow event tracking tags
+
+TO WRITE
+
+<a name="ecommerce" />
+### 2.3 Integrating SnowPlow ecommerce tracking tags
+
+TO WRITE
+
+<a name="publish" />
+### 2.4 Publishing changes to GTM
+
+TO WRITE
 
 [Back to top](#top)
 
