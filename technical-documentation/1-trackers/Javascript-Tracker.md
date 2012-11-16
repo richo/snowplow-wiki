@@ -108,7 +108,7 @@ The concept of event tracking is at the heart of SnowPlow. In the 'classical' mo
 |------------:|:--------------|:-----------------------------------------------------------------------------------------|
 |  `Category` | Yes           | The name you supply for the group of objects you want to track e.g. 'media', 'ecomm'     |
 |    `Action` | Yes           | A string which defines the type of user interaction for the web object e.g. 'play-video', 'add-to-basket' |
-|    `Object` | No            | An optional string which identifies the specific object being actioned e.g. ID of the video being played, or the SKU or the product added-to-basket |
+|     `Label` | No            | An optional string which identifies the specific object being actioned e.g. ID of the video being played, or the SKU or the product added-to-basket |
 |  `Property` | No            | An optional string describing the object or the action performed on it. This might be the quantity of an item added to basket |
 |     `Value` | No            | An optional float to quantify or further describe the user action. This might be the price of an item added-to-basket, or the starting time of the video where play was just pressed |
 

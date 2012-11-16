@@ -54,7 +54,7 @@ Working out what data should be passed into the `dataLayer` is critical to ensur
 
 On the other hand, you don't want to swamp GTM with lots of data that is never used: either becauese it is not passed onto any of the tags GTM manages, or because those points are never used as part of SnowPlow analyses.
 
-In general, we recommend erring on the side of comprehensiveness: the cost of passing data into the `dataLayer` is small and SnowPlow is built to house as much data as you can throw at it. As a process, we recommend:
+We recommend erring on the side of comprehensiveness: the cost of passing data into the `dataLayer` is small and SnowPlow is built to house as much data as you can throw at it. As a process, we recommend:
 
 1. Start off with the different objects that make up your product or service _universe_. If you're a video site, like Youtube, than videos will be the main object that make up your universe. But users, comments, likes and channels are all other objects that make up the Youtube experience. (Each one of these will be represented in the CMS behind Youtube.)
 2. For each different object, think about what the key data points are that are interesting. For example, a video on Youtube will have an `id`, a `name`, an `author` / `producer` etc.
@@ -123,6 +123,8 @@ dataLayer.push(
 	'videoFormat': 'hd'
 );
 ```
+
+It is **critical** that whenever we want to capture data related to a specific event when that event occurs, the `dataLayer.push` function includes a field called `event` with a value set to the event type. That is because GTM uses the setting of value of the `event` field to trigger the firing of tags setup in GTM, and is hence essential to making SnowPlow event tracking possible (because the SnowPlow event tracking tag needs to fire following specfiic events) and the SnowPlow ecommerce tracking possible (because that is, equally, triggered by specific purchase events.)
 
 Now that we know _what_ data we want to capture in the `dataLayer`, and _when_ we want to capture each data point (either at page load time or with each event), we are in a position to finalise the documentation for the webmaster that makes it clear what variables to set in the dataLayer, and when. This will be the basis for [integrating the `dataLayer` onto the website](#1.5) below.
 
@@ -234,7 +236,121 @@ Note: although set up, the tag wont fire until this update is **published**. We 
 <a name="events" />
 ### 2.2 Integrating SnowPlow event tracking tags
 
-TO WRITE
+This is best explained through an example. Let's assume, again, that we are implementing SnowPlow on a Youtube-like video site. There will be a large number of possible events that occur on a user journey including searching for a video, playing a video, pausing a video, liking a video, uploading a video, sharing a video etc... As per steps [1.3](#1.3), [1.4](#1.4) and [1.5](#1.5), each time one of these events occurs, the event is logged in the `dataLayer` along with the associated data. For example, for a 'video play', the following Javascript would execute:
+
+```javascript
+dataLayer.push(
+	'event': 'playVideo',
+	'videoId': 'vid-000-123',
+	'videoFormat': 'hd'
+);
+```
+
+We now need to set up the SnowPlow event tracking tag to fire for each of the types of event identified, and use the five [event tracking fields] [event-tracking] to pass the data into SnowPlow. Those fields are documented [here] [event-tracking], but for ease we list them below:
+
+1. Event category
+2. Event action
+3. Event label 
+4. Event property
+5. Event value 
+
+Let's work through the process for our `playVideo` event type. From the main Tag Manager screen, click the **New Tag** button:
+
+[[/setup-guide/images/gtm/event-tracking-1.JPG]]
+
+Give the tag a suitable name e.g. 'SnowPlow playVideo event'. Select the **Custom HTML Tag** from the **Tag Type** dropdown:
+
+[[/setup-guide/images/gtm/event-tracking-2.JPG]]
+
+In the HTML box below, we need to paste the SnowPlow event tracking code. The generic code looks as follows:
+
+```html
+<!-- SnowPlow event tracking -->
+<script type="text/javascript">
+_snaq.push(['trackEvent', '{{CATEGORY}}', '{{ACTION}}', '{{LABEL}}', '{{PROPERTY}}', '{{VALUE}}']);
+</script>
+```
+
+We need to insert the above code, but substitude in the data points captured when a video is played in the dataLayer. To do that, we need to map those fields i.e.:
+
+1. `playVideo`
+2. `videoId`
+3. `videoFormat`
+
+To the five event tracking fields. (Note - if 5 fields are not enough, we are in the process extending SnowPlow to accommodate 10 additional event custom variables and an 11th arbitrary JSON, that can be stuffed with additional data.)
+
+How we do the mapping is really a matter of preference: the following would work:
+
+| **`playVideo` data point** | **Event tracking field** |
+|:---------------------------|:-------------------------|
+|                            | `category`               |
+| `playVideo`                | `action`                 |
+| `videoId`                  | `label`                  |
+| `videoFormat`              | `property`               |
+|                            | `value`                  |
+
+It would make sense to hardcode the `category` to `video` or `media` (so we can group all video related actions in our analysis), and to leave the `value` field blank. (This field could be used if there's revenue that can be attributed to the `playVideo` event, for example.)
+
+To implement the above mapping, we update the HTML in the box to the following:
+
+```html
+<!-- SnowPlow event tracking -->
+<script type="text/javascript">
+_snaq.push(['trackEvent', 'video', 'playVideo', '{{videoId}}', '{{videoFormat}}', '0.0']);
+</script>
+```
+
+The above code will dynamically insert the values in the `dataLayer` for `videoId` and `videoFormat` into the tag, which will pass the data into SnowPlow. Note that this will only work if you have setup corresponding macros in GTM for each data point captured in the `dataLayer`, as documented in [section 1.6] (#1.6).
+
+[[/setup-guide/images/gtm/event-tracking-3.JPG]]
+
+Now that we've created the tag, we need to tell GTM to fire it every time a `playVideo` event occurs. To do that, click on the **+ Add Fule to Fire Tag** button. Click on the **Create new rule** checkbox. Give the rule an appropriate name and set it to **event equals `playVideo`**:
+
+[[/setup-guide/images/gtm/event-tracking-4.JPG]]
+
+**Save** the tag. It should now be listed alongside your SnowPlow page tracker tag:
+
+[[/setup-guide/images/gtm/event-tracking-5.JPG]]
+
+You now need to repeat the above process for each of the different types of events identified in your `dataLayer` i.e. `uploadVideo`, `shareVideo`, `likeVideo` etc. In each case, you will need to:
+
+1. Create a new tag in GTM i.e. `SnowPlow shareVideo event`, `SnowPlow uploadVideo event`
+2. Paste in the SnowPlow event tracking code, but map the fields for the specific events into the 5 SnowPlow event tracking fields
+3. Trigger the tag to fire when e.g. `event: uploadVideo` is passed into the `dataLayer` 
+
+Once you have completed creating all the tags, you will need to [publish the updates](#publish) (as detailed [below](#publish)) in order to push the changes live.
+
+#### An alternative, less time-consuming approach
+
+The above approach is time consuming because it requires that you create a SnowPlow tag in GTM for every different type of event identified in the `dataLayer`. 
+
+An alternative approach would be not to distinguish different types of event in the data layer. Instead, for every type of custom event, use the same set of fields in the dataLayer that correspond to the five SnowPlow event tracking fields i.e.:
+
+```javascript
+dataLayer.push(
+	'event': 'customEvent',
+	'eventCategory': 'xxx',
+	'eventAction': 'xxx',
+	'eventLabel': 'xxx,
+	'eventProperty': 'xxx',
+	'eventValue': 'x.x'
+);
+```
+
+Then we can create a single SnowPlow event tag in GTM that is fired with every `customEvent` and maps the fields in the `dataLayer` directly into the SnowPlow event tracking tag.
+
+```html
+<!-- SnowPlow event tracking -->
+<script type="text/javascript">
+_snaq.push(['trackEvent', '{{eventCategory}}', '{{eventAction}}', '{{eventLabel}}', '{{eventProperty}}', '{{eventValue}}']);
+</script>
+```
+
+There are several reasons we do not recommend this approach:
+
+1. Although time consuming, the exercise of identifying all the relevant events that can occur on a user's journey, and all the data points that are associated with each, is incredibly useful. At analysis time, you would use the same mapping used to match those data points against the generic SnowPlow event fields, to map them back into their 'idealised structure'. 
+2. We're working to improve SnowPlow all the time. If the current event tracking isn't flexible enough to accommodate your needs, it's highly likely that a future version will be. If you're not capturing all the data that you ideally want to be reporting on, in GTM, then when we upgrade SnowPlow, you wont be able to take advantage without updating your GTM implementation.
+3. The whole point of using a tag management platform like GTM is to manage all your tags. The alternative approach outlined above is works for SnowPlow, but will not necessarily work for other tags that are managed through GTM. In order to make it as easy as possible manage the widest variety of tags, you should pass all the data you might want to share with your tags into GTM in a sensible, comprehensible format, rather than one geared around a specific providers tag.
 
 <a name="ecommerce" />
 ### 2.3 Integrating SnowPlow ecommerce tracking tags
