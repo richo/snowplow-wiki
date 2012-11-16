@@ -271,7 +271,7 @@ _snaq.push(['trackEvent', '{{CATEGORY}}', '{{ACTION}}', '{{LABEL}}', '{{PROPERTY
 </script>
 ```
 
-We need to insert the above code, but substitude in the data points captured when a video is played in the dataLayer. To do that, we need to map those fields i.e.:
+We need to insert the above code, but substitude in the data points captured when a video is played in the `dataLayer`. To do that, we need to map those fields i.e.:
 
 1. `playVideo`
 2. `videoId`
@@ -300,7 +300,7 @@ _snaq.push(['trackEvent', 'video', 'playVideo', '{{videoId}}', '{{videoFormat}}'
 </script>
 ```
 
-The above code will dynamically insert the values in the `dataLayer` for `videoId` and `videoFormat` into the tag, which will pass the data into SnowPlow. Note that this will only work if you have setup corresponding macros in GTM for each data point captured in the `dataLayer`, as documented in [section 1.6] (#1.6).
+The above code will dynamically insert the values in the `dataLayer` for `videoId` and `videoFormat` into the tag, which will pass the data into SnowPlow. Note that this will only work if you have setup corresponding macros in GTM for `videoId` and `videoFormat`, as documented in [section 1.6] (#1.6).
 
 [[/setup-guide/images/gtm/event-tracking-3.JPG]]
 
@@ -365,3 +365,4 @@ TO WRITE
 [Back to top](#top)
 
 [datalayer]: https://developers.google.com/tag-manager/reference
+[event-tracking]: https://github.com/snowplow/snowplow/wiki/javascript-tracker#wiki-events
