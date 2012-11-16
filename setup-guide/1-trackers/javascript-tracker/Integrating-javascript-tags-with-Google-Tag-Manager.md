@@ -324,17 +324,17 @@ Once you have completed creating all the tags, you will need to [publish the upd
 
 The above approach is time consuming because it requires that you create a SnowPlow tag in GTM for every different type of event identified in the `dataLayer`. 
 
-An alternative approach would be not to distinguish different types of event in the data layer. Instead, for every type of custom event, use the same set of fields in the dataLayer that correspond to the five SnowPlow event tracking fields i.e.:
+An alternative approach would be not to distinguish different types of event in the `dataLayer`. Instead, for every type of custom event, use the same set of fields in the `dataLayer` that correspond to the five SnowPlow event tracking fields i.e.:
 
 ```javascript
-dataLayer.push(
+dataLayer.push({
 	'event': 'customEvent',
 	'eventCategory': 'xxx',
 	'eventAction': 'xxx',
 	'eventLabel': 'xxx,
 	'eventProperty': 'xxx',
 	'eventValue': 'x.x'
-);
+});
 ```
 
 Then we can create a single SnowPlow event tag in GTM that is fired with every `customEvent` and maps the fields in the `dataLayer` directly into the SnowPlow event tracking tag.
@@ -350,12 +350,119 @@ There are several reasons we do not recommend this approach:
 
 1. Although time consuming, the exercise of identifying all the relevant events that can occur on a user's journey, and all the data points that are associated with each, is incredibly useful. At analysis time, you would use the same mapping used to match those data points against the generic SnowPlow event fields, to map them back into their 'idealised structure'. 
 2. We're working to improve SnowPlow all the time. If the current event tracking isn't flexible enough to accommodate your needs, it's highly likely that a future version will be. If you're not capturing all the data that you ideally want to be reporting on, in GTM, then when we upgrade SnowPlow, you wont be able to take advantage without updating your GTM implementation.
-3. The whole point of using a tag management platform like GTM is to manage all your tags. The alternative approach outlined above is works for SnowPlow, but will not necessarily work for other tags that are managed through GTM. In order to make it as easy as possible manage the widest variety of tags, you should pass all the data you might want to share with your tags into GTM in a sensible, comprehensible format, rather than one geared around a specific providers tag.
+3. The whole point of using a tag management platform like GTM is to manage all your tags. The alternative approach outlined above is a SnowPlow specific hack and will not necessarily work for other tags that are managed through GTM. In order to make it as easy as possible manage the widest variety of tags, you should pass all the data you might want to share with your tags into GTM in a sensible, comprehensible format, rather than one geared around a specific providers tag.
 
 <a name="ecommerce" />
 ### 2.3 Integrating SnowPlow ecommerce tracking tags
 
-TO WRITE
+SnowPlow's [ecommerce tracking] [ecom-tracking] closely follows ecommerce tracking as implemented in Google Analytics. We have done this to make implementing SnowPlow alongside GA as easy as possible.
+
+Because of this, however, it is important that you follow Google's specified approach to pushing transaction related data into the `dataLayer`, using the same field names and data structures used by Google. These are listed on the [Google website][gtm-vars] and are repeated below for clarity:
+
+| **Variable name**       | **Description**                 |
+|:------------------------|---------------------------------|
+| `transactionId`         | Unique transaction ID           |
+| `transactionAffiliation`| Affiliation or store name       | 
+| `transactionTotal`      | Transaction value               |
+| `transactionShipping`   | Shipping charge                 |
+| `transactionTax`        | Tax (VAT) charge                |
+| `transactionPaymentType` | Payment type (e.g. credit card)|
+| `transactionCurrency`   | Currency of transaction         |
+| `transactionShippingMethod` | Selected shipping method    |
+| `transactionPromoCode`  | Discount or promotion codes used | 
+| `transactionProducts`   | List of items purchased in the transaction (provided to the `dataLayer` as an array) |
+
+The following data is supported for each of the products in the `transactionProducts` array:
+
+| **Variable name**       | **Description**                 |
+|:------------------------|---------------------------------|
+| `id`                    | Product ID                      |
+| `name`                  | Product name                    |
+| `sku`                   | Product SKU                     |
+| `category`              | Product category                |
+| `price`                 | Unit price                      |
+| `quantity`              | Number of this item included in the order |
+
+In addition, there are a number of additional data points that it is possible to capture using SnowPlow ecommerce tracking through GTM, but we are unclear if Google supports. (GA ecommerce tracking supports the fields, but it is not clear if the GTM implementation of GA's ecommerce tracking supports them):
+
+| **Variable name**       | **Description**                 |
+|:------------------------|:--------------------------------|
+| `transactionCity`       | City buyer is located in        |
+| `transactionState`      | State or province buyer is located in |
+| `transactionCountry`    | Country buyer is located in     |
+
+In the `dataLayer`, a transaction needs to be recorded like the following example:
+
+```javascript
+dataLayer.push({
+	'event': 'transaction',
+	'transactionId': 'order-123',
+	'transactionAffiliation': 'web',
+	'transactionTotal': '107.98',
+	'transactionShipping': '2.99',
+	'transactionTax': '2',
+	'transactionCurrency': 'GBP',
+	'transactionProducts': [
+		  {'name': 'Blue_t-shirt', 'sku': '1001', 'category': 'ts', 'price': '4.99', 'quantity': '1'},
+		  {'name': 'Red_shoes', 'sku': '1002', 'category': 'shoes', 'price': '50.00', 'quantity': '2'}
+	],
+	'transactionCity': 'London',
+	'transactionCountry': 'United Kingdom'
+}); 
+```
+
+As described in [section 1.6](#1.6), we need to create macros in GTM for each of the fields listed in the above three tables i.e. `transactionId`, `transactionAffiliation`... `transactionCountry`. To recap on the process:
+
+1. Click on the **New Macro** button in the GTM interface
+2. Name the new macro being created. (We recommend using exactly the same name used in the `dataLayer` e.g. `transactionId` for clarity)
+3. Set the macro type to 'Data Layer Variable'
+4. Set the value of the macro to the field name given in the `dataLayer` e.g. `transactionId`
+5. Save the macro
+
+We then need to create a SnowPlow ecommerce tracking tag in GTM that passes the data onto SnowPlow on a transaction event. In GTM, select the **New Tag** button. Give the tag a sensible name e.g. 'SnowPlow ecommerce tracker' and select 'custom HTML tag' in the tag type. Now in the HTML box, paste the following code:
+
+```html
+<script type="text/javascript">
+// 1st, fire 'addTrans' event for the new transaction
+_snaq.push(['addTrans',
+    {{transactionId}},
+    {{transactionAffiliation}},
+    {{transactionTotal}},
+    {{transactionTax}},
+    {{transactionShipping}},
+    {{city}},
+    {{state}},
+    {{country}}
+]);
+
+// 2nd fire the 'addItem' event for each item included in the transaction
+for(i=0; i<{{transactionProducts}}.length; i++) {
+    _snaq.push(['addItem',
+        {{transactionId}},
+        {{transactionProducts}}[i].sku,
+        {{transactionProducts}}[i].name,
+        {{transactionProducts}}[i].category,
+        {{transactionProducts}}[i].price,
+        {{transactionProducts}}[i].quantity
+    ]);
+}
+
+// Finally fire the 'trackTrans' event to commit the transaction
+_snaq.push['trackTrans']
+</script>
+```
+
+Note: if you did not name each of the transaction macros with the same names as specified in the `dataLayer` e.g. `transactionId`, you will need to update the references to those macro names in the above tag accordingly.
+
+Now that our tag is ready, we need to trigger it to fire. Assuming we identify when transactions occur in the `dataLayer` using `dataLayer.push({ 'event': 'transaction', ...}), we'll want to fire the SnowPlow tag every time **event equals `transactions`**. To do this, click the **+ Add Rule to Fire Tag**, select the option to **Create new rule**, name the rule e.g. 'transaction' and specify it:
+
+[[/setup-guide/images/gtm/ecomm-tracking-1.JPG]]
+
+The tag setup is now complete:
+
+[[/setup-guide/images/gtm/ecomm-tracking-2.JPG]]
+
+We are now ready to publish the changes. This is covered in the [next section](#publish).
 
 <a name="publish" />
 ### 2.4 Publishing changes to GTM
@@ -366,3 +473,5 @@ TO WRITE
 
 [datalayer]: https://developers.google.com/tag-manager/reference
 [event-tracking]: https://github.com/snowplow/snowplow/wiki/javascript-tracker#wiki-events
+[ecomm-tracking]: https://github.com/snowplow/snowplow/wiki/javascript-tracker#wiki-ecommerce
+[gtm-vars]: https://developers.google.com/tag-manager/reference#varnames
