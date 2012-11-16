@@ -430,9 +430,9 @@ _snaq.push(['addTrans',
     {{transactionTotal}},
     {{transactionTax}},
     {{transactionShipping}},
-    {{city}},
-    {{state}},
-    {{country}}
+    {{transactionCity}},
+    {{transactionState}},
+    {{transactionCountry}}
 ]);
 
 // 2nd fire the 'addItem' event for each item included in the transaction
@@ -454,7 +454,7 @@ _snaq.push['trackTrans']
 
 Note: if you did not name each of the transaction macros with the same names as specified in the `dataLayer` e.g. `transactionId`, you will need to update the references to those macro names in the above tag accordingly.
 
-Now that our tag is ready, we need to trigger it to fire. Assuming we identify when transactions occur in the `dataLayer` using `dataLayer.push({ 'event': 'transaction', ...}), we'll want to fire the SnowPlow tag every time **event equals `transactions`**. To do this, click the **+ Add Rule to Fire Tag**, select the option to **Create new rule**, name the rule e.g. 'transaction' and specify it:
+Now that our tag is ready, we need to trigger it to fire. Assuming we identify when transactions occur in the `dataLayer` using `dataLayer.push({ 'event': 'transaction', ...});`, we'll want to fire the SnowPlow tag every time **event equals `transactions`**. To do this, click the **+ Add Rule to Fire Tag**, select the option to **Create new rule**, name the rule e.g. 'transaction' and specify it:
 
 [[/setup-guide/images/gtm/ecomm-tracking-1.JPG]]
 
@@ -462,12 +462,36 @@ The tag setup is now complete:
 
 [[/setup-guide/images/gtm/ecomm-tracking-2.JPG]]
 
-We are now ready to publish the changes. This is covered in the [next section](#publish).
+Save the tag. We are now ready to publish the changes. This is covered in the [next section](#publish).
 
 <a name="publish" />
 ### 2.4 Publishing changes to GTM
 
-TO WRITE
+Once you have setup all your tags, rules and macros in GTM, you need to publish the changes before they will take effect on your website(s).
+
+This is a three step process:
+
+1. Create a **version** with all the most recent changes / updates
+2. Preview and debug the versin
+3. When you are confident it is working as expected, publish it
+
+Creating a version is simple: click on the **Create Version** button on the top right of the GTM UI.
+
+[[/setup-guide/images/gtm/publish-1.JPG]]
+
+(Note your list of tags adn rules should be longer than that in the demo screenshot above.)
+
+Click the **Save and Preview** button at the bottom. This launches preview mode:
+
+[[/setup-guide/images/gtm/publish-2.JPG]]
+
+Now load a web page with the container in a tab in the same browser. You should see an additional GTM interface in the bottom half of the screen that indicates when different tags defined in the UI have been fired. 
+
+[[/setup-guide/images/gtm/publish-3.JPG]]
+
+If you are that the setup works as expected, click the **Save and publish** button. The updates will be pushed to live.
+
+In the event that it is not working as expected, you can go back and make the changes you require. You will need to create a new version, with the updates, before you can either preview them, or publish them.
 
 [Back to top](#top)
 
