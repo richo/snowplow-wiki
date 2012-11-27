@@ -63,7 +63,13 @@ The `war` file is now ready to be deployed to Amazon Elastic Beanstalk.
 
 Amazon makes it easy to create a new application in Elastic Beanstalk and upload your `war` file into it. All of this is possible via the web UI.
 
-On your web browser, log into the [AWS control panel][aws]. From the **Services** dropdown menu select **Elastic Beanstalk**. When the Elastic Beanstalk control panel has loaded, click on the **Create application** button (located on the top right of the screen):
+On your web browser, log into the [AWS control panel][aws]. From the **Services** dropdown menu select **Elastic Beanstalk**. 
+
+Before you create your application, you need to switch to the region you want your web server located. Select your region from the dropdown on the top right of the screen:
+
+[[/setup-guide/images/clojure-collector-setup-guide/0.png]]
+
+Once you've selected your region, you're ready to create your application. Click on the **Create application** button (located on the top right of the screen, below the top menu bar with the region selection):
 
 [[/setup-guide/images/clojure-collector-setup-guide/1.png]]
 
