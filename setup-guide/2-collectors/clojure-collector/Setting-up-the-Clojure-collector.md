@@ -103,11 +103,51 @@ Click on the **URL** link. (This is [[http://cc-endpoint.elasticbeanstalk.com]] 
 
 ## 3. Configure your application environment
 
-Now that your application is up and running, there are a number of additional changes updates you will need to make to the configuration. Click on the **Actions button** and select **Edit/Load configuration**.
+### 3a. Required change: enabling log file rotation to S3
+
+Now that your application is up and running, you need to update the configuration so that the Tomcat logs are pushed to S3. (These will be processed by the [etl][etl] step to generate your SnowPlow data.)Click on the **Actions button** and select **Edit/Load configuration**.
 
 [[/setup-guide/images/clojure-collector-setup-guide/6.png]]
 
+Select the **Container** tab in the dialogue box, and then check the box marked **Enable log file rotation to Amazon S3**:
 
+[[/setup-guide/images/clojure-collector-setup-guide/9.png]]
+
+Click the **Apply changes** button. The environment update will be processed, and the collector app should be live again after a few minutes.
+
+### 3b. Additional (optional) configuration options
+
+There are a number of other environment configuration parameters that you may want to consider tailoring to your specific needs. All of them can be accessed via the **Edit Configuration** dialogue box.
+
+<a name="3bi" ></a>
+
+#### 3b i. Setting the environment to develop or production
+
+You can set an environment mode in the collector e.g. to "Development" or "Production". This can be set via the Elastic Beanstalk UI. Simply select **Edit configuration**, select the **Conatainer** tab and scroll down. Enter your desired environment name in **Param1** and then select **Apply Changes**:
+
+[[/setup-guide/images/clojure-collector-setup-guide/10.png]]
+
+<a name="3bii" ></a>
+
+#### 3b ii. Setting the P3P policy header
+
+This can be entered directly into the same dialogue box as the environment name (see [3b i](#3bi) above), but in **Param2** rather than **Param1**.
+
+<a name="3biii" ></a>
+
+#### 3b iii. Setting the domain name
+
+The domain name can be entered directly into the same dialogue box as the [environment name](#3bi) and [P3P policy header](#3bii) by entering it into **Param3**
+
+If no value is added, the domain  name defaults to the collector domain name.
+
+<a name="3biv" ></a>
+
+#### 3b iv. Setting the cookie duration
+
+This can be entered into the same dialogue box as the [environment name](#3bi), [P3P policy header](#3bii) and [domain name](#3biii), by entering the value in **Param4**. 
+
+If no value is provided, cookies set default to expiring after one year.
 
 <a name="https"></a>
 
