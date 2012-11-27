@@ -149,6 +149,16 @@ This can be entered into the same dialogue box as the [environment name](#3bi), 
 
 If no value is provided, cookies set default to expiring after one year.
 
+#### 3b v. Auto scaling
+
+Elastic Beanstalk can scale up the number of webservers running the collector to handle spikes in traffic.
+
+Basic settings (minimum and maximum numbers of servers) can be set in the configuration dialogue box, under the **Auto Scaling** tab. 
+
+[[/setup-guide/images/clojure-collector-setup-guide/11.png]]
+
+You can tell Amazon in what circumstances to launch new instances by setting 'triggers'. More details on tuning Elastic Beanstalk can be found [here](http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/using-features.managing.as.html).
+
 <a name="https"></a>
 
 ## 4. Enable support for HTTPS
@@ -160,9 +170,8 @@ Text here
 ## 5. Set your Tracker to point at the Clojure collector end point
 
 
+
 ## 6. Update the EmrEtlRunner configuration YAML file
-
-
 
 	:etl:
 	  :collector_format: clj-tomcat
