@@ -18,6 +18,7 @@ Setting up the Clojure collector is a X step process:
 3. [Configure the application environment, including switching on logging to S3] (#env-config). (Required)
 4. Enable support for HTTPS. (Optional, but recommended.)
 5. Set your tracker to point at the Clojure collector end point. (Required)
+6. Update the EmrEtlRunner configuration YAML file
 
 <a name="war-file"></a>
 
@@ -70,11 +71,43 @@ Give your application a suitable name and description. Select **32bit Amazon Lin
 
 [[/setup-guide/images/clojure-collector-setup-guide/2.png]]
 
+Next you need to configure the environment details. You can setup multiple environments for each application, but for our purposes one is enough.
+
+Keep the **Launch a new environment running this application** checkbox checked (i.e. selected), but **deselect** the 2nd option: **Create an RDS DB Instance with this environment**. We do **not** need a database to run the collector.
+
+Give your environment a suitable name, URL and description:
+
+[[/setup-guide/images/clojure-collector-setup-guide/3.png]]
+
+Next we need to specify another set of configuration details. Set a suitable instance type (we recommend at least `m1.small`). If you have an EC2 key pair configured, you can enter the key pair name at this stage: this will enable you to use the key pair to SSH in should you wish. (This is not required, and can be added later without any difficulty.)
+
+For the **Application Health Check URL** enter `/healthcheck`:
+
+[[/setup-guide/images/clojure-collector-setup-guide/4.png]]
+
+Click **Continue**. Amazon gives you the chance to review your inputs. When you've checked them click **Finish**. 
+
+Amazon then sets up your the application and environment. When this is complete, you should see a screen like the one below. Note the green box, and the **Successflly running version First Release** notice.
+
+[[/setup-guide/images/clojure-collector-setup-guide/5.png]]
+
+To test that all is working as expected, select the **Environment Details** dropdown:
+
+[[/setup-guide/images/clojure-collector-setup-guide/7.png]]
+
+Click on the **URL** link. (This is [[http://cc-endpoint.elasticbeanstalk.com]] in the example above.) This should return a 404. If you add `/i' to the path (e.g. `http://cc-endpoint.elasticbeanstalk.com/i`), right click on the window and select **Inspect Element** in Chrome or **Inspect with Firebug** in Firefox, you should be able to see if the cookie has been set:
+
+[[/setup-guide/images/clojure-collector-setup-guide/8.png]]
+
 <a name="env-config"></a>
 
 ## 3. Configure your application environment
 
-Text here
+Now that your application is up and running, there are a number of additional changes updates you will need to make to the configuration. Click on the **Actions button** and select **Edit/Load configuration**.
+
+[[/setup-guide/images/clojure-collector-setup-guide/6.png]]
+
+
 
 <a name="https"></a>
 
@@ -86,6 +119,13 @@ Text here
 
 ## 5. Set your Tracker to point at the Clojure collector end point
 
+
+## 6. Update the EmrEtlRunner configuration YAML file
+
+
+
+	:etl:
+	  :collector_format: clj-tomcat
 
 
 [eb]: http://aws.amazon.com/elasticbeanstalk/
