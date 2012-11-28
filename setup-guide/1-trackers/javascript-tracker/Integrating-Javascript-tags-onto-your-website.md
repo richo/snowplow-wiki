@@ -8,7 +8,7 @@ This guide takes you through the process for integrating SnowPlow's JavaScript t
 
 ### Setup your collector before setting up the Javascript tracker
 
-Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setAccount` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{ACCOUNT}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `ice.png`.)
+Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setCollectorCf` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{CLOUDFRONT DOMAIN}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `i.gif`.)
 
 ### Decide how you want to implement the Javascript tracker
 
@@ -46,7 +46,7 @@ To use `snowplow.js` in an 'async' manner, first add the following script into y
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setAccount', '{{ACCOUNT}}']);
+_snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
 _snaq.push(['trackPageView']);
 _snaq.push(['enableLinkTracking']);
 
@@ -59,14 +59,14 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-**Setting the {{ACCOUNT}} value** 
+**Setting the {{CLOUDFRONT DOMAIN}} value** 
 
-You must update `{{ACCOUNT}}` with the Cloudfront subdomain details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
+You must update `{{CLOUDFRONT DOMAIN}}` with the Cloudfront subdomain details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with an Cloudfront domain to enter.)  It will look something like `d3rkrsqld9gmqf`
 
 If your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
 
 ```javascript
-_snaq.push(['setAccount', 'd1x5tduoxffdr7']);
+_snaq.push(['setCloudfrontCf', 'd1x5tduoxffdr7']);
 ```
 
 **Updating the reference to `sp.js`**
@@ -122,7 +122,7 @@ document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E
 </script>
 <script type="text/javascript">
 try {
-var snowplowTracker = SnowPlow.getTracker('{{ACCOUNT}}');
+var snowplowTracker = SnowPlow.getTrackerCf('{{CLOUDFRONT DOMAIN}}');
 snowplowTracker.trackPageView();
 snowplowTracker.enableLinkTracking();
 } catch ( err ) {}
@@ -130,14 +130,14 @@ snowplowTracker.enableLinkTracking();
 <!-- SnowPlow stops plowing -->
 ```
 
-**Setting the {{ACCOUNT}} value** 
+**Setting the {{CLOUDFRONT DOMAIN}} value** 
 
-You must update `{{ACCOUNT}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an account ID to enter.)  It will look something like `d3rkrsqld9gmqf`
+You must update `{{CLOUDFRONT DOMAIN}}` with the Cloudfront distribution details you created as part of the [collector setup](setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you wiht an Cloudfront domain to enter.)  It will look something like `d3rkrsqld9gmqf`
 
 If your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
 
 ```javascript
-var snowplowTracker = SnowPlow.getTracker('d1x5tduoxffdr7');
+var snowplowTracker = SnowPlow.getTrackerCf('d1x5tduoxffdr7');
 ```
 
 **Updating the reference to `sp.js`**
@@ -193,13 +193,13 @@ You can 'kick the tyres' of `snowplow.js` with the example HTML pages available 
 
     snowplow/tracker/examples
 
-Before running these HTML pages, you will make sure to update the `{{ACCOUNT}}` to your SnowPlow-supplied account ID; if you are using a self-hosted `snowplow.js`, then update that in the HTML files too.
+Before running these HTML pages, you will make sure to update the `{{CLOUDFRONT DOMAIN}}` to your SnowPlow-supplied Cloudfront domain; if you are using a self-hosted `snowplow.js`, then update that in the HTML files too.
 
 We recommend using Chrome's [Developer Tools] [chrome-dev-tools] or [Firebug] [firebug] for Firefox to check that SnowPlow's JavaScript tracking is working correctly. Here is what Chrome's Network panel looks like after loading the page and clicking each button once:
 
 ![network-pane] [network-pane]
 
-Note the three successful (status code 200) `GET`s to `ice.png`. The first of these was triggered by the page load, and then there is one `GET` each for the two user actions (button clicks) that we're tracking. 
+Note the three successful (status code 200) `GET`s to `i.gif`. The first of these was triggered by the page load, and then there is one `GET` each for the two user actions (button clicks) that we're tracking. 
 If you have any problems getting this to run, please [contact] [contact] the **SnowPlow Analytics** team.
 
 ### Confirming that SnowPlow is logging correctly
