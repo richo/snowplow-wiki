@@ -50,7 +50,7 @@ The full HTML code to append, using asynchronous SnowPlow invocation, looks like
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setAccount', 'patldfvsg0d8w']); // Update to your account ID or CloudFront distribution subdomain
+_snaq.push(['setCollectorCf', 'patldfvsg0d8w']); // Update to your CloudFront distribution subdomain
 _snaq.push(['trackImpression', '{bannerid}', '{campaignid}', '', '{OAID}']); // OpenX magic macros. Leave this line as-is
 
 (function() {
