@@ -262,7 +262,8 @@ The command-line options for EmrEtlRunner look like this:
         -c, --config CONFIG              configuration file
         -s, --start YYYY-MM-DD           optional start date *
         -e, --end YYYY-MM-DD             optional end date *
-        -s, --skip staging|emr           skip work step(s)
+        -s, --skip staging,emr,archive   skip work step(s)
+        -b, --process-bucket BUCKET      run emr only on specified bucket. Implies --skip staging,archive
 
     * filters the raw event logs processed by EmrEtlRunner by their timestamp
 
@@ -270,7 +271,9 @@ The command-line options for EmrEtlRunner look like this:
         -h, --help                       Show this message
         -v, --version                    Show version
 
-A note on the `--skip` option: this skips the work steps **up to and including** the specified step. To give an example: `--skip emr` skips moving the raw logs to the Staging Bucket **and** skips running the ETL on EMR, i.e. it **only** performs the final archiving step.
+A note on the `--skip` option: this now takes a list of individual steps to skip. So for example you could run **only** the Hive job with the command-line option:
+
+    $ bundle exec snowplow-emr-etl-runner --skip staging,archive --config ./config.yml
 
 <a name="running"/>
 ### Running in each mode
