@@ -37,6 +37,7 @@ Please note that the end point where the `GET` or `POST` request should be made 
 | **Parameter** | **Name**         | **Description**               | **Example values**        | 
 |:--------------|:-----------------|:------------------------------|:--------------------------|
 | `uid`         | `user_id`        | Unique identifier for user    | `aeb1691c5a0ee5a6`        |
+| `fp`          | `user_fingerprint`| Identifier for user based on browser fingerprinting. Can be used to track users across domains when using the Cloudfront collector (which doesn't set `user_id`s server-side.) |   |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | `1`, `2`...|
 | `tid`         | `txn_id`         | Transaction ID: Unique identifier for this specific event | `508780` |
 | `e`           | `event`          | The type of event             | `pv`, `d`, `s`,  `e`,`c` (see [reference](#event2)) |
