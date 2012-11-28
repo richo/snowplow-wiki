@@ -199,7 +199,7 @@ The actual code you need to insert is:
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setAccount', '{{ACCOUNT}}']);
+_snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
 _snaq.push(['trackPageView']);
 
 (function() {
@@ -211,12 +211,12 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-You will need to update the {{ACCOUNT}} with the Cloudfront subdomain details you created as part of the [collector setup](https://github.com/snowplow/snowplow/wiki/setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with an account ID to enter.) It will look something like d3rkrsqld9gmqf.
+You will need to update the {{CLOUDFRONT DOMAIN}} with the Cloudfront subdomain details you created as part of the [collector setup](https://github.com/snowplow/snowplow/wiki/setting-up-cloudfront-collector). (If you are using a version of SnowPlow hosted by the SnowPlow team, we will provide you with a Cloudfront domain to enter.) It will look something like `d3rkrsqld9gmqf`.
 
-If you are hosting your own SnowPlow JavaScript file (see the guide to [Self-hosting snowplow.js] (https://github.com/snowplow/snowplow/wiki/Self-hosting-snowplow-js)), then you need to update the tag above, swapping your own Cloudfront {{SUBDOMAIN}} (the one from which you serve sp.js in for ours:
+If you are hosting your own SnowPlow JavaScript file (see the guide to [Self-hosting snowplow.js] (https://github.com/snowplow/snowplow/wiki/Self-hosting-snowplow-js)), then you need to update the tag above, swapping your own {{CLOUDFRONT DOMAIN}} (the one from which you serve sp.js in for ours:
 
 ```javascript
-sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{SUBDOMAIN}}.cloudfront.net/sp.js';
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://{{CLOUDFRONT DOMAIN}}.cloudfront.net/sp.js';
 ```
 
 [[/setup-guide/images/gtm/integrate-page-tracker-4.png]]

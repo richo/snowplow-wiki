@@ -39,7 +39,7 @@ By inserting the following code into the `<head>` section of the each web page, 
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setAccount', '{{ACCOUNT}}']);
+_snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
 _snaq.push(['trackPageView']);
 _snaq.push(['enableLinkTracking']);
 
@@ -195,7 +195,7 @@ Note how similar the SnowPlow Ecommerce tracking is to the [Google equivalent](h
 <script type="text/javascript">
 
   var _snaq = _snaq || [];
-  _snaq.push(['setAccount', 'UA-XXXXX-X']);
+  _snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
   _snaq.push(['trackPageview']);
   _snaq.push(['addTrans',
     '1234',           // order ID - required
@@ -262,7 +262,7 @@ Again, note how similar the SnowPlow Ecommerce tracking is to the [Google equiva
 </script>
 <script type="text/javascript">
 try{
-  var snowplowTracker = SnowPlow.getTracker('{{ACCOUNT}}');
+  var snowplowTracker = SnowPlow.getTracker('{{CLOUDFRONT DOMAIN}}');
   snowplowTracker.trackPageView();
   snowplowTracker.addTrans(
       "1234",            // order ID - required
@@ -543,7 +543,7 @@ The full HTML code to append, using asynchronous SnowPlow invocation, looks like
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setAccount', 'patldfvsg0d8w']); // Update to your account ID or CloudFront distribution subdomain
+_snaq.push(['setCollectorCf', 'patldfvsg0d8w']); // Update to your CloudFront distribution subdomain
 _snaq.push(['trackImpression', '{bannerid}', '{campaignid}', '', '{OAID}']); // OpenX magic macros. Leave this line as-is
 
 (function() {

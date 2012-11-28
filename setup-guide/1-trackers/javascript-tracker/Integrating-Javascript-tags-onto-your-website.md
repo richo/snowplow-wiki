@@ -66,7 +66,7 @@ You must update `{{CLOUDFRONT DOMAIN}}` with the Cloudfront subdomain details yo
 If your CloudFront distribution's URL is `http://d1x5tduoxffdr7.cloudfront.net`, then update the appropriate line in your header script to look like this:
 
 ```javascript
-_snaq.push(['setCloudfrontCf', 'd1x5tduoxffdr7']);
+_snaq.push(['setCollectorCf', 'd1x5tduoxffdr7']);
 ```
 
 **Updating the reference to `sp.js`**
