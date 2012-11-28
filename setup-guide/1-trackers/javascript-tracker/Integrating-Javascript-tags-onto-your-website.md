@@ -8,7 +8,7 @@ This guide takes you through the process for integrating SnowPlow's JavaScript t
 
 ### Setup your collector before setting up the Javascript tracker
 
-Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setCollectorCf` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{CLOUDFRONT DOMAIN}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `i.gif`.)
+Before you start integrating the Javascript tracking tags onto your website, we recommend that you complete the [collector setup](choosing-a-collector). This is important as it determines what information you provide to the `setCollectorCf` Javascript function below. (If you are using the [Cloudfront collector](setting-up-the-cloudfront-collector), the {{CLOUDFRONT DOMAIN}} entered is the Cloudfront subdomain you setup to serve the tracking pixel `i`.)
 
 ### Decide how you want to implement the Javascript tracker
 
@@ -199,7 +199,7 @@ We recommend using Chrome's [Developer Tools] [chrome-dev-tools] or [Firebug] [f
 
 ![network-pane] [network-pane]
 
-Note the three successful (status code 200) `GET`s to `i.gif`. The first of these was triggered by the page load, and then there is one `GET` each for the two user actions (button clicks) that we're tracking. 
+Note the three successful (status code 200) `GET`s to `i`. The first of these was triggered by the page load, and then there is one `GET` each for the two user actions (button clicks) that we're tracking. 
 If you have any problems getting this to run, please [contact] [contact] the **SnowPlow Analytics** team.
 
 ### Confirming that SnowPlow is logging correctly

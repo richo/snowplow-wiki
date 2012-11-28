@@ -53,7 +53,7 @@ The notes above also hold true for this bucket: don't enable logging, and expect
 
 You can obtain a 1x1 transparent tracking pixel by right-clicking [this image file] [pixel] and selecting **Save Link As...**, or if you prefer run:
 
-    $ wget https://github.com/snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/ice.png	
+    $ wget https://github.com/snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/i	
 
 Now you're ready to upload the pixel into S3. Within the S3 pane, hit **Upload** and browse to your tracking pixel:
 
@@ -71,7 +71,7 @@ Now hit **Start Upload** to upload the pixel into your bucket. When done, you sh
 
 ![pixel-ready] [pixel-ready]
 
-The Properties pane at the bottom is viewable by pressing the **Properties** button and selecting `ice.png`.
+The Properties pane at the bottom is viewable by pressing the **Properties** button and selecting `i`.
 
 ### 4. Create your CloudFront distribution
 
@@ -99,8 +99,8 @@ Before testing, take a 10 minute coffee or brandy break (that's how long CloudFr
 
 Done? Now just check that you can access your pixel over both HTTP and HTTPS using a browser, `wget` or `curl`:
 
-    http://{{SUBDOMAIN}}.cloudfront.net/ice.png
-    https://{{SUBDOMAIN}}.cloudfront.net/ice.png
+    http://{{SUBDOMAIN}}.cloudfront.net/i
+    https://{{SUBDOMAIN}}.cloudfront.net/i
 
 If you have any problems, then double-check your CloudFront distribution's URL, and check the permissions on your pixel: it must be Openable by Everyone.
 
@@ -138,7 +138,7 @@ If you prefer, the **SnowPlow Analytics** team maintains a publically available 
 Now [[setup the hosting of snowplow.js|Self-hosting-snowplow-js]]
 
 [aws]: http://aws.amazon.com/
-[pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/ice.png
+[pixel]: /snowplow/snowplow/raw/master/2-collectors/cloudfront-collector/static/i
 [pixel-bucket]: setup-guide/images/02_pixel_bucket.png
 [log-bucket]: setup-guide/images/02_log_bucket.png
 [pixel-select]: setup-guide/images/02_pixel_select.png
