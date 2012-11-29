@@ -193,6 +193,8 @@ Back to [common event types](#common)
 7. [Custom event tracking parameters](#events3)
 8. [Social parameters](#social2)
 9. [Ecommerce parameters](#ecomm3)
+10. [Custom variables](#custom_variables)
+11. [Browser and OS parameters](#browserandos)
 
 <a name="appid" />
 ### 3.1 Application parameters
@@ -200,7 +202,7 @@ Back to [common event types](#common)
 | **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
 |:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
 | `aid`         | `app_id`         | Unique identifier for website / application    | Yes | `angry-birds-android` |
-| `pl`          | `platform`       | The platform the app runs on  | No               | `ios`, `web`, `win-8`     |
+| `p`           | `platform`       | The platform the app runs on  | No               | `ios`, `web`, `win-8`     |
 
 The application ID parameter is used to distinguish data from different website and applications.
 
@@ -225,6 +227,7 @@ Back to [complete list of parameters](#allparams).
 | **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
 |:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
 | `tstamp`      | `dt` and `tm`    | Timestamp when event occurred | Yes              |                           |
+| `tz`          | `os_timezone`    | Operating system time zone    | Yes              | `Europe%2FLondon`
 
 For some trackers e.g. the [Javascript tracker](javascript-tracker), tracking happens in real-time: so when an event occurs on a website being tracked, a SnowPlow event is fired almost simultaneously to record the event. For this type of setup, there is no need to explicitly track the timestamp for the event, as this can be inferred from the timestamp recorded on the collector log. (I.e. when the event fired was received by the collector.)
 
@@ -380,6 +383,28 @@ In the event that you want to pass data associated with an action, event, contex
 | `cvs1` -> `cvs10`      | `cv_session1` -> `cv_session10` | No               |
 | `cve1` -> `cve10`      | `cv_event1` -> `cv_event10`     | No               |
 | `cvc1` -> `cvc10`      | `cv_context1` -> `cv_context10` | No               |
+
+Back to [complete list of parameters](#allparams).
+
+<a name="browserandos" />
+### 3.11 Browser and OS fields
+
+Most browser and OS fields in SnowPlow are inferred from the user agent string (captured by the collector) rather than computed by the tracker. However, a handful of fields are captured by the tracker:
+
+| **Parameters**         | **Maps to**                     | **Implemented?** | **Example value** |
+|:-----------------------|:--------------------------------|:-----------------|-------------------|
+| `cookie`               | `br_cookies`                    | Yes              | `1`               |
+| `lang`                 | `br_lang`                       | Yes              | `en-US`           |
+| `f_pdf                 | `br_features` or `br_features_pdf` | Yes           | `1`               |
+| `f_qt`                 | `br_features` or `br_features_quicktime` Yes       | `0`               |
+| `f_realp`              | `br_features` or `br_features_realplayer` | Yes    | `0`               |
+| `f_wma`                | `br_features` or `br_features_windowsmedia | Yes  | `0`                |
+| `f_dir`                | `br_featurse` or `br_features_director` | Yes      | `0`               |
+| `f_fla`                | `br_featurse` or `br_features_flash`       | Yes   | `1`               |
+| `f_java`               | `br_featurse` or `br_features_java`        | Yes   | `1`               |
+| `f_gears`              | `br_featurse` or `br_features_gears`       | Yes   | `1`               |
+| `f_ag`                 | `br_featurse` or `br_features_silverlight` | Yes   | `1`               |
+| `res`                  | `dvce_screenheight` and `dvce_screenwidth` | Yes   | `1280x1024`       |
 
 Back to [complete list of parameters](#allparams).
 
