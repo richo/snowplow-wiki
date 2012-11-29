@@ -272,6 +272,7 @@ Back to [complete list of parameters](#allparams).
 | **Parameter** | **Maps to**      | **Description**               | **Implemented?** | **Example values**        | 
 |:--------------|:-----------------|:------------------------------|:-----------------|:--------------------------|
 | `uid`         | `user_id`        | Unique identifier for user    | Yes              | `aeb1691c5a0ee5a6`        |
+| `fp`          | `user_fingerprint` | User identifier based on (hopefully unique) browser features | yes |       |
 | `vid`         | `visit_id`       | Visit / session identifier for this user e.g. `1` is first visit | Yes       | `1`, `2`...|
 | `ctype`       | `connection_type`| Type of connection            | No               |                           |
 
