@@ -52,7 +52,7 @@ _snaq.push(['enableLinkTracking']);
 
 (function() {
 var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
-sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js';
 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
 })();
  </script>
@@ -71,7 +71,7 @@ _snaq.push(['setCollectorCf', 'd1x5tduoxffdr7']);
 
 **Updating the reference to `sp.js`**
 
-The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team from our own Cloudfront subdomain](hosted-assets) (and provided free to the community). 
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team from our own Cloudfront subdomain](hosted-assets) (and provided free to the community). 
 
 If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the tag above, swapping your own Cloudfront `{{SUBDOMAIN}}` (the one from which you serve `sp.js` in for ours:
 
@@ -117,7 +117,7 @@ To use `snowplow.js` in a 'sync' manner, first add the following script into you
 ```html
 <!-- SnowPlow starts plowing -->
 <script type="text/javascript">
-var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/sp.js';
+var spSrc = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js';
 document.write(unescape("%3Cscript src='" + spSrc + "' type='text/javascript'%3E%3C/script%3E"));
 </script>
 <script type="text/javascript">
@@ -142,7 +142,7 @@ var snowplowTracker = SnowPlow.getTrackerCf('d1x5tduoxffdr7');
 
 **Updating the reference to `sp.js`**
 
-The reference to `://d1fc8wv8zag5ca.cloudfront.net/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). 
+The reference to `://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js'` loads `sp.js`, the SnowPlow Javascript tracker. The version loaded is the version [hosted by the SnowPlow team](hosted-assets) (and provided free to the community). 
 
 If you are hosting your own SnowPlow JavaScript file (see the guide to [[Self-hosting snowplow.js|Self hosting snowplow js]]), then you need to update the tag above, swapping your own Cloudfront `{{SUBDOMAIN}}` (the one from which you serve `sp.js` in for ours:
 
