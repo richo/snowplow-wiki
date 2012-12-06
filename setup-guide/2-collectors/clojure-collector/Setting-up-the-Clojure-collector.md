@@ -157,7 +157,7 @@ In order to track user behaviour on HTTPS web pages (e.g. shop checkouts), it is
 
 ### 4.1 Using custom domains
 
-Using a custom domain is straightforward. In this tutorial, we will use the custom domain `endpoint.snplow.com`. We own the domain `snplow.com` and have it managed through [Linode][linode]. If you host a domain name with a different 3rd party to Linode, the steps will be broadly the same, although the UI will likely be different. If you use Amazon Route 53 to host your domains, instructions on using these with Elastic Beanstalk can be found [here][route-53]. 
+Using a custom domain is straightforward. In this tutorial, we will use the custom domain `collector.snplow.com`. We own the domain `snplow.com` and have it managed through [Linode][linode]. If you host a domain name with a different 3rd party to Linode, the steps will be broadly the same, although the UI will likely be different. If you use Amazon Route 53 to host your domains, instructions on using these with Elastic Beanstalk can be found [here][route-53]. 
 
 To use a custom domain, all we have to do is create a CNAME with our DNS provider, and map that CNAME to our Elastic Beanstalk environment URL. (In our case, `cc-endpoint.elasticbeanstalk.com`). In Linode, we login and naviage to the **DNS Manager**, where we select the custom domain we want to use i.e. `snplow.com` and scroll down to the **CNAME Records**:
 
@@ -169,7 +169,7 @@ We enter the host name we want to use for our collector (we'll use `collector.sn
 
 In due course, we should be able to enter our custom domain with a `/i/ in a browser URL window (in our case `collector.snplow.com`). Inspecting the page with developer tools, we should be able to see that a cookie has been set i.e. the domain is correcting aliasing our collector on Elastic Beanstalk:
 
-{{INSERT SCREENSHOT OF COOKIE BEING SET ON collector.snplow.com}}
+[[/setup-guide/images/clojure-collector-setup-guide/18.png]]
 
 ### 4.2 Configuring HTTPS for Elastic Beanstalk
 
@@ -371,7 +371,7 @@ You can tell Amazon in what circumstances to launch new instances by setting 'tr
 [aws]: https://console.aws.amazon.com/
 [linode]: http://www.linode.com/
 [route53]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customdomains.html
-[openssl]: http://www.openssl.org/
+[open-ssl]: http://www.openssl.org/
 [comodo]: http://ssl.comodo.com/index.php?ap=ComodoSSLJun12&key1sk5=3159&key1sk1=sem&gclid=CLzP7KPOhbQCFe7MtAodBAsApQ
 [amazon-https-eb-setup]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/configuring-https.html
 [java]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
