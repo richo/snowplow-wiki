@@ -187,10 +187,10 @@ The following will walk you through the process of enabling HTTPS using a wildca
 
 The following steps are required to setup SSL:
 
-[1. Download and install the AWS Identity and Access Management (IAM) command line tools](#download-and-install-cli)
-2. Use OpenSSL to convert the signed certificates received from your SSL provider (in our case, Comodo) into a format suitable for Amazon
-3. Use the command line tools to upload the certificates to Amazon
-4. Configure the HTTPS settings via the AWS Management console
+[1. Download and install the AWS Identity and Access Management (IAM) command line tools](#download-and-install-cli)  
+2. [Use OpenSSL to convert the signed certificates received from your SSL provider (in our case, Comodo) into a format suitable for Amazon](#openssl-prep-keys)  
+3. [Use the command line tools to upload the certificates to Amazon](#upload-cert-to-amazon)  
+4. Configure the HTTPS settings via the AWS Management console  
 
 <a name="download-and-install-cli"></a>
 
@@ -222,6 +222,70 @@ Use a text-editor to create a file in command line tools directory with your AWS
 You can get these details from the AWS Management Console, by clicking on your username (top right of the screen) and selecting **Security Credentials**.
 
 [[/setup-guide/images/clojure-collector-setup-guide/17.png]]
+
+Save the file down. (The  name doesn't matter - we called ours `access-key`.) Now set `AWS_CREDENTIAL_FILE` to the path and filename of the credential file you just created e.g.
+
+	$ export AWS_CREDENTIAL_FILE=
+
+To check your installation is working, try running `iam-usercreate -h` at the command prompt. You should see:
+
+	Creates a new user in your account. You can also optionally add the user to one or more groups, and create an access key for the user.
+	iam-usercreate [options...] arguments...
+	 --aws-credential-file CREDENTIALFILE  : path to the file containing your AWS cr
+	                                         edentials
+	 --client-config-file CLIENTCONFIGFILE : path to the file containing client conf
+	                                         igurations
+	 --url SERVICEENDPOINT                 : endpoint URL to be used when making the
+	                                          service call
+	 -d (--debug)                          : enable debug logging
+	 -g GROUPS                             : add user to group(s)
+	 -h                                    : print out this message
+	 -k                                    : create a key for the user
+	 -p PATH                               : the path of the user, defaults to /
+	 -u USERNAME                           : the name of the user
+	 -v VERBOSE                            : print out the newly created user's arn 
+	                                         and guid
+
+<a name="openssl-prep-keys" ></a>
+
+#### 4.2.2 Use OpenSSL to convert the signed certificates received from your SSL provider (in our case, Comodo) into a format suitable for Amazon.
+
+When we bought our SSL wildcard certificate for `snplow.com` domain, we received three files from Comodo:
+
+1. `STAR_snplow_com.crt`. This is the file that is unique to our domain.
+2. `AddTrustExternalCARoot.crt`. This is the root certificate for our domain.
+3. `PostiveSSLCA2.crt`. This is an intermediate certificate, which is used which the root certificate (above) to form a certificate chain for our domain.
+
+In addition, when we applied for the SSL certificate, we generated a private key file called `snplow-ssl.key`. We will need to use this again, now.
+
+There are four things we need to upload into Amazon to enable HTTPS on our collector:
+
+1. A `pem` encoded private key file. This will be generated from `snplow-ssl.key`.
+2. The `pem` encoded public domain certficate. This will be generated from `STAR-snplow_com.crt`
+3. A `pem` encoded certificate chain file. This will be generated from `AddTrustExternalCaRoot.crt` and `PositiveSSLCA2.crt`.
+
+
+We use OpenSSL to create the `pem` encoded private key file. Navigate to the directory where your private key lives and execute the following command:
+
+	openssl rsa -in snplow-ssl.key -out snplow-ssl.pem
+
+Note: you will need to substitute the  name of your private key for our `snplow-ssl.key` and the name of the `.pem` file you create for `snplow-ssl.pem`. This will be one of the files you upload to Amazon.
+
+We use OpenSSL to create the `pem` encoded public domain certificate, by executing the following command:
+
+	openssl x509 -inform PEM -in STAR_snplow_com.crt -out STAR_snplow_com.pem
+
+And again, we use OpenSSL to create the `pem` encoded certificate chain file:
+
+	(openssl x509 -inform PEM -in PositiveSSLCA2.crt; openssl x509 -inform PEM -in AddTrustExternalCARoot.crt) > certificate-chain-file.crt
+
+Now we're ready to upload our certificate to Amazon
+
+<a name="upload-cert-to-amazon" ></a>
+
+#### 4.2.3 Upload the certificate to Amazon
+
+
 
 
 
