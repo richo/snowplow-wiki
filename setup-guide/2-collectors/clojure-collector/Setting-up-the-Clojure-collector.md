@@ -159,7 +159,7 @@ In order to track user behaviour on HTTPS web pages (e.g. shop checkouts), it is
 
 Using a custom domain is straightforward. In this tutorial, we will use the custom domain `collector.snplow.com`. We own the domain `snplow.com` and have it managed through [Linode][linode]. If you host a domain name with a different 3rd party to Linode, the steps will be broadly the same, although the UI will likely be different. If you use Amazon Route 53 to host your domains, instructions on using these with Elastic Beanstalk can be found [here][route-53]. 
 
-To use a custom domain, all we have to do is create a CNAME with our DNS provider, and map that CNAME to our Elastic Beanstalk environment URL. (In our case, `cc-endpoint.elasticbeanstalk.com`). In Linode, we login and naviage to the **DNS Manager**, where we select the custom domain we want to use i.e. `snplow.com` and scroll down to the **CNAME Records**:
+To use a custom domain, all we have to do is create a CNAME with our DNS provider, and map that CNAME to our Elastic Beanstalk environment URL. (In our case, `cc-endpoint.elasticbeanstalk.com`.) In Linode, we login and naviage to the **DNS Manager**, where we select the custom domain we want to use i.e. `snplow.com` and scroll down to the **CNAME Records**:
 
 [[/setup-guide/images/clojure-collector-setup-guide/15.png]]
 
@@ -167,7 +167,7 @@ We enter the host name we want to use for our collector (we'll use `collector.sn
 
 [[/setup-guide/images/clojure-collector-setup-guide/16.png]]
 
-In due course, we should be able to enter our custom domain with a `/i/ in a browser URL window (in our case `collector.snplow.com`). Inspecting the page with developer tools, we should be able to see that a cookie has been set i.e. the domain is correcting aliasing our collector on Elastic Beanstalk:
+In due course, we should be able to enter our custom domain with a `/i` in a browser URL window (in our case `collector.snplow.com`). Inspecting the page with developer tools, we should be able to see that a cookie has been set i.e. the domain is correcting aliasing our collector on Elastic Beanstalk:
 
 [[/setup-guide/images/clojure-collector-setup-guide/18.png]]
 
@@ -187,10 +187,10 @@ The following will walk you through the process of enabling HTTPS using a wildca
 
 The following steps are required to setup SSL:
 
-[1. Download and install the AWS Identity and Access Management (IAM) command line tools](#download-and-install-cli)  
+1. [Download and install the AWS Identity and Access Management (IAM) command line tools](#download-and-install-cli)  
 2. [Use OpenSSL to convert the signed certificates received from your SSL provider (in our case, Comodo) into a format suitable for Amazon](#openssl-prep-keys)  
 3. [Use the command line tools to upload the certificates to Amazon](#upload-cert-to-amazon)  
-4. Configure the HTTPS settings via the AWS Management console  
+4. [Update your Elastic Beanstalk environment to use HTTPS](#use-https)  
 
 <a name="download-and-install-cli"></a>
 
@@ -223,9 +223,9 @@ You can get these details from the AWS Management Console, by clicking on your u
 
 [[/setup-guide/images/clojure-collector-setup-guide/17.png]]
 
-Save the file down. (The  name doesn't matter - we called ours `access-key`.) Now set `AWS_CREDENTIAL_FILE` to the path and filename of the credential file you just created e.g.
+Save the file down. (The  name doesn't matter - we called ours `account-key`.) Now set `AWS_CREDENTIAL_FILE` to the path and filename of the credential file you just created e.g.
 
-	$ export AWS_CREDENTIAL_FILE=
+	$ export AWS_CREDENTIAL_FILE=~/Apps/IAMCli-1.5.0/account-key
 
 To check your installation is working, try running `iam-usercreate -h` at the command prompt. You should see:
 
@@ -279,11 +279,57 @@ And again, we use OpenSSL to create the `pem` encoded certificate chain file:
 
 	(openssl x509 -inform PEM -in PositiveSSLCA2.crt; openssl x509 -inform PEM -in AddTrustExternalCARoot.crt) > certificate-chain-file.crt
 
-Now we're ready to upload our certificate to Amazon
+Now we're ready to upload our certificate to Amazon.
 
 <a name="upload-cert-to-amazon" ></a>
 
 #### 4.2.3 Upload the certificate to Amazon
+
+Execute the following command at the command prompt to upload the certificate to Amazon:
+
+	$ iam-servercertupload -b STAR_snplow_com.pem -c certificate-chain-file.crt -k snplow-ssl.pem -s snplow_certificate
+
+Notes:
+
+* Substitute in your PEM encoded certificate body file for `STAR-snplow_com.pem` i.e. the file you created from the domain specific file you received when you bought the SSL certificate
+* Substitute in your PEM encoded certificate key chain file for `certificate-chain-file.crt`
+* Substitute in your PEM encoded private key file for `snplow-ssl.pem`
+* You can choose whatevert name you give your certificate (we've used `snplow_certificate`). Just make a note of your choice, as you'll need to reference it within Amazon.
+
+You then need to get your SSL Certificate ID from Elastic Beanstalk, by running the following command:
+
+	$ iam-servercertgetattributes -s snplow_certificate
+
+Amazon will respond with something like:
+
+	arn:aws:iam::889434468096:server-certificate/snplow_certificate
+	ASCAJLVQA7JJZQYPM64FC
+
+The first line (i.e. `arn:aws:iam::889434468096:server-certificate/snplow_certificate`) is the **Amazon Resource Number** (ARN). Take a note of yours, we will need this in the next step.
+
+<a name="use-https"></a>
+
+#### 4.2.4 Update your Elastic Beanstalk environment to use HTTPS
+
+Return back to the AWS Management Console ([[console.aws.amazon.com]]). In the Elastic Beanstalk section, select your environment and choose to **Edit / load configuration** from the **Actions** dropdown. Then select **Load Balancer** from the tab:
+
+[[/setup-guide/images/clojure-collector-setup-guide/19.png]]
+
+Set the **HTTPS Listener Port** to on (either 443 or 8443) and add your ARN into the **SSL Certificate ID** field:
+
+[[/setup-guide/images/clojure-collector-setup-guide/20.png]]
+
+Click the **Apply Changes** button. The environment will update. When it has completed, you will be able to test that HTTPS access is working, by using your browser to navigate to `https://{{MY CUSTOM COLLECTOR DOMAIN}}/i` and look to see if the cookie is set via developer tools:
+
+[[/setup-guide/images/clojure-collector-setup-guide/20.png]]
+
+Note the padlock icon by the address bar.
+
+
+
+
+
+
 
 
 
@@ -370,7 +416,7 @@ You can tell Amazon in what circumstances to launch new instances by setting 'tr
 [leiningen]: https://github.com/technomancy/leiningen
 [aws]: https://console.aws.amazon.com/
 [linode]: http://www.linode.com/
-[route53]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customdomains.html
+[route-53]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customdomains.html
 [open-ssl]: http://www.openssl.org/
 [comodo]: http://ssl.comodo.com/index.php?ap=ComodoSSLJun12&key1sk5=3159&key1sk1=sem&gclid=CLzP7KPOhbQCFe7MtAodBAsApQ
 [amazon-https-eb-setup]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/configuring-https.html
