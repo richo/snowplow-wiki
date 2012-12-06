@@ -15,7 +15,7 @@ Setting up the Clojure collector is a X step process:
 
 1. [Download the Clojoure collector WAR file, or compile it from source](#war-file). (Required)
 2. [Create a new application in Elastic Beanstalk, and upload the WAR file into it] (#create-eb-app). (Required)
-3. [Configure the application environment, including switching on logging to S3] (#env-config). (Required)
+3. [Enable logging to S3] (#enable-logging). (Required)
 4. Enable support for HTTPS. (Optional, but recommended.)
 5. Set your tracker to point at the Clojure collector end point. (Required)
 6. Update the EmrEtlRunner configuration YAML file
@@ -88,7 +88,7 @@ Give your environment a suitable name, URL and description:
 
 Next we need to specify another set of configuration details. Set a suitable instance type (we recommend at least `m1.small`). If you have an EC2 key pair configured, you can enter the key pair name at this stage: this will enable you to use the key pair to SSH in should you wish. (This is not required, and can be added later without any difficulty.)
 
-For the **Application Health Check URL** enter `/healthcheck`:
+For the **Application Health Check URL** enter a single slash i.e. `/`:
 
 [[/setup-guide/images/clojure-collector-setup-guide/4.png]]
 
@@ -108,11 +108,9 @@ Click on the **URL** link. (This is [[http://cc-endpoint.elasticbeanstalk.com]] 
 
 <a name="env-config"></a>
 
-## 3. Configure your application environment
+## 3. Enable logging to S3
 
-### 3a. Required change: enabling log file rotation to S3
-
-Now that your application is up and running, you need to update the configuration so that the Tomcat logs are pushed to S3. (These will be processed by the [etl][etl] step to generate your SnowPlow data.)Click on the **Actions button** and select **Edit/Load configuration**.
+Now that your application is up and running, you need to update the configuration so that the Tomcat logs are pushed to S3. (These will be processed by the [etl][etl] step to generate your SnowPlow data.) Click on the **Actions** dropdown and select **Edit/Load configuration**.
 
 [[/setup-guide/images/clojure-collector-setup-guide/6.png]]
 
@@ -122,7 +120,33 @@ Select the **Container** tab in the dialogue box, and then check the box marked 
 
 Click the **Apply changes** button. The environment update will be processed, and the collector app should be live again after a few minutes.
 
-### 3b. Additional (optional) configuration options
+<a name="https"></a>
+
+## 4. Enable support for HTTPS
+
+Text here
+
+<a name="tracker" ></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Configuring the collector
 
 There are a number of other environment configuration parameters that you may want to consider tailoring to your specific needs. All of them can be accessed via the **Edit Configuration** dialogue box.
 
@@ -166,13 +190,7 @@ Basic settings (minimum and maximum numbers of servers) can be set in the config
 
 You can tell Amazon in what circumstances to launch new instances by setting 'triggers'. More details on tuning Elastic Beanstalk can be found [here](http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/using-features.managing.as.html).
 
-<a name="https"></a>
 
-## 4. Enable support for HTTPS
-
-Text here
-
-<a name="tracker" ></a>
 
 ## 5. Set your Tracker to point at the Clojure collector end point
 
