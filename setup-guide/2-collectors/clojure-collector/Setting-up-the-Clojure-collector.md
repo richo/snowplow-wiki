@@ -136,7 +136,7 @@ There are two identifiers we need to take note of. The first is the **security g
 
 Now that we have those two identifiers, we can locate the logs in S3. In the web console, navigate to the S3 section. On the left hand side, you should see at least one bucket with a name that begins `elasticbeanstalk` and then follows with the region you setup Elastic Beanstalk in:
 
-[[/setup-guide/images/clojure-collector-setup-guide/13.png]]
+[[/setup-guide/images/clojure-collector-setup-guide/14.png]]
 
 Select that bucket - you should find a folder within it called resources. Within that folder you should find another called `environments`. Within that folder you should find a logs folder, within that a publish folder and within that a folder with the security group identifier you noted above. (In our case `e-bgp9nsynv7`.) Within that folder you should find another with your instance identifier, also noted above. (In our case, `i-ff035fb4`.) The path to your logs is therefore:
 
@@ -151,11 +151,79 @@ Note - if you cannot find the logs as described above, it may be because Amazon 
 
 <a name="https"></a>
 
-## 4. Enable support for HTTPS
+## 4. Enable support for HTTPS (optional but highly recommended)
 
-Text here
+In order to track user behaviour on HTTPS web pages (e.g. shop checkouts), it is necessary to configure HTTPS for your AWS Elastic Beanstalk Environment. This requires that you use a custom domain as your endpoint (rather than the `{{ENVIRONMENT-NAME}}.elasticbeanstalk.com`) and have purchased an SSL certificate for that custom domain.
 
-<a name="tracker" ></a>
+### 4.1 Using custom domains
+
+Using a custom domain is straightforward. In this tutorial, we will use the custom domain `endpoint.snplow.com`. We own the domain `snplow.com` and have it managed through [Linode][linode]. If you host a domain name with a different 3rd party to Linode, the steps will be broadly the same, although the UI will likely be different. If you use Amazon Route 53 to host your domains, instructions on using these with Elastic Beanstalk can be found [here][route-53]. 
+
+To use a custom domain, all we have to do is create a CNAME with our DNS provider, and map that CNAME to our Elastic Beanstalk environment URL. (In our case, `cc-endpoint.elasticbeanstalk.com`). In Linode, we login and naviage to the **DNS Manager**, where we select the custom domain we want to use i.e. `snplow.com` and scroll down to the **CNAME Records**:
+
+[[/setup-guide/images/clojure-collector-setup-guide/15.png]]
+
+We enter the host name we want to use for our collector (we'll use `collector.snplow.com`), alias it to our Elastic Beanstalk environment URL (`cc-endpoint.elasticbeanstalk.com`) and set the TTL to the shortest time that our provider offers:
+
+[[/setup-guide/images/clojure-collector-setup-guide/16.png]]
+
+In due course, we should be able to enter our custom domain with a `/i/ in a browser URL window (in our case `collector.snplow.com`). Inspecting the page with developer tools, we should be able to see that a cookie has been set i.e. the domain is correcting aliasing our collector on Elastic Beanstalk:
+
+{{INSERT SCREENSHOT OF COOKIE BEING SET ON collector.snplow.com}}
+
+### 4.2 Configuring HTTPS for Elastic Beanstalk
+
+Now that we are running our collector on our own domain, we can serve it via HTTPS. 
+
+#### 4.2.1 Pre-requisites
+
+1. An SSL certificate for your custom domain
+2. [OpenSSL][open-ssl]
+3. [Java][java]. This is required by the Amazon command line tools which are used to upload your security certificate to Amazon.
+
+#### 4.2.2 Steps required
+
+The following will walk you through the process of enabling HTTPS using a wildcard SSL certificate purchased from [Comodo][comodo] and setup using Linux / Ubuntu. For instructions on performing the setup on a Windows machine consult the [Amazon guide][amazon-https-eb-setup].
+
+The following steps are required to setup SSL:
+
+[1. Download and install the AWS Identity and Access Management (IAM) command line tools](#download-and-install-cli)
+2. Use OpenSSL to convert the signed certificates received from your SSL provider (in our case, Comodo) into a format suitable for Amazon
+3. Use the command line tools to upload the certificates to Amazon
+4. Configure the HTTPS settings via the AWS Management console
+
+<a name="download-and-install-cli"></a>
+
+#### 4.2.1 Download and install AWS Identity and Access Management command line tools
+
+Navigate [here](http://aws.amazon.com/developertools/AWS-Identity-and-Access-Management/4143) and click the download button.
+
+Extract the contents of the zip file to a suitable location on your hard drive.
+
+Now we need to set a variable `JAVA_HOME` and point it at our JAVA installation. At the command prompt:
+
+	$ export JAVA_HOME=/usr/lib/jvm/java-6-sun
+
+(You may need to alter the location of `JAVA_HOME` depending on where yours lives.)
+
+Now set the variable `AWS-IAM_HOME` to the location where you saved the command line tools:
+
+	$ export AWS_IAM_HOME=~/Apps/IAMCli-1.5.0
+
+(Again - update the path to reflect the location you extracted the tools to.) For simplicity, add the tools to your `PATH` directory:
+
+	$ export PATH=$AWS_IAM_HOME/bin:$PATH
+
+Use a text-editor to create a file in command line tools directory with your AWS Access Key and Secret Key specified e.g.:
+	
+	AWSAccessKeyId=AKIAIOSFODNN7EXAMPLE
+	AWSSecretKey=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+
+You can get these details from the AWS Management Console, by clicking on your username (top right of the screen) and selecting **Security Credentials**.
+
+[[/setup-guide/images/clojure-collector-setup-guide/17.png]]
+
+
 
 
 
@@ -237,4 +305,9 @@ You can tell Amazon in what circumstances to launch new instances by setting 'tr
 [s3-download]: https://github.com/snowplow/snowplow/wiki/Hosted-assets
 [leiningen]: https://github.com/technomancy/leiningen
 [aws]: https://console.aws.amazon.com/
-[emr-etl-runner]
+[linode]: http://www.linode.com/
+[route53]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/customdomains.html
+[openssl]: http://www.openssl.org/
+[comodo]: http://ssl.comodo.com/index.php?ap=ComodoSSLJun12&key1sk5=3159&key1sk1=sem&gclid=CLzP7KPOhbQCFe7MtAodBAsApQ
+[amazon-https-eb-setup]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/configuring-https.html
+[java]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
