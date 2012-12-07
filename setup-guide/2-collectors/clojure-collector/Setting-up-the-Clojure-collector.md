@@ -108,7 +108,7 @@ Click on the **URL** link. (This is [[http://cc-endpoint.elasticbeanstalk.com]] 
 
 [[/setup-guide/images/clojure-collector-setup-guide/8.png]]
 
-<a name="env-config"></a>
+<a name="enable-logging"></a>
 
 ## 3. Enable logging to S3
 
@@ -329,7 +329,7 @@ Note the padlock icon by the address bar.
 
 <a name="endpoint" ></a>
 
-5. Set your tracker to point at the Clojure collector end point
+## 5. Set your tracker to point at the Clojure collector end point
 
 Now that you've set up your Clojure collector, you need to configure your tracker to send event data to it.
 
@@ -387,7 +387,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp
 <!-- SnowPlow stops plowing -->
 ```
 
-<a name="emr-etl-runner" />
+<a name="emr-etl-runner-config" />
 
 ## 6. Update the EmrEtlRunner configuration YAML file
 
