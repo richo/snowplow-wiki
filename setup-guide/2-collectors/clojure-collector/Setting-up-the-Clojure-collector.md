@@ -374,7 +374,7 @@ Note that the URL your enter must **exclude** `http` or `https`. In our case, th
 <script type="text/javascript">
 var _snaq = _snaq || [];
 
-_snaq.push(['setCollectorUrl', 'collector.snplow.com'])
+_snaq.push(['setCollectorUrl', 'collector.snplow.com']);
 _snaq.push(['trackPageView']);
 _snaq.push(['enableLinkTracking']);
 
