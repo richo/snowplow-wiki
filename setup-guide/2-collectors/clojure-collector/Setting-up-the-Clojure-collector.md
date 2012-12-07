@@ -11,14 +11,16 @@ The Clojure collector has been designed to run on [Amazon's Elastic Beanstalk][e
 
 ## Contents
 
-Setting up the Clojure collector is a X step process:
+Setting up the Clojure collector is a 6 step process:
 
 1. [Download the Clojoure collector WAR file, or compile it from source](#war-file). (Required)
 2. [Create a new application in Elastic Beanstalk, and upload the WAR file into it] (#create-eb-app). (Required)
 3. [Enable logging to S3] (#enable-logging). (Required)
 4. [Enable support for HTTPS](#https). (Optional, but recommended.)
-5. Set your tracker to point at the Clojure collector end point. (Required)
-6. Update the EmrEtlRunner configuration YAML file
+5. [Set your tracker to point at the Clojure collector end point](#endpoint). (Required)
+6. [Update the EmrEtlRunner configuration YAML file](#emr-etl-runner-config). (Required)
+
+In addition, we document [additional configuration options](#configuring-the-collector) at the end of this guide.
 
 <a name="war-file"></a>
 
@@ -325,45 +327,93 @@ Click the **Apply Changes** button. The environment will update. When it has com
 
 Note the padlock icon by the address bar.
 
+<a name="endpoint" ></a>
+
+5. Set your tracker to point at the Clojure collector end point
+
+Now that you've set up your Clojure collector, you need to configure your tracker to send event data to it.
+
+Assuming you're using the [Javascript tracker][javascript-tracker], you'll need to modify your Javascript tracking tags to set the correct end point. The standard tracking tags look as follows:
+
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var _snaq = _snaq || [];
+
+_snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
+_snaq.push(['trackPageView']);
+_snaq.push(['enableLinkTracking']);
+
+(function() {
+var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+})();
+ </script>
+<!-- SnowPlow stops plowing -->
+```
+
+The line
+
+```javascript
+_snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
+```
+
+Is the one that sets the end point, and assumes that you're using the Cloudfront collector rather than the Clojure collector.
+
+To set your Clojure collector as the end point, remove that line and replace it with:
+
+```javascript
+_snaq.push(['setCollectorUrl', '{{COLLECTOR URL}}'])
+```
+
+Note that the URL your enter must **exclude** `http` or `https`. In our case, the url would be: `collector.snplow.com`. As a result, the complete tag will look like:
+
+```html
+<!-- SnowPlow starts plowing -->
+<script type="text/javascript">
+var _snaq = _snaq || [];
+
+_snaq.push(['setCollectorUrl', 'collector.snplow.com'])
+_snaq.push(['trackPageView']);
+_snaq.push(['enableLinkTracking']);
+
+(function() {
+var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
+sp.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://d1fc8wv8zag5ca.cloudfront.net/0.8.1/sp.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(sp, s);
+})();
+ </script>
+<!-- SnowPlow stops plowing -->
+```
+
+<a name="emr-etl-runner" />
+
+## 6. Update the EmrEtlRunner configuration YAML file
+
+TO WRITE THIS SECTION
+
+	:etl:
+	  :collector_format: clj-tomcat
 
 
 
 
+<a name="configuring-the-collector"></a>
 
+## Appendix: Configuring the collector
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Configuring the collector
-
-There are a number of other environment configuration parameters that you may want to consider tailoring to your specific needs. All of them can be accessed via the **Edit Configuration** dialogue box.
+There are a environment configuration parameters that you may want to consider tailoring to your specific needs. All of them can be accessed via the **Edit Configuration** dialogue box in the AWS Managemetn Console.
 
 <a name="3bi" ></a>
 
 #### 3b i. Setting the environment to develop or production
 
-You can set an environment mode in the collector e.g. to "Development" or "Production". This can be set via the Elastic Beanstalk UI. Simply select **Edit configuration**, select the **Conatainer** tab and scroll down. Enter your desired environment name in **Param1** and then select **Apply Changes**:
+You can set an environment mode in the collector to "development" or "production". This can be set via the Elastic Beanstalk UI. Simply select **Edit configuration**, select the **Conatainer** tab and scroll down. Enter your desired environment name in **Param1** and then select **Apply Changes**:
 
 [[/setup-guide/images/clojure-collector-setup-guide/10.png]]
+
+Setting the environment to 'development' means you can view the status of the collector on `http://{{COLLECTOR URL}}/status`. It is set to production by default.
 
 <a name="3bii" ></a>
 
@@ -371,21 +421,25 @@ You can set an environment mode in the collector e.g. to "Development" or "Produ
 
 This can be entered directly into the same dialogue box as the environment name (see [3b i](#3bi) above), but in **Param2** rather than **Param1**.
 
+If it is not set, the P£3P policy header defaults to:
+
+	policyref="/w3c/p3p.xml", CP="NOI DSP COR NID PSA OUR IND COM NAV STA"
+
 <a name="3biii" ></a>
 
 #### 3b iii. Setting the domain name
 
-The domain name can be entered directly into the same dialogue box as the [environment name](#3bi) and [P3P policy header](#3bii) by entering it into **Param3**
+The domain name can be entered directly into the same dialogue box as the [environment name](#3bi) and [P3P policy header](#3bii) by entering it into **Param3**.
 
-If no value is added, the domain  name defaults to the collector domain name.
+Setting the domain name can be useful if you want to make the cookie accessible to other applications on your domain. In our example above, for example, we've setup the collector on `collector.snplow.com`. If we do not set a domain name, the cookie will default to thsi domain. However, if we set it to `.snplow.com`, that cookie will be accessible to other applications running on `*.snplow.com`.
 
 <a name="3biv" ></a>
 
 #### 3b iv. Setting the cookie duration
 
-This can be entered into the same dialogue box as the [environment name](#3bi), [P3P policy header](#3bii) and [domain name](#3biii), by entering the value in **Param4**. 
+This can be entered into the same dialogue box as the [environment name](#3bi), [P3P policy header](#3bii) and [domain name](#3biii), by entering the value in **Param4**. The value entered should be an integer representing cookie duration measured in days.
 
-If no value is provided, cookies set default to expiring after one year.
+If no value is provided, cookies set default to expiring after one year (i.e. 365 days).
 
 #### 3b v. Auto scaling
 
@@ -396,18 +450,6 @@ Basic settings (minimum and maximum numbers of servers) can be set in the config
 [[/setup-guide/images/clojure-collector-setup-guide/11.png]]
 
 You can tell Amazon in what circumstances to launch new instances by setting 'triggers'. More details on tuning Elastic Beanstalk can be found [here](http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/using-features.managing.as.html).
-
-
-
-## 5. Set your Tracker to point at the Clojure collector end point
-
-
-<a name="emr-etl-runner" />
-
-## 6. Update the EmrEtlRunner configuration YAML file
-
-	:etl:
-	  :collector_format: clj-tomcat
 
 
 [eb]: http://aws.amazon.com/elasticbeanstalk/
@@ -421,3 +463,4 @@ You can tell Amazon in what circumstances to launch new instances by setting 'tr
 [comodo]: http://ssl.comodo.com/index.php?ap=ComodoSSLJun12&key1sk5=3159&key1sk1=sem&gclid=CLzP7KPOhbQCFe7MtAodBAsApQ
 [amazon-https-eb-setup]: http://docs.amazonwebservices.com/elasticbeanstalk/latest/dg/configuring-https.html
 [java]: http://www.oracle.com/technetwork/java/javase/downloads/index.html
+[javascript-tracker]: javascript-tracker-setup
