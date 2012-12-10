@@ -10,8 +10,8 @@ Assuming you're using the [Javascript tracker][javascript-tracker], you'll need 
 var _snaq = _snaq || [];
 
 _snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
-_snaq.push(['trackPageView']);
 _snaq.push(['enableLinkTracking']);
+_snaq.push(['trackPageView']);
 
 (function() {
 var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
@@ -33,10 +33,18 @@ _snaq.push(['setCollectorCf', '{{CLOUDFRONT DOMAIN}}']);
 To set your Clojure collector as the end point, remove that line and replace it with:
 
 ```javascript
-_snaq.push(['setCollectorUrl', '{{COLLECTOR URL}}'])
+_snaq.push(['setCollectorUrl', '{{COLLECTOR URL}}']);
 ```
 
-Note that the URL your enter must **exclude** `http` or `https`. In our case, the url would be: `collector.snplow.com`. As a result, the complete tag will look like:
+Note that the URL your enter must **exclude** `http://` or `https://`. In our case, the url would be: `collector.snplow.com`.
+
+Also, you need to tell the JavaScript that it doesn't need to send user IDs to the collector - this is because your Clojure collector is now setting user IDs. You do this like so:
+
+```javascript
+_snaq.push(['attachUserId', false]);
+```
+
+So, the complete tag will look like this:
 
 ```html
 <!-- SnowPlow starts plowing -->
@@ -44,8 +52,9 @@ Note that the URL your enter must **exclude** `http` or `https`. In our case, th
 var _snaq = _snaq || [];
 
 _snaq.push(['setCollectorUrl', 'collector.snplow.com']);
-_snaq.push(['trackPageView']);
+_snaq.push(['attachUserId', false]);
 _snaq.push(['enableLinkTracking']);
+_snaq.push(['trackPageView']);
 
 (function() {
 var sp = document.createElement('script'); sp.type = 'text/javascript'; sp.async = true; sp.defer = true;
