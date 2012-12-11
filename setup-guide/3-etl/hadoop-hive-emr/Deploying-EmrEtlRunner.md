@@ -96,7 +96,7 @@ First, checkout the SnowPlow repository and navigate to the EmrEtlRunner root:
     
 Next install the application on your system:
 
-    $ gem build snowplow-emr-etl-runner.gemspec
+    $ sudo gem build snowplow-emr-etl-runner.gemspec
     $ sudo gem install snowplow-emr-etl-runner-0.0.5.gem
 
 Check it worked okay:
